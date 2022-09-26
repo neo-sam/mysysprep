@@ -1,3 +1,5 @@
-. scripts/_adminrequire
+./_adminrequire
 
-& scripts/autoinstall.ps1
+../config
+./debloat-appx
+./autoinstall

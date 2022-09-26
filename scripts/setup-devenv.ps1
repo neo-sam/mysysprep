@@ -1,3 +1,3 @@
-. scripts/_adminrequire
+./_adminrequire
 
-echo 2
+./setup

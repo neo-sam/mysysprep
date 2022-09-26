@@ -6,7 +6,7 @@ git clone or download this repository into your U disk.
 
 Recommended free open-source softwares, save them into `./packages`:
 
-TRANSLATION: [中文](./GETAPPS-IN-CHINA.md)
+TRANSLATION: [中文](./i18n/getapps-cn.md)
 
 - Firefox: privacy-first browser
 
@@ -80,4 +80,6 @@ Excecute `_verify.cmd` in `./packages/`
 
 ## Get Started
 
-Execute `setup.cmd` ,or `setup-devenv.cmd` for developers.
+1. Open this repository with your './packages`
+2. Edit `config.ps1`
+3. Execute `setup.cmd`, or `setup-devenv.cmd` for developers.

@@ -1,4 +1,4 @@
-. scripts/_adminrequire
+./_adminrequire
 
 Write-Host '==> Auto install all of "./packages"'
 Write-Host "If prompt installation dialogs, allow and confirm ...`n"
@@ -19,7 +19,7 @@ function Start-WaitToInstallJob {
     } > $null
 }
 
-Set-Location packages
+Set-Location ..\packages
 foreach ($file in Get-ChildItem) {
     $filename = $file.Name
     switch -Wildcard ($filename) {
