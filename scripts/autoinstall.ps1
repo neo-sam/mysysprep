@@ -1,7 +1,7 @@
 . scripts/_adminrequire
 
-Set-Location installers
-$files = Get-ChildItem
+Write-Host '==> Auto install all of "./packages"'
+Write-Host "If prompt installation dialogs, allow and confirm ...`n"
 
 function Start-WaitToInstallJob {
     Start-Job -ArgumentList $args {
@@ -19,9 +19,8 @@ function Start-WaitToInstallJob {
     } > $null
 }
 
-Write-Host "If prompt installation dialogs, allow and confirm ...`n"
-
-foreach ($file in $files) {
+Set-Location packages
+foreach ($file in Get-ChildItem) {
     $filename = $file.Name
     switch -Wildcard ($filename) {
         'Firefox Setup *.exe' {

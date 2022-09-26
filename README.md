@@ -2,9 +2,9 @@
 
 git clone or download this repository into your U disk.
 
-## Get Your Required Installers
+## Get Your Required Packages
 
-Recommended free open-source softwares, save them into `./installers`:
+Recommended free open-source softwares, save them into `./packages`:
 
 TRANSLATION: [中文](./GETAPPS-IN-CHINA.md)
 
@@ -76,7 +76,7 @@ Download Pages:
 
 ### Verification
 
-Excecute `_verify.cmd` in `./installers/`
+Excecute `_verify.cmd` in `./packages/`
 
 ## Get Started
 

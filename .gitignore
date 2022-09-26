@@ -1,2 +1,2 @@
-/installers/*.exe
-/installers/*.msi
+/packages/*.exe
+/packages/*.msi
