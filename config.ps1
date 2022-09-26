@@ -7,18 +7,27 @@ powershell -c "(cat config.ps1) -replace ' = 0$',' = 1' | set-content config.ps1
 [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseDeclaredVarsMoreThanAssignments', '')]
 param()
 
+# Disable User Data Collectors
+$protectMyUserData = 0
+$disableAd = 0
+
+# Disable useless compatibility and error report
+$disableUnuseServices = 0
+
 $removePowershellISE = 0
 $removeWordpad = 0
 $removeOneDrive = 0
 
-$removeAppxOfMsCloudApps = 0
-$removeAppxOfXbox = 0
+$uninstallBundledCloudApps = 0
+$uninstallXbox = 0
+
+$optimzeExplorer = 1
 
 # Windows 11:
 
 $noTaskbarWidgets = 0
 
-if ($removeAppxOfMsCloudApps) {
+if ($uninstallBundledCloudApps) {
     $removeAppxList += @"
 Microsoft.BingNews
 Microsoft.BingWeather
@@ -34,7 +43,7 @@ Clipchamp.Clipchamp
 "@
 }
 
-if ($removeAppxOfXbox) {
+if ($uninstallXbox) {
     $removeAppxList += @"
 Microsoft.Xbox.TCUI,
 Microsoft.XboxApp,
