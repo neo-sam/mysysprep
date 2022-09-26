@@ -73,3 +73,11 @@ Download Pages:
   Upgrade SSH component package:
 
   find `OpenSSH-Win64-v` to get
+
+### Verification
+
+Excecute `_verify.cmd` in `./installers/`
+
+## Get Started
+
+Execute `setup.cmd` ,or `setup-devenv.cmd` for developers.
