@@ -8,71 +8,71 @@ Recommended free open-source softwares, save them into `./packages`:
 
 TRANSLATION: [中文](./GETAPPS-IN-CHINA.md)
 
-- Get the [Firefox installer](https://download.mozilla.org/?product=firefox-latest-ssl&os=win64)
+- Firefox: privacy-first browser
 
-Download Pages:
+  [Download Installer directly](https://download.mozilla.org/?product=firefox-latest-ssl&os=win64)
 
-- [Thunderbird](https://www.thunderbird.net/) -
-  Mozilla free email client
+- Thunderbird: Mozilla free email client
 
-- [OBS](https://obsproject.com/) -
-  Free Live Recorder
+  [Official Download Page](https://www.thunderbird.net/)
 
-- [Workrave](https://github.com/rcaelers/workrave/releases/latest) -
-  Sedentary Office Rest Reminder
+- OBS: free live recorder
 
-- [Cyberduck](https://cyberduck.io/download/) -
-  Libre server and cloud storage browser
+  [Official Download Page](https://obsproject.com/)
 
-- [Everything](https://www.voidtools.com) -
-  A file searcher, experience far beyond the system built-in search engine:
+- Cyberduck: cloud storage explorer
 
-  find `Download Lite Installer 64-bit` to get
+  [Official Download Page](https://cyberduck.io/download/)
 
-- [VeraCrypt](https://www.veracrypt.fr/en/Downloads.html) -
-  Free hard disk data encryptor:
+- Workrave: rest reminder
 
-  find `EXE Installer` to get
+  [Official GitHub Release](https://github.com/rcaelers/workrave/releases/latest)
 
-- [mcmilk's improved 7zip](https://github.com/mcmilk/7-Zip-zstd/releases/latest) -
-  Compressor:
+- Everything: file searcher, experience far beyond the system built-in search engine
 
-  find `.exe` to get
+  Find `Download Lite Installer 64-bit` at [Official Download Page](https://www.voidtools.com)
 
-- [qBittorrent](https://www.fosshub.com/qBittorrent.html) -
-  Free BitTorrent client:
+- VeraCrypt: free hard disk data encryptor
 
-  find `x64` to get
+  Find `EXE Installer` at [Official Download Page](https://www.veracrypt.fr/en/Downloads.html)
+
+- mcmilk's improved 7zip: compressor
+
+  Find `.exe` at [Official GitHub Release](https://github.com/mcmilk/7-Zip-zstd/releases/latest)
+
+- qBittorrent: free BitTorrent client
+
+  Find `x64` at [FOSSHUB Release](https://www.fosshub.com/qBittorrent.html)
 
 ### For Developers
 
-- [Git for Windows](https://gitforwindows.org/)
+- Git for Windows
 
-- [PowerShell Core](https://aka.ms/powershell-release?tag=stable) -
-  Better than powershell 5:
+  [Official Download Page](https://gitforwindows.org/)
 
-  find `win-x64.msi` to get
+- PowerShell Core: better than classic PowerShell
 
-- [gVim](https://ftp.nluug.nl/pub/vim/pc/) -
-  Text Editor Vim with GUI:
+  Find `win-x64.msi` at [Official GitHub Release](https://aka.ms/powershell-release?tag=stable)
 
-  click "Last modified" and find the latest `.exe` to get
+- gVim: text editor Vim with GUI
 
-- [MSYS2](https://www.msys2.org/#installation) -
-  Software Distribution and Building Platform for Windows
+  Click "Last modified" and find the latest `.exe` at [Official Download Page](https://ftp.nluug.nl/pub/vim/pc/)
 
-- [VirtualBox](https://www.vitualbox.org/wiki/Downloads#VirtualBoxbinaries) -
-  Free open source virtualization platform by Oracle:
+- MSYS2: software distribution and building platform for Windows
 
-  find `Windows hosts` to get
+  [Official Download Page](https://www.msys2.org/#installation)
 
-- [ImDisk Toolkit](https://sourceforge.net/projects/imdisk-toolkit/files/latest/download) -
-  Ramdisk for Windows and mounting of image files
+- VirtualBox: free open source virtualization platform by Oracle:
 
-- [OpenSSH](https://github.com/PowerShell/Win32-OpenSSH/releases/latest) -
-  Upgrade SSH component package:
+  Find `Windows hosts` at [Official Download Page](https://www.vitualbox.org/wiki/Downloads#VirtualBoxbinaries)
 
-  find `OpenSSH-Win64-v` to get
+- OpenSSH: upgrade SSH component package:
+
+  find `OpenSSH-Win64-v` at [Official GitHub Page](https://github.com/PowerShell/Win32-OpenSSH/releases/latest)
+
+- ImDisk Toolkit: ramdisk for Windows and mounting of image files
+
+  [Official Download Page](https://sourceforge.net/projects/imdisk-toolkit/files/latest/download)
 
 ### Verification
 
