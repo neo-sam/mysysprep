@@ -1,4 +1,4 @@
-./_adminrequire
+.\_adminrequire.ps1
 if ([Environment]::OSVersion.Version.Build -lt 22000) { exit }
 
 if ($noTaskbarWidgets) {

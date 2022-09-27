@@ -1,7 +1,9 @@
-./_adminrequire
+.\_adminrequire.ps1
 
 Write-Host '==> Auto install all of "./packages"'
 Write-Host "If prompt installation dialogs, allow and confirm ...`n"
+
+.\autoinstall-choco.ps1
 
 function Start-InstallJob {
     param($name, $path, $params)

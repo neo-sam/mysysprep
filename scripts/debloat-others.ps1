@@ -1,4 +1,4 @@
-./_adminrequire
+.\_adminrequire.ps1
 
 Write-Host '==> Debloat Others'
 

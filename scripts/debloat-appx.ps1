@@ -1,4 +1,4 @@
-./_adminrequire
+.\_adminrequire.ps1
 if (-not (Get-Module Appx -All -ListAvailable)) { exit }
 
 Write-Host '==> Debloat Appx'

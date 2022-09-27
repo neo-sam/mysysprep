@@ -1,3 +1,3 @@
-./_adminrequire
+.\_adminrequire.ps1
 
 ./setup

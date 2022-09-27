@@ -1,4 +1,6 @@
 /packages/*
 !/packages/.gitkeep
 !/packages/_verify.*
+/logs/
+!/logs/.gitkeep
 /FirefoxPortableESR/

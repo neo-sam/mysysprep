@@ -51,6 +51,10 @@ Translation: [中文](./i18n/getapps-cn.md)
 
 For Developers:
 
+- Chocolatey: Packages Manager
+
+  [Download Installer directly](https://community.chocolatey.org/api/v2/package/chocolatey)
+
 - Git for Windows
 
   [Official Download Page](https://gitforwindows.org/)
