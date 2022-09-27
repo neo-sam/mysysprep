@@ -2,7 +2,11 @@
 if (-not (Get-Module Appx -All -ListAvailable)) { exit }
 
 Write-Host '==> Debloat Appx'
-foreach ($name in $removeAppxList.Split("`n")) {
+
+$ProgressPreference = 'SilentlyContinue'
+
+foreach ($name in "$removeAppxList".Split("`n")) {
+    if ($name -eq '') { continue }
     $app = Get-AppxPackage -Name $name
     if ($null -ne $app) {
         $app | Remove-AppxPackage
@@ -14,3 +18,5 @@ foreach ($name in $removeAppxList.Split("`n")) {
         Write-Host "Remove-AppxProvisionedPackage $name [ok]"
     }
 }
+
+$ProgressPreference = 'Continue'

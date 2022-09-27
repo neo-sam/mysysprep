@@ -1,3 +1,3 @@
-.\_adminrequire.ps1
-
-./setup
+..\config
+.\todolist
+.\todolist-devenv

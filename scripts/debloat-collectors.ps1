@@ -11,19 +11,22 @@ function Disable-BundledService {
 
 function Disable-BundledTask {
     param([String[]]$names)
-    Get-ScheduledTask -TaskName $names | Disable-ScheduledTask -ErrorAction SilentlyContinue
+    Get-ScheduledTask -TaskName $names | Disable-ScheduledTask -ErrorAction SilentlyContinue | Out-Null
 }
 
 if($protectMyUserData){
     Disable-BundledService dmwappushservice, DiagTrack
     Disable-BundledTask Consolidator, UsbCeip, DmClient, DmClientOnScenarioDownload
+    Write-Host 'Disabled user data collectors.'
 }
 
-if ($disableUnuseServices) {
+if ($disableUnusedServices) {
     Disable-BundledService PcaSvc, WerSvc
+    Write-Host 'Disabled unused service.'
 }
 
 if ($uninstallXbox) {
     Disable-BundledService XblAuthManager, XblGameSave, XboxGipSvc, XboxNetApiSvc
     Disable-BundledTask XblGameSaveTask
+    Write-Host 'Disabled Xbox service.'
 }

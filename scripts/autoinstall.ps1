@@ -5,6 +5,8 @@ Write-Host "If prompt installation dialogs, allow and confirm ...`n"
 
 .\autoinstall-choco.ps1
 
+Push-Location ..\packages
+
 function Start-InstallJob {
     param($name, $path, $params)
     Write-Host "Start to install $name ..."
@@ -14,18 +16,21 @@ function Start-InstallJob {
 }
 
 $firefox = 'Firefox'
+$thunderbird = 'Thunderbird'
 $7zipZstd = '7zip-zstd'
 
-Set-Location ..\packages
 foreach ($file in Get-ChildItem) {
     $filename = $file.Name
     $path = $file.FullName
     switch -Wildcard ($filename) {
+        '7z*-zstd-x64.exe' {
+            Start-InstallJob $7zipZstd $path '/S'
+        }
         'Firefox Setup *.exe' {
             Start-InstallJob $firefox $path '/S'
         }
-        '7z*-zstd-x64.exe' {
-            Start-InstallJob $7zipZstd $path '/S'
+        'Thunderbird Setup *.exe'{
+            Start-InstallJob $thunderbird $path '/S'
         }
     }
 }
@@ -59,11 +64,14 @@ While ($job = Get-JobOrWait) {
             throw 
         }
         switch ($job.Name) {
-            $firefox { 
-                Assert-Path "$env:ProgramFiles\Mozilla Firefox\firefox.exe"
-            }
             $7zipZstd {
-                Push-SystemPath "$env:ProgramFiles\7-Zip-Zstandard"
+                Push-SystemPath "C:\Program Files\7-Zip-Zstandard"
+            }
+            $firefox { 
+                Assert-Path "C:\Program Files\Mozilla Firefox\firefox.exe"
+            }
+            $thunderbird{
+                Assert-Path "C:\Program Files\Mozilla Thunderbird\thunderbird.exe"
             }
         }
     }
@@ -77,3 +85,5 @@ While ($job = Get-JobOrWait) {
     }
     Write-Host "Successfully installed $($job.Name)."
 }
+
+Pop-Location
