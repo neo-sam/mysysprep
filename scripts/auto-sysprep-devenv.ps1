@@ -1,3 +1,3 @@
 . ..\config
-.\todolist
-.\todolist-devenv
+.\todolist.ps1
+.\todolist-devenv.ps1

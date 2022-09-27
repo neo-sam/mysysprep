@@ -6,5 +6,5 @@ if (!$PSSenderInfo) {
 
 Start-Process $pkgfile /S -PassThru | Wait-Process
 
-Assert-Path "$env:ProgramFiles\7-Zip-Zstandard\7z.exe"
-Push-SystemPath "$env:ProgramFiles\7-Zip-Zstandard"
+Assert-Path "C:\Program Files\7-Zip-Zstandard\7z.exe"
+Push-SystemPath "C:\Program Files\7-Zip-Zstandard"

@@ -6,7 +6,8 @@ Write-Output '==> Deploy ".\pkgs"',
 $projectRoot = Split-Path (Split-Path $MyInvocation.MyCommand.Path)
 $runscriptInit = [scriptblock]::Create(". `"$projectRoot\scripts\pkgs-scriptenv.ps1`";cd `"$projectRoot`"")
 $runscripts = Get-ChildItem .\pkgs\*.ps1
-Set-Location $projectRoot
+
+Push-Location $projectRoot
 
 function Get-PackageFile() { 
     [OutputType([IO.FileSystemInfo])] param($pattern)
@@ -45,3 +46,5 @@ while ($job = (Get-JobOrWait)) {
         Remove-Job $job
     }
 }
+
+Pop-Location

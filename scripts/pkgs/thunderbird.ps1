@@ -6,4 +6,4 @@ if (!$PSSenderInfo) {
 
 Start-Process -PassThru $pkgfile /S | Wait-Process
 
-Assert-Path "$env:ProgramFiles\Mozilla Thunderbird\thunderbird.exe"
+Assert-Path "C:\Program Files\Mozilla Thunderbird\thunderbird.exe"

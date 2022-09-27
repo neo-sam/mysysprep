@@ -22,6 +22,7 @@ $uninstallBundledCloudApps = 0
 $uninstallXbox = 0
 
 $optimzeExplorer = 1
+$disableSshdServer = 1
 
 # Windows 11:
 

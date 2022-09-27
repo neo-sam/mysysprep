@@ -43,10 +43,6 @@
 
   从[高校镜像站](https://mirrorz.org/app/VirtualBox)下载
 
-- MSYS2: 仿 UNIX 开发和构建环境
-
-  从[高校镜像站](https://mirrorz.org/app/MSYS2)下载
-
 - Git for Windows: 开发必备
 
   找到 `64-bit, exe` 下载，见[高校镜像站](https://mirrorz.org/app/Git)
@@ -56,8 +52,14 @@
   找到 `win-x64.msi` 下载，见[高校镜像站](https://mirrorz.org/list/PowerShell)
 
 - gVim: 文本编辑器
-  
+
   按修改时间倒排，找到最新版 `.exe` 下载，见[高校镜像站](https://mirrorz.org/list/vim)
+
+## 其它
+
+- MSYS2: 仿 UNIX 开发和构建环境
+
+  从[高校镜像站](https://mirrorz.org/app/MSYS2)下载
 
 ## 仅外网提供
 

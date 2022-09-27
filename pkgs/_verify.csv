@@ -15,5 +15,5 @@ qBittorrent,qbittorrent_*_x64_setup
 qBittorrentEnhanced,qbittorrent_enhanced_*_x64_setup.exe
 7zip-zstd,7z*-zstd-x64.exe
 MSYS2,msys2-x86_64-latest.exe
-Workrave,workrave-win32-v1.10.50.exe
+Workrave,workrave-win32-v*.exe
 Chocolatey,chocolatey.*.nupkg

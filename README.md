@@ -39,10 +39,6 @@ Translation: [中文](./i18n/getapps-cn.md)
 
   Find `Download Lite Installer 64-bit` at [Official Download Page](https://www.voidtools.com)
 
-- VeraCrypt: free hard disk data encryptor
-
-  Find `EXE Installer` at [Official Download Page](https://www.veracrypt.fr/en/Downloads.html)
-
 - mcmilk's improved 7zip: compressor
 
   Find `.exe` at [Official GitHub Release](https://github.com/mcmilk/7-Zip-zstd/releases/latest)
@@ -69,10 +65,6 @@ For Developers:
 
   Click "Last modified" and find the latest `.exe` at [Official Download Page](https://ftp.nluug.nl/pub/vim/pc/)
 
-- MSYS2: software distribution and building platform for Windows
-
-  [Official Download Page](https://www.msys2.org/#installation)
-
 - VirtualBox: free open source virtualization platform by Oracle:
 
   Find `Windows hosts` at [Official Download Page](https://www.vitualbox.org/wiki/Downloads#VirtualBoxbinaries)
@@ -94,12 +86,25 @@ Excecute `_verify.cmd` in `.\pkgs`
 You can get [Firefox ESR](https://portableapps.com/apps/internet/firefox-portable-esr),
 unpack it into current repository
 
+### Misc
+
+Manuall Installers, put them into `.\misc`
+
+- VeraCrypt: free hard disk data encryptor
+
+  Find `EXE Installer` at [Official Download Page](https://www.veracrypt.fr/en/Downloads.html)
+
+- MSYS2: software distribution and building platform for Windows
+
+  [Official Download Page](https://www.msys2.org/#installation)
+
 ## Get Started
 
 Deploy on the target machine:
 
 1. Enter into the
    [audit mode](https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/boot-windows-to-audit-mode-or-oobe)
-2. Open this repository with your '.\pkgs`
+2. Open this repository with your `.\pkgs`
 3. Edit `config.ps1`
 4. Execute `setup.cmd`, or `setup-devenv.cmd` for developers.
+5. Check files of `.\misc` if required

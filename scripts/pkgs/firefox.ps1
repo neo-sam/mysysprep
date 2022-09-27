@@ -6,4 +6,4 @@ if (!$PSSenderInfo) {
 
 Start-Process $pkgfile /S -PassThru | Wait-Process
 
-Assert-Path "$env:ProgramFiles\Mozilla Firefox\firefox.exe"
+Assert-Path "C:\Program Files\Mozilla Firefox\firefox.exe"
