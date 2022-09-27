@@ -1,1 +1,1 @@
-.\_adminrequire.ps1
+. .\_adminrequire.ps1

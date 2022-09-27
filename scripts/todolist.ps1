@@ -1,4 +1,4 @@
-.\_adminrequire.ps1
+. .\_adminrequire.ps1
 
 .\tweak-registry.ps1
 .\debloat-collectors.ps1

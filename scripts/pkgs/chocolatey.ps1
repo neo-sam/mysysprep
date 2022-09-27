@@ -1,7 +1,7 @@
-$pkgfile = Get-ChildItem "pkgs\chocolatey.*.nupkg" -ErrorAction SilentlyContinue
-if ($null -eq $PSSenderInfo) { 
-    if ( $null -eq $pkgfile ) { return }
-    return 'Chocolatey'
+$pkgfile = Get-PackageFile "chocolatey.*.nupkg"
+if (!$PSSenderInfo) { 
+    if ($pkgfile) { 'Chocolatey' }
+    return 
 }
 
 # - $env:ChocolateyEnvironmentDebug = 'true' # see output
@@ -34,7 +34,7 @@ try {
 catch {
     Write-Output "It's better to upgrade to .NET Framework 4.5+ and PowerShell v3+."
 }
-    
+
 $chocTempDir = Join-Path $env:TEMP "chocolatey"
 $tempDir = Join-Path $chocTempDir "chocInstall"
 if (![System.IO.Directory]::Exists($tempDir)) { [System.IO.Directory]::CreateDirectory($tempDir) | Out-Null }

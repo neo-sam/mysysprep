@@ -1,4 +1,4 @@
-.\_adminrequire.ps1
+. .\_adminrequire.ps1
 
 if ($protectMyUserData) {
     & {
