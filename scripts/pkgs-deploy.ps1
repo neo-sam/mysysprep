@@ -1,7 +1,45 @@
 .\_adminrequire.ps1
 
-Write-Host '==> Auto install all of ".\pkgs"'
-Write-Host "If prompt installation dialogs, allow and confirm ...`n"
+Write-Output '==> Deploy ".\pkgs"',
+'If prompt installation dialogs, allow and confirm ...' ''
+
+$projectRoot = Split-Path (Split-Path $MyInvocation.MyCommand.Path)
+$runscriptInit = [scriptblock]::Create(". `"$projectRoot\scripts\pkgs-scriptenv.ps1`";cd `"$projectRoot`"")
+$runscripts = Get-ChildItem .\pkgs\*.ps1
+Set-Location $projectRoot
+
+foreach ($runscript in $runscripts) {
+    if ($name = & $runscript.FullName) {
+        Write-Host "Adding package: $name"
+        Start-Job `
+            -InitializationScript $runscriptInit `
+            -Name $name -FilePath $runscript |
+        Out-Null
+    }
+}
+
+function Get-JobOrWait {
+    [OutputType([Management.Automation.Job])] param()
+    if ($job = Get-Job -State Failed | Select-Object -First 1) { return $job }
+    if ($job = Get-Job -State Completed | Select-Object -First 1) { return $job }
+    if ($job = Get-Job | Wait-Job -Any) { return $job }
+}
+
+while ($job = (Get-JobOrWait)) {
+    try {
+        Receive-Job $job -ErrorAction Stop
+        Write-Output "Successfully added package: $($job.Name)." ''
+    }
+    catch {
+        Write-Output "Fail to add package: $($job.Name)",
+        "Reason: $($_.Exception.Message)", '' 
+    }
+    finally {
+        Remove-Job $job
+    }
+}
+
+exit
 
 Push-Location ..\pkgs
 
@@ -12,34 +50,6 @@ function Start-InstallJob {
         Start-Process -Wait $args[0] $args[1]
     } > $null
 }
-
-function Add-Font {
-    param($path)
-    $FontFile = Get-ChildItem $path
-    # https://gist.github.com/anthonyeden/0088b07de8951403a643a8485af2709b?permalink_comment_id=3651336#gistcomment-3651336
-    $SystemFontsPath = "$env:SystemRoot\Fonts"
-    $targetPath = Join-Path $SystemFontsPath $FontFile.Name
-    if (Test-Path -Path $targetPath) {
-        Write-Host ($FontFile.Name + " already installed")
-    }
-    else {
-        #Extract Font information for Reqistry 
-        $ShellFolder = (New-Object -COMObject Shell.Application).Namespace((Split-Path $path))
-        $ShellFile = $ShellFolder.ParseName($FontFile.name)
-        $ShellFileType = $ShellFolder.GetDetailsOf($ShellFile, 2)
-
-        #Set the $FontType Variable
-        If ($ShellFileType -Like '*TrueType font file*') { $FontType = '(TrueType)' }
-			
-        #Update Registry and copy font to font directory
-        $RegName = $ShellFolder.GetDetailsOf($ShellFile, 21) + ' ' + $FontType
-        New-ItemProperty -Name $RegName -Path "HKLM:\Software\Microsoft\Windows NT\CurrentVersion\Fonts" -PropertyType string -Value $FontFile.name -Force | out-null
-        Copy-item $FontFile.FullName -Destination $SystemFontsPath
-        Write-Host "Added font:" $FontFile.Name
-    }
-}
-
-$projectRoot = Split-Path (Split-Path $MyInvocation.MyCommand.Path)
 
 $7zipZstd = '7zip-zstd'
 $powershell = 'PowerShell'
@@ -74,26 +84,6 @@ foreach ($file in Get-ChildItem) {
 
 Write-Host
 
-function Push-SystemPath {
-    param([string]$path)
-    if ($env:path -like "*$path*") { return }
-    setx /m PATH "$env:path;$path" > $null
-}
-
-function Assert-Path {
-    param([string]$path)
-    Get-ChildItem $path -ea Stop > $null
-}
-
-function Get-JobOrWait {
-    [OutputType([Management.Automation.Job])]
-    param()
-    $job = Get-Job -State Failed | Select-Object -First 1
-    if ($null -eq $job) { $job = Get-Job -State Completed | Select-Object -First 1 }
-    if ($null -eq $job) { $job = Get-Job | Wait-Job -Any }
-    return $job
-}
-
 While ($job = Get-JobOrWait) {
     try {
         Receive-Job $job 2>$null
@@ -120,14 +110,14 @@ While ($job = Get-JobOrWait) {
         }
     }
     catch {
-        Write-Host "Failed to install $($job.Name):"
-        Write-Host $Error "`n"
+        Write-Host "Failed to add the package: $($job.Name):"
+        Write-Host $_.Exception.Message
         continue
     }
     finally {
         Remove-Job $job
     }
-    Write-Host "Successfully installed $($job.Name)."
+    Write-Host "Added the package: $($job.Name)."
 }
 
 Pop-Location

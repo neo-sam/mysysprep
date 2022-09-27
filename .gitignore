@@ -1,6 +1,9 @@
 /pkgs/*
 !/pkgs/.gitkeep
 !/pkgs/_verify.*
+!/pkgs/archived
+/pkgs/archived/*
+!/pkgs/archived/.gitkeep
 /logs/
 !/logs/.gitkeep
 /FirefoxPortableESR/
