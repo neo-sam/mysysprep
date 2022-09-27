@@ -2,7 +2,7 @@
 [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseApprovedVerbs', '')]
 param()
 
-$localChocolateyPackageFilePath = (Get-ChildItem ..\packages\chocolatey.*.nupkg).FullName
+$localChocolateyPackageFilePath = (Get-ChildItem ..\pkgs\chocolatey.*.nupkg).FullName
 if ($null -eq $localChocolateyPackageFilePath) { exit }
 
 # === ENVIRONMENT VARIABLES YOU CAN SET ===

@@ -1,4 +1,6 @@
-# Auto Sysprep
+# Wsetup
+
+Setup or config Your Windows by One Click.
 
 ## Preparations
 
@@ -9,7 +11,7 @@
 
 ### Get Your Required Packages
 
-Recommended free open-source softwares, save them into `./packages`:
+Recommended free open-source softwares, save them into `.\pkgs`:
 
 Translation: [中文](./i18n/getapps-cn.md)
 
@@ -85,7 +87,7 @@ For Developers:
 
 ### Verification
 
-Excecute `_verify.cmd` in `./packages/`
+Excecute `_verify.cmd` in `.\pkgs`
 
 ### Portable Applications
 
@@ -98,6 +100,6 @@ Deploy on the target machine:
 
 1. Enter into the
    [audit mode](https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/boot-windows-to-audit-mode-or-oobe)
-2. Open this repository with your './packages`
+2. Open this repository with your '.\pkgs`
 3. Edit `config.ps1`
 4. Execute `setup.cmd`, or `setup-devenv.cmd` for developers.
