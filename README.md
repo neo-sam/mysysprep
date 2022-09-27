@@ -1,12 +1,17 @@
 # Auto Sysprep
 
-git clone or download this repository into your U disk.
+## Preparations
 
-## Get Your Required Packages
+1. git clone or download this repository into your U disk.
+2. Get Your Required Packages
+3. Verification
+4. Get Portableapps
+
+### Get Your Required Packages
 
 Recommended free open-source softwares, save them into `./packages`:
 
-TRANSLATION: [中文](./i18n/getapps-cn.md)
+Translation: [中文](./i18n/getapps-cn.md)
 
 - Firefox: privacy-first browser
 
@@ -44,7 +49,7 @@ TRANSLATION: [中文](./i18n/getapps-cn.md)
 
   Find `x64` at [FOSSHUB Release](https://www.fosshub.com/qBittorrent.html)
 
-### For Developers
+For Developers:
 
 - Git for Windows
 
@@ -78,8 +83,17 @@ TRANSLATION: [中文](./i18n/getapps-cn.md)
 
 Excecute `_verify.cmd` in `./packages/`
 
+### Portable Applications
+
+You can get [Firefox ESR](https://portableapps.com/apps/internet/firefox-portable-esr),
+unpack it into current repository
+
 ## Get Started
 
-1. Open this repository with your './packages`
-2. Edit `config.ps1`
-3. Execute `setup.cmd`, or `setup-devenv.cmd` for developers.
+Deploy on the target machine:
+
+1. Enter into the
+   [audit mode](https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/boot-windows-to-audit-mode-or-oobe)
+2. Open this repository with your './packages`
+3. Edit `config.ps1`
+4. Execute `setup.cmd`, or `setup-devenv.cmd` for developers.

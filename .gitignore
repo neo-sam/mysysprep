@@ -1,2 +1,4 @@
-/packages/*.exe
-/packages/*.msi
+/packages/*
+!/packages/.gitkeep
+!/packages/_verify.*
+/FirefoxPortableESR/

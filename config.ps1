@@ -27,6 +27,7 @@ $optimzeExplorer = 1
 
 $noTaskbarWidgets = 0
 
+$removeAppxList = ''
 if ($uninstallBundledCloudApps) {
     $removeAppxList += @"
 Microsoft.BingNews
@@ -42,7 +43,6 @@ Microsoft.549981C3F5F10
 Clipchamp.Clipchamp
 "@
 }
-
 if ($uninstallXbox) {
     $removeAppxList += @"
 Microsoft.Xbox.TCUI,
