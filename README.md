@@ -1,19 +1,22 @@
-# Wsetup
+# Windows Setup Framework
 
-Setup or config Your Windows by One Click.
+Auto setup or config Your Windows by One Click.
 
-## Preparations
+## How To Use?
 
 1. git clone or download this repository into your U disk.
 2. Get Your Required Packages
 3. Verification
 4. Get Portableapps
 
-### Get Your Required Packages
-
-Recommended free open-source softwares, save them into `.\pkgs`:
+## Get Your Required Packages
 
 Translation: [中文](./i18n/getapps-cn.md)
+
+<details>
+<summary>Recommended Free Open-source Softwares, which should be install</summary><br/>
+
+Save them into `.\pkgs`:
 
 - Firefox: privacy-first browser
 
@@ -97,6 +100,8 @@ Manuall Installers, put them into `.\misc`
 - MSYS2: software distribution and building platform for Windows
 
   [Official Download Page](https://www.msys2.org/#installation)
+
+</details>
 
 ## Get Started
 
