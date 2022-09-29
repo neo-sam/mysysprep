@@ -1,7 +1,3 @@
-. .\_adminrequire.ps1
-
-Write-Host '==> Debloat System Data Collectors'
-
 function Disable-BundledService {
     param([String[]]$names)
     $services = Get-Service $names | Where-Object { $_.StartType -ne 'Disabled' }

@@ -1,22 +1,13 @@
+[System.Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseDeclaredVarsMoreThanAssignments', '')] param()
 
-[System.Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseDeclaredVarsMoreThanAssignments', '')]
-param()
-
-. ..\config
-
-$protectMyUserData = 1
-$disableAd = 1
-$disableUnusedServices = 1
-
-$removePowershellISE = 1
-$removeWordpad = 1
-$removeOneDrive = 1
-
-$uninstallBundledCloudApps = 1
-$uninstallXbox = 1
-
-$optimzeExplorer = 1
 $noTaskbarWidgets = 1
+
+$removeCapabilityPowershellISE = 1
+$removeCapabilityWordpad = 1
+$removeCapabilityOneDrive = 1
+
+$removeBundledCloudAppxes = 1
+$uninstallXbox = 1
 
 $removeAppxList = @"
 Microsoft.BingNews
@@ -37,6 +28,3 @@ Microsoft.XboxGameOverlay,
 Microsoft.XboxGamingOverlay,
 Microsoft.XboxSpeechToTextOverlay
 "@
-
-.\todolist.ps1
-.\todolist-devenv.ps1

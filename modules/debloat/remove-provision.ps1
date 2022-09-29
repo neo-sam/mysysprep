@@ -1,10 +1,3 @@
-. .\_adminrequire.ps1
-if (-not (Get-Module Appx -All -ListAvailable)) { exit }
-
-Write-Host '==> Debloat Appx'
-
-$ProgressPreference = 'SilentlyContinue'
-
 foreach ($name in "$removeAppxList".Split("`n")) {
     if ($name -eq '') { continue }
     $app = Get-AppxPackage -Name $name
@@ -18,5 +11,3 @@ foreach ($name in "$removeAppxList".Split("`n")) {
         Write-Host "Remove-AppxProvisionedPackage $name [ok]"
     }
 }
-
-$ProgressPreference = 'Continue'

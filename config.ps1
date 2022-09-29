@@ -1,8 +1,4 @@
 # Please edit below flags: set 0 to 1 meaning enable it
-# If you want set all to true:
-<#
-powershell -c "(cat config.ps1) -replace ' = 0$',' = 1' | set-content config.ps1"
-#>
 
 [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseDeclaredVarsMoreThanAssignments', '')]
 param()
@@ -14,11 +10,11 @@ $disableAd = 0
 # Disable useless compatibility and error report
 $disableUnusedServices = 0
 
-$removePowershellISE = 0
-$removeWordpad = 0
-$removeOneDrive = 0
+$removeCapabilityPowershellISE = 0
+$removeCapabilityWordpad = 0
+$removeCapabilityOneDrive = 0
 
-$uninstallBundledCloudApps = 0
+$removeBundledCloudAppxes = 0
 $uninstallXbox = 0
 
 $optimzeExplorer = 1
@@ -28,7 +24,7 @@ $disableSshdServer = 1
 
 $noTaskbarWidgets = 0
 
-if ($uninstallBundledCloudApps) {
+if ($removeBundledCloudAppxes) {
     $removeAppxList += @"
 Microsoft.BingNews
 Microsoft.BingWeather
@@ -43,6 +39,7 @@ Microsoft.549981C3F5F10
 Clipchamp.Clipchamp
 "@
 }
+
 if ($uninstallXbox) {
     $removeAppxList += @"
 Microsoft.Xbox.TCUI,

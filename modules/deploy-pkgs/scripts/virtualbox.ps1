@@ -1,8 +1,4 @@
 $pkgfile = Get-PackageFile "virtualbox-Win-latest.exe"
-if (!$PSSenderInfo) { 
-    if ($pkgfile) { 'VirtualBox' }
-    return 
-}
 
 Start-Process $pkgfile '-s -l -msiparams REBOOT=ReallySuppress' -PassThru | Wait-Process
 

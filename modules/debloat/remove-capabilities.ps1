@@ -1,13 +1,9 @@
-. .\_adminrequire.ps1
-
-Write-Host '==> Debloat Others'
-
-if ($removePowershellISE) {
+if ($removeCapabilityPowershellISE) {
     dism /online /norestart /remove-capability /capabilityname:Microsoft.Windows.PowerShell.ISE~~~~0.0.1.0 > $null
-    if ($?) { Write-Host 'Removed PowerShell ISE.' }
+    if ($?) { Write-Host 'Removed capability PowerShell ISE.' }
 }
 
-if ($removeWordpad) {
+if ($removeCapabilityWordpad) {
     dism /online /norestart /remove-capability /capabilityname:Microsoft.Windows.WordPad~~~~0.0.1.0 > $null
-    if ($?) { Write-Host 'Removed WordPad.' }
+    if ($?) { Write-Host 'Removed capability WordPad.' }
 }

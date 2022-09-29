@@ -1,2 +1,0 @@
-. ..\config
-.\todolist.ps1
