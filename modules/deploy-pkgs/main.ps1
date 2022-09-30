@@ -13,7 +13,7 @@ Push-Location $repoRoot
 
 foreach ($runScript in $runParallelScripts) {
     if ($name = & $runScript.FullName) {
-        Write-Host "Adding package: $name"
+        Write-Output "Adding package: $name"
         Start-Job `
             -InitializationScript $initScriptBlock `
             -Name $name -FilePath $runScript |
@@ -51,7 +51,7 @@ Pop-Location
 
 foreach ($runScript in $runScripts) {
     $name = $runScript.BaseName
-    Write-Host "Installing package: $name"
+    Write-Output "Installing package: $name"
     try {
         & $runScript
         Write-Output "Successfully added package: $name." ''

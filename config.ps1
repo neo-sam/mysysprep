@@ -3,6 +3,9 @@
 [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseDeclaredVarsMoreThanAssignments', '')]
 param()
 
+$oobeSkipEula = 0
+$oobeSkipMsLogin = 0
+
 # Disable User Data Collectors
 $protectMyUserData = 0
 $disableAd = 0

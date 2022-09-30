@@ -14,9 +14,9 @@ Auto setup or config Your Windows by One Click.
 Translation: [中文](./i18n/getapps-cn.md)
 
 <details>
-<summary>Recommended Free Open-source Softwares, which should be install</summary><br/>
+<summary><b>CLICK ME:</b> Recommendation ...</summary><br/>
 
-Save them into `.\pkgs`:
+download into `.\pkgs`:
 
 - Firefox: privacy-first browser
 
@@ -50,7 +50,7 @@ Save them into `.\pkgs`:
 
   Find `x64` at [FOSSHUB Release](https://www.fosshub.com/qBittorrent.html)
 
-For Developers:
+for developers:
 
 - Chocolatey: Packages Manager
 
@@ -101,7 +101,7 @@ Manuall Installers, put them into `.\misc`
 
   [Official Download Page](https://www.msys2.org/#installation)
 
-</details>
+</details><br/>
 
 ## Get Started
 
@@ -110,6 +110,6 @@ Deploy on the target machine:
 1. Enter into the
    [audit mode](https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/boot-windows-to-audit-mode-or-oobe)
 2. Open this repository with your `.\pkgs`
-3. Edit `config.ps1`
-4. Execute `setup.cmd`, or `setup-devenv.cmd` for developers.
+3. Edit `config.ps1` or copy from `.\samples`
+4. Execute `autosysprep.cmd`
 5. Check files of `.\misc` if required

@@ -1,4 +1,4 @@
-Write-Host '==> Debloat'
+Write-Output '==> Debloat'
 
 .\modules\debloat\disable-collectors.ps1
 

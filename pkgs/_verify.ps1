@@ -36,13 +36,13 @@ $checkpoints = Import-Csv _verify.csv -Encoding UTF8
 
 Get-Job | Wait-Job | Out-Null
 $result = Get-Job | Receive-Job | Select-Object Name, Type, Verified | Sort-Object Verified
-Write-Host 'Signature Verification:'
+Write-Output 'Signature Verification:'
 $result | Where-Object { $_.Verified -ne $null } | Format-Table
-Write-Host 'VirusTotal online CHECK:'
+Write-Output 'VirusTotal online CHECK:'
 $checklist = ($result | Where-Object { $_.Verified -eq $null }).Name
-Get-FileHash -Algorithm SHA256 $checklist | ForEach-Object { 
+Get-FileHash -Algorithm SHA256 $checklist | ForEach-Object {
     ([PSCustomObject]@{
         Name = (Get-ChildItem $_.Path).Name
         Link = 'https://www.virustotal.com/gui/file/' + $_.Hash
-    }) 
+    })
 } | Format-List

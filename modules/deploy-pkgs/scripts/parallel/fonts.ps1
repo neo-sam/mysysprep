@@ -1,4 +1,4 @@
-if (!$PSSenderInfo) { 
+if (!$PSSenderInfo) {
     foreach ($item in @(
             Get-PackageFile "03_NotoSansCJK-OTC.zip"
             Get-PackageFile "13_NotoSansMonoCJKsc.zip"
@@ -6,7 +6,7 @@ if (!$PSSenderInfo) {
         ) ) {
         if ($item) { return 'fonts' }
     }
-    return 
+    return
 }
 
 $tmpdir = 'tmp\fonts'
@@ -59,5 +59,5 @@ foreach ($FontFile in Get-ChildItem $FontSourceFolder -Include '*.ttf', '*.ttc',
     New-ItemProperty -Path "$PathToLMWindowsFonts" -Name $RegName -PropertyType String -Value $FontFile.Name -Force | Out-Null
     Move-Item $FontFile.FullName $SystemFontsPath
 
-    Write-Host "Added font: $RegName"
+    Write-Output "Added font: $RegName"
 }
