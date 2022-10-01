@@ -1,6 +1,6 @@
 $pkgfile = Get-PackageFile "PowerShell-*-win-x64.msi"
 if (!$PSSenderInfo) {
-    if ($pkgfile) { 'PowerShell Core' }
+    if ($pkgfile) { 'PowerShell Core', 'mutex' }
     return
 }
 

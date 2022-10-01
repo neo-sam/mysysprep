@@ -14,11 +14,8 @@ if (Test-Path '.\modules\tweak-registry') {
 if (Test-Path '.\modules\debloat') {
     & '.\modules\debloat\main.ps1'
 }
-if (Test-Path '.\modules\deploy-pkgs-machine-level') {
-    & '.\modules\deploy-pkgs-machine-level\main.ps1'
-}
-if (Test-Path '.\modules\deploy-pkgs-user-level') {
-    & '.\modules\deploy-pkgs-user-level\main.ps1'
+if (Test-Path '.\modules\deploy-pkgs') {
+    & '.\modules\deploy-pkgs\main.ps1'
 }
 
 & '.\lib\submit-sysprep.ps1'

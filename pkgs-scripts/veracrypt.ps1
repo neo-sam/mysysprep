@@ -1,6 +1,6 @@
 $pkgfile = Get-PackageFile "VeraCrypt_Setup_x64_*.msi"
 if (!$PSSenderInfo) {
-    if ($pkgfile) { 'VeraCrypt' }
+    if ($pkgfile) { 'VeraCrypt', 'mutex' }
     return
 }
 

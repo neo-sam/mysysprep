@@ -1,6 +1,6 @@
 $pkgfile = Get-PackageFile "OpenSSH-Win64-v*.msi"
 if (!$PSSenderInfo) {
-    if ($pkgfile) { 'Upgraded OpenSSH' }
+    if ($pkgfile) { 'Upgraded OpenSSH', 'mutex' }
     return
 }
 

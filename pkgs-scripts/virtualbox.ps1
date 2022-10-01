@@ -1,6 +1,6 @@
 $pkgfile = Get-PackageFile "virtualbox-Win-latest.exe"
 if (!$PSSenderInfo) {
-    if ($pkgfile) { 'VirtualBox' }
+    if ($pkgfile) { 'VirtualBox', 'mutex' }
     return
 }
 
