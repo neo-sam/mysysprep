@@ -1,7 +1,7 @@
 $pkgfile = Get-PackageFile "chocolatey.*.nupkg"
-if (!$PSSenderInfo) { 
+if (!$PSSenderInfo) {
     if ($pkgfile) { 'Chocolatey' }
-    return 
+    return
 }
 
 # - $env:ChocolateyEnvironmentDebug = 'true' # see output
@@ -55,7 +55,7 @@ if ($PSVersionTable.PSVersion.Major -lt 5) {
     }
 }
 else {
-    Expand-Archive -Path "$file" -DestinationPath "$tempDir" -Force
+    Expand-Archive -Force "$file" "$tempDir"
 }
 
 # Call Chocolatey install
@@ -85,5 +85,5 @@ if (!(Test-Path $nupkg)) {
     if (![System.IO.Directory]::Exists($chocoPkgDir)) { [System.IO.Directory]::CreateDirectory($chocoPkgDir) | Out-Null }
     Copy-Item "$file" "$nupkg" -Force -ErrorAction SilentlyContinue
 }
-    
+
 Assert-Path "$ChocoInstallPath\choco.exe"

@@ -20,5 +20,9 @@ qBittorrentEnhanced,qbittorrent_enhanced_*_x64_setup.exe
 MSYS2,msys2-x86_64-latest.exe
 Workrave,workrave-win32-v*.exe
 Chocolatey,chocolatey.*.nupkg
+imdisk,ImDiskTk-x64.zip
+Sysinternals,SysinternalsSuite.zip
 
 VSCode,VSCodeUserSetup-x64-*.exe,"CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US"
+
+AltSnap,AltSnap*-x64-inst.exe

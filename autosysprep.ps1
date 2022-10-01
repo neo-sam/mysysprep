@@ -1,3 +1,4 @@
+. '.\lib\export-configfn.ps1'
 . .\config
 
 foreach ($cfgfile in Get-ChildItem '.\config-*.ps1') {

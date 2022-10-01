@@ -1,5 +1,7 @@
 Windows Registry Editor Version 5.00
 
+; 20 minutes for rest, 40 minutes for break, 5 minutes to postpone
+
 [HKEY_CURRENT_USER\Software\Workrave\breaks\daily_limit]
 "enabled"="0"
 
@@ -25,6 +27,3 @@ Windows Registry Editor Version 5.00
 "auto_reset"="480"
 "limit"="2400"
 "snooze"="300"
-
-[HKEY_CURRENT_USER\Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers]
-"C:\\Program Files (x86)\\Workrave\\lib\\Workrave.exe"="~ HIGHDPIAWARE"

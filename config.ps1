@@ -17,7 +17,8 @@ $removeCapabilityPowershellISE = 0
 $removeCapabilityWordpad = 0
 $removeCapabilityOneDrive = 0
 
-$removeBundledCloudAppxes = 0
+Set-RemoveAppxList # -BundledCloudApp -MediaPlayer -Communicater -Xbox
+
 $uninstallXbox = 0
 
 $optimzeExplorer = 1
@@ -26,30 +27,3 @@ $disableSshdServer = 1
 # Windows 11:
 
 $noTaskbarWidgets = 0
-
-if ($removeBundledCloudAppxes) {
-    $removeAppxList += @"
-Microsoft.BingNews
-Microsoft.BingWeather
-Microsoft.MicrosoftOfficeHub
-Microsoft.Office.OneNote
-Microsoft.People
-Microsoft.YourPhone
-Microsoft.WindowsFeedbackHub
-MicrosoftCorporationII.MicrosoftFamily_8wekyb3d8bbwe
-Microsoft.Windows.Cortana
-Microsoft.549981C3F5F10
-Clipchamp.Clipchamp
-"@
-}
-
-if ($uninstallXbox) {
-    $removeAppxList += @"
-Microsoft.Xbox.TCUI,
-Microsoft.XboxApp,
-Microsoft.XboxIdentityProvider,
-Microsoft.XboxGameOverlay,
-Microsoft.XboxGamingOverlay,
-Microsoft.XboxSpeechToTextOverlay
-"@
-}

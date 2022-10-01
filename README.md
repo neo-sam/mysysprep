@@ -30,14 +30,6 @@ download into `.\pkgs`:
 
   [Official Download Page](https://obsproject.com/)
 
-- Cyberduck: cloud storage explorer
-
-  [Official Download Page](https://cyberduck.io/download/)
-
-- Workrave: rest reminder
-
-  [Official GitHub Release](https://github.com/rcaelers/workrave/releases/latest)
-
 - Everything: file searcher, experience far beyond the system built-in search engine
 
   Find `Download Lite Installer 64-bit` at [Official Download Page](https://www.voidtools.com)
@@ -46,15 +38,37 @@ download into `.\pkgs`:
 
   Find `.exe` at [Official GitHub Release](https://github.com/mcmilk/7-Zip-zstd/releases/latest)
 
+helper:
+
+- Cyberduck: cloud storage explorer
+
+  [Official Download Page](https://cyberduck.io/download/)
+
+- Workrave: rest reminder
+
+  [Official GitHub Release](https://github.com/rcaelers/workrave/releases/latest)
+
+- AltSnap: adjust a window by press modifier key and mouse drag easily
+
+  Find `-x64-inst.exe` at [Official GitHub Release](https://github.com/RamonUnch/AltSnap/releases/latest)
+
 - qBittorrent: free BitTorrent client
 
   Find `x64` at [FOSSHUB Release](https://www.fosshub.com/qBittorrent.html)
 
 for developers:
 
+- VSCode
+
+  [Download Installer directly](https://code.visualstudio.com/sha/download?build=stable&os=win32-x64-user)
+
 - Chocolatey: Packages Manager
 
   [Download Installer directly](https://community.chocolatey.org/api/v2/package/chocolatey)
+
+- Sysinternals: advanced system utilities and technical information
+
+  [Download Content directly](https://download.sysinternals.com/files/SysinternalsSuite.zip)
 
 - Git for Windows
 
@@ -92,6 +106,10 @@ unpack it into current repository
 ### Misc
 
 Manuall Installers, put them into `.\misc`
+
+- Brave: Chromium Distribution
+
+  [Get Online Installer](https://laptop-updates.brave.com/latest/winx64)
 
 - VeraCrypt: free hard disk data encryptor
 

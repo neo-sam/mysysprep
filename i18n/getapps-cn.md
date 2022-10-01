@@ -39,6 +39,20 @@
 
 ## 开发者工具
 
+- VSCode: 开发神器
+
+  ```powershell
+  # 从 Azure 中国服务器快速下载的脚本：
+  $req = Invoke-WebRequest -useb "https://code.visualstudio.com/sha/download?build=stable&os=win32-x64-user" -method head
+  if ($null -ne $req.BaseResponse.RequestMessage) {
+      $path = $req.BaseResponse.RequestMessage.RequestUri.LocalPath
+  } else {
+      $path = $req.BaseResponse.ResponseUri.AbsolutePath
+  }
+  $name = ($path -split '/')[-1]
+  Invoke-WebRequest "https://vscode.cdn.azure.cn$path" -o $name
+  ```
+
 - VirtualBox: Oracle 公司维护的免费开源虚拟化平台
 
   从[高校镜像站](https://mirrorz.org/app/VirtualBox)下载
@@ -72,8 +86,10 @@
 
 - Workrave: 长时间工作休息提醒
 - Cyberduck: 云端存储浏览器
+- AltSnap: 按住修改键配合鼠标，轻松调整窗口
 
 开发向：
 
+- Sysinternals: 系统实用程序
 - ImDisk Toolkit: 挂载内存盘、镜像文件
 - OpenSSH: 升级组件包
