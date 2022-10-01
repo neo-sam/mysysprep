@@ -7,7 +7,10 @@ $initScriptBlock = [scriptblock]::Create(". `"$initScript`";cd `"$repoRoot`"")
 $runParallelScripts = Get-ChildItem '.\modules\deploy-pkgs\scripts\parallel\*.ps1'
 $runScripts = Get-ChildItem '.\modules\deploy-pkgs\scripts\*.ps1'
 
-. .\modules\deploy-pkgs\_init.ps1
+function Get-PackageFile() {
+    [OutputType([IO.FileSystemInfo])] param($pattern)
+    return Get-ChildItem "pkgs\$pattern" -ErrorAction SilentlyContinue
+}
 
 Push-Location $repoRoot
 
@@ -50,14 +53,19 @@ while ($job = (Get-JobOrWait)) {
 Pop-Location
 
 foreach ($runScript in $runScripts) {
-    $name = $runScript.BaseName
-    Write-Output "Installing package: $name"
-    try {
-        & $runScript
-        Write-Output "Successfully added package: $name." ''
-    }
-    catch {
-        Write-Output "Fail to add package: $name",
-        "Reason: $($_.Exception.Message)", ''
+    if ($name = & $runScript.FullName) {
+        Write-Output "Installing package: $name"
+        try {
+            $job = Start-Job `
+                -InitializationScript $initScriptBlock `
+                -Name $name -FilePath $runScript
+            Wait-Job $job | Receive-Job
+            Remove-Job $job
+            Write-Output "Successfully added package: $name." ''
+        }
+        catch {
+            Write-Output "Fail to add package: $name",
+            "Reason: $($_.Exception.Message)", ''
+        }
     }
 }

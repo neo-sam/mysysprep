@@ -8,8 +8,8 @@ if (-not $env:IGNORE_ADMINREQUIRE) {
     . '.\lib\require-admin.ps1'
 }
 
-if (Test-Path '.\modules\tweak-system-registry') {
-    & '.\modules\tweak-system-registry\main.ps1'
+if (Test-Path '.\modules\tweak-registry') {
+    & '.\modules\tweak-registry\main.ps1'
 }
 if (Test-Path '.\modules\debloat') {
     & '.\modules\debloat\main.ps1'

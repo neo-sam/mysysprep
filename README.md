@@ -95,7 +95,7 @@ Manuall Installers, put them into `.\misc`
 
 - VeraCrypt: free hard disk data encryptor
 
-  Find `EXE Installer` at [Official Download Page](https://www.veracrypt.fr/en/Downloads.html)
+  Find `MSI Installer` at [Official Download Page](https://www.veracrypt.fr/en/Downloads.html)
 
 - MSYS2: software distribution and building platform for Windows
 

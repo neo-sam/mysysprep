@@ -1,0 +1,30 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_CURRENT_USER\Software\Workrave\breaks\daily_limit]
+"enabled"="0"
+
+[HKEY_CURRENT_USER\Software\Workrave\general]
+"usage-mode"="1"
+
+[HKEY_CURRENT_USER\Software\Workrave\gui]
+"closewarn_enabled"="0"
+
+[HKEY_CURRENT_USER\Software\Workrave\gui\breaks]
+"block_mode"="0"
+
+[HKEY_CURRENT_USER\Software\Workrave\gui\breaks\rest_break]
+"exercises"="4"
+"auto_natural"="1"
+
+[HKEY_CURRENT_USER\Software\Workrave\timers\micro_pause]
+"auto_reset"="12"
+"limit"="1200"
+"snooze"="120"
+
+[HKEY_CURRENT_USER\Software\Workrave\timers\rest_break]
+"auto_reset"="480"
+"limit"="2400"
+"snooze"="300"
+
+[HKEY_CURRENT_USER\Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers]
+"C:\\Program Files (x86)\\Workrave\\lib\\Workrave.exe"="~ HIGHDPIAWARE"

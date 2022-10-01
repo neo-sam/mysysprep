@@ -4,7 +4,7 @@ if (!$PSSenderInfo) {
     return
 }
 
-Start-Process $pkgfile '/LOADINF=pkgs-cfg/git.ini /VERYSILENT /SUPPRESSMSGBOXES /NORESTART /SP-' -PassThru | Wait-Process
+Start-Process $pkgfile '/LOADINF=pkgs-cfg/git.ini /SILENT /SUPPRESSMSGBOXES /NORESTART /SP-' -PassThru | Wait-Process
 
 Assert-Path "C:\Program Files\Git\cmd\git.exe"
 Push-SystemPath "C:\Program Files\Git\bin"

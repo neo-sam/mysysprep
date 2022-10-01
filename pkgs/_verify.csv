@@ -2,7 +2,7 @@ Type,Pattern,Subject
 Firefox,Firefox Setup *.exe,"CN=Mozilla Corporation, OU=Firefox Engineering Operations, O=Mozilla Corporation, L=Mountain View, S=California, C=US"
 Thunderbird,Thunderbird Setup *.exe,"CN=Mozilla Corporation, OU=Firefox Engineering Operations, O=Mozilla Corporation, L=Mountain View, S=California, C=US"
 Everything,Everything-*.x64.Lite-Setup.exe,"CN=voidtools, O=voidtools, L=Wilmington, S=South Australia, C=AU"
-Veracrypt,VeraCrypt Setup *.exe,"CN=IDRIX SARL, O=IDRIX SARL, STREET=5 AVENUE INGRES, L=Paris, S=Île-de-France, C=FR, OID.1.3.6.1.4.1.311.60.2.1.3=FR, SERIALNUMBER=490 000 619, OID.2.5.4.15=Private Organization"
+Veracrypt,VeraCrypt_Setup_x64_*.msi,"CN=IDRIX SARL, O=IDRIX SARL, STREET=5 AVENUE INGRES, L=Paris, S=Île-de-France, C=FR, OID.1.3.6.1.4.1.311.60.2.1.3=FR, SERIALNUMBER=490 000 619, OID.2.5.4.15=Private Organization"
 VLC,vlc-*-win64.exe,"CN=VideoLAN, O=VideoLAN, L=Paris, C=FR"
 Git,Git-*-64-bit.exe,"CN=Johannes Schindelin, O=Johannes Schindelin, S=Nordrhein-Westfalen, C=DE"
 Cyberduck,Cyberduck-Installer-*.exe,"CN=iterate GmbH, O=iterate GmbH, STREET=Junkerngasse 12, L=Bern, S=Bern, PostalCode=3011, C=CH"

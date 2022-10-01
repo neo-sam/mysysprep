@@ -1,10 +1,10 @@
 $pkgfile = Get-PackageFile "workrave-win32-v*.exe"
-if (!$PSSenderInfo) { 
+if (!$PSSenderInfo) {
     if ($pkgfile) { 'Workrave' }
-    return 
+    return
 }
 
-Start-Process $pkgfile '/VERYSILENT /SUPPRESSMSGBOXES /NORESTART /SP-' -PassThru | Wait-Process
+Start-Process $pkgfile '/SILENT /SUPPRESSMSGBOXES /NORESTART /SP-' -PassThru | Wait-Process
 
 Assert-Path "C:\Program Files (x86)\Workrave\lib\Workrave.exe"
 

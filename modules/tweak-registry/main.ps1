@@ -1,7 +1,7 @@
 Write-Output '==> Tweak the Registry'
 
 if ($protectMyUserData) {
-    reg import '.\modules\tweak-system-registry\protect-privacy.reg' 2>&1 | Out-Null
+    reg import '.\modules\tweak-registry\protect-privacy.reg' 2>&1 | Out-Null
     Write-Output 'Disabled privacy collectors.'
 }
 
