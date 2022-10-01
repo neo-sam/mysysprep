@@ -1,4 +1,4 @@
-$checkpoints = Import-Csv _verify.csv -Encoding UTF8
+$checkpoints = Import-Csv $args[0] -Encoding UTF8
 
 :nextfile foreach ($file in Get-ChildItem *.exe, *.msi) {
     foreach ($checkpoint in $checkpoints) {

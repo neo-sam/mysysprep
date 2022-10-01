@@ -17,5 +17,8 @@ if (Test-Path '.\modules\debloat') {
 if (Test-Path '.\modules\deploy-pkgs') {
     & '.\modules\deploy-pkgs\main.ps1'
 }
+if (Test-Path '.\modules\deploy-pkgs-useronly') {
+    & '.\modules\deploy-pkgs-useronly\main.ps1'
+}
 
 & '.\lib\submit-sysprep.ps1'
