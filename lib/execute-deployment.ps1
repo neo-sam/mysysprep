@@ -1,6 +1,6 @@
 param(
+    [string]$deployMutexScriptsFolder,
     [string]$deployScriptsFolder,
-    [string]$deployAsyncScriptsFolder,
     [string]$taskName
 )
 
@@ -13,29 +13,7 @@ function Get-PackageFile() {
 }
 
 if ($deployScriptsFolder) {
-    foreach ($runScript in  Get-ChildItem "$deployScriptsFolder\*.ps1") {
-        if ($name = & $runScript.FullName) {
-            Write-Output "Running to ${taskName}: $name"
-            try {
-                $job = Start-Job `
-                    -InitializationScript $envScriptBlock `
-                    -Name $name -FilePath $runScript
-                Wait-Job $job | Receive-Job
-                Write-Output "Successfully ${taskName}: $name." ''
-            }
-            catch {
-                Write-Output "Fail to ${taskName}: $name",
-                "Reason: $($_.Exception.Message)", ''
-            }
-            finally {
-                if ($job) { Remove-Job $job }
-            }
-        }
-    }
-}
-
-if ($deployAsyncScriptsFolder) {
-    foreach ($runScript in Get-ChildItem "$deployAsyncScriptsFolder\*.ps1") {
+    foreach ($runScript in Get-ChildItem "$deployScriptsFolder\*.ps1") {
         if ($name = & $runScript.FullName) {
             Write-Output "Start to ${taskName}: $name"
             Start-Job `
@@ -66,6 +44,28 @@ if ($deployAsyncScriptsFolder) {
         }
         finally {
             Remove-Job $job
+        }
+    }
+}
+
+if ($deployMutexScriptsFolder) {
+    foreach ($runScript in  Get-ChildItem "$deployMutexScriptsFolder\*.ps1") {
+        if ($name = & $runScript.FullName) {
+            Write-Output "Running to ${taskName}: $name"
+            try {
+                $job = Start-Job `
+                    -InitializationScript $envScriptBlock `
+                    -Name $name -FilePath $runScript
+                Wait-Job $job | Receive-Job
+                Write-Output "Successfully ${taskName}: $name." ''
+            }
+            catch {
+                Write-Output "Fail to ${taskName}: $name",
+                "Reason: $($_.Exception.Message)", ''
+            }
+            finally {
+                if ($job) { Remove-Job $job }
+            }
         }
     }
 }
