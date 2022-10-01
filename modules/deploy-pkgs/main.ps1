@@ -1,7 +1,7 @@
 Write-Output '==> Deploy Packages'
 
 $isAdmin = ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] 'Administrator')
-$envScript = (Get-ChildItem '.\modules\deploy-pkgs\_init.ps1').FullName
+$envScript = (Get-ChildItem '.\modules\deploy-pkgs\_init_.ps1').FullName
 $envScriptBlock = [scriptblock]::Create(". `"$envScript`";cd `"$(Get-Location)`"")
 
 [Collections.ArrayList]$deployScriptsWithName = @()

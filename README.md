@@ -9,6 +9,33 @@ Auto setup or config Your Windows by One Click.
 3. Verification
 4. Get Portableapps
 
+### Deploy On Existed System
+
+```mermaid
+flowchart LR
+  fetch[fetch this repository] -- get packages --> bundle[Prepared Bundle]
+  subgraph config [ ]
+      old[Current System] -- <b>autosysprep.cmd</b> --> new[Optimized System]
+  end
+  bundle --o config
+```
+
+### Create Boilerplate System Image
+
+```mermaid
+flowchart TD
+  newsys[New Installed Windows] -- press <b>Ctrl + Shift + F3</b> at startpage --> auditmode[Audit Mode]
+  subgraph sysprep [ ]
+    direction LR
+    auditmode --> generlized[Generlized Boilerplate System]
+  end
+  fetch[fetch this repository] -- get packages --> bundle[Prepared Bundle]
+  bundle -- <b>autosysprep.cmd</b> --o sysprep
+  generlized -.-> instance[Instanced New System]
+  generlized -. capture .-> image[Portable Boilerplate Image]
+  image -. apply .-> instance
+```
+
 ## Get Your Required Packages
 
 Translation: [中文](./i18n/getapps-cn.md)
