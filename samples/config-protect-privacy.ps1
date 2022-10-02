@@ -1,4 +1,7 @@
-[System.Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseDeclaredVarsMoreThanAssignments', '')] param()
-
-$protectMyUserData = 1
-$disableAd = 1
+if ($cfg = $registryCfg) {
+    $cfg.protectMyPrivacy = 1
+    $cfg.disableAd = 1
+    $cfg.win11 = @{
+        noTaskbarWidgets = 1
+    }
+}

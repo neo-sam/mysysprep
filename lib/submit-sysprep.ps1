@@ -1,15 +1,21 @@
-$isAuditMode = (Get-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Setup\State' -ErrorAction Ignore).ImageState -eq 'IMAGE_STATE_SPECIALIZE_RESEAL_TO_AUDIT'
+$cfg = $script:sysprepCfg = @{
+    oobe = @{
+        skipEula    = 0
+        skipMsLogin = 0
+    }
+}
+
+. .\lib\load-env-with-cfg.ps1
 
 Write-Output "==> Auto Sysprep Finished!"
 if ($isAuditMode) {
-    Write-Output "==> Sysprep"
     Read-Host  'Ready to generlize by Sysprep (will shutdown for image capture)?'
 
     $unattendDoc = Get-Content .\lib\unattend.xml
-    if ($oobeSkipEula) {
+    if ($cfg.oobe.skipEula) {
         $unattendDoc = $unattendDoc -replace '(?<=<HideEULAPage>).*?(?=</HideEULAPage>)', 'true'
     }
-    if ($oobeSkipMsLogin) {
+    if ($cfg.oobe.skipMsLogin) {
         $unattendDoc = $unattendDoc `
             -replace '(?<=<HideOnlineAccountScreens>).*?(?=</HideOnlineAccountScreens>)', 'true'`
             -replace '(?<=<HideWirelessSetupInOOBE>).*?(?=</HideWirelessSetupInOOBE>)', 'true'

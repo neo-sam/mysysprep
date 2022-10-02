@@ -3,27 +3,49 @@
 [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseDeclaredVarsMoreThanAssignments', '')]
 param()
 
-$oobeSkipEula = 0
-$oobeSkipMsLogin = 0
+if ($cfg = $sysprepCfg) {
+    $cfg.oobe = @{
+        skipEula    = 0
+        skipMsLogin = 0
+    }
+}
 
-# Disable User Data Collectors
-$protectMyUserData = 0
-$disableAd = 0
+if ($cfg = $registryCfg) {
+    $cfg.protectMyPrivacy = 0
+    $cfg.disableAd = 0
+    $cfg.explorer = @{
+        optimize     = 0
+        useLibraries = 0
+    }
+    $cfg.taskbar = @{
+        disableWin11Widgets = 0
+    }
+    $cfg.contextmenu = @{
+        disableWin11NewStyle = 0
+    }
+    $cfg.remap_icons = 0
+}
 
-# Disable useless compatibility and error report
-$disableUnusedServices = 0
+if ($cfg = $debloatModuleCfg) {
+    $cfg.oneDrive = 0
+    $cfg.collectors = @{
+        privacy  = 0
+        services = 0
+        xbox     = 0
+    }
+    $cfg.capabilities = @{
+        powershellIse = 0
+        wordpad       = 0
+    }
+    $cfg.provisionAppx = @{
+        cloudApps        = 0
+        zuneMediaPlayer  = 0
+        emailAndCalendar = 0
+        xbox             = 0
+        photo            = 0
+    }
+}
 
-$removeCapabilityPowershellISE = 0
-$removeCapabilityWordpad = 0
-$removeCapabilityOneDrive = 0
-
-Set-RemoveAppxList # -BundledCloudApp -MediaPlayer -Communicater -Xbox
-
-$uninstallXbox = 0
-
-$optimzeExplorer = 1
-$disableSshdServer = 1
-
-# Windows 11:
-
-$noTaskbarWidgets = 0
+if ($cfg = $pkgsCfg) {
+    $cfg.disableOpensshServer = 0
+}

@@ -1,4 +1,6 @@
-[System.Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseDeclaredVarsMoreThanAssignments', '')] param()
-
-$oobeSkipEula = 1
-$oobeSkipMsLogin = 1
+if ($cfg = $sysprepCfg) {
+    $cfg.oobe = @{
+        skipEula    = 1
+        skipMsLogin = 1
+    }
+}

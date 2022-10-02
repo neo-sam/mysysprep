@@ -9,7 +9,7 @@ Start-Process $pkgfile -PassThru '/qb /norestart',
 
 Assert-Path "C:\Program Files\OpenSSH\sshd.exe"
 
-if (0 -ne $disableSshdServer) {
+if ($pkgsCfg.disableOpensshServer) {
     & {
         sc.exe stop sshd
         sc.exe config sshd start=disabled

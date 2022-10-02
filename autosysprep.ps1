@@ -1,22 +1,15 @@
-. '.\lib\export-configfn.ps1'
-. .\config
+. .\lib\require-admin.ps1
 
-foreach ($cfgfile in Get-ChildItem '.\config-*.ps1') {
-    . $cfgfile
+function Invoke-MyModule {
+    param([string[]]$modules)
+    foreach ($module in $modules) {
+        if (Test-Path ".\modules\$module") {
+            Write-Host "==> Running '$name' modules"
+            & ".\modules\$module\main.ps1"
+        }
+    }
 }
 
-if (-not $env:IGNORE_ADMINREQUIRE) {
-    . '.\lib\require-admin.ps1'
-}
-
-if (Test-Path '.\modules\tweak-registry') {
-    & '.\modules\tweak-registry\main.ps1'
-}
-if (Test-Path '.\modules\debloat') {
-    & '.\modules\debloat\main.ps1'
-}
-if (Test-Path '.\modules\deploy-pkgs') {
-    & '.\modules\deploy-pkgs\main.ps1'
-}
+Invoke-MyModule 'tweak-registry', 'debloat', 'deploy-pkgs'
 
 & '.\lib\submit-sysprep.ps1'

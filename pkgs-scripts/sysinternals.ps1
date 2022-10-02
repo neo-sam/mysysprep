@@ -21,12 +21,12 @@ if ($null -eq $sysinternalsToolList) {
 }
  #>
 
-$excludeList = @(
-    '*.txt'
-)
+$excludeList = @()
 
 if ([Environment]::OSVersion.Version.Build -ge 10240) {
     $excludeList += 'desktops*'
 }
 
-Copy-Item -Force (Get-ChildItem 'tmp\sysinternals\*' -Exclude $excludeList) $env:SystemRoot
+$targetFolder = mkdir -f $env:SystemRoot\Sysinternals
+Copy-Item -Force (Get-ChildItem 'tmp\sysinternals\*' -Exclude $excludeList) $targetFolder
+Push-SystemPath $targetFolder

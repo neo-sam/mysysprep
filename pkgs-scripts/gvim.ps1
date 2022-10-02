@@ -1,9 +1,10 @@
 $pkgfile = Get-PackageFile "gvim*.exe"
-if (!$PSSenderInfo) { 
+if (!$PSSenderInfo) {
     if ($pkgfile) { 'gVim' }
-    return 
+    return
 }
 
 Start-Process -PassThru $pkgfile /S | Wait-Process
 
-Assert-Path "C:\Program Files (x86)\Vim\vim*\gvim.exe"
+$path = (Get-ChildItem "C:\Program Files (x86)\Vim\vim*\" -ErrorAction Stop).FullName
+Push-SystemPath $path

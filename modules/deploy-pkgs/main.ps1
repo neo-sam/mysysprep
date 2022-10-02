@@ -1,8 +1,9 @@
-Write-Output '==> Deploy Packages'
+$script:deployPkgsModuleCfg = @{}
 
-$isAdmin = ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] 'Administrator')
-$envScript = (Get-ChildItem '.\modules\deploy-pkgs\_init_.ps1').FullName
-$envScriptBlock = [scriptblock]::Create(". `"$envScript`";cd `"$(Get-Location)`"")
+. .\lib\load-env-with-cfg.ps1
+
+$envScript = (Get-ChildItem "$(Get-ScriptRoot)\_init_.ps1").FullName
+$envScriptBlock = [scriptblock]::Create("cd `"$(Get-Location)`";. `"$envScript`"")
 
 [Collections.ArrayList]$deployScriptsWithName = @()
 [Collections.ArrayList]$deployMutexScriptsWithName = @()
@@ -87,3 +88,5 @@ foreach ($tuple in $deployMutexScriptsWithName) {
         if ($job) { Remove-Job $job }
     }
 }
+
+& "$(Get-ScriptRoot)\others"

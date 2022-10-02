@@ -1,6 +1,36 @@
 # 下载安装包
 
-推荐的自由软件
+如果部分链接下载速度慢，推荐[安装迅雷](https://dl.xunlei.com/)加速下载
+
+## 推荐软件
+
+获取 U 盘刻录器：
+
+- Ventoy: 多镜像启动支持
+
+  [南京大学镜像站](https://mirrors.nju.edu.cn/github-release/ventoy/Ventoy)
+
+- Rufus: 仅单一镜像，但选项更多、兼容性更好
+
+  找到 `Portable Version` 下载，[FOSSHub](https://www.fosshub.com/Rufus.html)
+
+获取分区辅助工具：
+
+- DiskGenius
+
+  找到 `单文件PE版` 并选兼容旧电脑的 32 位版本，
+  见[官方下载页](https://www.diskgenius.cn/download.php)
+
+- 傲梅分区助手
+
+  [点击直接下载](https://www2.aomeisoftware.com/download/pacn/%E5%88%86%E5%8C%BA%E5%8A%A9%E6%89%8BPE.exe)
+
+干净的 WinPE:
+
+- [微 PE 工具箱](https://www.wepe.com.cn/ubook/start.html)
+- [优启通 EasyU](https://www.upe.net/)
+
+常用必备：
 
 - Firefox: 有效保护隐私的浏览器
 
@@ -18,7 +48,7 @@
 
   找到 `-Full-Installer-x64 (exe)` 下载，见[高校镜像站](https://mirrorz.org/app/OBS)
 
-## 思源字体
+### 思源字体
 
 可自由出版商用的字体，由谷歌联手 Adobe 共同设计
 
@@ -37,21 +67,7 @@
   - [从官方 GitHub 下载](https://github.com/adobe-fonts/source-han-serif/releases/latest/download/01_SourceHanSerif.ttc.zip)
   - 找到 `Serif-VF.ttf` 下载，见[高校镜像站](https://mirrorz.org/font/AdobeSourceHan)
 
-## 开发者工具
-
-- VSCode: 开发神器
-
-  ```powershell
-  # 从 Azure 中国服务器快速下载的脚本：
-  $req = Invoke-WebRequest -useb "https://code.visualstudio.com/sha/download?build=stable&os=win32-x64-user" -method head
-  if ($null -ne $req.BaseResponse.RequestMessage) {
-      $path = $req.BaseResponse.RequestMessage.RequestUri.LocalPath
-  } else {
-      $path = $req.BaseResponse.ResponseUri.AbsolutePath
-  }
-  $name = ($path -split '/')[-1]
-  Invoke-WebRequest "https://vscode.cdn.azure.cn$path" -o $name
-  ```
+### 开发者工具
 
 - VirtualBox: Oracle 公司维护的免费开源虚拟化平台
 
@@ -69,7 +85,7 @@
 
   按修改时间倒排，找到最新版 `.exe` 下载，见[高校镜像站](https://mirrorz.org/list/vim)
 
-## 其它
+### 其它
 
 - MSYS2: 仿 UNIX 开发和构建环境
 
@@ -90,6 +106,7 @@
 
 开发向：
 
+- gsudo: 命令提权
 - Sysinternals: 系统实用程序
 - ImDisk Toolkit: 挂载内存盘、镜像文件
 - OpenSSH: 升级组件包

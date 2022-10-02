@@ -5,15 +5,40 @@ Auto setup or config Your Windows by One Click.
 ## How To Use?
 
 1. git clone or download this repository into your U disk.
-2. Get Your Required Packages
-3. Verification
-4. Get Portableapps
+2. Get your required packages
+3. Verify shasum
+4. Get portableapps
+
+## Install a new Windows
+
+<details>
+<summary>Tutorial ...</summary>
+<br/>
+
+Download system image if required:
+
+[Windows 10](https://www.microsoft.com/software-download/windows10)
+|
+[Windows 11](https://www.microsoft.com/software-download/windows11)
+
+Get U disk image writer:
+
+- Ventoy: multi images boot support
+
+  [Official GitHub Release](https://github.com/ventoy/Ventoy/releases/latest)
+
+- Rufus: only single image, more options and better compatibility
+
+  find `p.exe` at [Official GitHub Release](https://github.com/pbatard/rufus/releases/latest)
+
+<br/>
+</details>
 
 ### Deploy On Existed System
 
 ```mermaid
 flowchart LR
-  fetch[fetch this repository] -- get packages --> bundle[Prepared Bundle]
+  fetch[fetch this repository] -- get packages and config --> bundle[Prepared Bundle]
   subgraph config [ ]
       old[Current System] -- <b>autosysprep.cmd</b> --> new[Optimized System]
   end
@@ -29,7 +54,7 @@ flowchart TD
     direction LR
     auditmode --> generlized[Generlized Boilerplate System]
   end
-  fetch[fetch this repository] -- get packages --> bundle[Prepared Bundle]
+  fetch[fetch this repository] -- get packages and config --> bundle[Prepared Bundle]
   bundle -- <b>autosysprep.cmd</b> --o sysprep
   generlized -.-> instance[Instanced New System]
   generlized -. capture .-> image[Portable Boilerplate Image]
@@ -41,7 +66,7 @@ flowchart TD
 Translation: [中文](./i18n/getapps-cn.md)
 
 <details>
-<summary><b>CLICK ME:</b> Recommendation ...</summary><br/>
+<summary><b>Show more:</b> recommended softwares ...</summary><br/>
 
 download into `.\pkgs`:
 
@@ -85,13 +110,13 @@ helper:
 
 for developers:
 
-- VSCode
-
-  [Download Installer directly](https://code.visualstudio.com/sha/download?build=stable&os=win32-x64-user)
-
 - Chocolatey: Packages Manager
 
   [Download Installer directly](https://community.chocolatey.org/api/v2/package/chocolatey)
+
+- gsudo: acquire administration privilege
+
+  [Download GitHub Release directly](https://github.com/gerardog/gsudo/releases/latest/download/gsudoSetup.msi)
 
 - Sysinternals: advanced system utilities and technical information
 
@@ -146,7 +171,7 @@ Manuall Installers, put them into `.\misc`
 
   [Official Download Page](https://www.msys2.org/#installation)
 
-</details><br/>
+<br/></details>
 
 ## Get Started
 
@@ -155,6 +180,10 @@ Deploy on the target machine:
 1. Enter into the
    [audit mode](https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/boot-windows-to-audit-mode-or-oobe)
 2. Open this repository with your `.\pkgs`
-3. Edit `config.ps1` or copy from `.\samples`
+3. Edit `config.ps1` or `Copy-Item .\samples\config-*.ps1 .`
 4. Execute `autosysprep.cmd`
 5. Check files of `.\misc` if required
+
+## Warning
+
+⚠️ DISCLAIMER: You're doing this at your own risk, I am not responsible for any data loss or damage that may occur.
