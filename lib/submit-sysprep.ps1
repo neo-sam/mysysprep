@@ -1,9 +1,4 @@
-$cfg = $script:sysprepCfg = @{
-    oobe = @{
-        skipEula    = 0
-        skipMsLogin = 0
-    }
-}
+$cfg = $script:sysprep = @{}
 
 . .\lib\load-env-with-cfg.ps1
 
@@ -12,10 +7,10 @@ if ($isAuditMode) {
     Read-Host  'Ready to generlize by Sysprep (will shutdown for image capture)?'
 
     $unattendDoc = Get-Content .\lib\unattend.xml
-    if ($cfg.oobe.skipEula) {
+    if ($cfg.oobeSkipEula) {
         $unattendDoc = $unattendDoc -replace '(?<=<HideEULAPage>).*?(?=</HideEULAPage>)', 'true'
     }
-    if ($cfg.oobe.skipMsLogin) {
+    if ($cfg.oobeSkipLoginMs) {
         $unattendDoc = $unattendDoc `
             -replace '(?<=<HideOnlineAccountScreens>).*?(?=</HideOnlineAccountScreens>)', 'true'`
             -replace '(?<=<HideWirelessSetupInOOBE>).*?(?=</HideWirelessSetupInOOBE>)', 'true'

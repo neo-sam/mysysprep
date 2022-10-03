@@ -1,17 +1,9 @@
-$cfg = $script:registryCfg = @{
-    protectMyPrivacy         = 0
-    disableAd                = 0
-    explorer                 = @{}
-    contextmenu              = @{}
-    taskbar                  = @{}
-    startmenu                = @{}
-    inputmethod_cw           = @{}
-    enableClassicPhotoViewer = 0
-    remap_icons              = 0
-}
+$modules = @{ tweak_registry = @{} }
 
 . .\lib\load-env-with-cfg.ps1
 . '.\lib\mount-defaultregistry.ps1'
+
+$cfg = $modules.tweak_registry
 
 function logif1 {
     param([string[]]$content)
@@ -44,23 +36,29 @@ if ($cfg.disableAd) {
     logif1 'disabled Ad'
 }
 
-if ($enableClassicPhotoViewer) {
+if ($cfg.advancedRemapIcons) {
+    & "$(Get-ScriptRoot)\remap_icons"
+    logif1 'Remapped icons.'
+}
+
+if ($cfg.enableClassicPhotoViewer) {
     reg import "$(Get-ScriptRoot)\subscripts\use-classic-photoviewer.reg" 2>&1 | Out-Null
 }
 
-foreach ($scriptname in
-    @(
-        'explorer'
-        'contextmenu'
-        'taskbar'
-        'startmenu'
-        'inputmethod_cw'
-        'remap_icons'
-    )
-) {
-    $props = $cfg[$scriptname]
-    $path = "$(Get-ScriptRoot)\subscripts\$scriptname"
-    if (Test-Path $path -and $props) { & $path @props }
+if ($cfg.subscripts) {
+    foreach ($scriptname in
+        @(
+            'explorer'
+            'contextmenu'
+            'taskbar'
+            'startmenu'
+            'inputmethod_cw'
+        )
+    ) {
+        $props = $cfg.subscripts[$scriptname]
+        $path = "$(Get-ScriptRoot)\subscripts\$scriptname"
+        if (Test-Path $path -and $props) { & $path @props }
+    }
 }
 
 if ([Environment]::OSVersion.Version.Build -le 22000) {

@@ -15,7 +15,7 @@ foreach ($regkey in @('HKCU', 'HKLM\NewUser')) {
     reg add $regkey\SOFTWARE\Microsoft\Windows\CurrentVersion\Run /f /t REG_SZ /v AltSnap /d "`"`"`"$env:APPDATA\AltSnap\AltSnap.exe`"`"`"" >$null
 }
 
-if ($pkgsCfg.preferAltsnapConfig) {
+if ($cfg.useAltsnapConfig) {
     $cfgfile = "$env:APPDATA\AltSnap\AltSnap.ini"
     $cfgtext = (Get-cfgtext $cfgfile) `
         -replace '(?<=AutoFocus=)0$', '1'  `

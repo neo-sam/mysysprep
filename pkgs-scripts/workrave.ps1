@@ -10,7 +10,7 @@ Assert-Path "C:\Program Files (x86)\Workrave\lib\Workrave.exe"
 
 reg add 'HKLM\Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers' /f /t REG_SZ /v 'C:\Program Files (x86)\Workrave\lib\Workrave.exe' /d '~ HIGHDPIAWARE'>$null
 
-if ($pkgsCfg.preferWorkraveConfig) {
+if ($cfg.useWorkraveConfig) {
     reg import '.\pkgs-config\prefer-workrave.reg' 2>&1 | Out-Null
     . .\lib\mount-defaultregistry.ps1
 

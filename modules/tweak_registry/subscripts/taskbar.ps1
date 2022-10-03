@@ -5,7 +5,7 @@ param(
     $win10noAd,
     $win10noPeople,
     $win10noCortana,
-    $win10noSearch,
+    $win10noSearchBar,
     $win10oldVolumeMixer,
     $win11noWidgets,
     $win11alignLeft,
@@ -88,11 +88,11 @@ else {
         ) ShowCortanaButton 0
         logif1 'hide the Cortana icon'
     }
-    if ($win10noSearch) {
+    if ($win10noSearchBar) {
         Set-ItemProperty (
             Get-CurrentAndNewUserPaths 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Search'
-        ) SearchboxTaskbarMode 0
-        logif1 'hide the Search icon'
+        ) SearchboxTaskbarMode 1
+        logif1 'fold the search bar'
     }
     if ($win10oldVolumeMixer) {
         Set-ItemProperty 'HKLM:\Software\Microsoft\Windows NT\CurrentVersion\MTCUVC' EnableMtcUvc 0

@@ -1,14 +1,9 @@
-$cfg = $script:debloatModuleCfg = @{
-    oneDrive      = 0
-    collectors    = @{}
-    capabilities  = @{}
-    provisionAppx = @{}
-}
-
-
+$modules = @{ debloat = @{} }
 . .\lib\load-env-with-cfg.ps1
 
-if ($cfg.oneDrive) {
+$cfg = $modules.debloat
+
+if ($cfg.one_drive) {
     & "$(Get-ScriptRoot)\uninstall-onedrive"
 }
 

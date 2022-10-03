@@ -1,5 +1,5 @@
-$script:deployPkgsModuleCfg = @{}
-
+$modules = @{ deploy_pkgs = @{} }
+$cfg = $modules.deploy_pkgs
 . .\lib\load-env-with-cfg.ps1
 
 $envScript = (Get-ChildItem "$(Get-ScriptRoot)\_init_.ps1").FullName
@@ -89,4 +89,6 @@ foreach ($tuple in $deployMutexScriptsWithName) {
     }
 }
 
-& "$(Get-ScriptRoot)\others"
+if ($cfg.createGetVscodeShortcut) {
+    & "$(Get-ScriptRoot)\others\vscode"
+}

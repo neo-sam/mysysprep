@@ -1,7 +1,4 @@
-if ($cfg = $registryCfg) {
+
+if ($cfg = $modules.tweak_registry) {
     $cfg.protectMyPrivacy = 1
-    $cfg.disableAd = 1
-    $cfg.win11 = @{
-        noTaskbarWidgets = 1
-    }
 }

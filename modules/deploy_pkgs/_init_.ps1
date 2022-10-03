@@ -3,8 +3,9 @@
 [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseDeclaredVarsMoreThanAssignments', '')]
 param()
 
-$pkgsCfg = @{}
+$modules = @{ deploy_pkgs = @{} }
 . .\lib\load-env-with-cfg.ps1
+$cfg = $modules.deploy_pkgs
 
 function Get-PackageFile() {
     [OutputType([IO.FileSystemInfo])] param($pattern)

@@ -1,9 +1,9 @@
 param(
-    $powershellIse,
+    $powershell_ise,
     $wordpad
 )
 
-if ($powershellIse) {
+if ($powershell_ise) {
     dism /online /norestart /remove-capability /capabilityname:Microsoft.Windows.PowerShell.ISE~~~~0.0.1.0 > $null
     if ($?) { Write-Output 'Removed capability PowerShell ISE.' }
 }
