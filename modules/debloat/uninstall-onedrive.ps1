@@ -42,7 +42,7 @@ Set-ItemProperty -Path "HKCR:\Wow6432Node\CLSID\{018D5C66-4533-4307-9B53-224DE2E
 Remove-PSDrive "HKCR"
 
 # Removing run hook for new users
-& .\lib\mount-defaultregistry.ps1
+. .\lib\load-reghelper.ps1
 reg delete "HKLM\NewUser\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v "OneDriveSetup" /f
 
 $ErrorActionPreference = 'SilentlyContinue'

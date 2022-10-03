@@ -11,3 +11,12 @@ Start-Process $pkgfile -PassThru '/qb /norestart',
 Wait-Process
 
 Assert-Path "C:\Program Files\PowerShell\*\pwsh.exe"
+
+$target = "$([Environment]::GetFolderPath("MyDocuments"))\PowerShell\Microsoft.PowerShell_profile.ps1"
+if (!(Test-Path $target)) {
+    Copy-Item '.\pkgs-config\profile.ps1' $target
+}
+
+if ($isAdmin) {
+    Copy-Item -Force $target "$(mkdir -f 'C:\Users\Default\Documents\PowerShell')\Microsoft.PowerShell_profile.ps1"
+}

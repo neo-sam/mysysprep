@@ -1,3 +1,4 @@
-if ($module.deploy_pkgs) {
-    $module.deploy_pkgs.createGetVscodeShortcut = 1
+if ($modules.deploy_pkgs) {
+    $modules.deploy_pkgs.installWsl2 = 1
+    $modules.deploy_pkgs.createGetVscodeShortcut = 1
 }

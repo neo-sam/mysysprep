@@ -1,0 +1,17 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\PrecisionTouchPad]
+"CustomThreeFingerTap"=dword:00000004
+"ThreeFingerUp"=dword:0000000b
+"ThreeFingerRight"=dword:00000010
+"ThreeFingerLeft"=dword:00000011
+"ThreeFingerDown"=dword:0000000d
+"ThreeFingerSlideEnabled"=dword:0000ffff
+"ThreeFingerTapEnabled"=dword:00000004
+"FourFingerUp"=dword:00000002
+"FourFingerRight"=dword:00000004
+"FourFingerLeft"=dword:00000004
+"FourFingerDown"=dword:0000ffff
+"FourFingerDownKeyParams"=dword:00730010
+"FourFingerSlideEnabled"=dword:0000ffff
+"FourFingerTapEnabled"=dword:00000002

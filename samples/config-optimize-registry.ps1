@@ -1,4 +1,5 @@
 if ($cfg = $modules.tweak_registry) {
+    $cfg.optimze = 1
     $cfg.protectMyPrivacy = 1
     $cfg.disableAd = 1
 

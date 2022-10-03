@@ -9,7 +9,7 @@ Start-Process $pkgfile /S -PassThru | Wait-Process
 
 Assert-Path "$env:APPDATA\AltSnap\AltSnap.exe"
 
-. .\lib\mount-defaultregistry.ps1
+. .\lib\load-reghelper.ps1
 
 foreach ($regkey in @('HKCU', 'HKLM\NewUser')) {
     reg add $regkey\SOFTWARE\Microsoft\Windows\CurrentVersion\Run /f /t REG_SZ /v AltSnap /d "`"`"`"$env:APPDATA\AltSnap\AltSnap.exe`"`"`"" >$null

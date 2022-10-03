@@ -1,6 +1,7 @@
 $modules = @{ deploy_pkgs = @{} }
-$cfg = $modules.deploy_pkgs
 . .\lib\load-env-with-cfg.ps1
+
+$cfg = $modules.deploy_pkgs
 
 $envScript = (Get-ChildItem "$(Get-ScriptRoot)\_init_.ps1").FullName
 $envScriptBlock = [scriptblock]::Create("cd `"$(Get-Location)`";. `"$envScript`"")
@@ -91,4 +92,9 @@ foreach ($tuple in $deployMutexScriptsWithName) {
 
 if ($cfg.createGetVscodeShortcut) {
     & "$(Get-ScriptRoot)\others\vscode"
+}
+
+if ($cfg.installWsl2) {
+    dism /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart /quiet
+    dism /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart /quiet
 }

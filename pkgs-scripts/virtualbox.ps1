@@ -7,3 +7,5 @@ if (!$PSSenderInfo) {
 Start-Process $pkgfile '--silent' -PassThru | Wait-Process
 
 Assert-Path "C:\Program Files\Oracle\VirtualBox\VirtualBox.exe"
+
+Push-SystemPath "C:\Program Files\Oracle\VirtualBox"

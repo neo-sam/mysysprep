@@ -35,6 +35,7 @@ if ($modules.deploy_pkgs) {
 
 if ($modules.tweak_registry) {
     $modules.tweak_registry = @{
+        optimze            = 0
         protectMyPrivacy         = 0
         disableAd                = 0
         advancedRemapIcons       = 0

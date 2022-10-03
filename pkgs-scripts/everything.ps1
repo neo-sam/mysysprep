@@ -8,7 +8,9 @@ Start-Process $pkgfile /S -PassThru | Wait-Process
 
 Assert-Path "C:\Program Files\Everything\Everything.exe"
 
-if ($cfgfile = Get-ChildItem '.\pkgs-config\Everything.ini' -ErrorAction SilentlyContinue) {
+reg add "HKLM\Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers" /v "C:\Program Files\Everything\Everything.exe" /t REG_SZ /f /d "~ HIGHDPIAWARE" >$null
+
+if ($cfgfile = Get-ChildItem '.\pkgs-config\Everything.ini' -ea 0) {
     Copy-Item $cfgfile "$env:APPDATA\Everything"
 
     Copy-Item -Force $cfgfile (mkdir -f 'C:\Users\Default\AppData\Roaming\Everything')
