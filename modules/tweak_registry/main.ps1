@@ -1,20 +1,25 @@
 $modules = @{ tweak_registry = @{} }
 
-. .\lib\load-env-with-cfg.ps1
+. '.\lib\load-env-with-cfg.ps1'
+. '.\lib\load-commonfn.ps1'
 . '.\lib\load-reghelper.ps1'
 
 $cfg = $modules.tweak_registry
 
-. "$(Get-ScriptRoot)\commonfn"
+if ($null -ne $PSScriptRoot) {
+    $script:PSScriptRoot = Split-Path $script:MyInvocation.MyCommand.Path -Parent
+}
+
+. '.\lib\load-commonfn'
 
 if ($cfg.optimze) {
-    & "$(Get-ScriptRoot)\optimze"
-    logif1 'apply optimze'
+    & "$PSScriptRoot\optimze"
+    logif1 'optimzed'
 }
 
 if ($cfg.protectMyPrivacy) {
-    & "$(Get-ScriptRoot)\protect-privacy"
-    logif1 'disabled privacy collectors.'
+    & "$PSScriptRoot\protect-privacy"
+    logif1 'disabled privacy collectors'
 }
 
 if ($cfg.disableAd) {
@@ -26,19 +31,19 @@ if ($cfg.disableAd) {
 }
 
 if ($cfg.advancedRemapIcons) {
-    & "$(Get-ScriptRoot)\remap_icons"
-    logif1 'Remapped icons.'
+    & "$PSScriptRoot\remap_icons"
+    logif1 'remapped icons'
 }
 
 if ($cfg.enableClassicPhotoViewer) {
-    reg import "$(Get-ScriptRoot)\use-classic-photoviewer.reg" 2>&1 | Out-Null
+    reg import "$PSScriptRoot\use-classic-photoviewer.reg" 2>&1 | Out-Null
 }
 
 if ($cfg.preferGestures) {
-    applyRegfileForMeAndDefault "$(Get-ScriptRoot)\prefer-gestures.reg"
+    applyRegfileForMeAndDefault "$PSScriptRoot\prefer-gestures.reg"
 }
 
-if ($cfg.subscripts) {
+if ($cfg.scripts) {
     foreach ($scriptname in
         @(
             'explorer'
@@ -48,8 +53,8 @@ if ($cfg.subscripts) {
             'inputmethod_cw'
         )
     ) {
-        $props = $cfg.subscripts[$scriptname]
-        $path = "$(Get-ScriptRoot)\subscripts\$scriptname"
-        if (Test-Path $path -and $props) { & $path @props }
+        $props = $cfg.scripts[$scriptname]
+        $path = "$PSScriptRoot\scripts\$scriptname.ps1"
+        if ((Test-Path $path) -and ($null -ne $props)) { & $path @props }
     }
 }

@@ -4,7 +4,9 @@
 param()
 
 $modules = @{ deploy_pkgs = @{} }
+. .\lib\load-commonfn.ps1
 . .\lib\load-env-with-cfg.ps1
+. .\lib\load-reghelper.ps1
 $cfg = $modules.deploy_pkgs
 
 function Get-PackageFile() {

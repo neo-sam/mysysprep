@@ -11,21 +11,21 @@ if ($showFileExtension) {
     Set-ItemProperty (
         Get-CurrentAndNewUserPaths 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced'
     ) HideFileExt 0
-    logif1 'show file extension.'
+    logif1 'enabled show file extension'
 }
 
 if ($useLibraries) {
     Set-ItemProperty (
         Get-CurrentAndNewUserPaths 'HKCU:\Software\Classes\CLSID\{031E4825-7B94-4dc3-B131-E946B44C8DD5}'
     ) System.IsPinnedToNameSpaceTree 1
-    logif1 'enabled libraries.'
+    logif1 'enabled show libraries'
 }
 
 if ($useRecylebinForUdisk) {
     Set-ItemProperty (
         Get-CurrentAndNewUserPaths 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer'
     ) RecycleBinDrives 0xffffffff
-    logif1 'use recyle bin for U disk.'
+    logif1 'enabled recyle bin for U disk'
 }
 
 if ($showRecentFolders) {
@@ -41,7 +41,7 @@ if ($showRecentFolders) {
         Get-CurrentAndNewUserPaths 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\HideDesktopIcons\NewStartPanel'
     ) '{22877A6D-37A1-461A-91B0-DBDA5AAEBC99}' 1
 
-    logif1 'show recent folders.'
+    logif1 'enabled show recent folders'
 }
 
 if ($optimizePerformance) {
@@ -55,7 +55,7 @@ if ($optimizePerformance) {
         Set-ItemProperty "HKLM:\Software\Classes\$item\shellex\ContextMenuHandlers\Compatibility" '(Default)' '""'
     }
 
-    logif1 'optimized performance.'
+    logif1 'optimized performance'
 }
 
 if ($optimize) {
@@ -72,10 +72,5 @@ if ($optimize) {
         Get-CurrentAndNewUserPaths 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\NamingTemplates'
     ) 'CopyNameTemplate' '%s'
 
-    $0 = 'HKCU:\Software\Microsoft\Windows\Shell\Bags\1\Desktop'
-    Set-ItemProperty $0 -Name 'IconSize' -Value 32 -Type DWord
-    Set-ItemProperty $0 -Name 'Mode' -Value 1 -Type DWord
-    Set-ItemProperty $0 -Name 'LogicalViewMode' -Value 3 -Type DWord
-
-    logif1 'optimized.'
+    logif1 'optimized'
 }

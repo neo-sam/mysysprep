@@ -40,7 +40,7 @@ if ($modules.tweak_registry) {
         disableAd                = 0
         advancedRemapIcons       = 0
         enableClassicPhotoViewer = 0
-        subscripts               = @{
+        scripts               = @{
             explorer    = @{
                 showFileExtension    = 0
                 showRecentFolders    = 0

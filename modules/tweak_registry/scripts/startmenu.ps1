@@ -7,7 +7,7 @@ if ($disableWebSearch) {
     Set-ItemProperty (
         Get-CurrentAndNewUserPaths 'HKCU:\SOFTWARE\Policies\Microsoft\Windows\Explorer'
     ) DisableSearchBoxSuggestions 1
-    logif1 'disabled online search results.'
+    logif1 'disabled online search results'
 }
 
 if ($disableFileSearch) {

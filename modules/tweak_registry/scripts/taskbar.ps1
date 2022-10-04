@@ -21,6 +21,7 @@ if ($optimize) {
     Set-ItemProperty (
         Get-CurrentAndNewUserPaths 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer'
     ) ExtendedUIHoverTime 122
+    logif1 'optimzed'
 }
 
 if ($biggerThumbnail) {
@@ -30,7 +31,7 @@ if ($biggerThumbnail) {
         Set-ItemProperty (
             Get-CurrentAndNewUserPaths 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Taskband'
         ) MinThumbSizePx 500
-        logif1 'enabled bigger thumbnail.'
+        logif1 'enabled bigger thumbnail'
     }
 }
 
@@ -47,20 +48,23 @@ if ([Environment]::OSVersion.Version.Build -ge 22000) {
         Set-ItemProperty (
             Get-CurrentAndNewUserPaths "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced"
         ) TaskbarDa 0
-        Set-ItemProperty HKLM:\SOFTWARE\Policies\Microsoft\Dsh  AllowNewsAndInterests 0
-        logif1 'disabled Windows11 widgets.'
+
+        $regkey = 'HKLM:\SOFTWARE\Policies\Microsoft\Dsh'
+        mkdir -f $regkey >$null
+        Set-ItemProperty $regkey AllowNewsAndInterests 0
+        logif1 'disabled win11 widgets'
     }
     if ($win11alignLeft) {
         Set-ItemProperty (
             Get-CurrentAndNewUserPaths "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced"
-        ) TaskbarAl 2
+        ) TaskbarAl 0
     }
     if ($win11noMsTeam) {
         Set-ItemProperty (
             Get-CurrentAndNewUserPaths "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced"
         ) TaskbarMn 2
     }
-    logif1 'tweaked Windows11.'
+    logif1 'tweaked win11'
 }
 else {
     if ($groupWhenOverflow) {
@@ -80,22 +84,22 @@ else {
         Set-ItemProperty (
             Get-CurrentAndNewUserPaths 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced\People'
         ) PeopleBand 0
-        logif1 'disabled the People icon'
+        logif1 'disabled People icon'
     }
     if ($win10noCortana) {
         Set-ItemProperty (
             Get-CurrentAndNewUserPaths 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced'
         ) ShowCortanaButton 0
-        logif1 'hide the Cortana icon'
+        logif1 'disabled Cortana icon'
     }
     if ($win10noSearchBar) {
         Set-ItemProperty (
             Get-CurrentAndNewUserPaths 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Search'
         ) SearchboxTaskbarMode 1
-        logif1 'fold the search bar'
+        logif1 'folded the search bar'
     }
     if ($win10oldVolumeMixer) {
         Set-ItemProperty 'HKLM:\Software\Microsoft\Windows NT\CurrentVersion\MTCUVC' EnableMtcUvc 0
-        logif1 'use Win7 style volume mixer'
+        logif1 'enabled win7 style volume mixer'
     }
 }

@@ -23,7 +23,7 @@ if ($modules.debloat) {
 if ($cfg = $modules.tweak_registry) {
     $cfg.disableAd = 1
 
-    $tb = $cfg.subscripts.taskbar
+    $tb = $cfg.scripts.taskbar
     $tb.win10noPeople = 1
     $tb.win10noCortana = 1
     $tb.win10noSearchBar = 1

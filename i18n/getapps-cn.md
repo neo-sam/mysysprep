@@ -85,12 +85,6 @@
 
   按修改时间倒排，找到最新版 `.exe` 下载，见[高校镜像站](https://mirrorz.org/list/vim)
 
-### 其它
-
-- MSYS2: 仿 UNIX 开发和构建环境
-
-  从[高校镜像站](https://mirrorz.org/app/MSYS2)下载
-
 ## 仅外网提供
 
 - Everything: 文件搜索器，体验远超系统内置搜索引擎

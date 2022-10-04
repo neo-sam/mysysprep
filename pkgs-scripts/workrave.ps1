@@ -8,7 +8,7 @@ Start-Process $pkgfile '/SILENT /SUPPRESSMSGBOXES /NORESTART /SP-' -PassThru | W
 
 Assert-Path "C:\Program Files (x86)\Workrave\lib\Workrave.exe"
 
-reg add 'HKLM\Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers' /f /t REG_SZ /v 'C:\Program Files (x86)\Workrave\lib\Workrave.exe' /d '~ HIGHDPIAWARE'>$null
+reg add 'HKLM\Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers' /f /t REG_SZ /v 'C:\Program Files (x86)\Workrave\lib\Workrave.exe' /d '~ HIGHDPIAWARE' >$null
 
 if ($cfg.useWorkraveConfig) {
     applyRegfileForMeAndDefault ".\pkgs-config\prefer-workrave.reg"

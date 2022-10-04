@@ -167,10 +167,6 @@ Manuall Installers, put them into `.\misc`
 
   Find `MSI Installer` at [Official Download Page](https://www.veracrypt.fr/en/Downloads.html)
 
-- MSYS2: software distribution and building platform for Windows
-
-  [Official Download Page](https://www.msys2.org/#installation)
-
 <br/></details>
 
 ## Get Started

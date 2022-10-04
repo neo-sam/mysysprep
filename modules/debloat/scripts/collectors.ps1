@@ -19,16 +19,16 @@ function Disable-BundledTask {
 if ($privacy) {
     Disable-BundledService dmwappushservice, DiagTrack
     Disable-BundledTask Consolidator, UsbCeip, DmClient, DmClientOnScenarioDownload
-    Write-Output 'Disabled user data collectors.'
+    logif1 'disable user data collectors.'
 }
 
 if ($services) {
     Disable-BundledService PcaSvc, WerSvc
-    Write-Output 'Disabled unused service.'
+    logif1 'disable unused service.'
 }
 
 if ($xbox) {
     Disable-BundledService XblAuthManager, XblGameSave, XboxGipSvc, XboxNetApiSvc
     Disable-BundledTask XblGameSaveTask
-    Write-Output 'Disabled Xbox service.'
+    logif1 'disable Xbox service.'
 }

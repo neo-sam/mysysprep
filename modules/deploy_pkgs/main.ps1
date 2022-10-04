@@ -1,9 +1,16 @@
 $modules = @{ deploy_pkgs = @{} }
-. .\lib\load-env-with-cfg.ps1
+
+. '.\lib\load-commonfn.ps1'
+. '.\lib\load-env-with-cfg.ps1'
+. '.\lib\load-reghelper.ps1'
 
 $cfg = $modules.deploy_pkgs
 
-$envScript = (Get-ChildItem "$(Get-ScriptRoot)\_init_.ps1").FullName
+if ($null -ne $PSScriptRoot) {
+    $script:PSScriptRoot = Split-Path $script:MyInvocation.MyCommand.Path -Parent
+}
+
+$envScript = (Get-ChildItem "$PSScriptRoot\_init_.ps1").FullName
 $envScriptBlock = [scriptblock]::Create("cd `"$(Get-Location)`";. `"$envScript`"")
 
 [Collections.ArrayList]$deployScriptsWithName = @()
@@ -91,7 +98,7 @@ foreach ($tuple in $deployMutexScriptsWithName) {
 }
 
 if ($cfg.createGetVscodeShortcut) {
-    & "$(Get-ScriptRoot)\others\vscode"
+    & "$PSScriptRoot\others\vscode"
 }
 
 if ($cfg.installWsl2) {

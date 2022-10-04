@@ -13,5 +13,5 @@ Start-Process -PassThru '.\tmp\imdisk_files\config.exe' '/fullsilent',
 Wait-Process
 
 foreach ($_ in @("config", "MountImg", "RamDiskUI")) {
-    reg add "HKLM\Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers" /v "C:\Program Files\ImDisk\$_.exe" /t REG_SZ /f /d "~ HIGHDPIAWARE"
+    reg add "HKLM\Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers" /v "C:\Program Files\ImDisk\$_.exe" /t REG_SZ /f /d "~ HIGHDPIAWARE" >$null
 }

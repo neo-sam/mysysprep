@@ -9,15 +9,13 @@ Start-Process $pkgfile /S -PassThru | Wait-Process
 
 Assert-Path "$env:APPDATA\AltSnap\AltSnap.exe"
 
-. .\lib\load-reghelper.ps1
-
-foreach ($regkey in @('HKCU', 'HKLM\NewUser')) {
-    reg add $regkey\SOFTWARE\Microsoft\Windows\CurrentVersion\Run /f /t REG_SZ /v AltSnap /d "`"`"`"$env:APPDATA\AltSnap\AltSnap.exe`"`"`"" >$null
-}
+Set-ItemProperty (
+    Get-CurrentAndNewUserPaths "HKCU:\Software\Microsoft\Windows\CurrentVersion\Run"
+) AltSnap "`"$env:APPDATA\AltSnap\AltSnap.exe`""
 
 if ($cfg.useAltsnapConfig) {
     $cfgfile = "$env:APPDATA\AltSnap\AltSnap.ini"
-    $cfgtext = (Get-cfgtext $cfgfile) `
+    $cfgtext = (Get-Content $cfgfile) `
         -replace '(?<=AutoFocus=)0$', '1'  `
         -replace '(?<=MDI=)1$', '0' `
         -replace '(?<=ResizeAll=)1$', '0' `

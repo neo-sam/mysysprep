@@ -3,7 +3,7 @@ if ($cfg = $modules.tweak_registry) {
     $cfg.protectMyPrivacy = 1
     $cfg.disableAd = 1
 
-    $ex = $cfg.subscripts.explorer
+    $ex = $cfg.scripts.explorer
     $ex.optimize = 1
     $ex.useLibraries = 1
     $ex.showFileExtension = 1
@@ -11,7 +11,7 @@ if ($cfg = $modules.tweak_registry) {
     $ex.showRecentFolders = 1
     $ex.optimizePerformance = 1
 
-    $tb = $cfg.subscripts.taskbar
+    $tb = $cfg.scripts.taskbar
     $tb.optimize = 1
     $tb.biggerThumbnail = 1
     $tb.groupWhenOverflow = 1

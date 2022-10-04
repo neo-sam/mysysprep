@@ -1,6 +1,6 @@
 function logif1 {
     param([string[]]$content)
-    if ($?) { Write-Host "[$((Get-ChildItem $MyInvocation.MyCommand).BaseName)]" @content }
+    if ($?) { Write-Host "[$((Get-ChildItem $MyInvocation.ScriptName).BaseName)]" @content }
 }
 
 function Get-CimOrWimInstance {

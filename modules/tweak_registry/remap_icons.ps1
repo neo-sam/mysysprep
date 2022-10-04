@@ -19,19 +19,19 @@ if ($icons.netdevices) {
     Set-ItemProperty (
         Get-CurrentAndNewUserPaths 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\CLSID\{F02C1A0D-BE21-4350-88B0-7367FC96EF3C}\DefaultIcon'
     ) '(Default)' $icons.netdevices
-    logif1 'Changed network devices icon.'
+    logif1 'changed network devices icon'
 }
 
 if ($icons.library) {
     Set-ItemProperty (
         Get-CurrentAndNewUserPaths 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\CLSID\{031E4825-7B94-4DC3-B131-E946B44C8DD5}\DefaultIcon'
     ) '(Default)' $icons.library
-    logif1 'Changed libray icon.'
+    logif1 'changed libray icon'
 }
 
 if ($icons.recentdirs) {
     Set-ItemProperty (
         Get-CurrentAndNewUserPaths 'HKCU:\Software\Classes\CLSID\{22877A6D-37A1-461A-91B0-DBDA5AAEBC99}\DefaultIcon'
     ) '(Default)' $icons.recentdirs
-    logif1 'Changed recent directories icon.'
+    logif1 'changed recent directories icon'
 }
