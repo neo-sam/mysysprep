@@ -1,11 +1,14 @@
 $pkgfile = Get-PackageFile "virtualbox-Win-latest.exe"
 if (!$PSSenderInfo) {
-    if ($pkgfile) { 'VirtualBox', 'mutex' }
+    if (-not $pkgfile) { return }
+    return @{
+        name   = 'VirtualBox'
+        target = 'C:\Program Files\Oracle\VirtualBox\VirtualBox.exe'
+        mutex  = $true
+    }
     return
 }
 
 Start-Process $pkgfile '--silent' -PassThru | Wait-Process
-
-Assert-Path "C:\Program Files\Oracle\VirtualBox\VirtualBox.exe"
 
 Push-SystemPath "C:\Program Files\Oracle\VirtualBox"

@@ -1,6 +1,11 @@
 $pkgfile = Get-PackageFile "SysinternalsSuite.zip"
+$targetFolder = mkdir -f $env:SystemRoot\Sysinternals
 if (!$PSSenderInfo) {
-    if ($pkgfile) { 'Sysinternals' }
+    if (-not $pkgfile) { return }
+    return @{
+        name   = 'Sysinternals'
+        target = "$targetFolder"
+    }
     return
 }
 
@@ -27,6 +32,5 @@ if ([Environment]::OSVersion.Version.Build -ge 10240) {
     $excludeList += 'desktops*'
 }
 
-$targetFolder = mkdir -f $env:SystemRoot\Sysinternals
 Copy-Item -Force (Get-ChildItem 'tmp\sysinternals\*' -Exclude $excludeList) $targetFolder
 Push-SystemPath $targetFolder

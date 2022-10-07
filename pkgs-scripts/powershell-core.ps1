@@ -1,7 +1,11 @@
 $pkgfile = Get-PackageFile "PowerShell-*-win-x64.msi"
 if (!$PSSenderInfo) {
-    if ($pkgfile) { 'PowerShell Core', 'mutex' }
-    return
+    if (-not $pkgfile) { return }
+    return @{
+        name   = 'PowerShell Core'
+        target = 'C:\Program Files\PowerShell\*\pwsh.exe'
+        mutex  = $true
+    }
 }
 
 Start-Process $pkgfile -PassThru '/qb /norestart',
@@ -9,8 +13,6 @@ Start-Process $pkgfile -PassThru '/qb /norestart',
 'ADD_EXPLORER_CONTEXT_MENU_OPENPOWERSHELL=1',
 '/l*v logs\powershell.log' |
 Wait-Process
-
-Assert-Path "C:\Program Files\PowerShell\*\pwsh.exe"
 
 $target = "$([Environment]::GetFolderPath("MyDocuments"))\PowerShell\Microsoft.PowerShell_profile.ps1"
 if (!(Test-Path $target)) {

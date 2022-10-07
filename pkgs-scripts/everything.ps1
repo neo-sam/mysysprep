@@ -1,12 +1,13 @@
 $pkgfile = Get-PackageFile "Everything-*.x64.Lite-Setup.exe"
 if (!$PSSenderInfo) {
-    if ($pkgfile) { 'Everything' }
-    return
+    if (-not $pkgfile) { return }
+    return @{
+        name   = 'Everything'
+        target = 'C:\Program Files\Everything\Everything.exe'
+    }
 }
 
 Start-Process $pkgfile /S -PassThru | Wait-Process
-
-Assert-Path "C:\Program Files\Everything\Everything.exe"
 
 reg add "HKLM\Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers" /v "C:\Program Files\Everything\Everything.exe" /t REG_SZ /f /d "~ HIGHDPIAWARE" >$null
 

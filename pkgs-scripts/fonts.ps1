@@ -4,7 +4,11 @@ if (!$PSSenderInfo) {
             Get-PackageFile "13_NotoSansMonoCJKsc.zip"
             Get-PackageFile "SourceHanSerif-VF.ttf.ttc"
         ) ) {
-        if ($item) { return 'fonts' }
+        if ($item) {
+            return @{
+                name = 'fonts'
+            }
+        }
     }
     return
 }

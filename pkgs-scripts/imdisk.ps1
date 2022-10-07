@@ -1,7 +1,10 @@
 $pkgfile = Get-PackageFile "ImDiskTk-x64.zip"
 if (!$PSSenderInfo) {
-    if ($pkgfile) { 'imdisk' }
-    return
+    if (-not $pkgfile) { return }
+    return @{
+        name   = 'imdisk'
+        target = 'C:\Program Files\ImDisk\config.exe'
+    }
 }
 
 Expand-Archive -Force $pkgfile $(mkdir -f tmp)

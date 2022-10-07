@@ -1,7 +1,11 @@
 $pkgfile = Get-PackageFile "chocolatey.*.nupkg"
+$ChocoInstallPath = "$($env:SystemDrive)\ProgramData\Chocolatey\bin"
 if (!$PSSenderInfo) {
-    if ($pkgfile) { 'Chocolatey' }
-    return
+    if (-not $pkgfile) { return }
+    return @{
+        name   = 'Chocolatey'
+        target = "$ChocoInstallPath\choco.exe"
+    }
 }
 
 # - $env:ChocolateyEnvironmentDebug = 'true' # see output
@@ -12,7 +16,6 @@ Set-ExecutionPolicy Bypass -Scope Process -Force
 New-Item $env:ALLUSERSPROFILE\choco-cache -ItemType Directory -Force >$null
 $env:TEMP = "$env:ALLUSERSPROFILE\choco-cache"
 
-$ChocoInstallPath = "$($env:SystemDrive)\ProgramData\Chocolatey\bin"
 $env:ChocolateyInstall = "$($env:SystemDrive)\ProgramData\Chocolatey"
 $env:Path += ";$ChocoInstallPath"
 $DebugPreference = 'Continue';
@@ -85,5 +88,3 @@ if (!(Test-Path $nupkg)) {
     if (![System.IO.Directory]::Exists($chocoPkgDir)) { [System.IO.Directory]::CreateDirectory($chocoPkgDir) | Out-Null }
     Copy-Item "$file" "$nupkg" -Force -ErrorAction SilentlyContinue
 }
-
-Assert-Path "$ChocoInstallPath\choco.exe"

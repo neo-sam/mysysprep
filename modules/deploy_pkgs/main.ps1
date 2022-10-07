@@ -13,41 +13,31 @@ if ($null -ne $PSScriptRoot) {
 $envScript = (Get-ChildItem "$PSScriptRoot\_init_.ps1").FullName
 $envScriptBlock = [scriptblock]::Create("cd `"$(Get-Location)`";. `"$envScript`"")
 
-[Collections.ArrayList]$deployScriptsWithName = @()
-[Collections.ArrayList]$deployMutexScriptsWithName = @()
+$deployTasks = @()
+$deployMutexTasks = @()
 
 function Get-PackageFile() {
     [OutputType([IO.FileSystemInfo])] param($pattern)
     return Get-ChildItem "pkgs\$pattern" -ErrorAction SilentlyContinue
 }
 
-foreach ($deployScript in Get-ChildItem '.\pkgs-scripts\*.ps1') {
-    $result = & $deployScript
-    if ($null -eq $result) { continue }
-    elseif ($result.GetType() -eq [string]) {
-        if ($isAdmin) { $deployScriptsWithName.Add(@($deployScript, $result))>$null }
+foreach ($fetchTask in Get-ChildItem '.\pkgs-scripts\*.ps1') {
+    $task = & $fetchTask
+    if ($null -eq $task.name) { continue }
+    if (($null -ne $task.target) -and (Test-Path $task.target -ea 0)) {
+        Write-Output "Ignore installed $($task.name)"
+        continue
     }
-    elseif ($result -notcontains 'userlevel') {
-        if ($result -contains 'mutex') {
-            if ($isAdmin) { $deployMutexScriptsWithName.Add(@($deployScript, $result[0]))>$null }
-        }
-    }
-    else {
-        if ($result -notcontains 'mutex') {
-            $deployScriptsWithName.Add(@($deployScript, $result[0]))>$null
-        }
-        else { $deployMutexScriptsWithName.Add(@($deployScript, $result[0]))>$null }
-    }
+    $task.path = $fetchTask
+    if ( $task.mutex ) { $deployMutexTasks += $task }
+    else { $deployTasks += $task }
 }
 
-foreach ($tuple in $deployScriptsWithName) {
-    $deployScript = $tuple[0]
-    $name = $tuple[1]
-
-    Write-Output "Adding package: $name"
+foreach ($task in $deployTasks) {
+    Write-Output "Adding package: $($task.name)"
     Start-Job `
         -InitializationScript $envScriptBlock `
-        -Name $name -FilePath $deployScript | Out-Null
+        -Name $task.name -FilePath $task.path | Out-Null
 }
 
 Write-Host
@@ -76,20 +66,17 @@ while ($job = (Get-JobOrWait)) {
     }
 }
 
-foreach ($tuple in $deployMutexScriptsWithName) {
-    $deployScript = $tuple[0]
-    $name = $tuple[1]
-
-    Write-Output "Installing: $name"
+foreach ($task in $deployMutexTasks) {
+    Write-Output "Installing: $($task.name)"
     try {
         $job = Start-Job `
             -InitializationScript $envScriptBlock `
-            -Name $name -FilePath $deployScript
+            -Name $task.name -FilePath $task.path
         Wait-Job $job | Receive-Job
-        Write-Output "Successfully installed package: $name."
+        Write-Output "Successfully installed package: $($task.name)."
     }
     catch {
-        Write-Output "Fail to install package: $name",
+        Write-Output "Fail to install package: $($task.name)",
         "Reason: $($_.Exception.Message)", ''
     }
     finally {

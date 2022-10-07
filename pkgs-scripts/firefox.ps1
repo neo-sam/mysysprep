@@ -1,9 +1,10 @@
 $pkgfile = Get-PackageFile "Firefox Setup *.exe"
-if (!$PSSenderInfo) { 
-    if ($pkgfile) { 'Firefox' }
-    return 
+if (!$PSSenderInfo) {
+    if (-not $pkgfile) { return }
+    return @{
+        name   = 'Firefox'
+        target = 'C:\Program Files\Mozilla Firefox\firefox.exe'
+    }
 }
 
 Start-Process $pkgfile /S -PassThru | Wait-Process
-
-Assert-Path "C:\Program Files\Mozilla Firefox\firefox.exe"
