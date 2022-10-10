@@ -4,7 +4,7 @@ if (!$PSSenderInfo) {
     return @{
         name  = 'gsudo'
         target = 'C:\Program Files (x86)\gsudo\gsudo.exe'
-        mutex  = $true
+        mutex  = 1
     }
 }
 

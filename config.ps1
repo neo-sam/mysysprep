@@ -28,19 +28,18 @@ if ($modules.debloat) {
 if ($modules.deploy_pkgs) {
     $modules.deploy_pkgs = @{
         useWorkraveConfig    = 0
-        useAltsnapConfig     = 0
         disableOpensshServer = 0
     }
 }
 
 if ($modules.tweak_registry) {
     $modules.tweak_registry = @{
-        optimze            = 0
+        optimze                  = 0
         protectMyPrivacy         = 0
         disableAd                = 0
         advancedRemapIcons       = 0
         enableClassicPhotoViewer = 0
-        scripts               = @{
+        scripts                  = @{
             explorer    = @{
                 showFileExtension    = 0
                 showRecentFolders    = 0
@@ -68,6 +67,10 @@ if ($modules.tweak_registry) {
                 win11noWidgets      = 0
                 win11alignLeft      = 0
                 win11noMsTeam       = 0
+            }
+            ime         = @{
+                candidates     = 0
+                biggerFontSize = 0
             }
         }
     }

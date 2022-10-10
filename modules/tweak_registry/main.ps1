@@ -44,15 +44,8 @@ if ($cfg.preferGestures) {
 }
 
 if ($cfg.scripts) {
-    foreach ($scriptname in
-        @(
-            'explorer'
-            'contextmenu'
-            'taskbar'
-            'startmenu'
-            'inputmethod_cw'
-        )
-    ) {
+    foreach ($scriptfile in Get-ChildItem .\scripts\*.ps1) {
+        $scriptname = $scriptfile.BaseName
         $props = $cfg.scripts[$scriptname]
         $path = "$PSScriptRoot\scripts\$scriptname.ps1"
         if ((Test-Path $path) -and ($null -ne $props)) { & $path @props }

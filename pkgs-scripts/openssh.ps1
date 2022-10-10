@@ -4,7 +4,7 @@ if (!$PSSenderInfo) {
     return @{
         name   = 'Upgraded OpenSSH'
         target = 'C:\Program Files\OpenSSH\sshd.exe'
-        mutex  = $true
+        mutex  = 1
     }
 }
 

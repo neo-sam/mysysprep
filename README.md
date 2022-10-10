@@ -29,7 +29,7 @@ Get U disk image writer:
 
 - Rufus: only single image, more options and better compatibility
 
-  find `p.exe` at [Official GitHub Release](https://github.com/pbatard/rufus/releases/latest)
+  find `*p.exe` at [Official GitHub Release](https://github.com/pbatard/rufus/releases/latest)
 
 <br/>
 </details>
@@ -100,10 +100,6 @@ helper:
 
   [Official GitHub Release](https://github.com/rcaelers/workrave/releases/latest)
 
-- AltSnap: adjust a window by press modifier key and mouse drag easily
-
-  Find `-x64-inst.exe` at [Official GitHub Release](https://github.com/RamonUnch/AltSnap/releases/latest)
-
 - qBittorrent: free BitTorrent client
 
   Find `x64` at [FOSSHUB Release](https://www.fosshub.com/qBittorrent.html)
@@ -134,11 +130,13 @@ for developers:
 
   Click "Last modified" and find the latest `.exe` at [Official Download Page](https://ftp.nluug.nl/pub/vim/pc/)
 
-- VirtualBox: free open source virtualization platform by Oracle:
+- VirtualBox: free open source virtualization platform by Oracle
 
   Find `Windows hosts` at [Official Download Page](https://www.vitualbox.org/wiki/Downloads#VirtualBoxbinaries)
 
-- OpenSSH: upgrade SSH component package:
+- OpenSSH: fix the bug of internal version of SSH
+
+      chan_shutdown_read: shutdown() failed for fd 7 [i0 o0]: Not a socket
 
   find `OpenSSH-Win64-v` at [Official GitHub Page](https://github.com/PowerShell/Win32-OpenSSH/releases/latest)
 
@@ -155,7 +153,7 @@ Excecute `_verify.cmd` in `.\pkgs`
 You can get [Firefox ESR](https://portableapps.com/apps/internet/firefox-portable-esr),
 unpack it into current repository
 
-### Misc
+### Miscellaneous
 
 Manuall Installers, put them into `.\misc`
 
@@ -166,6 +164,10 @@ Manuall Installers, put them into `.\misc`
 - VeraCrypt: free hard disk data encryptor
 
   Find `MSI Installer` at [Official Download Page](https://www.veracrypt.fr/en/Downloads.html)
+
+- OhMyLnk: useful windows shortcuts
+
+  [GitHub Repository](https://github.com/setupfw/ohmylnk)
 
 <br/></details>
 

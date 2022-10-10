@@ -17,10 +17,12 @@ if ($optimize) {
     Set-ItemProperty (
         Get-CurrentAndNewUserPaths 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced'
     ) LastActiveClick 1
+
     # decrease hover delay time of the taskbar thumbnail
     Set-ItemProperty (
         Get-CurrentAndNewUserPaths 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer'
     ) ExtendedUIHoverTime 122
+
     logif1 'optimzed'
 }
 

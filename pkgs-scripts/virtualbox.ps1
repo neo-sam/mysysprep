@@ -4,7 +4,7 @@ if (!$PSSenderInfo) {
     return @{
         name   = 'VirtualBox'
         target = 'C:\Program Files\Oracle\VirtualBox\VirtualBox.exe'
-        mutex  = $true
+        mutex  = 1
     }
     return
 }

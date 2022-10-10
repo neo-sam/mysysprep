@@ -4,7 +4,7 @@ if (!$PSSenderInfo) {
     return @{
         name   = 'PowerShell Core'
         target = 'C:\Program Files\PowerShell\*\pwsh.exe'
-        mutex  = $true
+        mutex  = 1
     }
 }
 

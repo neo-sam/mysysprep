@@ -4,7 +4,7 @@ if (!$PSSenderInfo) {
     return @{
         name   = 'VeraCrypt'
         target = 'C:\Program Files\VeraCrypt\VeraCrypt.exe'
-        mutex  = $true
+        mutex  = 1
     }
     return
 }
