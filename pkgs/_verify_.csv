@@ -22,3 +22,4 @@ Workrave,workrave-win32-v*.exe
 Chocolatey,chocolatey.*.nupkg
 imdisk,ImDiskTk-x64.zip
 Sysinternals,SysinternalsSuite.zip
+AltSnap,AltSnap*-x64-inst.exe

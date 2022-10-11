@@ -1,4 +1,3 @@
-
 param(
     $cloudApps,
     $zuneMediaPlayer,
@@ -11,6 +10,7 @@ $removeAppxList = ''
 
 if ($cloudApps) {
     $removeAppxList += @"
+
 Microsoft.BingNews
 Microsoft.BingWeather
 Microsoft.MicrosoftOfficeHub
@@ -27,6 +27,7 @@ Clipchamp.Clipchamp
 
 if ($zuneMediaPlayer) {
     $removeAppxList += @"
+
 Microsoft.ZuneMusic
 Microsoft.ZuneVideo
 "@
@@ -34,12 +35,14 @@ Microsoft.ZuneVideo
 
 if ($emailAndCalendar) {
     $removeAppxList += @"
+
 microsoft.windowscommunicationsapps
 "@
 }
 
 if ($xbox) {
     $removeAppxList += @"
+
 Microsoft.Xbox.TCUI
 Microsoft.XboxApp
 Microsoft.XboxIdentityProvider
@@ -51,17 +54,21 @@ Microsoft.XboxSpeechToTextOverlay
 
 if ($photo) {
     $removeAppxList += @"
+
 Microsoft.Windows.Photos
 "@
 }
 
-foreach ($name in "$removeAppxList".Split("`n")) {
+foreach ($rawname in "$removeAppxList".Split("`n")) {
+    $name = $rawname.Trim()
     if ($name -eq '') { continue }
     $app = Get-AppxPackage -Name $name
+
     if ($null -ne $app) {
         $app | Remove-AppxPackage
         logif1 "Remove-AppxPackage $name [ok]"
     }
+
     $papp = Get-AppxProvisionedPackage -Online | Where-Object DisplayName -like $name
     if ($null -ne $app) {
         $papp | Remove-AppxProvisionedPackage -Online | Out-Null

@@ -1,0 +1,11 @@
+$url = 'https://code.visualstudio.com/sha/download?build=stable&os=win32-x64-user'
+$req = Invoke-WebRequest -useb $url -method head
+if ($null -ne $req.BaseResponse.RequestMessage) { $path = $req.BaseResponse.RequestMessage.RequestUri.LocalPath }
+else { $path = $req.BaseResponse.ResponseUri.AbsolutePath }
+$name = ($path -split '/')[-1]
+$rewriteUrl = $url # original address
+Invoke-WebRequest $rewriteUrl -o $name
+Start-Process -PassThru (Get-ChildItem $name) '/silent' '/tasks=addcontextmenufiles,addcontextmenufolders,associatewithfiles,addtopath' | Wait-Process
+
+& "$env:LOCALAPPDATA\Programs\Microsoft VS Code\bin\code.cmd"
+Start-Process -Path 'https://devbook.littleboyharry.me/docs/devenv/vscode/settings'

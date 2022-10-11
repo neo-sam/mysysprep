@@ -1,7 +1,7 @@
 param(
-    $addUserFolder = 1,
-    $addLibrariesFolder = 1,
-    $addThisPC = 1,
+    $addUserFolder,
+    $addLibrariesFolder,
+    $addThisPC,
     $addNetworkInterfacesFolder,
     $addIconsCfgMenuItem
 )
@@ -33,7 +33,6 @@ if ($addThisPC) {
 }
 
 if ($addNetworkInterfacesFolder) {
-    Get-CurrentAndNewUserPaths 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Desktop\NameSpace\{7007ACC7-3202-11D1-AAD2-00805FC1270E}'
     Set-ItemProperty (
         Get-CurrentAndNewUserPaths 'HKCU:\Software\Classes\CLSID\{7007ACC7-3202-11D1-AAD2-00805FC1270E}\DefaultIcon'
     ) '(Default)' "imageres.dll,114"

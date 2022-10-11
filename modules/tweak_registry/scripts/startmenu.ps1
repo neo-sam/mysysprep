@@ -13,4 +13,5 @@ if ($disableWebSearch) {
 if ($disableFileSearch) {
     sc.exe stop wsearch >$null
     sc.exe config wsearch start=disabled >$null
+    logif1 -f 'disabled file search results'
 }

@@ -14,7 +14,7 @@ Start-Process $pkgfile -PassThru '/qb /norestart',
 '/l*v logs\powershell.log' |
 Wait-Process
 
-$target = "$([Environment]::GetFolderPath("MyDocuments"))\PowerShell\Microsoft.PowerShell_profile.ps1"
+$target = "$(mkdir -f "$([Environment]::GetFolderPath("MyDocuments"))\PowerShell")\Microsoft.PowerShell_profile.ps1"
 if (!(Test-Path $target)) {
     Copy-Item '.\pkgs-config\profile.ps1' $target
 }

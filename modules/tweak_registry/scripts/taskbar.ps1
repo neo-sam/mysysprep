@@ -7,8 +7,9 @@ param(
     $win10noCortana,
     $win10noSearchBar,
     $win10oldVolumeMixer,
-    $win11noWidgets,
     $win11alignLeft,
+    $win11showAllTray,
+    $win11noWidgets,
     $win11noMsTeam
 )
 
@@ -45,7 +46,19 @@ if ([Environment]::OSVersion.Version.Build -ge 22000) {
     Set-ItemProperty ( Get-CurrentAndNewUserPaths `
             "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced"
     ) MultiTaskingAltTabFilter 3
+    logif1 'optimized for win11'
 
+    if ($win11alignLeft) {
+        Set-ItemProperty (
+            Get-CurrentAndNewUserPaths "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced"
+        ) TaskbarAl 0
+    }
+    if ($win11showAllTray) {
+        Set-ItemProperty (
+            Get-CurrentAndNewUserPaths "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer"
+        ) EnableAutoTray  1
+        logif1 'show all tray icon'
+    }
     if ($win11noWidgets) {
         Set-ItemProperty (
             Get-CurrentAndNewUserPaths "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced"
@@ -56,17 +69,11 @@ if ([Environment]::OSVersion.Version.Build -ge 22000) {
         Set-ItemProperty $regkey AllowNewsAndInterests 0
         logif1 'disabled win11 widgets'
     }
-    if ($win11alignLeft) {
-        Set-ItemProperty (
-            Get-CurrentAndNewUserPaths "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced"
-        ) TaskbarAl 0
-    }
     if ($win11noMsTeam) {
         Set-ItemProperty (
             Get-CurrentAndNewUserPaths "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced"
         ) TaskbarMn 2
     }
-    logif1 'tweaked win11'
 }
 else {
     if ($groupWhenOverflow) {

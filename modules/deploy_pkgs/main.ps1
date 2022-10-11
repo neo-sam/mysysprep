@@ -33,6 +33,8 @@ foreach ($fetchTask in Get-ChildItem '.\pkgs-scripts\*.ps1') {
     else { $deployTasks += $task }
 }
 
+mkdir -f .\logs > $null
+
 foreach ($task in $deployTasks) {
     Write-Output "Adding package: $($task.name)"
     Start-Job `
@@ -85,10 +87,20 @@ foreach ($task in $deployMutexTasks) {
 }
 
 if ($cfg.createGetVscodeShortcut) {
-    & "$PSScriptRoot\others\vscode"
+    $getVscScriptPath = 'C:\Users\Public\get-vscode.ps1'
+
+    $getVscScriptText = Get-Content '.\lib\userscripts\vscode.ps1'
+    if ((Get-Culture).Name -eq "zh-CN") {
+        $getVscScriptText = $getVscScriptText -replace '(?<=\$rewriteUrl = ).+', '"https://vscode.cdn.azure.cn$path"'
+    }
+    $getVscScriptText | Out-File -Force $getVscScriptPath
+
+    New-SetupScriptShortcut -lnkname "Get VSCode" -psspath $getVscScriptPath
+    Write-Output 'Created a vscode getter shortcut.'
 }
 
 if ($cfg.installWsl2) {
     dism /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart /quiet
     dism /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart /quiet
+    Write-Output 'Added HyperV support.'
 }

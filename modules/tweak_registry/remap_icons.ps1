@@ -3,7 +3,7 @@ $icons = @{
     quickaccess = "shell32.dll,213";
     library     = "explorer.exe";
     netdevices  = if ($winver -lt 22000) { "shell32.dll,18" } else { "shell32.dll,164" };
-    recentdirs  = if ($winver -lt 22000) { "shell32.dll,316" } else { "shell32.dll,319" };
+    recentdirs  = if ($winver -lt 22000) { "shell32.dll,319" } else { "shell32.dll,316" };
 }
 
 if ($winver -lt 22621) {

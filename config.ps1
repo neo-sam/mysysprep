@@ -38,8 +38,16 @@ if ($modules.tweak_registry) {
         protectMyPrivacy         = 0
         disableAd                = 0
         advancedRemapIcons       = 0
+        preferTouchpadGestures   = 0
         enableClassicPhotoViewer = 0
         scripts                  = @{
+            desktop     = @{
+                addUserFolder              = 0
+                addLibrariesFolder         = 0
+                addThisPC                  = 0
+                addNetworkInterfacesFolder = 0
+                addIconsCfgMenuItem        = 0
+            }
             explorer    = @{
                 showFileExtension    = 0
                 showRecentFolders    = 0
@@ -64,8 +72,9 @@ if ($modules.tweak_registry) {
                 win10noCortana      = 0
                 win10noSearchBar    = 0
                 win10oldVolumeMixer = 0
-                win11noWidgets      = 0
                 win11alignLeft      = 0
+                win11showAllTray    = 0
+                win11noWidgets      = 0
                 win11noMsTeam       = 0
             }
             ime         = @{
@@ -76,9 +85,7 @@ if ($modules.tweak_registry) {
     }
 }
 
-if ($sysprep) {
-    $sysprep = @{
-        oobeSkipEula    = 0
-        oobeSkipLoginMs = 0
-    }
+$sysprep = @{
+    oobeSkipEula    = 0
+    oobeSkipLoginMs = 0
 }

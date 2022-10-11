@@ -19,7 +19,7 @@ $props = $cfg.collectors
 $props = $cfg.capabilities
 & "$PSScriptRoot\scripts\capabilities" @props
 
-if ($null -eq (Get-Module Appx -All -ListAvailable)) {
+if ($null -ne (Get-Module Appx -All -ListAvailable)) {
     $ProgressPreferenceBefore = $ProgressPreference
     $ProgressPreference = 'SilentlyContinue'
 

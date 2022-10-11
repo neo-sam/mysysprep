@@ -19,7 +19,7 @@ function Push-SystemPath {
     if ($env:path -like "*$path*") { return }
     [Environment]::SetEnvironmentVariable("PATH",
         [Environment]::GetEnvironmentVariable("PATH", "Machine") +
-        ";${value}", "Machine")
+        ";$path", "Machine")
 }
 
 function Assert-Path {

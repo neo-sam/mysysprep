@@ -30,21 +30,22 @@ if ($cfg.disableAd) {
     logif1 'disabled Ad'
 }
 
-if ($cfg.advancedRemapIcons) {
-    & "$PSScriptRoot\remap_icons"
-    logif1 'remapped icons'
-}
-
 if ($cfg.enableClassicPhotoViewer) {
     reg import "$PSScriptRoot\use-classic-photoviewer.reg" 2>&1 | Out-Null
+    logif1 -f 'enable classic photoviewer'
 }
 
-if ($cfg.preferGestures) {
-    applyRegfileForMeAndDefault "$PSScriptRoot\prefer-gestures.reg"
+if ($cfg.preferTouchpadGestures) {
+    applyRegfileForMeAndDefault "$PSScriptRoot\touchpad-gestures.reg"
+    logif1 'enable prefer gestures schema'
+}
+
+if ($cfg.advancedRemapIcons) {
+    & "$PSScriptRoot\remap_icons"
 }
 
 if ($cfg.scripts) {
-    foreach ($scriptfile in Get-ChildItem .\scripts\*.ps1) {
+    foreach ($scriptfile in Get-ChildItem .\modules\tweak_registry\scripts\*.ps1) {
         $scriptname = $scriptfile.BaseName
         $props = $cfg.scripts[$scriptname]
         $path = "$PSScriptRoot\scripts\$scriptname.ps1"

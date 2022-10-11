@@ -16,14 +16,24 @@ if (!$PSSenderInfo) {
 $tmpdir = 'tmp\fonts'
 
 mkdir -f $tmpdir >$null
-if ($it = Get-PackageFile "03_NotoSansCJK-OTC.zip") {
+
+if (($it = Get-PackageFile "03_NotoSansCJK-OTC.zip") `
+        -and !(Test-Path C:\Windows\Fonts\NotoSansCJK*)
+) {
     Expand-Archive -Force $it $tmpdir
+    Write-Output 'Will add font: Noto Sans CJK'
 }
-if ($it = Get-PackageFile "13_NotoSansMonoCJKsc.zip") {
+if (($it = Get-PackageFile "13_NotoSansMonoCJKsc.zip") `
+        -and !(Test-Path C:\Windows\Fonts\NotoSansMonoCJKsc*)
+) {
     Expand-Archive -Force $it $tmpdir
+    Write-Output 'Will add font: Noto Sans Mono CJK'
 }
-if ($it = Get-PackageFile "SourceHanSerif-VF.ttf.ttc") {
+if (($it = Get-PackageFile "SourceHanSerif-VF.ttf.ttc")`
+        -and !(Test-Path C:\Windows\Fonts\SourceHanSerif*)
+) {
     Copy-Item -Force $it $tmpdir
+    Write-Output 'Will add font: Source Han Serif'
 }
 
 $FontSourceFolder = $tmpdir

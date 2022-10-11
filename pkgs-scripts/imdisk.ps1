@@ -11,7 +11,7 @@ Expand-Archive -Force $pkgfile $(mkdir -f tmp)
 
 Start-Process -PassThru extrac32.exe "/e /y /l tmp/imdisk_files $(Get-ChildItem 'tmp\ImDiskTk*\files.cab')" | Wait-Process
 Start-Process -PassThru '.\tmp\imdisk_files\config.exe' '/fullsilent',
-'/discutils:1', '/ramdiskui:1', '/menu_entries:1',
+'/discutils:1', '/ramdiskui:1', '/menu_entries:0',
 '/shortcuts_desktop:0' , '/shortcuts_all:0' |
 Wait-Process
 
