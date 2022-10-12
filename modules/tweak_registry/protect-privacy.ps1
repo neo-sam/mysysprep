@@ -2,7 +2,7 @@ if ($null -ne $PSScriptRoot) {
     $script:PSScriptRoot = Split-Path $script:MyInvocation.MyCommand.Path -Parent
 }
 
-reg import "$PSScriptRoot\protect-privacy.reg" 2>&1 | Out-Null
+reg.exe import "$PSScriptRoot\protect-privacy.reg" 2>&1 | Out-Null
 
 # disable-user-data-collector
 Set-ItemProperty (

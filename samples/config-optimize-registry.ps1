@@ -27,7 +27,6 @@ if ($cfg = $modules.tweak_registry) {
     $tb.win10noSearchBar = 1
     $tb.win10oldVolumeMixer = 1
     $tb.win11alignLeft = 1
-    $tb.win11showAllTray = 1
     $tb.win11noWidgets = 1
     $tb.win11noMsTeam = 1
 }

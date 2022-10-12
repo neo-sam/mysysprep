@@ -8,7 +8,7 @@ foreach ($moduleName in
     )
 ) {
     if (Test-Path ".\modules\$moduleName") {
-        Write-Host "==> Running '$moduleName' modules"
+        Write-Host "==> Running the Module: $moduleName"
         & ".\modules\$moduleName\main.ps1"
     }
 }

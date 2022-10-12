@@ -15,6 +15,8 @@ Start-Process -PassThru '.\tmp\imdisk_files\config.exe' '/fullsilent',
 '/shortcuts_desktop:0' , '/shortcuts_all:0' |
 Wait-Process
 
+Move-Item "$env:APPDATA\Microsoft\Windows\Start Menu\Programs\ImDisk" 'C:\ProgramData\Microsoft\Windows\Start Menu\Programs'
+
 foreach ($_ in @("config", "MountImg", "RamDiskUI")) {
-    reg add "HKLM\Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers" /v "C:\Program Files\ImDisk\$_.exe" /t REG_SZ /f /d "~ HIGHDPIAWARE" >$null
+    reg.exe add "HKLM\Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers" /v "C:\Program Files\ImDisk\$_.exe" /t REG_SZ /f /d "~ HIGHDPIAWARE" >$null
 }

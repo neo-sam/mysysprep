@@ -1,6 +1,7 @@
-. .\lib\require-admin.ps1
-
-if (!(Test-Path hklm:NewUser)) {
+if (
+    !(Test-Path hklm:NewUser) -and
+    ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] 'Administrator')
+) {
     reg.exe load HKLM\NewUser 'C:\Users\Default\NTUSER.DAT' 2>&1 >$null
 }
 
@@ -19,11 +20,11 @@ function Get-CurrentAndNewUserPaths {
 function applyRegfileForMeAndDefault {
     param([string]$path)
 
-    reg import $path 2>&1 >$null
+    reg.exe import $path 2>&1 >$null
 
     $newRegpath = "$(mkdir -f tmp)\$((Get-ChildItem $path).BaseName)-newuser.reg"
     (Get-Content $path) -replace `
         '^\[HKEY_CURRENT_USER', '[HKEY_LOCAL_MACHINE\NewUser' |`
         Out-File -Force $newRegpath
-    reg import $newRegpath 2>&1 >$null
+    reg.exe import $newRegpath 2>&1 >$null
 }

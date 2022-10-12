@@ -9,7 +9,7 @@ if (!$PSSenderInfo) {
 
 Start-Process $pkgfile /S -PassThru | Wait-Process
 
-reg add "HKLM\Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers" /v "C:\Program Files\Everything\Everything.exe" /t REG_SZ /f /d "~ HIGHDPIAWARE" >$null
+reg.exe add "HKLM\Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers" /v "C:\Program Files\Everything\Everything.exe" /t REG_SZ /f /d "~ HIGHDPIAWARE" >$null
 
 if ($cfgfile = Get-ChildItem '.\pkgs-config\Everything.ini' -ea 0) {
     Copy-Item $cfgfile "$env:APPDATA\Everything"

@@ -4,8 +4,9 @@ if ($null -ne $req.BaseResponse.RequestMessage) { $path = $req.BaseResponse.Requ
 else { $path = $req.BaseResponse.ResponseUri.AbsolutePath }
 $name = ($path -split '/')[-1]
 $rewriteUrl = $url # original address
-Invoke-WebRequest $rewriteUrl -o $name
+if (!(Test-Path $name) -or (Get-AuthenticodeSignature $name).Status -ne 'Valid') {
+    Invoke-WebRequest $rewriteUrl -o $name
+}
 Start-Process -PassThru (Get-ChildItem $name) '/silent' '/tasks=addcontextmenufiles,addcontextmenufolders,associatewithfiles,addtopath' | Wait-Process
 
 & "$env:LOCALAPPDATA\Programs\Microsoft VS Code\bin\code.cmd"
-Start-Process -Path 'https://devbook.littleboyharry.me/docs/devenv/vscode/settings'

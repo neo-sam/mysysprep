@@ -13,31 +13,48 @@ if ($null -ne $PSScriptRoot) {
 . '.\lib\load-commonfn'
 
 if ($cfg.optimze) {
+    $Script:msg = Get-Translation Optimzed. `
+        -base64cn 5bey5LyY5YyWCg==
+
     & "$PSScriptRoot\optimze"
-    logif1 'optimzed'
+    logif1
 }
 
 if ($cfg.protectMyPrivacy) {
+    $Script:msg = Get-Translation 'Disabled privacy collectors.' `
+        -base64cn 5bey5bGP6JS96ZqQ56eB5pS26ZuG5ZmoCg==
+
     & "$PSScriptRoot\protect-privacy"
-    logif1 'disabled privacy collectors'
+    logif1
 }
 
 if ($cfg.disableAd) {
+    $Script:msg = Get-Translation 'Disabled Ad.' `
+        -base64cn 5bey5bGP6JS95bm/5ZGK57O757ufCg==
+
     Set-ItemProperty (
         Get-CurrentAndNewUserPaths    'HKCU:\Software\Microsoft\Windows\CurrentVersion\AdvertisingInfo'
     ) Enabled 0
     Remove-ItemProperty -Force 'HKCU:\Software\Microsoft\Windows\CurrentVersion\AdvertisingInfo' Id -ea 0
-    logif1 'disabled Ad'
+
+    logif1 -f
 }
 
 if ($cfg.enableClassicPhotoViewer) {
-    reg import "$PSScriptRoot\use-classic-photoviewer.reg" 2>&1 | Out-Null
-    logif1 -f 'enable classic photoviewer'
+    $Script:msg = Get-Translation 'Enabled classic photoviewer.' `
+        -base64cn 5r+A5rS757uP5YW45Zu+54mH5p+l55yL5ZmoCg==
+
+    reg.exe import "$PSScriptRoot\use-classic-photoviewer.reg" 2>&1 | Out-Null
+
+    logif1 -f
 }
 
 if ($cfg.preferTouchpadGestures) {
+    $Script:msg = Get-Translation 'Changed touchpad gestures schema.' `
+        -base64cn 5bey5pS55Y+Y6Kem5pG45p2/5omL5Yq/5pa55qGICg==
+
     applyRegfileForMeAndDefault "$PSScriptRoot\touchpad-gestures.reg"
-    logif1 'enable prefer gestures schema'
+    logif1
 }
 
 if ($cfg.advancedRemapIcons) {

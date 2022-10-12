@@ -29,7 +29,7 @@ if ((Get-ChildItem "$env:userprofile\OneDrive" -Recurse | Measure-Object).Count 
 $ErrorActionPreference = 'Continue'
 
 # Disable OneDrive via Group Policies
-Set-ItemProperty -Path (
+Set-ItemProperty (
     mkdir -f "HKLM:\SOFTWARE\Wow6432Node\Policies\Microsoft\Windows\OneDrive"
 ).PSPath "DisableFileSyncNGSC" 1
 
@@ -54,4 +54,6 @@ Remove-Item -Force "$env:userprofile\AppData\Roaming\Microsoft\Windows\Start Men
 Get-ScheduledTask -TaskName 'OneDrive*' | Unregister-ScheduledTask -Confirm:$false
 
 # Start-Process 'explorer.exe'
-Write-Output '[onedrive] uninstalled'
+Write-Output "[onedrive] $(
+    Get-Translation uninstalled -base64cn 5bey5Y246L29Cg==
+)"

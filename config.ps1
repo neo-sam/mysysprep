@@ -29,6 +29,7 @@ if ($modules.deploy_pkgs) {
     $modules.deploy_pkgs = @{
         useWorkraveConfig    = 0
         disableOpensshServer = 0
+        devbookDocLink       = 0
     }
 }
 
@@ -73,7 +74,6 @@ if ($modules.tweak_registry) {
                 win10noSearchBar    = 0
                 win10oldVolumeMixer = 0
                 win11alignLeft      = 0
-                win11showAllTray    = 0
                 win11noWidgets      = 0
                 win11noMsTeam       = 0
             }

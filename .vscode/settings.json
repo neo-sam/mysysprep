@@ -1,5 +1,6 @@
 {
     "files.associations": {
-        "*.reg": "ini"
+        "*.reg": "ini",
+        "**/lib/newdesktop/*.txt": "markdown"
     }
 }
