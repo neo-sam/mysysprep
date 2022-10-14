@@ -13,8 +13,7 @@ if ($null -ne $PSScriptRoot) {
 . '.\lib\load-commonfn'
 
 if ($cfg.optimze) {
-    $Script:msg = Get-Translation Optimzed. `
-        -base64cn 5bey5LyY5YyWCg==
+    $Script:msg = Get-Translation 'Optimzed.' -cn '已优化'
 
     & "$PSScriptRoot\optimze"
     logif1
@@ -22,7 +21,7 @@ if ($cfg.optimze) {
 
 if ($cfg.protectMyPrivacy) {
     $Script:msg = Get-Translation 'Disabled privacy collectors.' `
-        -base64cn 5bey5bGP6JS96ZqQ56eB5pS26ZuG5ZmoCg==
+        -cn '已屏蔽隐私收集器'
 
     & "$PSScriptRoot\protect-privacy"
     logif1
@@ -30,7 +29,7 @@ if ($cfg.protectMyPrivacy) {
 
 if ($cfg.disableAd) {
     $Script:msg = Get-Translation 'Disabled Ad.' `
-        -base64cn 5bey5bGP6JS95bm/5ZGK57O757ufCg==
+        -cn '已屏蔽广告系统'
 
     Set-ItemProperty (
         Get-CurrentAndNewUserPaths    'HKCU:\Software\Microsoft\Windows\CurrentVersion\AdvertisingInfo'
@@ -42,7 +41,7 @@ if ($cfg.disableAd) {
 
 if ($cfg.enableClassicPhotoViewer) {
     $Script:msg = Get-Translation 'Enabled classic photoviewer.' `
-        -base64cn 5r+A5rS757uP5YW45Zu+54mH5p+l55yL5ZmoCg==
+        -cn '激活经典图片查看器'
 
     reg.exe import "$PSScriptRoot\use-classic-photoviewer.reg" 2>&1 | Out-Null
 
@@ -51,7 +50,7 @@ if ($cfg.enableClassicPhotoViewer) {
 
 if ($cfg.preferTouchpadGestures) {
     $Script:msg = Get-Translation 'Changed touchpad gestures schema.' `
-        -base64cn 5bey5pS55Y+Y6Kem5pG45p2/5omL5Yq/5pa55qGICg==
+        -cn '已改变触摸板手势方案'
 
     applyRegfileForMeAndDefault "$PSScriptRoot\touchpad-gestures.reg"
     logif1

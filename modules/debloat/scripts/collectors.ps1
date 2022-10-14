@@ -18,7 +18,7 @@ function Disable-BundledTask {
 
 if ($privacy) {
     $Script:msg = Get-Translation 'Disabled user data collectors.' `
-        -base64cn 5bey5bGP6JS95Liq5Lq65pWw5o2u5pS26ZuG5ZmoCg==
+        -cn '已屏蔽个人数据收集器'
 
     Disable-BundledService dmwappushservice, DiagTrack
     Disable-BundledTask Consolidator, UsbCeip, DmClient, DmClientOnScenarioDownload
@@ -27,7 +27,7 @@ if ($privacy) {
 
 if ($services) {
     $Script:msg = Get-Translation 'Disabled unused service.' `
-        -base64cn 5bey5bGP6JS95peg55So55qE5pyN5YqhCg==
+        -cn '已屏蔽无用的服务'
 
     Disable-BundledService PcaSvc, WerSvc
     logif1
@@ -35,7 +35,7 @@ if ($services) {
 
 if ($xbox) {
     $Script:msg = Get-Translation 'Disabled Xbox service.' `
-        -base64cn 5bey5bGP6JS9IFhib3gg5pyN5YqhCg==
+        -cn '已屏蔽 Xbox 服务'
 
     Disable-BundledService XblAuthManager, XblGameSave, XboxGipSvc, XboxNetApiSvc
     Disable-BundledTask XblGameSaveTask

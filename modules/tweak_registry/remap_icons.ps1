@@ -9,7 +9,7 @@ $icons = @{
 if ($winver -lt 22621) {
     if ($icons.quickaccess) {
         $Script:msg = Get-Translation 'Changed quick access icon.' `
-            -base64cn 5bey5L+u5pS54oCc5b+r6YCf6K6/6Zeu4oCd55qE5Zu+5qCHCg==
+            -cn '已修改“快速访问”的图标'
 
         Set-ItemProperty (
             Get-CurrentAndNewUserPaths 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\CLSID\{679F85CB-0220-4080-B29B-5540CC05AAB6}\DefaultIcon'
@@ -20,7 +20,7 @@ if ($winver -lt 22621) {
 
 if ($icons.netdevices) {
     $Script:msg = Get-Translation 'Changed network devices icon.' `
-        -base64cn 5bey5L+u5pS54oCc572R57uc6K6+5aSH4oCd55qE5Zu+5qCHCg==
+        -cn '已修改“网络设备”的图标'
 
     Set-ItemProperty (
         Get-CurrentAndNewUserPaths 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\CLSID\{F02C1A0D-BE21-4350-88B0-7367FC96EF3C}\DefaultIcon'
@@ -30,7 +30,7 @@ if ($icons.netdevices) {
 
 if ($icons.library) {
     $Script:msg = Get-Translation 'Changed libraries icon.' `
-        -base64cn 5bey5L+u5pS54oCc5bqT4oCd55qE5Zu+5qCHCg==
+        -cn '已修改“库”的图标'
 
     Set-ItemProperty (
         Get-CurrentAndNewUserPaths 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\CLSID\{031E4825-7B94-4DC3-B131-E946B44C8DD5}\DefaultIcon'
@@ -40,7 +40,7 @@ if ($icons.library) {
 
 if ($icons.recentdirs) {
     $Script:msg = Get-Translation 'Changed recent directories icon.' `
-        -base64cn 5bey5L+u5pS54oCc5pyA6L+R5paH5Lu25aS54oCd55qE5Zu+5qCHCg==
+        -cn '已修改“最近文件夹”的图标'
 
     Set-ItemProperty (
         Get-CurrentAndNewUserPaths 'HKCU:\Software\Classes\CLSID\{22877A6D-37A1-461A-91B0-DBDA5AAEBC99}\DefaultIcon'

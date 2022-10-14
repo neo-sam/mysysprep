@@ -55,5 +55,5 @@ Get-ScheduledTask -TaskName 'OneDrive*' | Unregister-ScheduledTask -Confirm:$fal
 
 # Start-Process 'explorer.exe'
 Write-Output "[onedrive] $(
-    Get-Translation uninstalled -base64cn 5bey5Y246L29Cg==
+    Get-Translation 'uninstalled' -cn '已卸载'
 )"

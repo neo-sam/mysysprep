@@ -4,7 +4,7 @@ param(
 )
 
 $verb = Get-Translation 'removed capability' `
-    -base64cn 5Yig6Zmk5Yqf6IO9Cg==
+    -cn '删除功能'
 
 if ($powershell_ise -and (
         Test-Path 'C:\windows\system32\WindowsPowerShell\v1.0\powershell_ise.exe'

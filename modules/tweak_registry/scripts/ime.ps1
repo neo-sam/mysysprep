@@ -8,7 +8,7 @@ $regkeys = (
 )
 
 if ($candidates.GetType() -eq [int] -and $candidates -ne 0) {
-    $Script:msg = "$(Get-Translation candidates -base64cn 5YCZ6YCJ6K+N5pWwCg==): $candidates"
+    $Script:msg = "$(Get-Translation candidates -cn '候选词数'): $candidates"
 
     Set-ItemProperty $regkeys EnableFixedCandidateCountMode 1
     Set-ItemProperty $regkeys MaxCandidates $candidates
@@ -18,7 +18,7 @@ if ($candidates.GetType() -eq [int] -and $candidates -ne 0) {
 
 if ($biggerFontSize) {
     $Script:msg = Get-Translation 'bigger font size' `
-        -base64cn 5pu05aSn55qE5a2X5L2TCg==
+        -cn '更大的字体'
 
     Set-ItemProperty $regkeys FontStyleTSF3 '20.00pt;Regular;;Microsoft YaHei UI'
 

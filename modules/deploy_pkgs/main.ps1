@@ -27,7 +27,7 @@ foreach ($fetchTask in Get-ChildItem '.\pkgs-scripts\*.ps1') {
     if (($null -ne $task.target) -and (Test-Path $task.target -ea 0)) {
         Write-Output "$(
             Get-Translation 'Ignored installed' `
-            -base64cn 5a6J6KOF5bey5b+955WlCg==
+            -cn '安装已忽略'
         ): $($task.name)"
         continue
     }
@@ -40,7 +40,7 @@ mkdir -f .\logs > $null
 
 foreach ($task in $deployTasks) {
     Write-Output "$(Get-Translation 'Adding package'`
-        -base64cn 5a6J6KOF5byA5aeLCg==
+        -cn '安装开始'
     ): $($task.name)"
     Start-Job `
         -InitializationScript $envScriptBlock `
@@ -63,15 +63,15 @@ while ($job = (Get-JobOrWait)) {
     try {
         Receive-Job $job -ErrorAction Stop
         Write-Output "$(Get-Translation 'Successfully add package'`
-            -base64cn 5a6J6KOF5oiQ5YqfCg==
+            -cn '安装成功'
         ): $name." ''
     }
     catch {
         Write-Output "$(Get-Translation 'Fail to add package'`
-            -base64cn 5a6J6KOF5aSx6LSlCg==
+            -cn '安装失败'
         ): $name",
         "$(Get-Translation 'Reason'`
-            -base64cn 5Y6f5ZugCg==
+            -cn '原因'
         ): $($_.Exception.Message)", ''
     }
     finally {
@@ -81,7 +81,7 @@ while ($job = (Get-JobOrWait)) {
 
 foreach ($task in $deployMutexTasks) {
     Write-Output "$(Get-Translation 'Installing'`
-        -base64cn 5a6J6KOF5LitCg==
+        -cn '安装中'
     ): $($task.name)"
     try {
         $job = Start-Job `
@@ -89,15 +89,15 @@ foreach ($task in $deployMutexTasks) {
             -Name $task.name -FilePath $task.path
         Wait-Job $job | Receive-Job
         Write-Output "$(Get-Translation 'Successfully installed package'`
-            -base64cn 5a6J6KOF5a6M5oiQCg==
+            -cn '安装完成'
         ): $($task.name)."
     }
     catch {
         Write-Output "$(Get-Translation 'Fail to install package'`
-            -base64cn 5a6J6KOF5aSx6LSlCg==
+            -cn '安装失败'
         ): $($task.name)",
         "$(Get-Translation 'Reason'`
-            -base64cn 5Y6f5ZugCg==
+            -cn '原因'
         ): $($_.Exception.Message)", ''
     }
     finally {
@@ -122,18 +122,19 @@ if ($cfg.createGetVscodeShortcut) {
     $getVscScriptText | Out-File -Force $getVscScriptPath
 
     New-SetupScriptShortcut -psspath $getVscScriptPath `
-        -lnkname "$(Get-Translation Get -base64cn 6I635Y+WCg==) VSCode"
+        -lnkname "$(Get-Translation 'Get' -cn '获取') VSCode"
     Write-Output (Get-Translation 'Created a vscode getter shortcut.'`
-            -base64cn 5Yib5bu65LqGIFZTQ29kZSDlronoo4XnqIvluo8K)
+            -cn '创建了 VSCode 安装程序')
 }
-
+<#
 if ($cfg.installWsl2) {
     dism /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart /quiet
     dism /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart /quiet
     Write-Output (Get-Translation 'Added HyperV support.'`
-            -base64cn 5re75Yqg5LqGIEh5cGVyViDmqKHlnZcK)
+            -cn '添加了 HyperV 模块')
 
     if ($cfg.devbookDocLink) {
         New-DevbookDocShortcut WSL2 docs/setup-mswin/devenv/wsl2
     }
 }
+#>

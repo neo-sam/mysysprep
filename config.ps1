@@ -42,14 +42,14 @@ if ($modules.tweak_registry) {
         preferTouchpadGestures   = 0
         enableClassicPhotoViewer = 0
         scripts                  = @{
-            desktop     = @{
+            desktop   = @{
                 addUserFolder              = 0
                 addLibrariesFolder         = 0
                 addThisPC                  = 0
                 addNetworkInterfacesFolder = 0
                 addIconsCfgMenuItem        = 0
             }
-            explorer    = @{
+            explorer  = @{
                 showFileExtension    = 0
                 showRecentFolders    = 0
                 useLibraries         = 0
@@ -57,14 +57,11 @@ if ($modules.tweak_registry) {
                 optimizePerformance  = 0
                 optimize             = 0
             }
-            contextmenu = @{
-                disableWin11NewStyle = 0
-            }
-            startmenu   = @{
+            startmenu = @{
                 disableWebSearch  = 0
                 disableFileSearch = 0
             }
-            taskbar     = @{
+            taskbar   = @{
                 optimize            = 0
                 biggerThumbnail     = 0
                 groupWhenOverflow   = 0
@@ -77,7 +74,7 @@ if ($modules.tweak_registry) {
                 win11noWidgets      = 0
                 win11noMsTeam       = 0
             }
-            ime         = @{
+            ime       = @{
                 candidates     = 0
                 biggerFontSize = 0
             }

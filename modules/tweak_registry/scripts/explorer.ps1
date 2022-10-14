@@ -9,7 +9,7 @@ param(
 
 if ($showFileExtension) {
     $Script:msg = Get-Translation 'enabled show file extension.' `
-        -base64cn 5pi+56S65paH5Lu25omp5bGV5ZCNCg==
+        -cn '显示文件扩展名'
 
     Set-ItemProperty (
         Get-CurrentAndNewUserPaths 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced'
@@ -19,7 +19,7 @@ if ($showFileExtension) {
 
 if ($useLibraries) {
     $Script:msg = Get-Translation 'enabled show libraries.' `
-        -base64cn 5pi+56S65bqTCg==
+        -cn '显示库'
 
     Set-ItemProperty (
         Get-CurrentAndNewUserPaths 'HKCU:\Software\Classes\CLSID\{031E4825-7B94-4dc3-B131-E946B44C8DD5}'
@@ -29,7 +29,7 @@ if ($useLibraries) {
 
 if ($useRecylebinForUdisk) {
     $Script:msg = Get-Translation 'enabled recyle bin for U disk.' `
-        -base64cn 5r+A5rS7VeebmOWbnuaUtuermeacuuWItgo=
+        -cn '激活U盘回收站机制'
 
     Set-ItemProperty (
         Get-CurrentAndNewUserPaths 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer'
@@ -39,7 +39,7 @@ if ($useRecylebinForUdisk) {
 
 if ($showRecentFolders) {
     $Script:msg = Get-Translation 'enabled show recent folders' `
-        -base64cn 5pi+56S65pyA6L+R55qE5paH5Lu25aS5Cg==
+        -cn '显示最近的文件夹'
 
     Set-ItemProperty (
         Get-CurrentAndNewUserPaths 'HKCU:\Software\Classes\CLSID\{22877A6D-37A1-461A-91B0-DBDA5AAEBC99}'
@@ -58,7 +58,7 @@ if ($showRecentFolders) {
 
 if ($optimizePerformance) {
     $Script:msg = Get-Translation 'optimized performance.' `
-        -base64cn 5oCn6IO95bey5LyY5YyWCg==
+        -cn '性能已优化'
 
     Set-ItemProperty (
         Get-CurrentAndNewUserPaths 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced'
@@ -75,7 +75,7 @@ if ($optimizePerformance) {
 
 if ($optimize) {
     $Script:msg = Get-Translation 'optimized' `
-        -base64cn 5bey5LyY5YyWCg==
+        -cn '已优化'
 
     Set-ItemProperty -Type Binary (
         Get-CurrentAndNewUserPaths 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer'

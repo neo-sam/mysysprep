@@ -14,7 +14,7 @@ param(
 
 if ($optimize) {
     $Script:msg = Get-Translation optimzed `
-        -base64cn 5bey5LyY5YyWCg==
+        -cn '已优化'
 
     # show new window at first when clicked appicon
     Set-ItemProperty (
@@ -34,7 +34,7 @@ if ($biggerThumbnail) {
     $totalMemoryInGb = (Get-CimOrWimInstance Win32_PhysicalMemory | Measure-Object -Property capacity -Sum).sum / 1gb
     if ( $isWideScreen -and $totalMemoryInGb -gt 4 ) {
         $Script:msg = Get-Translation 'enabled bigger thumbnail' `
-            -base64cn 5pS+5aSn5oKs5rWu57yp55Wl5Zu+Cg==
+            -cn '放大悬浮缩略图'
 
         Set-ItemProperty (
             Get-CurrentAndNewUserPaths 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Taskband'
@@ -46,7 +46,7 @@ if ($biggerThumbnail) {
 # Only Windows 11
 if ([Environment]::OSVersion.Version.Build -ge 22000) {
     $Script:msg = Get-Translation 'optimized for win11' `
-        -base64cn 5Li6IFdpbjExIOmAgumFjQo=
+        -cn '为 Win11 适配'
 
     Set-ItemProperty ( Get-CurrentAndNewUserPaths `
             "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced"
@@ -64,7 +64,7 @@ if ([Environment]::OSVersion.Version.Build -ge 22000) {
     }
     if ($win11noWidgets) {
         $Script:msg = Get-Translation 'disabled win11 widgets' `
-            -base64cn 56aB55SoIFdpbjExIOWwj+e7hOS7tgo=
+            -cn '禁用 Win11 小组件'
 
         Set-ItemProperty (
             Get-CurrentAndNewUserPaths "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced"
@@ -85,7 +85,7 @@ if ([Environment]::OSVersion.Version.Build -ge 22000) {
 else {
     if ($groupWhenOverflow) {
         $Script:msg = Get-Translation  'will group tasks only overflow' `
-            -base64cn 5LuF5b2T5Lu75Yqh5qCP5aGr5ruh5pe25ZCI5bm25ZCM57G76aG5Cg==
+            -cn '仅当任务栏填满时合并同类项'
 
         Set-ItemProperty (
             Get-CurrentAndNewUserPaths 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced'
@@ -94,7 +94,7 @@ else {
     }
     if ($win10noAd) {
         $Script:msg = Get-Translation 'disabled Ad' `
-            -base64cn 56aB55So5bm/5ZGKCg==
+            -cn '禁用广告'
 
         $regkeys = Get-CurrentAndNewUserPaths "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Feeds"
         Set-ItemProperty $regkeys ShellFeedsTaskbarViewMode 2
@@ -104,7 +104,7 @@ else {
     }
     if ($win10noPeople) {
         $Script:msg = Get-Translation 'disabled People icon' `
-            -base64cn 5bGP6JS95Lq66ISJ5Zu+5qCHCg==
+            -cn '屏蔽人脉图标'
 
         Set-ItemProperty (
             Get-CurrentAndNewUserPaths 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced\People'
@@ -113,7 +113,7 @@ else {
     }
     if ($win10noCortana) {
         $Script:msg = Get-Translation 'disabled Cortana icon' `
-            -base64cn 5bGP6JS9IENvcnRhbmEg5Zu+5qCHCg==
+            -cn '屏蔽 Cortana 图标'
 
         Set-ItemProperty (
             Get-CurrentAndNewUserPaths 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced'
@@ -122,7 +122,7 @@ else {
     }
     if ($win10noSearchBar) {
         $Script:msg = Get-Translation 'folded the search bar' `
-            -base64cn 5oqY5Y+g5pCc57Si5qCPCg==
+            -cn '折叠搜索栏'
 
         Set-ItemProperty (
             Get-CurrentAndNewUserPaths 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Search'
@@ -131,7 +131,7 @@ else {
     }
     if ($win10oldVolumeMixer) {
         $Script:msg = Get-Translation 'enabled win7 style volume mixer' `
-            -base64cn 5L2/55SoIFdpbjcg6aOO5qC855qE6Z+z6YeP5re35ZCI5ZmoCg==
+            -cn '使用 Win7 风格的音量混合器'
 
         Set-ItemProperty 'HKLM:\Software\Microsoft\Windows NT\CurrentVersion\MTCUVC' EnableMtcUvc 0
         logif1

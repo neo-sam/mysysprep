@@ -42,25 +42,19 @@ function Get-Translation {
     param(
         [Parameter(Mandatory = $true, ValueFromPipeline = $true)]
         [string]$text,
-        [string]$base64cn
+        [string]$cn
     )
 
     switch ((Get-WinSystemLocale).Name) {
-        zh-CN { $base64 = $base64cn }
+        zh-CN { if ($cn) { return $cn } }
     }
-
-    if ($base64) {
-        [System.Text.Encoding]::UTF8.GetString(
-            [System.Convert]::FromBase64String($base64)
-        ).TrimEnd()
-    }
-    else { $text }
+    return $text
 }
 
 function New-DevbookDocShortcut {
     param([string]$name, [string]$path)
 
-    $prefix = Get-Translation Config -base64cn 6YWN572uCg==
+    $prefix = Get-Translation Config -cn 配置
     $shortcut = "$([Environment]::GetFolderPath('Desktop'))\$prefix - $name.url"
 
     if (!(Test-Path $shortcut)) {

@@ -19,4 +19,4 @@ if ((Get-WinSystemLocale).Name -eq 'zh-CN') {
 }
 $content > $scriptPath
 
-New-SetupScriptShortcut -psspath $scriptPath -lnkname "$(Get-Translation Install -base64cn 5a6J6KOFCg==) AltSnap"
+New-SetupScriptShortcut -psspath $scriptPath -lnkname "$(Get-Translation Install -cn '安装') AltSnap"
