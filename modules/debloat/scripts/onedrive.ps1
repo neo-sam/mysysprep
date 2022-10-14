@@ -6,11 +6,13 @@
 Stop-Process -Name OneDrive -ea 0
 # taskkill.exe /F /IM "explorer.exe"
 
-if (Test-Path "$env:systemroot\System32\OneDriveSetup.exe") {
-    & "$env:systemroot\System32\OneDriveSetup.exe" /uninstall
-}
-if (Test-Path "$env:systemroot\SysWOW64\OneDriveSetup.exe") {
-    & "$env:systemroot\SysWOW64\OneDriveSetup.exe" /uninstall
+if (Test-Path "$env:LOCALAPPDATA\Microsoft\OneDrive\OneDrive.exe") {
+    if (Test-Path "$env:systemroot\System32\OneDriveSetup.exe") {
+        & "$env:systemroot\System32\OneDriveSetup.exe" /uninstall
+    }
+    if (Test-Path "$env:systemroot\SysWOW64\OneDriveSetup.exe") {
+        & "$env:systemroot\SysWOW64\OneDriveSetup.exe" /uninstall
+    }
 }
 
 $ErrorActionPreference = 'SilentlyContinue'

@@ -3,7 +3,6 @@ $icons = @{
     quickaccess = "shell32.dll,213";
     library     = "explorer.exe";
     netdevices  = if ($winver -lt 22000) { "shell32.dll,18" } else { "shell32.dll,164" };
-    recentdirs  = if ($winver -lt 22000) { "shell32.dll,319" } else { "shell32.dll,316" };
 }
 
 if ($winver -lt 22621) {
@@ -35,15 +34,5 @@ if ($icons.library) {
     Set-ItemProperty (
         Get-CurrentAndNewUserPaths 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\CLSID\{031E4825-7B94-4DC3-B131-E946B44C8DD5}\DefaultIcon'
     ) '(Default)' $icons.library
-    logif1
-}
-
-if ($icons.recentdirs) {
-    $Script:msg = Get-Translation 'Changed recent directories icon.' `
-        -cn '已修改“最近文件夹”的图标'
-
-    Set-ItemProperty (
-        Get-CurrentAndNewUserPaths 'HKCU:\Software\Classes\CLSID\{22877A6D-37A1-461A-91B0-DBDA5AAEBC99}\DefaultIcon'
-    ) '(Default)' $icons.recentdirs
     logif1
 }

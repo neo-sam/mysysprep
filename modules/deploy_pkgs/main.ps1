@@ -106,26 +106,33 @@ foreach ($task in $deployMutexTasks) {
 }
 
 if ($cfg.createGetVscodeShortcut) {
-    $getVscScriptPath = 'C:\Users\Public\get-vscode.ps1'
+    $scriptPath = 'C:\Users\Public\get-vscode.ps1'
 
-    $getVscScriptText = Get-Content '.\lib\userscripts\vscode.ps1'
+    $text = Get-Content '.\lib\userscripts\vscode.ps1'
+    $lnkname = "$(Get-Translation 'Get' -cn '获取') VSCode"
+    New-SetupScriptShortcut -psspath $scriptPath -lnkname $lnkname
+
     if ((Get-Culture).Name -eq "zh-CN") {
-        $getVscScriptText = $getVscScriptText -replace '(?<=\$rewriteUrl = ).+', '"https://vscode.cdn.azure.cn$path"'
+        $text = $text -replace '(?<=\$rewriteUrl = ).+', '"https://vscode.cdn.azure.cn$path"'
     }
     if ($cfg.devbookDocLink) {
         $url = switch ((Get-Culture).Name) {
             zh-CN { 'https://devbook.littleboyharry.me/zh-CN/docs/devenv/vscode/settings' }
             Default { 'https://devbook.littleboyharry.me/docs/devenv/vscode/settings' }
         }
-        $getVscScriptText += "start '$url'`n"
+        $text += "start '$url'`n"
     }
-    $getVscScriptText | Out-File -Force $getVscScriptPath
+    $text += "rm -fo `"`$([Environment]::GetFolderPath('Desktop'))\$lnkname.lnk`"`n"
+    $text | Out-File -Force $scriptPath
 
-    New-SetupScriptShortcut -psspath $getVscScriptPath `
-        -lnkname "$(Get-Translation 'Get' -cn '获取') VSCode"
     Write-Output (Get-Translation 'Created a vscode getter shortcut.'`
             -cn '创建了 VSCode 安装程序')
 }
+
+if ($cfg.devbookDocLink) {
+    New-DevbookDocShortcut 'Windows' 'docs/setup-mswin/firstrun'
+}
+
 <#
 if ($cfg.installWsl2) {
     dism /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart /quiet

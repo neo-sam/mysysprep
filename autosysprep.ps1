@@ -1,15 +1,15 @@
 . .\lib\require-admin.ps1
 
-foreach ($moduleName in
+foreach ($name in
     @(
         'tweak_registry'
         'debloat'
         'deploy_pkgs'
     )
 ) {
-    if (Test-Path ".\modules\$moduleName") {
-        Write-Host "==> Running the Module: $moduleName"
-        & ".\modules\$moduleName\main.ps1"
+    if (Test-Path ".\modules\$name") {
+        Write-Host "==> Running Module: $name"
+        & ".\modules\$name\main.ps1"
     }
 }
 

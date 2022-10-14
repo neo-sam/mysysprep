@@ -12,8 +12,7 @@ if ($modules.debloat) {
             xbox     = 0
         }
         capabilities  = @{
-            powershell_ise = 0
-            wordpad        = 0
+            wordpad = 0
         }
         provisionAppx = @{
             cloudApps        = 0
@@ -41,6 +40,7 @@ if ($modules.tweak_registry) {
         advancedRemapIcons       = 0
         preferTouchpadGestures   = 0
         enableClassicPhotoViewer = 0
+        eachUserScript           = 0
         scripts                  = @{
             desktop   = @{
                 addUserFolder              = 0
@@ -52,7 +52,6 @@ if ($modules.tweak_registry) {
             explorer  = @{
                 showFileExtension    = 0
                 showRecentFolders    = 0
-                useLibraries         = 0
                 useRecylebinForUdisk = 0
                 optimizePerformance  = 0
                 optimize             = 0

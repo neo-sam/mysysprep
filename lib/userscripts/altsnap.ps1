@@ -29,6 +29,3 @@ Processes=Virtual PC.exe,StartMenuExperienceHost.exe,SearchApp.exe,osk.exe,mstsc
 "@ > "$env:APPDATA\AltSnap\AltSnap.ini"
 
 & "$env:APPDATA\AltSnap\AltSnap.exe"
-
-Write-Output 'Installed AltSnap!'
-Read-Host

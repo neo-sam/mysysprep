@@ -10,6 +10,9 @@ if (!$PSSenderInfo) {
 Copy-Item $pkgfile 'C:\Users\Public\install-altsnap.exe'
 
 $scriptPath = 'C:\Users\Public\install-altsnap.ps1'
+$lnkname = "$(Get-Translation Install -cn '安装') AltSnap"
+New-SetupScriptShortcut -psspath $scriptPath -lnkname $lnkname
+
 $content = Get-Content '.\lib\userscripts\altsnap.ps1'
 if ($cfg.devbookDocLink) {
     $content += "Start-Process -Path 'https://devbook.littleboyharry.me/docs/devenv/vscode/settings'`n"
@@ -17,6 +20,5 @@ if ($cfg.devbookDocLink) {
 if ((Get-WinSystemLocale).Name -eq 'zh-CN') {
     $content = $content -replace '(?<=Language=)en-US', 'zh-CN'
 }
+$content += "rm -fo `"`$([Environment]::GetFolderPath('Desktop'))\$lnkname.lnk`"`n"
 $content > $scriptPath
-
-New-SetupScriptShortcut -psspath $scriptPath -lnkname "$(Get-Translation Install -cn '安装') AltSnap"

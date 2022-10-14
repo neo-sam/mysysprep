@@ -68,3 +68,24 @@ if ($cfg.scripts) {
         if ((Test-Path $path) -and ($null -ne $props)) { & $path @props }
     }
 }
+
+if ($cfg.eachUserScript) {
+    if ($isAdmin) {
+        Set-ExecutionPolicy -Scope LocalMachine RemoteSigned
+
+        $target = 'C:\Users\Public\config.ps1'
+        Copy-Item -Force "$PSScriptRoot\_eachuser_.ps1" $target
+        $shortcut = "$([Environment]::GetFolderPath("Desktop"))\Quick Config.lnk"
+        $it = (New-Object -ComObject WScript.Shell).CreateShortcut($shortcut)
+        $it.IconLocation = 'shell32.dll,100'
+        $it.TargetPath = 'powershell_ise.exe'
+        $it.Arguments = $target
+        $it.Save()
+
+        $bytes = [System.IO.File]::ReadAllBytes($shortcut)
+        $bytes[0x15] = $bytes[0x15] -bor 0x20
+        [System.IO.File]::WriteAllBytes($shortcut, $bytes)
+
+        Copy-Item $shortcut 'C:\Users\Default\Desktop'
+    }
+}

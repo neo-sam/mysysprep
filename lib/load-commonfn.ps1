@@ -26,6 +26,7 @@ function New-SetupScriptShortcut {
         [string]$psspath
     )
     $shortcut = "$([Environment]::GetFolderPath("Desktop"))\$lnkname.lnk"
+
     if (!(Test-Path $shortcut)) {
         $it = (New-Object -ComObject WScript.Shell).CreateShortcut($shortcut)
         $it.IconLocation = "C:\Windows\System32\msiexec.exe,0"

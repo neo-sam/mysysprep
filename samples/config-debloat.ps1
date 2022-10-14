@@ -7,8 +7,7 @@ if ($modules.debloat) {
             xbox     = 1
         }
         capabilities  = @{
-            powershell_ise = 1
-            wordpad        = 1
+            wordpad = 1
         }
         provisionAppx = @{
             cloudApps        = 1

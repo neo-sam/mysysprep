@@ -2,10 +2,10 @@ if ($cfg = $modules.tweak_registry) {
     $cfg.optimze = 1
     $cfg.protectMyPrivacy = 1
     $cfg.preferTouchpadGestures = 1
+    $cfg.eachUserScript = 1
 
     $ex = $cfg.scripts.explorer
     $ex.optimize = 1
-    $ex.useLibraries = 1
     $ex.showFileExtension = 1
     $ex.useRecylebinForUdisk = 1
     $ex.showRecentFolders = 1
