@@ -10,7 +10,7 @@ OBS,OBS-Studio-*-Full-Installer-x64.exe,"CN=Hugh Bailey, O=Hugh Bailey, L=Temecu
 
 gsudo,gsudoSetup.msi,"CN=Gerardo Grignoli, O=Gerardo Grignoli, S=Buenos Aires, C=AR"
 Git,Git-*-64-bit.exe,"CN=Johannes Schindelin, O=Johannes Schindelin, S=Nordrhein-Westfalen, C=DE"
-VBox,virtualbox-Win-latest.exe,"CN=Oracle Corporation, OU=VirtualBox, O=Oracle Corporation, L=Redwood City, S=California, C=US"
+VBox,virtualbox-*win*.exe,"CN=Oracle Corporation, OU=VirtualBox, O=Oracle Corporation, L=Redwood City, S=California, C=US"
 PowerShell,PowerShell-*-win-x64.msi,"CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US"
 OpenSSH,OpenSSH-Win64-v*.msi,"CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US"
 

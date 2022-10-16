@@ -14,5 +14,5 @@ Set-ItemProperty 'HKLM:\Software\Microsoft\Windows\CurrentVersion\Run' Workrave 
 reg.exe add 'HKLM\Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers' /f /t REG_SZ /v 'C:\Program Files (x86)\Workrave\lib\Workrave.exe' /d '~ HIGHDPIAWARE' >$null
 
 if ($cfg.useWorkraveConfig) {
-    applyRegfileForMeAndDefault ".\pkgs-config\prefer-workrave.reg"
+    applyRegfileForMeAndDefault "$pkgCfgFolder\prefer-workrave.reg"
 }

@@ -132,7 +132,7 @@ for developers:
 
 - VirtualBox: free open source virtualization platform by Oracle
 
-  Find `Windows hosts` at [Official Download Page](https://www.vitualbox.org/wiki/Downloads#VirtualBoxbinaries)
+  Find `Windows hosts` at [Official Download Page](https://www.virtualbox.org/wiki/Downloads#VirtualBoxbinaries)
 
 - OpenSSH: fix the bug of internal version of SSH
 

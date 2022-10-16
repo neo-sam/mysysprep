@@ -1,4 +1,3 @@
-if ($cfg = $modules.tweak_registry) {
-    $cfg.scripts.ime.candidates = 5
-    $cfg.scripts.ime.biggerFontSize = 1
-}
+$it = $modules.registry
+$it.components.ime.candidates = 5
+$it.components.ime.biggerFontSize = 1

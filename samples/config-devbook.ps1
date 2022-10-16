@@ -1,3 +1,1 @@
-if ($modules.deploy_pkgs) {
-    $modules.deploy_pkgs.devbookDocLink = 1
-}
+$modules.desktop.addDevbookLinks = 1

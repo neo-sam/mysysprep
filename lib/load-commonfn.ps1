@@ -20,25 +20,6 @@ function Get-CimOrWimInstance {
     }
 }
 
-function New-SetupScriptShortcut {
-    param(
-        [string]$lnkname,
-        [string]$psspath
-    )
-    $shortcut = "$([Environment]::GetFolderPath("Desktop"))\$lnkname.lnk"
-
-    if (!(Test-Path $shortcut)) {
-        $it = (New-Object -ComObject WScript.Shell).CreateShortcut($shortcut)
-        $it.IconLocation = "C:\Windows\System32\msiexec.exe,0"
-        $it.TargetPath = "powershell.exe"
-        $it.Arguments = "-exec bypass -file $psspath"
-        $it.Save()
-    }
-    if (([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] 'Administrator')) {
-        Copy-Item -Force $shortcut 'C:\Users\Default\Desktop'
-    }
-}
-
 function Get-Translation {
     param(
         [Parameter(Mandatory = $true, ValueFromPipeline = $true)]
@@ -52,18 +33,18 @@ function Get-Translation {
     return $text
 }
 
-function New-DevbookDocShortcut {
-    param([string]$name, [string]$path)
-
-    $prefix = Get-Translation Config -cn 配置
-    $shortcut = "$([Environment]::GetFolderPath('Desktop'))\$prefix - $name.url"
+function New-SetupScriptShortcut {
+    param(
+        [string]$lnkname,
+        [string]$psspath
+    )
+    $shortcut = "$([Environment]::GetFolderPath("Desktop"))\$lnkname.lnk"
 
     if (!(Test-Path $shortcut)) {
         $it = (New-Object -ComObject WScript.Shell).CreateShortcut($shortcut)
-        $it.TargetPath = switch ((Get-WinSystemLocale).Name) {
-            zh-CN { "https://devbook.littleboyharry.me/zh-CN/$path" }
-            Default { "https://devbook.littleboyharry.me/$path" }
-        }
+        $it.IconLocation = "C:\Windows\System32\msiexec.exe,0"
+        $it.TargetPath = "powershell.exe"
+        $it.Arguments = "-exec bypass -file $psspath"
         $it.Save()
     }
     if ($isAdmin) {

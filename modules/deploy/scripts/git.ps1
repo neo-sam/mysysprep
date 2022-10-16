@@ -7,10 +7,10 @@ if (!$PSSenderInfo) {
     }
 }
 
-Start-Process $pkgfile '/LOADINF=pkgs-config/git.ini /SILENT /SUPPRESSMSGBOXES /NORESTART /SP-' -PassThru | Wait-Process
+Start-Process $pkgfile "/LOADINF=$pkgCfgFolder/git.ini /SILENT /SUPPRESSMSGBOXES /NORESTART /SP-" -PassThru | Wait-Process
 
 Push-SystemPath "C:\Program Files\Git\bin"
 
 if (!(Test-Path "$env:USERPROFILE\.minttyrc")) {
-    Copy-Item '.\pkgs-config\.minttyrc' $env:USERPROFILE
+    Copy-Item "$pkgCfgFolder\.minttyrc" $env:USERPROFILE
 }

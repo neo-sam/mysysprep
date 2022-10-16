@@ -1,10 +1,8 @@
-$modules = @{ deploy_pkgs = @{} }
-
 . '.\lib\load-commonfn.ps1'
 . '.\lib\load-env-with-cfg.ps1'
 . '.\lib\load-reghelper.ps1'
 
-$cfg = $modules.deploy_pkgs
+$cfg = $modules.deploy
 
 if ($null -ne $PSScriptRoot) {
     $script:PSScriptRoot = Split-Path $script:MyInvocation.MyCommand.Path -Parent
@@ -21,7 +19,7 @@ function Get-PackageFile() {
     return Get-ChildItem "pkgs\$pattern" -ErrorAction SilentlyContinue
 }
 
-foreach ($fetchTask in Get-ChildItem '.\pkgs-scripts\*.ps1') {
+foreach ($fetchTask in Get-ChildItem "$PSScriptRoot\scripts\*.ps1") {
     $task = & $fetchTask
     if ($null -eq $task.name) { continue }
     if (($null -ne $task.target) -and (Test-Path $task.target -ea 0)) {
@@ -105,43 +103,9 @@ foreach ($task in $deployMutexTasks) {
     }
 }
 
-if ($cfg.createGetVscodeShortcut) {
-    $scriptPath = 'C:\Users\Public\get-vscode.ps1'
-
-    $text = Get-Content '.\lib\userscripts\vscode.ps1'
-    $lnkname = "$(Get-Translation 'Get' -cn '获取') VSCode"
-    New-SetupScriptShortcut -psspath $scriptPath -lnkname $lnkname
-
-    if ((Get-Culture).Name -eq "zh-CN") {
-        $text = $text -replace '(?<=\$rewriteUrl = ).+', '"https://vscode.cdn.azure.cn$path"'
-    }
-    if ($cfg.devbookDocLink) {
-        $url = switch ((Get-Culture).Name) {
-            zh-CN { 'https://devbook.littleboyharry.me/zh-CN/docs/devenv/vscode/settings' }
-            Default { 'https://devbook.littleboyharry.me/docs/devenv/vscode/settings' }
-        }
-        $text += "start '$url'`n"
-    }
-    $text += "rm -fo `"`$([Environment]::GetFolderPath('Desktop'))\$lnkname.lnk`"`n"
-    $text | Out-File -Force $scriptPath
-
-    Write-Output (Get-Translation 'Created a vscode getter shortcut.'`
-            -cn '创建了 VSCode 安装程序')
-}
-
-if ($cfg.devbookDocLink) {
-    New-DevbookDocShortcut 'Windows' 'docs/setup-mswin/firstrun'
-}
-
-<#
 if ($cfg.installWsl2) {
     dism /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart /quiet
     dism /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart /quiet
     Write-Output (Get-Translation 'Added HyperV support.'`
             -cn '添加了 HyperV 模块')
-
-    if ($cfg.devbookDocLink) {
-        New-DevbookDocShortcut WSL2 docs/setup-mswin/devenv/wsl2
-    }
 }
-#>

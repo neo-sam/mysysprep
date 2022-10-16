@@ -5,29 +5,14 @@ $script:sysprep = @{}
 
 Write-Output "==> Auto Sysprep Finished!"
 if ($isAuditMode) {
-    Write-Output (
-        Get-Translation ('Migrate config:',
-            '- Desktop Icons',
-            '- Others: softwares and config already existed ...',
-            '',
-            'Ready to generlize by Sysprep? (will shutdown for image capture if press enter) ' -join "`n"
-        ) -cn ('检查配置：',
-            '- 桌面图标',
-            '- 其它：软件和配置',
-            '',
-            '准备好系统封装了吗？(按 Enter 键确认，将会关机)' -join "`n"
-        )
-    )
-    Read-Host
+    $firstrun = Get-Content '.\lib\assets\firstrun.ps1'
+    $firstrun += "`n"
+    foreach ($flag in $sysprep.firstrun) {
+        $firstrun += "$flag`n"
+    }
+    $firstrun > 'C:\Users\Public\firstrun.ps1'
 
-    Copy-Item -Force -Recurse "$([Environment]::GetFolderPath("Desktop"))\*" 'C:\Users\Default\Desktop'
-
-    Copy-Item -Force (Get-Translation '.\lib\newdesktop\README.txt' `
-            -cn '.\lib\newdesktop\注意事项.txt'
-    ) 'C:\Users\Default\Desktop'
-
-    $unattendDoc = Get-Content .\lib\unattend.xml
-
+    $unattendDoc = Get-Content '.\lib\assets\unattend.xml'
     if ($script:sysprep.oobeSkipEula) {
         $unattendDoc = $unattendDoc -replace '(?<=<HideEULAPage>).*?(?=</HideEULAPage>)', 'true'
     }
@@ -38,10 +23,11 @@ if ($isAuditMode) {
     }
     $unattendDoc | Out-File -Force -Encoding utf8 C:\Windows\Panther\unattend.xml
 
-    Stop-Process -Name sysprep -ea 0
-    & 'C:\Windows\System32\Sysprep\sysprep.exe' /generalize /oobe /shutdown
+    if ($Host.UI.PromptForChoice('', 'Reboot now?', @('&Yes', '&No'), 0) -eq 0) {
+        Restart-Computer -Force
+    }
 }
 else {
     reg.exe unload HKLM\NewUser 2>&1 >$null
-    Read-Host
+    Read-Host 'Press Enter to Close ...'
 }

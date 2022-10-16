@@ -8,7 +8,3 @@ if (!$PSSenderInfo) {
 }
 
 Start-Process $pkgfile /S -PassThru | Wait-Process
-
-if ($cfg.devbookDocLink) {
-    New-DevbookDocShortcut Firefox docs/goodsoft/firefox/setup
-}

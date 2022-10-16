@@ -16,7 +16,7 @@ Wait-Process
 
 $target = "$(mkdir -f "$([Environment]::GetFolderPath("MyDocuments"))\PowerShell")\Microsoft.PowerShell_profile.ps1"
 if (!(Test-Path $target)) {
-    Copy-Item '.\pkgs-config\profile.ps1' $target
+    Copy-Item "$pkgCfgFolder\profile.ps1" $target
 }
 
 if ($isAdmin) {

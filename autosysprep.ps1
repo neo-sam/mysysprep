@@ -2,9 +2,10 @@
 
 foreach ($name in
     @(
-        'tweak_registry'
+        'registry'
         'debloat'
-        'deploy_pkgs'
+        'deploy'
+        'desktop'
     )
 ) {
     if (Test-Path ".\modules\$name") {

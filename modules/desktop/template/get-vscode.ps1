@@ -1,5 +1,12 @@
 $url = 'https://code.visualstudio.com/sha/download?build=stable&os=win32-x64-user'
-$req = Invoke-WebRequest -useb $url -method head
+try {
+    $req = Invoke-WebRequest -useb $url -method head
+}
+catch {
+    Write-Error $_.Exception.Message
+    Read-Host
+    exit
+}
 if ($null -ne $req.BaseResponse.RequestMessage) { $path = $req.BaseResponse.RequestMessage.RequestUri.LocalPath }
 else { $path = $req.BaseResponse.ResponseUri.AbsolutePath }
 $name = ($path -split '/')[-1]

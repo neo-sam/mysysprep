@@ -1,5 +1,3 @@
-$modules = @{ debloat = @{} }
-
 . '.\lib\load-env-with-cfg.ps1'
 . '.\lib\load-commonfn.ps1'
 

@@ -1,4 +1,4 @@
-$pkgfile = Get-PackageFile "virtualbox-Win-latest.exe"
+$pkgfile = Get-PackageFile "virtualbox-*win*.exe"
 if (!$PSSenderInfo) {
     if (-not $pkgfile) { return }
     return @{

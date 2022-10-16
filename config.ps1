@@ -3,8 +3,8 @@
 [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseDeclaredVarsMoreThanAssignments', '')]
 param()
 
-if ($modules.debloat) {
-    $modules.debloat = @{
+$modules = @{
+    debloat  = @{
         one_drive     = 0
         collectors    = @{
             privacy  = 0
@@ -22,26 +22,19 @@ if ($modules.debloat) {
             photo            = 0
         }
     }
-}
-
-if ($modules.deploy_pkgs) {
-    $modules.deploy_pkgs = @{
+    deploy   = @{
         useWorkraveConfig    = 0
         disableOpensshServer = 0
-        devbookDocLink       = 0
+        installWsl2          = 0
     }
-}
-
-if ($modules.tweak_registry) {
-    $modules.tweak_registry = @{
+    registry = @{
         optimze                  = 0
         protectMyPrivacy         = 0
         disableAd                = 0
         advancedRemapIcons       = 0
         preferTouchpadGestures   = 0
         enableClassicPhotoViewer = 0
-        eachUserScript           = 0
-        scripts                  = @{
+        components               = @{
             desktop   = @{
                 addUserFolder              = 0
                 addLibrariesFolder         = 0
@@ -78,6 +71,10 @@ if ($modules.tweak_registry) {
                 biggerFontSize = 0
             }
         }
+    }
+    desktop  = @{
+        addDevbookLinks = 0
+        addVscodeGetter = 0
     }
 }
 

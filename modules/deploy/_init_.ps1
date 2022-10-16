@@ -1,13 +1,11 @@
-# Load this script if writing a .\scripts\pkgs installer script in vscode
-
 [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseDeclaredVarsMoreThanAssignments', '')]
 param()
 
-$modules = @{ deploy_pkgs = @{} }
+$modules = @{ deploy = @{} }
 . .\lib\load-commonfn.ps1
 . .\lib\load-env-with-cfg.ps1
 . .\lib\load-reghelper.ps1
-$cfg = $modules.deploy_pkgs
+$cfg = $modules.deploy
 
 function Get-PackageFile() {
     [OutputType([IO.FileSystemInfo])] param($pattern)

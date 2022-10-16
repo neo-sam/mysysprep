@@ -1,8 +1,5 @@
-if ($cfg = $modules.tweak_registry) {
-    $cfg.enableClassicPhotoViewer = 1
-    if ($cfgSm = $cfg.scripts.startmenu) {
-        $cfgSm.disableWebSearch = 1
-        $cfgSm.disableFileSearch = 1
-    }
-    $cfg.advancedRemapIcons = 1
-}
+$it = $modules.registry
+$it.enableClassicPhotoViewer = 1
+$it.components.startmenu.disableWebSearch = 1
+$it.components.startmenu.disableFileSearch = 1
+$it.advancedRemapIcons = 1
