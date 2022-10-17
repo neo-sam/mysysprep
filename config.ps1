@@ -25,6 +25,7 @@ $modules = @{
     deploy   = @{
         useWorkraveConfig    = 0
         disableOpensshServer = 0
+        newIsolatedUser      = 0
         installWsl2          = 0
     }
     registry = @{

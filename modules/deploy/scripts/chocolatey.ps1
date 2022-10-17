@@ -43,7 +43,7 @@ $tempDir = Join-Path $chocTempDir "chocInstall"
 if (![System.IO.Directory]::Exists($tempDir)) { [System.IO.Directory]::CreateDirectory($tempDir) | Out-Null }
 $file = Join-Path $tempDir "chocolatey.zip"
 
-Copy-Item $pkgfile.FullName $file -Force
+Copy-Item $pkgfile.FullName $file
 
 # unzip the package
 if ($PSVersionTable.PSVersion.Major -lt 5) {
@@ -86,5 +86,5 @@ $nupkg = Join-Path $chocoPkgDir 'chocolatey.nupkg'
 if (!(Test-Path $nupkg)) {
     # Write-Output 'Copying chocolatey.nupkg is in the lib folder'
     if (![System.IO.Directory]::Exists($chocoPkgDir)) { [System.IO.Directory]::CreateDirectory($chocoPkgDir) | Out-Null }
-    Copy-Item "$file" "$nupkg" -Force -ErrorAction SilentlyContinue
+    Copy-Item "$file" "$nupkg" -ErrorAction SilentlyContinue
 }

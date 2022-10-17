@@ -1,4 +1,4 @@
-. .\lib\require-admin.ps1
+#Requires -RunAsAdministrator
 
 foreach ($name in
     @(

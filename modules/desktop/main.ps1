@@ -1,13 +1,10 @@
-. '.\lib\require-admin.ps1'
+#Requires -RunAsAdministrator
 
 . '.\lib\load-commonfn.ps1'
 . '.\lib\load-env-with-cfg.ps1'
 
 $cfg = $modules.desktop
 
-if ($null -ne $PSScriptRoot) {
-    $script:PSScriptRoot = Split-Path $script:MyInvocation.MyCommand.Path -Parent
-}
 $template = "$PSScriptRoot\template"
 $defaultDesktop = 'C:\Users\Default\Desktop'
 
@@ -39,16 +36,14 @@ if ($cfg.addDevbookLinks) {
         $prefix = Get-Translation Config -cn 配置
         $shortcut = "$([Environment]::GetFolderPath('Desktop'))\$prefix $name.url"
 
-        if (!(Test-Path $shortcut)) {
-            $it = (New-Object -ComObject WScript.Shell).CreateShortcut($shortcut)
-            $it.TargetPath = switch ((Get-WinSystemLocale).Name) {
-                zh-CN { "https://devbook.littleboyharry.me/zh-CN/$path" }
-                Default { "https://devbook.littleboyharry.me/$path" }
-            }
-            $it.Save()
+        $it = (New-Object -ComObject WScript.Shell).CreateShortcut($shortcut)
+        $it.TargetPath = switch ((Get-WinSystemLocale).Name) {
+            zh-CN { "https://devbook.littleboyharry.me/zh-CN/$path" }
+            Default { "https://devbook.littleboyharry.me/$path" }
         }
+        $it.Save()
         if ($isAdmin) {
-            Copy-Item -Force $shortcut $defaultDesktop
+            Copy-Item $shortcut $defaultDesktop
         }
     }
 
@@ -64,10 +59,13 @@ if ($cfg.addDevbookLinks) {
     if (Test-Path "C:\Program Files (x86)\Vim\vim*\vim.exe") {
         New-DevbookShortcut gVim docs/devenv/vim
     }
+    if ($modules.deploy.newIsolatedUser) {
+        New-DevbookShortcut (Get-Translation 'New Isolated User' -cn '多用户隔离') docs/setup-mswin/tweak/multiuser
+    }
     if ($modules.deploy.installWsl2) {
         New-DevbookShortcut WSL2 docs/setup-mswin/devenv/wsl2
     }
 }
 
-Copy-Item -Force (Get-Translation "$template\README.md" -cn "$template\README-CN.md") `
+Copy-Item (Get-Translation "$template\README.md" -cn "$template\README-CN.md") `
     "$defaultDesktop\$(Get-Translation 'README.txt' -cn '注意事项.txt')"

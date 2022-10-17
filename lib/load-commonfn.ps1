@@ -36,18 +36,17 @@ function Get-Translation {
 function New-SetupScriptShortcut {
     param(
         [string]$lnkname,
-        [string]$psspath
+        [string]$psspath,
+        [string]$icon = "C:\Windows\System32\msiexec.exe,0"
     )
     $shortcut = "$([Environment]::GetFolderPath("Desktop"))\$lnkname.lnk"
 
-    if (!(Test-Path $shortcut)) {
-        $it = (New-Object -ComObject WScript.Shell).CreateShortcut($shortcut)
-        $it.IconLocation = "C:\Windows\System32\msiexec.exe,0"
-        $it.TargetPath = "powershell.exe"
-        $it.Arguments = "-exec bypass -file $psspath"
-        $it.Save()
-    }
+    $it = (New-Object -ComObject WScript.Shell).CreateShortcut($shortcut)
+    $it.IconLocation = $icon
+    $it.TargetPath = "powershell.exe"
+    $it.Arguments = "-exec bypass -file $psspath"
+    $it.Save()
     if ($isAdmin) {
-        Copy-Item -Force $shortcut 'C:\Users\Default\Desktop'
+        Copy-Item $shortcut 'C:\Users\Default\Desktop'
     }
 }

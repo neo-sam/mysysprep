@@ -20,5 +20,5 @@ if (!(Test-Path $target)) {
 }
 
 if ($isAdmin) {
-    Copy-Item -Force $target "$(mkdir -f 'C:\Users\Default\Documents\PowerShell')\Microsoft.PowerShell_profile.ps1"
+    Copy-Item $target "$(mkdir -f 'C:\Users\Default\Documents\PowerShell')\Microsoft.PowerShell_profile.ps1"
 }

@@ -31,5 +31,5 @@ if ([Environment]::OSVersion.Version.Build -ge 10240) {
     $excludeList += 'desktops*'
 }
 
-Copy-Item -Force 'tmp\sysinternals\*' -Exclude $excludeList (mkdir -f $targetPath)
+Copy-Item 'tmp\sysinternals\*' -Exclude $excludeList (mkdir -f $targetPath)
 Push-SystemPath $targetPath

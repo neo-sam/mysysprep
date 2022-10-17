@@ -4,10 +4,6 @@
 
 $cfg = $modules.deploy
 
-if ($null -ne $PSScriptRoot) {
-    $script:PSScriptRoot = Split-Path $script:MyInvocation.MyCommand.Path -Parent
-}
-
 $envScript = (Get-ChildItem "$PSScriptRoot\_init_.ps1").FullName
 $envScriptBlock = [scriptblock]::Create("cd `"$(Get-Location)`";. `"$envScript`"")
 
@@ -108,4 +104,24 @@ if ($cfg.installWsl2) {
     dism /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart /quiet
     Write-Output (Get-Translation 'Added HyperV support.'`
             -cn '添加了 HyperV 模块')
+}
+
+if ($cfg.newIsolatedUser) {
+    $target = 'C:\Users\Public\New-IsolatedUser.ps1'
+    Copy-Item "$PSScriptRoot\config\New-IsolatedUser.ps1" $target
+
+    $shortcut = "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\New Isolated User.lnk"
+
+    $it = (New-Object -ComObject WScript.Shell).CreateShortcut($shortcut)
+    $it.IconLocation = 'imageres.dll,73'
+    $it.TargetPath = "powershell.exe"
+    $it.Arguments = "-exec bypass -file $target"
+    $it.Save()
+
+    $bytes = [IO.File]::ReadAllBytes($shortcut)
+    $bytes[0x15] = $bytes[0x15] -bor 0x20
+    [IO.File]::WriteAllBytes($shortcut, $bytes)
+
+    Write-Output (Get-Translation 'Added new multi user isolation script.'`
+            -cn '添加了创建多用户隔离脚本')
 }

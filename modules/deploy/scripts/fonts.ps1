@@ -32,7 +32,7 @@ if (($it = Get-PackageFile "13_NotoSansMonoCJKsc.zip") `
 if (($it = Get-PackageFile "SourceHanSerif-VF.ttf.ttc")`
         -and !(Test-Path C:\Windows\Fonts\SourceHanSerif*)
 ) {
-    Copy-Item -Force $it $tmpdir
+    Copy-Item $it $tmpdir
     Write-Output 'Will add font: Source Han Serif'
 }
 

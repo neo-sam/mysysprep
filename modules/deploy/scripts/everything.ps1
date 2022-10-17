@@ -14,5 +14,5 @@ reg.exe add "HKLM\Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\La
 if ($cfgfile = Get-ChildItem "$pkgCfgFolder\Everything.ini" -ea 0) {
     Copy-Item $cfgfile "$env:APPDATA\Everything"
 
-    Copy-Item -Force $cfgfile (mkdir -f 'C:\Users\Default\AppData\Roaming\Everything')
+    Copy-Item $cfgfile (mkdir -f 'C:\Users\Default\AppData\Roaming\Everything')
 }

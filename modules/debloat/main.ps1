@@ -3,10 +3,6 @@
 
 $cfg = $modules.debloat
 
-if ($null -ne $PSScriptRoot) {
-    $script:PSScriptRoot = Split-Path $script:MyInvocation.MyCommand.Path -Parent
-}
-
 if ($cfg.one_drive) {
     & "$PSScriptRoot\scripts\onedrive"
 }

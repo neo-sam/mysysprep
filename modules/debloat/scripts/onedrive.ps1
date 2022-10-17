@@ -1,6 +1,6 @@
-# reference: https://github.com/W4RH4WK/Debloat-Windows-10
+#Requires -RunAsAdministrator
 
-. .\lib\require-admin.ps1
+# reference: https://github.com/W4RH4WK/Debloat-Windows-10
 . .\lib\load-reghelper.ps1
 
 Stop-Process -Name OneDrive -ea 0

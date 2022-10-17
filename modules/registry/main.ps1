@@ -4,11 +4,7 @@
 
 $cfg = $modules.registry
 
-if ($null -ne $PSScriptRoot) {
-    $script:PSScriptRoot = Split-Path $script:MyInvocation.MyCommand.Path -Parent
-}
-
-. '.\lib\load-commonfn'
+. '.\lib\load-commonfn.ps1'
 
 if ($cfg.optimze) {
     $Script:msg = Get-Translation 'Optimzed.' -cn '已优化'
