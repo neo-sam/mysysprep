@@ -1,3 +1,4 @@
-$it = $modules.registry
-$it.components.ime.candidates = 5
-$it.components.ime.biggerFontSize = 1
+$features.tweakIme = @{
+    biggerFontSize = $true
+    candidates     = 5
+}

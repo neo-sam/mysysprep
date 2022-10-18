@@ -1,7 +1,10 @@
-/pkgs/*
-!/pkgs/_*
-/misc/
-/logs/
 /FirefoxPortableESR/
-/tmp/
 /config-*.ps1
+/lib/debug/reconfig.ps1
+
+/deploy/*.*
+!/deploy/*.cmd
+/deploy/log/
+/deploy/tmp/
+/deploy/misc/
+/deploy/archived/

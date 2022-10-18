@@ -1,0 +1,1 @@
+Uninstall-BundledAppx microsoft.windowscommunicationsapps

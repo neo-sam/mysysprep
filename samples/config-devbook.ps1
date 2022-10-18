@@ -1,1 +1,1 @@
-$modules.desktop.addDevbookLinks = 1
+$features.addDevbookLinks = 1

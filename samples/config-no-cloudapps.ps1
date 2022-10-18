@@ -1,0 +1,1 @@
+$features.debloatCloudapps = 1

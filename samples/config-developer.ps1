@@ -1,2 +1,2 @@
-$modules.deploy.installWsl2 = 1
-$modules.deploy.createGetVscodeShortcut = 1
+$features.addVscode = 1
+$features.addWsl2 = 1

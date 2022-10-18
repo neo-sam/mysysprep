@@ -63,12 +63,12 @@ flowchart TD
 
 ## Get Your Required Packages
 
-Translation: [中文](./i18n/getapps-cn.md)
+Translation: [中文](./docs/i18n/cn/getapps.md)
 
 <details>
 <summary><b>Show more:</b> recommended softwares ...</summary><br/>
 
-download into `.\pkgs`:
+download into `.\deploy`:
 
 - Firefox: privacy-first browser
 
@@ -146,7 +146,7 @@ for developers:
 
 ### Verification
 
-Excecute `_verify.cmd` in `.\pkgs`
+Excecute `_verify.cmd` in `.\deploy`
 
 ### Portable Applications
 
@@ -177,7 +177,7 @@ Deploy on the target machine:
 
 1. Enter into the
    [audit mode](https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/boot-windows-to-audit-mode-or-oobe)
-2. Open this repository with your `.\pkgs`
+2. Open this repository with your `.\deploy`
 3. Edit `config.ps1` or `Copy-Item .\samples\config-*.ps1 .`
 4. Execute `autosysprep.cmd`
 5. Check files of `.\misc` if required

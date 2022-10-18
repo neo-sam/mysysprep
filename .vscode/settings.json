@@ -2,5 +2,9 @@
     "files.associations": {
         "*.reg": "ini",
         "**/lib/newdesktop/*.txt": "markdown"
+    },
+    "[powershell]": {
+        "files.encoding": "utf16le",
+        "editor.wordWrap": "off"
     }
 }
