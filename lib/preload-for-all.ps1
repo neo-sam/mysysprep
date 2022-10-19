@@ -42,10 +42,15 @@ function New-SetupScriptShortcut {
 }
 
 function New-DevbookShortcut {
-    param([string]$name, [string]$path)
+    param([string]$name, [string]$path, [switch]$Public = $false)
 
     $prefix = Get-Translation Config -cn 配置
-    $shortcut = "$([Environment]::GetFolderPath('Desktop'))\$prefix $name.url"
+    $desktopPath = (if ($Public) {
+            'C:\Users\Public\Desktop'
+        }else {
+            [Environment]::GetFolderPath('Desktop')
+        })
+    $shortcut = "$desktopPath\$prefix $name.url"
 
     $it = (New-Object -ComObject WScript.Shell).CreateShortcut($shortcut)
     $it.TargetPath = switch ((Get-Culture).Name) {
@@ -53,7 +58,7 @@ function New-DevbookShortcut {
         Default { "https://devbook.littleboyharry.me/$path" }
     }
     $it.Save()
-    if ($isAdmin) {
+    if (!$Public -and $isAdmin) {
         Copy-Item $shortcut 'C:\Users\Default\Desktop'
     }
 }

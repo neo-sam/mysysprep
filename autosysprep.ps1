@@ -1,5 +1,7 @@
 #Requires -RunAsAdministrator
 
+Stop-Process -Name sysprep -ea 0
+
 . .\lib\load-config.ps1
 
 function getInitScript {

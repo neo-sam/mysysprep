@@ -9,4 +9,4 @@ if (!$PSSenderInfo) {
 
 Start-Process $pkg /S -PassThru | Wait-Process
 
-Push-SystemPath "C:\Program Files\7-Zip-Zstandard"
+Push-SystemPath 'C:\Program Files\7-Zip-Zstandard'

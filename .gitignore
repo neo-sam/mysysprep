@@ -1,6 +1,5 @@
 /FirefoxPortableESR/
 /config-*.ps1
-/lib/debug/reconfig.ps1
 
 /deploy/*.*
 !/deploy/*.cmd

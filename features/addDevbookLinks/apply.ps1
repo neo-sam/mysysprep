@@ -14,4 +14,7 @@ if (Test-Path "C:\Program Files (x86)\Vim\vim*\vim.exe") {
 }
 if ($features.addWsl2) {
     New-DevbookShortcut WSL2 docs/setup-mswin/devenv/wsl2
+    New-DevbookShortcut -Public (
+        Get-Translation 'Boot Menu' -cn '启动菜单'
+    ) 'docs/setup-mswin/personalize/bootcfg'
 }
