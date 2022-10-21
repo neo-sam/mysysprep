@@ -1,3 +1,5 @@
+#Requires -RunAsAdministrator
+
 $pkg = Get-ChildItem -ea 0 'SysinternalsSuite.zip'
 $targetPath = "$env:SystemRoot\Sysinternals"
 if (!$PSSenderInfo) {

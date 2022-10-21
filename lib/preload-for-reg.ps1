@@ -20,7 +20,7 @@ function Get-CurrentAndNewUserPaths {
 function applyRegfileForMeAndDefault {
     param([string]$path)
 
-    $newRegpath = "$(mkdir -f tmp)\$((Get-ChildItem $path).BaseName)-newuser.reg"
+    $newRegpath = "$env:TEMP\$((Get-ChildItem $path).BaseName)-fornewuser.reg"
     (Get-Content $path) -replace `
         '^\[HKEY_CURRENT_USER', '[HKEY_LOCAL_MACHINE\NewUser' |`
         Out-File -Force $newRegpath

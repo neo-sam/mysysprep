@@ -1,3 +1,5 @@
+#Requires -RunAsAdministrator
+
 $pkg = Get-ChildItem -ea 0 'Everything-*.x64.Lite-Setup.exe'
 if (!$PSSenderInfo) {
     if (-not $pkg) { return }

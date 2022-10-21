@@ -1,3 +1,4 @@
+#Requires -RunAsAdministrator
 $pkg = Get-ChildItem -ea 0 'PowerShell-*-win-x64.msi'
 if (!$PSSenderInfo) {
     if (-not $pkg) { return }
@@ -14,9 +15,9 @@ Start-Process $pkg -PassThru '/qb /norestart',
 '/l*v log\powershell.log' |
 Wait-Process
 
-if (Test-Path ($it = 'config\profile.ps1')) {
-    if (!(Test-Path ($that = "$(mkdir -f "$([Environment]::GetFolderPath("MyDocuments"))\PowerShell")\Microsoft.PowerShell_profile.ps1"))) {
-        Copy-Item $it $that
-    }
-    Copy-Item $it "$(mkdir -f 'C:\Users\Default\Documents\PowerShell')\Microsoft.PowerShell_profile.ps1"
+@"
+if (Test-Path 'C:\Windows\System32\WindowsPowerShell\v1.0\profile.ps1') {
+    . 'C:\Windows\System32\WindowsPowerShell\v1.0\profile.ps1'
 }
+Set-PSReadLineOption -PredictionSource History
+"@ > "$((Get-ChildItem 'C:\Program Files\PowerShell\*')[-1].FullName)\profile.ps1"

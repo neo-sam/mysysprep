@@ -1,3 +1,5 @@
+#Requires -RunAsAdministrator
+
 $pkg = Get-ChildItem -ea 0 'ImDiskTk-x64.zip'
 if (!$PSSenderInfo) {
     if (-not $pkg) { return }

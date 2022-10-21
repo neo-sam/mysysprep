@@ -1,1 +1,3 @@
+#Requires -RunAsAdministrator
+
 Uninstall-BundledAppx microsoft.windowscommunicationsapps

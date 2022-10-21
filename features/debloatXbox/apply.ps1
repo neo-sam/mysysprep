@@ -1,3 +1,5 @@
+#Requires -RunAsAdministrator
+
 Disable-BundledService XblAuthManager, XblGameSave, XboxGipSvc, XboxNetApiSvc
 Disable-BundledTask XblGameSaveTask
 

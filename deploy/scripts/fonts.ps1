@@ -1,3 +1,5 @@
+#Requires -RunAsAdministrator
+
 if (!$PSSenderInfo) {
     foreach ($item in @(
             Get-ChildItem -ea 0 '03_NotoSansCJK-OTC.zip'

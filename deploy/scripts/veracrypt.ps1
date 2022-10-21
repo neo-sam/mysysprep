@@ -1,3 +1,5 @@
+#Requires -RunAsAdministrator
+
 $pkg = Get-ChildItem -ea 0 'VeraCrypt_Setup_x64_*.msi'
 if (!$PSSenderInfo) {
     if (-not $pkg) { return }

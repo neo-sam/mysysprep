@@ -1,3 +1,5 @@
+#Requires -RunAsAdministrator
+
 $target = 'C:\Users\Public\New-IsolatedUser.ps1'
 Copy-Item 'script.ps1' $target
 

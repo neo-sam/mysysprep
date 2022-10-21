@@ -1,3 +1,5 @@
+#Requires -RunAsAdministrator
+
 $pkg = Get-ChildItem -ea 0 'AltSnap*-x64-inst.exe'
 if (!$PSSenderInfo) {
     if (-not $pkg) { return }

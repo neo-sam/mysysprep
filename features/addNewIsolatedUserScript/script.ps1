@@ -56,9 +56,18 @@ Push-Location $homepath
 attrib -h AppData
 @('.\Favorites', '.\Links', '.\Saved Games') | ForEach-Object { attrib +h $_ }
 icacls . /grant "${env:USERNAME}:(CI)(OI)(F)" >$null
-mkdir -f Documents\WindowsPowerShell >$null
 runWith "powershell -wi h -c Set-ExecutionPolicy rem -s c -f"
-"`$env:__COMPAT_LAYER = 'RunAsInvoker'`nSet-PSReadLineOption -EditMode Emacs" > "Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1"
+
+({
+    $env:__COMPAT_LAYER = 'RunAsInvoker'
+    function quit {
+        Get-Process | Where-Object { @('powershell', 'conhost') -notcontains $_.Name } | Stop-Process -ea 0
+        exit
+    }
+}).ToString().Trim() -split "`n" |`
+    ForEach-Object { $_ -replace '^    ', '' } >`
+    "$(mkdir -f Documents\WindowsPowerShell)\Microsoft.PowerShell_profile.ps1"
+
 Pop-Location
 
 # Add shortcuts to desktop

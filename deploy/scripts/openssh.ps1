@@ -1,3 +1,5 @@
+#Requires -RunAsAdministrator
+
 $pkg = Get-ChildItem -ea 0 'OpenSSH-Win64-v*.msi'
 if (!$PSSenderInfo) {
     if (-not $pkg) { return }

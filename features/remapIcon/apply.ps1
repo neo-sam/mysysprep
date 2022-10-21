@@ -1,3 +1,5 @@
+#Requires -RunAsAdministrator
+
 $winver = [Environment]::OSVersion.Version.Build
 
 $icons = @{

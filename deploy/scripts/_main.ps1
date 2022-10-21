@@ -1,13 +1,11 @@
+#Requires -RunAsAdministrator
+
 Push-Location $PSScriptRoot
 
 $initSb = [scriptblock]::Create(@(
         "cd '$(Resolve-Path ..\..)'"
-        '. lib\preload-for-all.ps1'
-        '. lib\preload-for-reg.ps1'
-        '. lib\load-config.ps1'
-        "cd '$(Get-Location)'"
-        ". '$((Get-ChildItem '_init.ps1').FullName)'"
-        'cd ..'
+        '. lib\preload-to-deploy.ps1'
+        'cd deploy'
     ) -join ';')
 
 $deployTasks = @()

@@ -1,3 +1,5 @@
+#Requires -RunAsAdministrator
+
 Wait-Process dism -ea 0
 
 Start-DismMutex {

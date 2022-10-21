@@ -1,3 +1,5 @@
+#Requires -RunAsAdministrator
+
 Set-ItemProperty (
     Get-CurrentAndNewUserPaths    'HKCU:\Software\Microsoft\Windows\CurrentVersion\AdvertisingInfo'
 ) Enabled 0

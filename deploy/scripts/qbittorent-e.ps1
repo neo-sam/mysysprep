@@ -1,3 +1,5 @@
+#Requires -RunAsAdministrator
+
 $pkg = Get-ChildItem -ea 0 'qbittorrent_enhanced_*_x64_setup.exe'
 if (!$PSSenderInfo) {
     if (-not $pkg) { return }

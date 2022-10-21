@@ -1,3 +1,5 @@
+#Requires -RunAsAdministrator
+
 $scriptPath = 'C:\Users\Public\get-vscode.ps1'
 
 $text = Get-Content 'script.ps1'

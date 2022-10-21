@@ -1,3 +1,5 @@
+#Requires -RunAsAdministrator
+
 # Enable clipboard history
 Set-ItemProperty (
     Get-CurrentAndNewUserPaths "HKCU:\Software\Microsoft\Clipboard"

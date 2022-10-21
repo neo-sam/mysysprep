@@ -1,3 +1,5 @@
+#Requires -RunAsAdministrator
+
 $path = "$(
 [Environment]::GetFolderPath('Desktop')
 )\$(

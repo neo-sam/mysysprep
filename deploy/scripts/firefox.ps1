@@ -1,3 +1,5 @@
+#Requires -RunAsAdministrator
+
 $pkg = Get-ChildItem -ea 0 'Firefox Setup *.exe'
 if (!$PSSenderInfo) {
     if (-not $pkg) { return }

@@ -57,6 +57,7 @@ $Script:features = @{
     addVscode                  = 0
     addWsl2                    = 0
     addNewIsolatedUserScript   = 0
+    addPwshProfile             = 0
 }
 
 $Script:deploy = 1

@@ -1,3 +1,5 @@
+#Requires -RunAsAdministrator
+
 param($cfg)
 
 $regkeys = Get-CurrentAndNewUserPaths 'HKCU:\Software\Microsoft\InputMethod\CandidateWindow\CHS\1'
