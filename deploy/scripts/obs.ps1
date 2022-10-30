@@ -9,4 +9,4 @@ if (!$PSSenderInfo) {
     }
 }
 
-Start-Process -PassThru $pkg '/NCRC /S' | Wait-Process
+Start-Process -Wait $pkg '/NCRC /S'

@@ -9,6 +9,6 @@ if (!$PSSenderInfo) {
     }
 }
 
-Start-Process $pkg /quiet -PassThru | Wait-Process
+Start-Process -Wait $pkg /quiet
 
-Set-ItemProperty 'HKLM:\Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers' 'C:\Program Files\Cyberduck\Cyberduck.exe' '~ HIGHDPIAWARE'
+Set-HidpiMode 'C:\Program Files\Cyberduck\Cyberduck.exe'

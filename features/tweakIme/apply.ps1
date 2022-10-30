@@ -6,7 +6,7 @@ $regkeys = Get-CurrentAndNewUserPaths 'HKCU:\Software\Microsoft\InputMethod\Cand
 
 if ($cfg.candidates -gt 0) {
     Set-ItemProperty $regkeys EnableFixedCandidateCountMode 1
-    Set-ItemProperty $regkeys MaxCandidates $candidates
+    Set-ItemProperty $regkeys MaxCandidates $cfg.candidates
 }
 
 if ($cfg.biggerFontSize) {

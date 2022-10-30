@@ -68,7 +68,7 @@ Translation: [中文](./docs/i18n/cn/getapps.md)
 <details>
 <summary><b>Show more:</b> recommended softwares ...</summary><br/>
 
-download into `.\deploy`:
+Download into `.\deploy`:
 
 - Firefox: privacy-first browser
 
@@ -90,7 +90,7 @@ download into `.\deploy`:
 
   Find `.exe` at [Official GitHub Release](https://github.com/mcmilk/7-Zip-zstd/releases/latest)
 
-helper:
+Helper:
 
 - Cyberduck: cloud storage explorer
 
@@ -104,7 +104,7 @@ helper:
 
   Find `x64` at [FOSSHUB Release](https://www.fosshub.com/qBittorrent.html)
 
-for developers:
+For developers:
 
 - Chocolatey: Packages Manager
 

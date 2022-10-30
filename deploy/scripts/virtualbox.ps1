@@ -11,6 +11,6 @@ if (!$PSSenderInfo) {
     return
 }
 
-Start-Process $pkg '--silent' -PassThru | Wait-Process
+Start-Process -Wait $pkg '--silent'
 
 Push-SystemPath "C:\Program Files\Oracle\VirtualBox"

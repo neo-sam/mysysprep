@@ -9,12 +9,12 @@ if (!$PSSenderInfo) {
     }
 }
 
-Start-Process $pkg '/SILENT /SUPPRESSMSGBOXES /NORESTART /SP-' -PassThru | Wait-Process
+Start-Process -Wait $pkg '/SILENT /SUPPRESSMSGBOXES /NORESTART /SP-'
 
 Set-ItemProperty 'HKLM:\Software\Microsoft\Windows\CurrentVersion\Run' Workrave 'C:\Program Files (x86)\Workrave\lib\Workrave.exe'
 
-Set-ItemProperty 'HKLM:\Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers' 'C:\Program Files (x86)\Workrave\lib\Workrave.exe' '~ HIGHDPIAWARE'
+Set-HidpiMode 'C:\Program Files (x86)\Workrave\lib\Workrave.exe'
 
 if (Test-Path ($it = 'config\workrave.reg')) {
-    applyRegfileForMeAndDefault $it
+    applyRegForMeAndDefault $it
 }

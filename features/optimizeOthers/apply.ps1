@@ -5,14 +5,6 @@ Set-ItemProperty (
     Get-CurrentAndNewUserPaths "HKCU:\Software\Microsoft\Clipboard"
 ) EnableClipboardHistory 1
 
-# Fix HiDPI
-$regkeys = Get-CurrentAndNewUserPaths "HKCU:\Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers"
-foreach ($path in @(
-        'C:\Windows\System32\mmc.exe'
-    )) {
-    Set-ItemProperty $regkeys $path "~ HIGHDPIAWARE"
-}
-
 # Skip first screen
 Set-ItemProperty (
     mkdir -f HKLM:\SOFTWARE\Policies\Microsoft\MicrosoftEdge

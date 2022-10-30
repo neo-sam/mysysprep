@@ -12,25 +12,22 @@ function Get-CimOrWimInstance {
     }
 }
 
-function Get-Translation {
-    param(
-        [Parameter(Mandatory = $true, ValueFromPipeline = $true)]
-        [string]$text,
-        [string]$cn
-    )
-
+function Get-Translation(
+    [Parameter(Mandatory, ValueFromPipeline)]
+    [string]$text,
+    [string]$cn
+) {
     switch ((Get-Culture).Name) {
         zh-CN { if ($cn) { return $cn } }
     }
     return $text
 }
 
-function New-SetupScriptShortcut {
-    param(
-        [string]$lnkname,
-        [string]$psspath,
-        [string]$icon = "C:\Windows\System32\msiexec.exe,0"
-    )
+function New-SetupScriptShortcut(
+    [string]$lnkname,
+    [string]$psspath,
+    [string]$icon = "C:\Windows\System32\msiexec.exe,0"
+) {
     $shortcut = "$([Environment]::GetFolderPath("Desktop"))\$lnkname.lnk"
 
     $it = (New-Object -ComObject WScript.Shell).CreateShortcut($shortcut)
@@ -41,15 +38,15 @@ function New-SetupScriptShortcut {
     Copy-Item $shortcut 'C:\Users\Default\Desktop'
 }
 
-function New-DevbookShortcut {
-    param([string]$name, [string]$path, [switch]$Public = $false)
-
+function New-DevbookShortcut(
+    [string]$name, [string]$path, [switch]$Public = $false
+) {
     $prefix = Get-Translation Config -cn 配置
-    $desktopPath = (if ($Public) {
-            'C:\Users\Public\Desktop'
-        }else {
-            [Environment]::GetFolderPath('Desktop')
-        })
+    $desktopPath = & {
+        if ($Public) { 'C:\Users\Public\Desktop' }
+        else { [Environment]::GetFolderPath('Desktop') }
+    }
+
     $shortcut = "$desktopPath\$prefix $name.url"
 
     $it = (New-Object -ComObject WScript.Shell).CreateShortcut($shortcut)

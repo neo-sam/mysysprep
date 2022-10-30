@@ -9,7 +9,7 @@ if (!$PSSenderInfo) {
     }
 }
 
-Start-Process $pkg "/LOADINF=config/git.ini /SILENT /SUPPRESSMSGBOXES /NORESTART /SP-" -PassThru | Wait-Process
+Start-Process -Wait $pkg "/LOADINF=config/git.ini /SILENT /SUPPRESSMSGBOXES /NORESTART /SP-"
 
 Push-SystemPath "C:\Program Files\Git\bin"
 

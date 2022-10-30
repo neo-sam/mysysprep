@@ -4,6 +4,7 @@ $Script:features = @{
     addReadme                  = 0
     addDevbookLinks            = 0
 
+    optimizeHidpi              = 0
     optimizeOthers             = 0
 
     protectMyPrivacy           = 0
@@ -58,6 +59,7 @@ $Script:features = @{
     addWsl2                    = 0
     addNewIsolatedUserScript   = 0
     addPwshProfile             = 0
+    addScoop                   = 0
 }
 
 $Script:deploy = 1

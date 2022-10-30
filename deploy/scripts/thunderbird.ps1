@@ -10,4 +10,4 @@ if (!$PSSenderInfo) {
     return
 }
 
-Start-Process -PassThru $pkg /S | Wait-Process
+Start-Process -Wait $pkg /S

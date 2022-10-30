@@ -9,7 +9,7 @@ if (!$PSSenderInfo) {
     }
 }
 
-Start-Process -PassThru $pkg /S | Wait-Process
+Start-Process -Wait $pkg /S
 
 $path = (Get-ChildItem "C:\Program Files (x86)\Vim\vim*\" -ea Stop).FullName
 Push-SystemPath $path

@@ -9,11 +9,10 @@ if (!$PSSenderInfo) {
     }
 }
 
-Start-Process $pkg -PassThru '/qb /norestart',
+Start-Process -Wait $pkg '/qb /norestart',
 'ADD_FILE_CONTEXT_MENU_RUNPOWERSHELL=1',
 'ADD_EXPLORER_CONTEXT_MENU_OPENPOWERSHELL=1',
-'/l*v log\powershell.log' |
-Wait-Process
+'/l*v log\powershell.log'
 
 @"
 if (Test-Path 'C:\Windows\System32\WindowsPowerShell\v1.0\profile.ps1') {

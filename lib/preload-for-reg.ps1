@@ -17,17 +17,30 @@ function Get-CurrentAndNewUserPaths {
     return @($path, $newUserRegPath)
 }
 
-function applyRegfileForMeAndDefault {
-    param([string]$path)
+function Set-HidpiMode([string[]]$paths = @()) {
+    process {
+        $paths += ([IO.FileInfo]$_).FullName
+    }end {
+        foreach ($path in $paths) {
+            Set-ItemProperty "HKLM:\Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers" $path "~ HIGHDPIAWARE"
+        }
+    }
+}
 
+function Import-RegFile([string[]]$paths) {
+    try {
+        foreach ($path in $paths) {
+            reg.exe import $path 2>&1 | Out-Null
+        }
+    }
+    catch {}
+}
+
+function applyRegForMeAndDefault([string]$path) {
     $newRegpath = "$env:TEMP\$((Get-ChildItem $path).BaseName)-fornewuser.reg"
     (Get-Content $path) -replace `
         '^\[HKEY_CURRENT_USER', '[HKEY_LOCAL_MACHINE\NewUser' |`
         Out-File -Force $newRegpath
 
-    try {
-        reg.exe import $path
-        reg.exe import $newRegpath
-    }
-    catch {}
+    Import-RegFile $path, $newRegpath
 }

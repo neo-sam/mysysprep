@@ -1,9 +1,6 @@
 #Requires -RunAsAdministrator
 
-try {
-    reg.exe import "apply.reg"
-}
-catch {}
+Import-RegFile apply.reg
 
 # disable-user-data-collector
 Set-ItemProperty (

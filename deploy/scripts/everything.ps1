@@ -9,9 +9,9 @@ if (!$PSSenderInfo) {
     }
 }
 
-Start-Process $pkg /S -PassThru | Wait-Process
+Start-Process -Wait $pkg /S
 
-Set-ItemProperty 'HKLM:\Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers' 'C:\Program Files\Everything\Everything.exe' '~ HIGHDPIAWARE'
+Set-HidpiMode 'C:\Program Files\Everything\Everything.exe'
 
 if (Test-Path ($it = 'config\Everything.ini')) {
     if (!(Test-Path ($that = "$env:APPDATA\Everything\Everything.ini"))) {

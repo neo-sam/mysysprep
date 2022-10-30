@@ -11,4 +11,4 @@ if (!$PSSenderInfo) {
     return
 }
 
-Start-Process $pkg '/qb /norestart /l*v log\veracrypt.log ACCEPTLICENSE=YES' -PassThru | Wait-Process
+Start-Process -Wait $pkg '/qb /norestart /l*v log\veracrypt.log ACCEPTLICENSE=YES'

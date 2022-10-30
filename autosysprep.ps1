@@ -4,8 +4,7 @@ Stop-Process -Name sysprep -ea 0
 
 . .\lib\load-config.ps1
 
-function getInitScript {
-    param([string]$name)
+function getInitScript([string]$name) {
     return [scriptblock]::Create(
         @("cd `"$(Get-Location)`"",
             '. lib\preload-to-feature.ps1',

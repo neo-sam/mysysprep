@@ -1,6 +1,3 @@
 #Requires -RunAsAdministrator
 
-try {
-    reg.exe import 'apply.reg'
-}
-catch {}
+Import-RegFile apply.reg

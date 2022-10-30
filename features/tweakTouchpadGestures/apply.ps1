@@ -1,3 +1,3 @@
 #Requires -RunAsAdministrator
 
-applyRegfileForMeAndDefault 'apply.reg'
+applyRegForMeAndDefault 'apply.reg'

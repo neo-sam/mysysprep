@@ -10,8 +10,8 @@ if (!$PSSenderInfo) {
     }
 }
 
-Start-Process $pkg -PassThru '/qb /norestart',
-'/l*v log\openssh.log' | Wait-Process
+Start-Process -Wait $pkg '/qb /norestart',
+'/l*v log\openssh.log'
 
 & {
     sc.exe stop sshd

@@ -28,4 +28,10 @@ if ((Get-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Set
 reg.exe unload HKLM\NewUser 2>&1 >$null
 
 Add-Type -AssemblyName PresentationFramework
-[System.Windows.MessageBox]::Show("Reboot to take effect for sysprep!`n`nHave a nice day! --LittleboyHarry ^_^", "Auto Sysprep Finish", "OK", "Information")
+[System.Windows.MessageBox]::Show(@'
+Reboot to start sysprep!
+
+Have a nice day ^_^ --LittleboyHarry
+'@, "Finished!",
+    "OK", "Information"
+)
