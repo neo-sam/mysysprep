@@ -1,28 +1,11 @@
 . .\lib\load-config.ps1
 
-Write-Output "==> Auto Sysprep Finished!"
-if ((Get-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Setup\State' -ErrorAction Ignore
-    ).ImageState -eq 'IMAGE_STATE_SPECIALIZE_RESEAL_TO_AUDIT'
-) {
-    if ($text = Get-Content '.\lib\assets\firstrun.ps1' -ea 0) {
-        $text += "`n"
-        foreach ($fnName in $unattend.firstrunFnList) {
-            $text += "$fnName`n"
-        }
-        $text > 'C:\Users\Public\firstrun.ps1'
-    }
+& .\lib\postgen-unattend.ps1
+& .\lib\postgen-taskbar.ps1
 
-    if ($text = Get-Content '.\lib\assets\unattend.xml' -ea 0) {
-        if ($unattend.oobeSkipEula) {
-            $text = $text -replace '(?<=<HideEULAPage>).*?(?=</HideEULAPage>)', 'true'
-        }
-        if ($unattend.oobeSkipLoginMs) {
-            $text = $text `
-                -replace '(?<=<HideOnlineAccountScreens>).*?(?=</HideOnlineAccountScreens>)', 'true'`
-                -replace '(?<=<HideWirelessSetupInOOBE>).*?(?=</HideWirelessSetupInOOBE>)', 'true'
-        }
-        $text | Out-File -Force -Encoding utf8 C:\Windows\Panther\unattend.xml
-    }
+if (Test-Path 'C:\Windows\System32\WindowsPowerShell\v1.0\profile.ps1') {
+    try { Set-ExecutionPolicy -Scope LocalMachine RemoteSigned -Force }
+    catch [System.Security.SecurityException] {}
 }
 
 reg.exe unload HKLM\NewUser 2>&1 >$null

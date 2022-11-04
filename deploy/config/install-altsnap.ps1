@@ -1,5 +1,5 @@
 $env:__COMPAT_LAYER = "RunAsInvoker"
-Start-Process -Wait 'C:\Users\Public\install-altsnap.exe' '/NCRC /S'
+Start-Process -Wait "$(mkdir -f C:\SetupFw)\install-altsnap.exe" '/NCRC /S'
 # Remove desktop shortcut
 
 Set-ItemProperty 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Run' AltSnap "`"$env:APPDATA\AltSnap\AltSnap.exe`""

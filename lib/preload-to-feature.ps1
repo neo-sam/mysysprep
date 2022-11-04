@@ -50,3 +50,5 @@ function Uninstall-BundledAppx([string]$names) {
         [void]$mutex.ReleaseMutex()
     }
 }
+
+$Script:proot = "$(Get-Location)"

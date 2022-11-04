@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="github-markdown.css" />
+    <link rel="stylesheet" href="custom.css" />
+    <title>Options</title>
+  </head>
+  <body class="markdown-body">
+    <h2>Create a Library to Manage Start Menu</h2>
+    <details>
+      <summary>It's easier to manage start menu by a library ...</summary>
+      <br />
+      <ol>
+        <li>Focus on "Libraries", new a library named as "Start Menu"</li>
+        <li>Right "Context Menu > Properties"</li>
+        <li>
+          <p>"Add...:"</p>
+
+          <pre><code>%APPDATA%\Microsoft\Windows\Start Menu\Programs
+</code></pre>
+        </li>
+        <li>
+          <p>"Add...:"</p>
+          <pre><code>C:\ProgramData\Microsoft\Windows\Start Menu\Programs
+</code></pre>
+          <p>
+            Click "Save public save location". Require administrator to modify
+            this directory.
+          </p>
+        </li>
+        <li>
+          <p>Change the icon if you prefer. To add items:</p>
+          <ol>
+            <li>Drop new shortcuts into the library</li>
+            <li>Make the library a send target <code>shell:sendto</code></li>
+          </ol>
+        </li>
+      </ol>
+    </details>
+  </body>
+</html>

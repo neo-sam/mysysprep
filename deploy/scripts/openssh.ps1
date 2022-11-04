@@ -13,7 +13,6 @@ if (!$PSSenderInfo) {
 Start-Process -Wait $pkg '/qb /norestart',
 '/l*v log\openssh.log'
 
-& {
-    sc.exe stop sshd
-    sc.exe config sshd start=disabled
-}>$null
+Stop-Service sshd
+Set-Service sshd -StartupType Disabled
+Set-Service ssh-agent -StartupType Automatic

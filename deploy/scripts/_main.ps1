@@ -22,7 +22,7 @@ foreach ($fetchTask in $tasks) {
     if ($null -eq $name) { continue }
 
     if (($null -ne $task.target) -and (Test-Path $task.target -ea 0)) {
-        Write-Output "ignored installed: $name"
+        Write-Output "Ignored installed: $name"
         continue
     }
     $task.path = $fetchTask
@@ -34,7 +34,7 @@ mkdir -f .\log > $null
 
 foreach ($task in $deployTasks) {
     $name = $task.name
-    Write-Output "adding a package: $name"
+    Write-Output "Adding a package: $name"
     Start-Job `
         -InitializationScript $initSb `
         -Name $task.name -FilePath $task.path | Out-Null
@@ -56,11 +56,11 @@ while ($job = Get-JobOrWait) {
     try {
         Receive-Job $job -ErrorAction Stop
         Write-Host -ForegroundColor Green `
-            "succeeded to add the package: $name"
+            "Succeeded to add the package: $name"
     }
     catch {
         Write-Host -ForegroundColor Red @"
-failed to add the package: $name, reason:
+Failed to add the package: $name, reason:
 $($_.Exception.Message)
 
 "@
@@ -72,18 +72,18 @@ $($_.Exception.Message)
 
 foreach ($task in $deployMutexTasks) {
     $name = $task.name
-    Write-Output "installing a package: $name"
+    Write-Output "Installing a package: $name"
     try {
         $job = Start-Job `
             -InitializationScript $initSb `
             -Name $task.name -FilePath $task.path
         Wait-Job $job | Receive-Job
         Write-Host -ForegroundColor Green `
-            "succeeded to install: $name"
+            "Succeeded to install: $name"
     }
     catch {
         Write-Host -ForegroundColor Red @"
-failed to install: $name, reason:
+Failed to install: $name, reason:
 $($_.Exception.Message)
 
 "@

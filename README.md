@@ -63,7 +63,7 @@ flowchart TD
 
 ## Get Your Required Packages
 
-Translation: [中文](./docs/i18n/cn/getapps.md)
+Translation: [中文](./getapps-cn.md)
 
 <details>
 <summary><b>Show more:</b> recommended softwares ...</summary><br/>

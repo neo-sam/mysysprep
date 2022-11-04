@@ -19,3 +19,7 @@ if (Test-Path ($it = 'config\.minttyrc')) {
     }
     Copy-Item $it 'C:\Users\Default'
 }
+
+if (Test-Path ($it = 'C:/Windows/System32/OpenSSH/ssh.exe')) {
+    & 'C:\Program Files\Git\cmd\git.exe' config --system core.sshCommand $it
+}

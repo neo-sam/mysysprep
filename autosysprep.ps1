@@ -63,10 +63,9 @@ $($_.Exception.Message)
 Write-Host
 
 try {
-    if ($deploy) {
-        & .\deploy\scripts\_main.ps1
-    }
+    & .\deploy\scripts\_main.ps1
     & .\lib\submit.ps1
+    Write-Output "==> Auto Sysprep Finished!"
 }
 catch {
     Write-Error $_.Exception.Message

@@ -37,25 +37,3 @@ function New-SetupScriptShortcut(
     $it.Save()
     Copy-Item $shortcut 'C:\Users\Default\Desktop'
 }
-
-function New-DevbookShortcut(
-    [string]$name, [string]$path, [switch]$Public = $false
-) {
-    $prefix = Get-Translation Config -cn 配置
-    $desktopPath = & {
-        if ($Public) { 'C:\Users\Public\Desktop' }
-        else { [Environment]::GetFolderPath('Desktop') }
-    }
-
-    $shortcut = "$desktopPath\$prefix $name.url"
-
-    $it = (New-Object -ComObject WScript.Shell).CreateShortcut($shortcut)
-    $it.TargetPath = switch ((Get-Culture).Name) {
-        zh-CN { "https://devbook.littleboyharry.me/zh-CN/$path" }
-        Default { "https://devbook.littleboyharry.me/$path" }
-    }
-    $it.Save()
-    if (!$Public -and $isAdmin) {
-        Copy-Item $shortcut 'C:\Users\Default\Desktop'
-    }
-}

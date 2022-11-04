@@ -16,4 +16,4 @@ if (!(Test-Path $name) -or ((Get-AuthenticodeSignature $name).Status -ne 'Valid'
 }
 Start-Process -Wait (Get-ChildItem $name) '/silent /tasks=addcontextmenufiles,addcontextmenufolders,associatewithfiles,addtopath'
 
-& "$env:LOCALAPPDATA\Programs\Microsoft VS Code\bin\code.cmd"
+Start-Process -WindowStyle Hidden "$env:LOCALAPPDATA\Programs\Microsoft VS Code\bin\code.cmd"

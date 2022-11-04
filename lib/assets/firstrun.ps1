@@ -52,3 +52,9 @@ function showRecentFoldersInExplorerSidebar {
         mkdir -f 'HKCU:\Software\Classes\CLSID\{22877A6D-37A1-461A-91B0-DBDA5AAEBC99}'
     ).PSPath System.IsPinnedToNamespaceTree 1
 }
+
+function showRecyleBinInExplorerSidebar {
+    Set-ItemProperty (
+        mkdir -f 'HKCU:\Software\Classes\CLSID\{645FF040-5081-101B-9F08-00AA002F954E}'
+    ).PSPath System.IsPinnedToNameSpaceTree 1
+}

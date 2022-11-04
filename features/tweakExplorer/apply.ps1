@@ -1,3 +1,4 @@
+#Requires -RunAsAdministrator
 param($cfg)
 
 if ($cfg.showFileExtension) {

@@ -8,7 +8,7 @@ Microsoft.Office.OneNote
 Microsoft.People
 Microsoft.YourPhone
 Microsoft.WindowsFeedbackHub
-MicrosoftCorporationII.MicrosoftFamily_8wekyb3d8bbwe
+MicrosoftCorporationII.MicrosoftFamily
 Microsoft.Windows.Cortana
 Microsoft.549981C3F5F10
 Clipchamp.Clipchamp

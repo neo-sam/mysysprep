@@ -1,8 +1,7 @@
 # Please edit below flags: set 0 to 1 meaning enable it
 
 $Script:features = @{
-    addReadme                  = 0
-    addDevbookLinks            = 0
+    addDocument                = 0
 
     optimizeHidpi              = 0
     optimizeOthers             = 0
@@ -56,16 +55,15 @@ $Script:features = @{
     remapIcon                  = 0
 
     addVscode                  = 0
-    addWsl2                    = 0
     addNewIsolatedUserScript   = 0
     addPwshProfile             = 0
-    addScoop                   = 0
 }
 
-$Script:deploy = 1
+$Script:deploy = @{}
 
 $Script:unattend = @{
-    oobeSkipEula    = 0
-    oobeSkipLoginMs = 0
-    firstrunFnList  = @()
+    oobeSkipEula           = 0
+    oobeSkipLoginMs        = 0
+    oobeSkipPrivacyOptions = 0
+    firstrunFnList         = @()
 }

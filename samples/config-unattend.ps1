@@ -1,5 +1,6 @@
 $unattend.oobeSkipEula = 1
 $unattend.oobeSkipLoginMs = 1
+$unattend.oobeSkipPrivacyOptions = 1
 $unattend.firstrunFnList = @(
     'showUserFolderAtDesktop'
     'showLibrariesAtDesktop'
@@ -7,4 +8,5 @@ $unattend.firstrunFnList = @(
     'showNetworkInterfacesAtDesktop'
     'addDesktopIconConfigMenuItem'
     'showRecentFoldersInExplorerSidebar'
+    'showRecyleBinInExplorerSidebar'
 )

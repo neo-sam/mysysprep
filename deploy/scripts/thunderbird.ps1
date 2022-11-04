@@ -10,4 +10,4 @@ if (!$PSSenderInfo) {
     return
 }
 
-Start-Process -Wait $pkg /S
+Start-Process -Wait $pkg '/S /DesktopShortcut=false'

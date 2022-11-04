@@ -19,10 +19,10 @@ function Get-CurrentAndNewUserPaths {
 
 function Set-HidpiMode([string[]]$paths = @()) {
     process {
-        $paths += ([IO.FileInfo]$_).FullName
+        if ($_ -ne $null) { $paths += ([IO.FileInfo]$_).FullName }
     }end {
         foreach ($path in $paths) {
-            Set-ItemProperty "HKLM:\Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers" $path "~ HIGHDPIAWARE"
+            Set-ItemProperty 'HKLM:\Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers' $path '~ HIGHDPIAWARE'
         }
     }
 }

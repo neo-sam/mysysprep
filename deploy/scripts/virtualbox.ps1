@@ -11,6 +11,6 @@ if (!$PSSenderInfo) {
     return
 }
 
-Start-Process -Wait $pkg '--silent'
+Start-Process -Wait $pkg '-s -l -msiparams REBOOT=ReallySuppress'
 
 Push-SystemPath "C:\Program Files\Oracle\VirtualBox"

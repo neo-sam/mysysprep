@@ -9,9 +9,11 @@ if (!$PSSenderInfo) {
     }
 }
 
-Copy-Item $pkg 'C:\Users\Public\install-altsnap.exe'
+mkdir -f C:\SetupFw | Out-Null
 
-$scriptPath = 'C:\Users\Public\install-altsnap.ps1'
+Copy-Item $pkg "C:\SetupFw\install-altsnap.exe"
+
+$scriptPath = "C:\SetupFw\install-altsnap.ps1"
 $lnkname = "$(Get-Translation 'Install' -cn '安装') AltSnap"
 New-SetupScriptShortcut -psspath $scriptPath -lnkname $lnkname
 
