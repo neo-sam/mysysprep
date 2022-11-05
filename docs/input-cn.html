@@ -24,12 +24,14 @@ reg add HKCU\Software\Microsoft\InputMethod\Settings\CHS /v "English Switch Key"
 
 # 解除 Ctrl+. 标点切换键的占用
 reg add HKCU\Software\Microsoft\InputMethod\Settings\CHS /v EnableChineseEnglishPunctuationSwitch /t REG_DWORD /d 0 /f
+
 </code></pre>
     <h2>使用小鹤双拼</h2>
     <pre><code>reg add "HKCU\SOFTWARE\Microsoft\InputMethod\Settings\CHS" /v "EnableExtraDomainType" /t REG_DWORD /f /d 1
 reg add "HKCU\SOFTWARE\Microsoft\InputMethod\Settings\CHS" /v "Enable Double Pinyin" /t REG_DWORD /f /d 1
 reg add "HKCU\SOFTWARE\Microsoft\InputMethod\Settings\CHS" /v "DoublePinyinScheme" /t REG_DWORD /f /d 10
 reg add "HKCU\SOFTWARE\Microsoft\InputMethod\Settings\CHS" /v "UserDefinedDoublePinyinScheme0" /t REG_SZ /f /d "小鹤双拼*2*^*iuvdjhcwfg^xmlnpbksqszxkrltvyovt"
+
 </code></pre>
     <h2>重映射键盘</h2>
     <details>

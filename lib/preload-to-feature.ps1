@@ -42,7 +42,6 @@ function Uninstall-BundledAppx([string]$names) {
             if ($null -ne $app) {
                 $papp | Remove-AppxProvisionedPackage -Online | Out-Null
                 Write-Output "Remove-AppxProvisionedPackage $name`: succeeded."
-                Write-Host
             }
         }
 

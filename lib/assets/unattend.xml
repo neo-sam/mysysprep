@@ -6,7 +6,6 @@
         <HideWirelessSetupInOOBE>true</HideWirelessSetupInOOBE>
         <HideEULAPage>false</HideEULAPage>
         <HideOnlineAccountScreens>false</HideOnlineAccountScreens>
-        <HideWirelessSetupInOOBE>false</HideWirelessSetupInOOBE>
         <ProtectYourPC>1</ProtectYourPC>
       </OOBE>
     </component>
