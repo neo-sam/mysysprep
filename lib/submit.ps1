@@ -11,10 +11,15 @@ if (Test-Path 'C:\Windows\System32\WindowsPowerShell\v1.0\profile.ps1') {
 reg.exe unload HKLM\NewUser 2>&1 >$null
 
 Add-Type -AssemblyName PresentationFramework
-[System.Windows.MessageBox]::Show(@'
-Reboot to start sysprep!
+if ('OK' -eq ([System.Windows.MessageBox]::Show(@'
+Author: LittleboyHarry
+Status: Prepared
+Blessing: Have a nice day! ^_^
 
-Have a nice day ^_^ --LittleboyHarry
-'@, "Finished!",
-    "OK", "Information"
-)
+Confirm: Start to sysprep now?
+'@,
+            'https://github.com/setupfw/win-sf',
+            'OKCancel', 'Question'))
+) {
+    & C:\Windows\System32\Sysprep\Sysprep.exe /oobe /generalize /shutdown
+}
