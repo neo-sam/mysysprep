@@ -18,9 +18,11 @@ while (1) {
         $username = Read-Host 'Define your username'
     }
     if ($username -eq '') { Write-Error 'Empty Name!' }
-    elseif (Get-LocalUser $username -ea sil) { Write-Error 'User Existed!' }
+    elseif (Get-LocalUser $username -ea 0) { Write-Error 'User Existed!' }
     else { break }
 }
+
+$Error.Clear()
 
 # Optimize
 Set-ItemProperty HKCU:\SOFTWARE\Policies\Microsoft\Windows\Explorer ShowRunAsDifferentUserInStart 1
@@ -34,14 +36,14 @@ if ((Get-ItemPropertyValue HKLM:\SYSTEM\CurrentControlSet\Control\Lsa LimitBlank
     $password = $host.ui.PromptForChoice('Require login password?', $null, $passwordOptions, 0) -eq 1
     if ($password) { net user $username * }
     else {
-        Set-ItemProperty HKLM:\SYSTEM\CurrentControlSet\Control\Lsa /v LimitBlankPasswordUse 0
+        Set-ItemProperty HKLM:\SYSTEM\CurrentControlSet\Control\Lsa LimitBlankPasswordUse 0
     }
 }
 Set-Localuser $username -PasswordNeverExpires $true
-Set-ItemProperty HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon\SpecialAccounts\UserList $username 0
+Set-ItemProperty (mkdir -f 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon\SpecialAccounts\UserList').PSPath $username 0
 
 if ($onlyApp) {
-    New-LocalGroup $uappGroup -ea sil >$null
+    New-LocalGroup $uappGroup -ea 0 >$null
     Add-LocalGroupMember $uappGroup $username
 }
 if ( $null -eq $username ) { $username = Read-Host 'Define your username' }
@@ -95,3 +97,5 @@ if ($onlyApp) {
     }
     $applink.Save()
 }
+
+if ($Error) { Read-Host 'Press Enter Key to close' }

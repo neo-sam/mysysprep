@@ -7,7 +7,7 @@ Pop-Location
 
 $ws = New-Object -ComObject WScript.Shell
 function New-DocShortcut([string]$name, [string]$id) {
-    $it = $ws.CreateShortcut("C:\SetupFw\UserGuide\$name.lnk")
+    $it = $ws.CreateShortcut("$(mkdir -f C:\SetupFw\docs\links)\$name.lnk")
     $it.TargetPath = "C:\SetupFw\docs\$(
         Get-Translation $id -cn "$id-cn"
     ).html"

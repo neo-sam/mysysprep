@@ -1,11 +1,10 @@
-$features.debloatOnedrive = 1
-$features.removeCapabilityWordpad = 1
+$features.debloatOneDrive = 1
 $features.tweakStartmenu = @{
     disableWebSearch  = 1
     disableFileSearch = 1
 }
 
-$features.useClassicPhotoViewer = 1
+$features.applyClassicPhotoViewer = 1
 $features.debloatNewPhotoViewer = 1
 
 if (Test-Path '.\deploy\Thunderbird Setup *.exe') {

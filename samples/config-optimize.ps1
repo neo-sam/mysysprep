@@ -1,4 +1,5 @@
-$features.remapIcon = 1
-$features.optimizeHidpi = 1
-$features.optimizeOthers = 1
+$features.applyRemapIcon = 1
+$features.fixHidpiBlur = 1
+$features.applyOptimization = 1
+$features.enableClipboardHistory = 1
 $features.tweakContextmenu.hideCompatibilityHelper = 1

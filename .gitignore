@@ -1,9 +1,2 @@
 /FirefoxPortableESR/
 /config-*.ps1
-
-/deploy/*.*
-!/deploy/*.cmd
-/deploy/log/
-/deploy/tmp/
-/deploy/misc/
-/deploy/archived/

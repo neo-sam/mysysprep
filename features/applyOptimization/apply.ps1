@@ -1,10 +1,5 @@
 #Requires -RunAsAdministrator
 
-# Enable clipboard history
-Set-ItemProperty (
-    Get-CurrentAndNewUserPaths "HKCU:\Software\Microsoft\Clipboard"
-) EnableClipboardHistory 1
-
 # Skip first screen
 Set-ItemProperty (
     mkdir -f HKLM:\SOFTWARE\Policies\Microsoft\MicrosoftEdge

@@ -1,1 +1,1 @@
-$features.protectMyPrivacy = 1
+$features.applyPrivacyProctection = 1

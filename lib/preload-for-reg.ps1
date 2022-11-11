@@ -28,12 +28,10 @@ function Set-HidpiMode([string[]]$paths = @()) {
 }
 
 function Import-RegFile([string[]]$paths) {
-    try {
-        foreach ($path in $paths) {
-            reg.exe import $path 2>&1 | Out-Null
-        }
+    foreach ($path in $paths) {
+        try { reg.exe import $path 2>&1 | Out-Null }
+        catch {}
     }
-    catch {}
 }
 
 function applyRegForMeAndDefault([string]$path) {

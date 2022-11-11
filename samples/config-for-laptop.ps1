@@ -1,1 +1,1 @@
-$features.tweakTouchpadGestures = 1
+$features.applyNewTouchpadGestures = 1

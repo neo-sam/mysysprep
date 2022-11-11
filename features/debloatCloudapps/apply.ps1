@@ -12,4 +12,6 @@ MicrosoftCorporationII.MicrosoftFamily
 Microsoft.Windows.Cortana
 Microsoft.549981C3F5F10
 Clipchamp.Clipchamp
+Microsoft.Todos
+Microsoft.PowerAutomateDesktop
 '@

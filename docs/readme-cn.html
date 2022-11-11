@@ -12,6 +12,13 @@
     <p>OOBE 结束后，推荐的注意事项：</p>
     <h2>更改计算机名</h2>
     <p>打开<a href="ms-settings:about">设置</a></p>
+    <h2>可选</h2>
+    <ul>
+      <li>
+        <p>与 Linux 双系统匹配时区：</p>
+        <pre><code>reg add HKLM\System\CurrentControlSet\Control\TimeZoneInformation /v RealTimeIsUniversal /d 1 /t REG_DWORD /f</code></pre>
+      </li>
+    </ul>
     <h2>创建还原点</h2>
     <pre><code>rundll32 shell32.dll,Control_RunDLL sysdm.cpl,,4</code></pre>
     <ol>
@@ -32,13 +39,20 @@
       <br />
       <pre><code>mv C:\Windows\System32\Recovery\ReAgent.xml C:\Windows\System32\Recovery\ReAgent.xml.old</code></pre>
     </details>
+    <h2>安全</h2>
+    <p>
+      <a href="ms-settings:signinoptions">登录选项</a>
+      |
+      <a href="ms-settings:signinoptions-launchfingerprintenrollment"
+        >指纹验证</a
+      >
+    </p>
     <details>
       <summary>
-        <a
+        自动登录：<a
           href="https://docs.microsoft.com/en-us/sysinternals/downloads/autologon"
           >Autologon</a
         >
-        使用
       </summary>
       <br />
       <p>微软官方提供的小工具：可以设置解锁后免输入登录密码</p>

@@ -46,11 +46,11 @@ while ($job = Get-JobOrWait) {
     try {
         Receive-Job $job -ErrorAction Stop
         Write-Host -ForegroundColor Green `
-            "succeeded: $name"
+            "Succeeded: $name"
     }
     catch {
         Write-Host -ForegroundColor Red @"
-failed to add: $name, reason:
+Failed to add: $name, reason:
 $($_.Exception.Message)
 
 "@

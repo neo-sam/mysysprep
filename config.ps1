@@ -3,12 +3,12 @@
 $Script:features = @{
     addDocument                = 0
 
-    optimizeHidpi              = 0
-    optimizeOthers             = 0
+    fixHidpiBlur              = 0
+    applyOptimization      = 0
 
-    protectMyPrivacy           = 0
+    applyPrivacyProctection           = 0
     disableAd                  = 0
-    debloatOnedrive            = 0
+    debloatOneDrive            = 0
     debloatCloudapps           = 0
     debloatXbox                = 0
 
@@ -16,11 +16,11 @@ $Script:features = @{
     debloatNewMediaPlayer      = 0
     debloatNewPhotoViewer      = 0
 
-    useClassicPhotoViewer      = 0
+    applyClassicPhotoViewer      = 0
 
-    removeCapabilityWordpad    = 0
+    enableClipboardHistory     = 0
 
-    tweakTouchpadGestures      = 0
+    applyNewTouchpadGestures      = 0
     tweakExplorer              = @{
         showFileExtension    = 0
         useRecylebinForUdisk = 0
@@ -52,7 +52,7 @@ $Script:features = @{
         disableFileSearch = 0
     }
 
-    remapIcon                  = 0
+    applyRemapIcon               = 0
 
     addVscode                  = 0
     addNewIsolatedUserScript   = 0

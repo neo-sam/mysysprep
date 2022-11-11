@@ -12,6 +12,13 @@
     <p>Todo list after OOBE finished:</p>
     <h2>Change Computer Name</h2>
     <p>Open <a href="ms-settings:about">Settings</a></p>
+    <h2>Optional</h2>
+    <ul>
+      <li>
+        <p>Match Windows timezone with Linux System</p>
+        <pre><code>reg add HKLM\System\CurrentControlSet\Control\TimeZoneInformation /v RealTimeIsUniversal /d 1 /t REG_DWORD /f</code></pre>
+      </li>
+    </ul>
     <h2>Create Restore Point</h2>
     <pre><code>rundll32 shell32.dll,Control_RunDLL sysdm.cpl,,4</code></pre>
     <ol>
@@ -27,11 +34,19 @@
     <p>Encryption makes data theft proof</p>
     <details>
       <summary>
-        BitLocker error: The system could not find the specified file
+        BitLocker Error: The system could not find the specified file
       </summary>
       <br />
       <pre><code>mv C:\Windows\System32\Recovery\ReAgent.xml C:\Windows\System32\Recovery\ReAgent.xml.old</code></pre>
     </details>
+    <h2>Security</h2>
+    <p>
+      <a href="ms-settings:signinoptions">Login Options</a>
+      |
+      <a href="ms-settings:signinoptions-launchfingerprintenrollment"
+        >Fingerprint Validation</a
+      >
+    </p>
     <details>
       <summary>
         Use
