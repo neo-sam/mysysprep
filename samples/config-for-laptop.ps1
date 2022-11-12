@@ -1,1 +1,1 @@
-$features.applyNewTouchpadGestures = 1
+$features.applyBetterTouchpadGestures = 1

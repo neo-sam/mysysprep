@@ -11,7 +11,7 @@
   <body class="markdown-body">
     <h2>Create a Library to Manage Start Menu</h2>
     <details>
-      <summary>It's easier to manage start menu by a library ...</summary>
+      <summary>To manage start menu by a library ...</summary>
       <br />
       <ol>
         <li>Focus on "Libraries", new a library named as "Start Menu"</li>
@@ -39,5 +39,40 @@
         </li>
       </ol>
     </details>
+    <h2>Enable Recovery Mode</h2>
+    <details>
+      <summary>How to do?</summary>
+      <br/>
+      <ol>
+        <li>Execute <code>diskpart</code>, select recovery partition.</li>
+        <li>
+          <p>Execute:</p>
+          <pre><code>format quick fs=ntfs label=Recovery
+set id=de94bba4-06d1-4d40-a16a-bfd50179d6ac
+gpt attributes=0x8000000000000001
+assign letter r
+</code></pre>
+        </li>
+        <li>
+          Use 7zip to extract <code>\sources\install.wim</code>
+          <code>1\windows\system32\Recovery</code> into <code>R:\</code>
+        </li>
+        <li>
+          <p>Execute:</p>
+          <pre><code>reagentc /setreimage /path r:\recovery
+reagentc /enable
+mountvol r: /d
+</code></pre>
+        </li>
+      </ol>
+    </details>
+    <h2>Grey Color Invert</h2>
+    <p>
+      Suitable for invert white color mode only apps, press
+      <code>Win + Ctrl + C</code> to take effect.
+    </p>
+    <pre><code>reg add HKCU\Software\Microsoft\ColorFiltering /v HotkeyEnabled /t REG_DWORD /f /d 1
+reg add HKCU\Software\Microsoft\ColorFiltering /v FilterType /t REG_DWORD /d 2 /f
+</code></pre>
   </body>
 </html>

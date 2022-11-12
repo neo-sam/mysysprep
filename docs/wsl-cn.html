@@ -16,7 +16,6 @@
         <p>安装 HyperV 组件</p>
         <pre><code>dism /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
 dism /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
-
 </code></pre>
       </li>
       <li>
@@ -30,7 +29,6 @@ bcdedit /set "{current}" hypervisorlaunchtype off
 bcdedit /copy "{current}" /d "HyperV off"
 bcdedit /set "{current}" hypervisorlaunchtype auto
 bcdedit /copy "{current}" /d "HyperV on"
-
 </code></pre>
         <p>按需调整启动菜单：设置“启动与故障恢复”</p>
         <pre><code>cmd /c "rundll32 shell32.dll,Control_RunDLL sysdm.cpl,,3"</code></pre>
@@ -40,7 +38,6 @@ bcdedit /copy "{current}" /d "HyperV on"
         <p>更新 Linux 内核</p>
         <pre><code>wsl --set-default-version 2
 wsl --update
-
 </code></pre>
       </li>
       <li>

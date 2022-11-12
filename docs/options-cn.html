@@ -11,7 +11,7 @@
   <body class="markdown-body">
     <h2>使用“库”</h2>
     <details>
-      <summary>易于管理开始菜单 ...</summary>
+      <summary>管理开始菜单的方法</summary>
       <br />
       <ol>
         <li>打开 “库”，新建名为 “开始菜单” 的库</li>
@@ -37,5 +37,40 @@
         </li>
       </ol>
     </details>
+    <h2>激活恢复分区</h2>
+    <details>
+      <summary>方法</summary>
+      <br/>
+      <ol>
+        <li>运行 <code>diskpart</code>, 选中恢复分区</li>
+        <li>
+          <p>运行：</p>
+          <pre><code>format quick fs=ntfs label=Recovery
+set id=de94bba4-06d1-4d40-a16a-bfd50179d6ac
+gpt attributes=0x8000000000000001
+assign letter r
+</code></pre>
+        </li>
+        <li>
+          使用 7zip 提取系统安装镜像中 <code>\sources\install.wim</code>
+          <code>1\windows\system32\Recovery</code> 到 <code>R:\</code>
+        </li>
+        <li>
+          <p>运行：</p>
+          <pre><code>reagentc /setreimage /path r:\recovery
+reagentc /enable
+mountvol r: /d
+</code></pre>
+        </li>
+      </ol>
+    </details>
+    <h2>色彩反转</h2>
+    <p>
+      适用于尚未适配深色模式的应用，按下
+      <code>Win + Ctrl + C</code> 反转色彩为黑白色
+    </p>
+    <pre><code>reg add HKCU\Software\Microsoft\ColorFiltering /v HotkeyEnabled /t REG_DWORD /f /d 1
+reg add HKCU\Software\Microsoft\ColorFiltering /v FilterType /t REG_DWORD /d 2 /f
+</code></pre>
   </body>
 </html>

@@ -5,6 +5,16 @@ switch ((Get-Culture).Name) {
 
 mkdir -f ($showIcoRegkey = 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\HideDesktopIcons\NewStartPanel') >$null
 
+function addDesktopIconConfigMenuItem {
+    $regkey = (mkdir -f 'HKCU:\Software\Classes\DesktopBackground\Shell\DesktopIcon').PSPath
+    Set-ItemProperty $regkey Position 'Bottom'
+    Set-ItemProperty $regkey Icon 'imageres.dll,174'
+    Set-ItemProperty $regkey MUIVerb '@desk.cpl,-112'
+    Set-ItemProperty (
+        mkdir -f 'HKCU:\Software\Classes\DesktopBackground\Shell\DesktopIcon\Command'
+    ).PSPath '(Default)' 'control desk.cpl,,0'
+}
+
 function showUserFolderAtDesktop {
     Set-ItemProperty $showIcoRegkey '{59031A47-3F72-44A7-89C5-5595FE6B30EE}' 0
     Set-ItemProperty (
@@ -31,16 +41,6 @@ function showNetworkInterfacesAtDesktop {
         mkdir -f 'HKCU:\Software\Classes\CLSID\{7007ACC7-3202-11D1-AAD2-00805FC1270E}\DefaultIcon'
     ).PSPath '(Default)' "imageres.dll,114"
     mkdir -f 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Desktop\NameSpace\{7007ACC7-3202-11D1-AAD2-00805FC1270E}' >$null
-}
-
-function addDesktopIconConfigMenuItem {
-    $regkey = (mkdir -f 'HKCU:\Software\Classes\DesktopBackground\Shell\DesktopIcon').PSPath
-    Set-ItemProperty $regkey Position 'Bottom'
-    Set-ItemProperty $regkey Icon 'imageres.dll,174'
-    Set-ItemProperty $regkey MUIVerb '@desk.cpl,-112'
-    Set-ItemProperty (
-        mkdir -f 'HKCU:\Software\Classes\DesktopBackground\Shell\DesktopIcon\Command'
-    ).PSPath '(Default)' 'control desk.cpl,,0'
 }
 
 function showRecentFoldersInExplorerSidebar {

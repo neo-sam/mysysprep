@@ -74,7 +74,6 @@ reg delete "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\ProfileList\$((Get
 
 runas /profile /user:$username "cmd /c exit"
 icacls "C:\Users\$username" /grant "${env:USERNAME}:(OI)(CI)(F)" >$null
-
 </code></pre>
       <p>
         Recovery method:

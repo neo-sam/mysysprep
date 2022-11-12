@@ -1,36 +1,41 @@
 # Please edit below flags: set 0 to 1 meaning enable it
 
 $Script:features = @{
-    addDocument                = 0
+    addDocument                 = 0
+    addPwshProfile              = 0
+    addNewIsolatedUserScript    = 0
+    addQuickSettings          = 0
+    addVscode                   = 0
 
-    fixHidpiBlur              = 0
-    applyOptimization      = 0
+    applyPrivacyProctection     = 0
+    applyOptimization           = 0
+    applyBetterTouchpadGestures = 0
+    applyClassicPhotoViewer     = 0
+    applyRemapIcon              = 0
 
-    applyPrivacyProctection           = 0
-    disableAd                  = 0
-    debloatOneDrive            = 0
-    debloatCloudapps           = 0
-    debloatXbox                = 0
+    debloatOneDrive             = 0
+    debloatCloudapps            = 0
+    debloatXbox                 = 0
+    debloatNewEmailAndCalendar  = 0
+    debloatNewMediaPlayer       = 0
+    debloatNewPhotoViewer       = 0
 
-    debloatNewEmailAndCalendar = 0
-    debloatNewMediaPlayer      = 0
-    debloatNewPhotoViewer      = 0
+    disableAd                   = 0
 
-    applyClassicPhotoViewer      = 0
+    enableClipboardHistory      = 0
 
-    enableClipboardHistory     = 0
+    fixHidpiBlur                = 0
 
-    applyNewTouchpadGestures      = 0
-    tweakExplorer              = @{
+    tweakExplorer               = @{
         showFileExtension    = 0
         useRecylebinForUdisk = 0
         optimizePerformance  = 0
         optimize             = 0
     }
-    tweakContextmenu           = @{
+    tweakContextmenu            = @{
         hideCompatibilityHelper = 0
     }
-    tweakTaskbar               = @{
+    tweakTaskbar                = @{
         optimize            = 0
         biggerThumbnail     = 0
         groupWhenOverflow   = 0
@@ -43,20 +48,15 @@ $Script:features = @{
         win11noWidgets      = 0
         win11noMsTeam       = 0
     }
-    tweakIme                   = @{
+    tweakIme                    = @{
         candidates     = 0
         biggerFontSize = 0
     }
-    tweakStartmenu             = @{
+    tweakStartmenu              = @{
         disableWebSearch  = 0
         disableFileSearch = 0
     }
 
-    applyRemapIcon               = 0
-
-    addVscode                  = 0
-    addNewIsolatedUserScript   = 0
-    addPwshProfile             = 0
 }
 
 $Script:deploy = @{}
