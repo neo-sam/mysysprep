@@ -49,7 +49,7 @@
 
   按修改时间倒排，找到最新版 `.exe` 下载，见[高校镜像站](https://mirrorz.org/list/vim)
 
-### 其它
+### 更多
 
 - qBittorrent-Enhanced-Edition: 改良版 BT 下载器
 
@@ -73,6 +73,24 @@
 - Sysinternals 系统实用程序
 - ImDisk Toolkit 挂载内存盘、镜像文件
 - OpenSSH 组件升级包
+
+### 手动安装
+
+请下载到 `.\archived` 目录内，需要手动安装
+
+- Brave: 免费的 Chromium 发行版
+
+  [获取在线安装器](https://laptop-updates.brave.com/latest/winx64)
+
+- 微软 Office
+
+  [获取在线安装器](https://setup.office.com/)
+
+硬件驱动：
+
+- Logi Options+
+
+  [获取在线安装器](https://www.logitech.com.cn/zh-cn/software/logi-options-plus.html)
 
 ## 数字签名验证
 

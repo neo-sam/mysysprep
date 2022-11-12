@@ -38,13 +38,11 @@ $names = switch ( (Get-WinSystemLocale).Name ) {
 
 $wshell = New-Object -comObject WScript.Shell
 
-function New-Shortcut {
-    param([String]$name)
+function New-Shortcut([String]$name) {
     return $wshell.CreateShortcut("$PWD\$name.lnk")
 }
 
-function Set-ShortcutRequireAdmin {
-    param($shortcut)
+function Set-ShortcutRequireAdmin($shortcut) {
     $path = $shortcut.FullName
     $bytes = [System.IO.File]::ReadAllBytes($path)
     $bytes[0x15] = $bytes[0x15] -bor 0x20
@@ -53,28 +51,31 @@ function Set-ShortcutRequireAdmin {
 
 $iswin11 = [Environment]::OSVersion.Version.Build -ge 22000
 
-function Set-ShortcutDisableIcon {
-    param($shortcut)
-    $shortcut.IconLocation = if ($iswin11) { "imageres.dll,230" }else { "imageres.dll,229" }
+function Set-ShortcutDisableIcon($shortcut) {
+    $shortcut.IconLocation = if ($iswin11) { "imageres.dll,230" } else { "imageres.dll,229" }
 }
 
-function Set-ShortcutEnableIcon {
-    param($shortcut)
-    $shortcut.IconLocation = if ($iswin11) { "imageres.dll,233" }else { "imageres.dll,232" }
+function Set-ShortcutEnableIcon($shortcut) {
+    $shortcut.IconLocation = if ($iswin11) { "imageres.dll,233" } else { "imageres.dll,232" }
 }
 
-function Set-ShortcutRestartIcon {
-    param($shortcut)
-    $shortcut.IconLocation = if ($iswin11) { "imageres.dll,229" }else { "imageres.dll,228" }
+function Set-ShortcutRestartIcon($shortcut) {
+    $shortcut.IconLocation = if ($iswin11) { "imageres.dll,229" } else { "imageres.dll,228" }
 }
 
-function Set-ShortcutEditIcon {
-    param($shortcut)
+function Set-ShortcutEditIcon($shortcut) {
     $shortcut.IconLocation = "shell32.dll,269"
 }
 
-function Set-ShortcutDeleteFileIcon {
-    param($shortcut)
+function Set-ShortcutDeleteFileIcon($shortcut) {
+    $shortcut.IconLocation = "shell32.dll,152"
+}
+
+function Set-ShortcutConfigIcon($shortcut) {
+    $shortcut.IconLocation = "shell32.dll,314"
+}
+
+function Set-ShortcutDeleteFileIcon($shortcut) {
     $shortcut.IconLocation = "shell32.dll,152"
 }
 
@@ -151,4 +152,5 @@ if ($iswin11) {
 
 $it = $wshell.CreateShortcut("C:\Users\Public\Desktop\$($names.at_desktop).lnk")
 $it.TargetPath = "$PWD"
+Set-ShortcutConfigIcon $it
 $it.Save()

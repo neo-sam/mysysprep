@@ -1,6 +1,6 @@
 #Requires -RunAsAdministrator
 
-$linksDir = "$(mkdir -f C:\SetupFw\UserGuide)"
+$linksDir = "$(mkdir -f C:\SetupFw\docs\links)"
 
 if (!(Test-Path ($path = "C:\users\Public\Desktop\$(
     Get-Translation 'User Guide' -cn '使用说明'

@@ -14,10 +14,6 @@ Download into `.\deploy`
 
   [Official Download Page](https://www.thunderbird.net/)
 
-- OBS: free live recorder
-
-  [Official Download Page](https://obsproject.com/)
-
 - Everything: file searcher, experience far beyond the system built-in search engine
 
   Find `Download Lite Installer 64-bit` at [Official Download Page](https://www.voidtools.com)
@@ -35,6 +31,10 @@ Download into `.\deploy`
 - Workrave: rest reminder
 
   [Official GitHub Release](https://github.com/rcaelers/workrave/releases/latest)
+
+- OBS: free live recorder
+
+  [Official Download Page](https://obsproject.com/)
 
 - qBittorrent: free BitTorrent client
 
@@ -91,15 +91,21 @@ unpack it into current repository
 
 ### Miscellaneous
 
-Manuall Installers, put them into `.\misc`
+Manuall Installers, put them into `.\archived`
 
-- Brave: Chromium Distribution
+- Brave: Free Chromium Distribution
 
   [Get Online Installer](https://laptop-updates.brave.com/latest/winx64)
 
-- OhMyLnk: useful windows shortcuts
+- Microsoft Office
 
-  [GitHub Repository](https://github.com/setupfw/ohmylnk)
+  [Get Online Installer](https://setup.office.com/)
+
+Hardware Drivers:
+
+- Logi Options+
+
+  [Get Online Installer](https://www.logitech.com/software/logi-options-plus.html)
 
 ## Signature Verification
 

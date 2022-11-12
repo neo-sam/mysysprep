@@ -11,5 +11,7 @@ if (!$PSSenderInfo) {
 
 Start-Process -Wait $pkg /S
 
-$path = (Get-ChildItem "C:\Program Files (x86)\Vim\vim*\" -ea Stop).FullName
-Push-SystemPath $path
+Push-SystemPath (Get-ChildItem "C:\Program Files (x86)\Vim\vim*\" -ea Stop).FullName
+
+Set-Location C:\Users\Public\Desktop\
+Remove-Item 'gVim Easy *.lnk', 'gVim Read only *.lnk'
