@@ -1,10 +1,6 @@
 #Requires -RunAsAdministrator
 
-if ((
-        Get-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Setup\State' -ErrorAction Ignore
-    ).ImageState -ne 'IMAGE_STATE_SPECIALIZE_RESEAL_TO_AUDIT') {
-    exit
-}
+if (!$isAuditMode) { exit }
 
 if ($text = Get-Content '.\lib\assets\unattend.xml' -ea 0) {
     if ($unattend.oobeSkipEula) {

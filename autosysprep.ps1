@@ -63,8 +63,10 @@ $($_.Exception.Message)
 Write-Host
 
 try {
-    Remove-Item -Recurse -Force '.\deploy\tmp\*'
-    & .\deploy\scripts\_main.ps1
+    if (Test-Path .\deploy) {
+        Remove-Item -Recurse -Force '.\deploy\tmp\*'
+        & .\deploy\scripts\_main.ps1
+    }
     & .\lib\submit.ps1
     Write-Output "==> Auto Sysprep Finished!"
 }
