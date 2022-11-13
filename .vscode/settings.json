@@ -3,8 +3,18 @@
         "*.reg": "ini",
         "**/lib/newdesktop/*.txt": "markdown"
     },
+    "[ini]": {
+        "files.encoding": "utf16le",
+        "editor.wordWrap": "off"
+    },
     "[powershell]": {
         "files.encoding": "utf16le",
         "editor.wordWrap": "off"
+    },
+    "[md]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[html]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
     }
 }

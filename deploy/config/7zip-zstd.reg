@@ -1,0 +1,757 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_LOCAL_MACHINE\Software\Classes\.001]
+@="7-Zip-Zstandard.001"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\.7z]
+@="7-Zip-Zstandard.7z"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\.arj]
+@="7-Zip-Zstandard.arj"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\.bz2]
+@="7-Zip-Zstandard.bz2"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\.bzip2]
+@="7-Zip-Zstandard.bzip2"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\.cab]
+@="7-Zip-Zstandard.cab"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\.cpio]
+@="7-Zip-Zstandard.cpio"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\.deb]
+@="7-Zip-Zstandard.deb"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\.dmg]
+@="7-Zip-Zstandard.dmg"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\.esd]
+@="7-Zip-Zstandard.esd"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\.fat]
+@="7-Zip-Zstandard.fat"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\.gz]
+@="7-Zip-Zstandard.gz"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\.gzip]
+@="7-Zip-Zstandard.gzip"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\.hfs]
+@="7-Zip-Zstandard.hfs"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\.iso]
+@="7-Zip-Zstandard.iso"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\.lha]
+@="7-Zip-Zstandard.lha"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\.liz]
+@="7-Zip-Zstandard.liz"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\.lz]
+@="7-Zip-Zstandard.lz"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\.lz4]
+@="7-Zip-Zstandard.lz4"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\.lz5]
+@="7-Zip-Zstandard.lz5"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\.lzh]
+@="7-Zip-Zstandard.lzh"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\.lzma]
+@="7-Zip-Zstandard.lzma"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\.ntfs]
+@="7-Zip-Zstandard.ntfs"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\.rar]
+@="7-Zip-Zstandard.rar"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\.rpm]
+@="7-Zip-Zstandard.rpm"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\.squashfs]
+@="7-Zip-Zstandard.squashfs"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\.swm]
+@="7-Zip-Zstandard.swm"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\.tar]
+@="7-Zip-Zstandard.tar"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\.taz]
+@="7-Zip-Zstandard.taz"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\.tbz]
+@="7-Zip-Zstandard.tbz"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\.tbz2]
+@="7-Zip-Zstandard.tbz2"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\.tgz]
+@="7-Zip-Zstandard.tgz"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\.tlz]
+@="7-Zip-Zstandard.tlz"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\.tpz]
+@="7-Zip-Zstandard.tpz"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\.txz]
+@="7-Zip-Zstandard.txz"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\.vhd]
+@="7-Zip-Zstandard.vhd"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\.wim]
+@="7-Zip-Zstandard.wim"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\.xar]
+@="7-Zip-Zstandard.xar"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\.xz]
+@="7-Zip-Zstandard.xz"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\.z]
+@="7-Zip-Zstandard.z"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\.zip]
+@="7-Zip-Zstandard.zip"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\.zst]
+@="7-Zip-Zstandard.zst"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.001]
+@="001 Archive"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.001\DefaultIcon]
+@="C:\\Program Files\\7-Zip-Zstandard\\7z.dll,9"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.001\shell]
+@=""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.001\shell\open]
+@=""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.001\shell\open\command]
+@="\"C:\\Program Files\\7-Zip-Zstandard\\7zFM.exe\" \"%1\""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.7z]
+@="7z Archive"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.7z\DefaultIcon]
+@="C:\\Program Files\\7-Zip-Zstandard\\7z.dll,0"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.7z\shell]
+@=""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.7z\shell\open]
+@=""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.7z\shell\open\command]
+@="\"C:\\Program Files\\7-Zip-Zstandard\\7zFM.exe\" \"%1\""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.arj]
+@="arj Archive"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.arj\DefaultIcon]
+@="C:\\Program Files\\7-Zip-Zstandard\\7z.dll,4"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.arj\shell]
+@=""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.arj\shell\open]
+@=""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.arj\shell\open\command]
+@="\"C:\\Program Files\\7-Zip-Zstandard\\7zFM.exe\" \"%1\""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.bz2]
+@="bz2 Archive"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.bz2\DefaultIcon]
+@="C:\\Program Files\\7-Zip-Zstandard\\7z.dll,2"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.bz2\shell]
+@=""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.bz2\shell\open]
+@=""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.bz2\shell\open\command]
+@="\"C:\\Program Files\\7-Zip-Zstandard\\7zFM.exe\" \"%1\""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.bzip2]
+@="bzip2 Archive"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.bzip2\DefaultIcon]
+@="C:\\Program Files\\7-Zip-Zstandard\\7z.dll,2"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.bzip2\shell]
+@=""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.bzip2\shell\open]
+@=""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.bzip2\shell\open\command]
+@="\"C:\\Program Files\\7-Zip-Zstandard\\7zFM.exe\" \"%1\""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.cab]
+@="cab Archive"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.cab\DefaultIcon]
+@="C:\\Program Files\\7-Zip-Zstandard\\7z.dll,7"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.cab\shell]
+@=""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.cab\shell\open]
+@=""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.cab\shell\open\command]
+@="\"C:\\Program Files\\7-Zip-Zstandard\\7zFM.exe\" \"%1\""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.cpio]
+@="cpio Archive"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.cpio\DefaultIcon]
+@="C:\\Program Files\\7-Zip-Zstandard\\7z.dll,12"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.cpio\shell]
+@=""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.cpio\shell\open]
+@=""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.cpio\shell\open\command]
+@="\"C:\\Program Files\\7-Zip-Zstandard\\7zFM.exe\" \"%1\""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.deb]
+@="deb Archive"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.deb\DefaultIcon]
+@="C:\\Program Files\\7-Zip-Zstandard\\7z.dll,11"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.deb\shell]
+@=""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.deb\shell\open]
+@=""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.deb\shell\open\command]
+@="\"C:\\Program Files\\7-Zip-Zstandard\\7zFM.exe\" \"%1\""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.dmg]
+@="dmg Archive"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.dmg\DefaultIcon]
+@="C:\\Program Files\\7-Zip-Zstandard\\7z.dll,17"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.dmg\shell]
+@=""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.dmg\shell\open]
+@=""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.dmg\shell\open\command]
+@="\"C:\\Program Files\\7-Zip-Zstandard\\7zFM.exe\" \"%1\""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.esd]
+@="esd Archive"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.esd\DefaultIcon]
+@="C:\\Program Files\\7-Zip-Zstandard\\7z.dll,15"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.esd\shell]
+@=""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.esd\shell\open]
+@=""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.esd\shell\open\command]
+@="\"C:\\Program Files\\7-Zip-Zstandard\\7zFM.exe\" \"%1\""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.fat]
+@="fat Archive"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.fat\DefaultIcon]
+@="C:\\Program Files\\7-Zip-Zstandard\\7z.dll,21"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.fat\shell]
+@=""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.fat\shell\open]
+@=""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.fat\shell\open\command]
+@="\"C:\\Program Files\\7-Zip-Zstandard\\7zFM.exe\" \"%1\""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.gz]
+@="gz Archive"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.gz\DefaultIcon]
+@="C:\\Program Files\\7-Zip-Zstandard\\7z.dll,14"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.gz\shell]
+@=""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.gz\shell\open]
+@=""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.gz\shell\open\command]
+@="\"C:\\Program Files\\7-Zip-Zstandard\\7zFM.exe\" \"%1\""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.gzip]
+@="gzip Archive"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.gzip\DefaultIcon]
+@="C:\\Program Files\\7-Zip-Zstandard\\7z.dll,14"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.gzip\shell]
+@=""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.gzip\shell\open]
+@=""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.gzip\shell\open\command]
+@="\"C:\\Program Files\\7-Zip-Zstandard\\7zFM.exe\" \"%1\""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.hfs]
+@="hfs Archive"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.hfs\DefaultIcon]
+@="C:\\Program Files\\7-Zip-Zstandard\\7z.dll,18"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.hfs\shell]
+@=""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.hfs\shell\open]
+@=""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.hfs\shell\open\command]
+@="\"C:\\Program Files\\7-Zip-Zstandard\\7zFM.exe\" \"%1\""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.iso]
+@="iso Archive"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.iso\DefaultIcon]
+@="C:\\Program Files\\7-Zip-Zstandard\\7z.dll,8"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.iso\shell]
+@=""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.iso\shell\open]
+@=""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.iso\shell\open\command]
+@="\"C:\\Program Files\\7-Zip-Zstandard\\7zFM.exe\" \"%1\""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.lha]
+@="lha Archive"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.lha\DefaultIcon]
+@="C:\\Program Files\\7-Zip-Zstandard\\7z.dll,6"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.lha\shell]
+@=""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.lha\shell\open]
+@=""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.lha\shell\open\command]
+@="\"C:\\Program Files\\7-Zip-Zstandard\\7zFM.exe\" \"%1\""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.liz]
+@="liz Archive"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.liz\DefaultIcon]
+@="C:\\Program Files\\7-Zip-Zstandard\\7z.dll,28"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.liz\shell]
+@=""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.liz\shell\open]
+@=""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.liz\shell\open\command]
+@="\"C:\\Program Files\\7-Zip-Zstandard\\7zFM.exe\" \"%1\""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.lz]
+@="lz Archive"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.lz4]
+@="lz4 Archive"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.lz4\DefaultIcon]
+@="C:\\Program Files\\7-Zip-Zstandard\\7z.dll,26"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.lz4\shell]
+@=""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.lz4\shell\open]
+@=""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.lz4\shell\open\command]
+@="\"C:\\Program Files\\7-Zip-Zstandard\\7zFM.exe\" \"%1\""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.lz5]
+@="lz5 Archive"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.lz5\DefaultIcon]
+@="C:\\Program Files\\7-Zip-Zstandard\\7z.dll,27"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.lz5\shell]
+@=""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.lz5\shell\open]
+@=""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.lz5\shell\open\command]
+@="\"C:\\Program Files\\7-Zip-Zstandard\\7zFM.exe\" \"%1\""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.lz\DefaultIcon]
+@="C:\\Program Files\\7-Zip-Zstandard\\7z.dll,16"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.lz\shell]
+@=""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.lz\shell\open]
+@=""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.lz\shell\open\command]
+@="\"C:\\Program Files\\7-Zip-Zstandard\\7zFM.exe\" \"%1\""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.lzh]
+@="lzh Archive"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.lzh\DefaultIcon]
+@="C:\\Program Files\\7-Zip-Zstandard\\7z.dll,6"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.lzh\shell]
+@=""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.lzh\shell\open]
+@=""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.lzh\shell\open\command]
+@="\"C:\\Program Files\\7-Zip-Zstandard\\7zFM.exe\" \"%1\""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.lzma]
+@="lzma Archive"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.lzma\DefaultIcon]
+@="C:\\Program Files\\7-Zip-Zstandard\\7z.dll,16"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.lzma\shell]
+@=""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.lzma\shell\open]
+@=""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.lzma\shell\open\command]
+@="\"C:\\Program Files\\7-Zip-Zstandard\\7zFM.exe\" \"%1\""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.ntfs]
+@="ntfs Archive"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.ntfs\DefaultIcon]
+@="C:\\Program Files\\7-Zip-Zstandard\\7z.dll,22"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.ntfs\shell]
+@=""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.ntfs\shell\open]
+@=""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.ntfs\shell\open\command]
+@="\"C:\\Program Files\\7-Zip-Zstandard\\7zFM.exe\" \"%1\""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.rar]
+@="rar Archive"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.rar\DefaultIcon]
+@="C:\\Program Files\\7-Zip-Zstandard\\7z.dll,3"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.rar\shell]
+@=""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.rar\shell\open]
+@=""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.rar\shell\open\command]
+@="\"C:\\Program Files\\7-Zip-Zstandard\\7zFM.exe\" \"%1\""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.rpm]
+@="rpm Archive"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.rpm\DefaultIcon]
+@="C:\\Program Files\\7-Zip-Zstandard\\7z.dll,10"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.rpm\shell]
+@=""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.rpm\shell\open]
+@=""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.rpm\shell\open\command]
+@="\"C:\\Program Files\\7-Zip-Zstandard\\7zFM.exe\" \"%1\""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.squashfs]
+@="squashfs Archive"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.squashfs\DefaultIcon]
+@="C:\\Program Files\\7-Zip-Zstandard\\7z.dll,24"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.squashfs\shell]
+@=""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.squashfs\shell\open]
+@=""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.squashfs\shell\open\command]
+@="\"C:\\Program Files\\7-Zip-Zstandard\\7zFM.exe\" \"%1\""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.swm]
+@="swm Archive"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.swm\DefaultIcon]
+@="C:\\Program Files\\7-Zip-Zstandard\\7z.dll,15"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.swm\shell]
+@=""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.swm\shell\open]
+@=""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.swm\shell\open\command]
+@="\"C:\\Program Files\\7-Zip-Zstandard\\7zFM.exe\" \"%1\""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.tar]
+@="tar Archive"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.tar\DefaultIcon]
+@="C:\\Program Files\\7-Zip-Zstandard\\7z.dll,13"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.tar\shell]
+@=""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.tar\shell\open]
+@=""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.tar\shell\open\command]
+@="\"C:\\Program Files\\7-Zip-Zstandard\\7zFM.exe\" \"%1\""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.taz]
+@="taz Archive"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.taz\DefaultIcon]
+@="C:\\Program Files\\7-Zip-Zstandard\\7z.dll,5"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.taz\shell]
+@=""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.taz\shell\open]
+@=""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.taz\shell\open\command]
+@="\"C:\\Program Files\\7-Zip-Zstandard\\7zFM.exe\" \"%1\""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.tbz]
+@="tbz Archive"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.tbz2]
+@="tbz2 Archive"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.tbz2\DefaultIcon]
+@="C:\\Program Files\\7-Zip-Zstandard\\7z.dll,2"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.tbz2\shell]
+@=""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.tbz2\shell\open]
+@=""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.tbz2\shell\open\command]
+@="\"C:\\Program Files\\7-Zip-Zstandard\\7zFM.exe\" \"%1\""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.tbz\DefaultIcon]
+@="C:\\Program Files\\7-Zip-Zstandard\\7z.dll,2"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.tbz\shell]
+@=""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.tbz\shell\open]
+@=""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.tbz\shell\open\command]
+@="\"C:\\Program Files\\7-Zip-Zstandard\\7zFM.exe\" \"%1\""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.tgz]
+@="tgz Archive"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.tgz\DefaultIcon]
+@="C:\\Program Files\\7-Zip-Zstandard\\7z.dll,14"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.tgz\shell]
+@=""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.tgz\shell\open]
+@=""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.tgz\shell\open\command]
+@="\"C:\\Program Files\\7-Zip-Zstandard\\7zFM.exe\" \"%1\""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.tlz]
+@="tlz Archive"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.tlz\DefaultIcon]
+@="C:\\Program Files\\7-Zip-Zstandard\\7z.dll,16"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.tlz\shell]
+@=""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.tlz\shell\open]
+@=""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.tlz\shell\open\command]
+@="\"C:\\Program Files\\7-Zip-Zstandard\\7zFM.exe\" \"%1\""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.tpz]
+@="tpz Archive"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.tpz\DefaultIcon]
+@="C:\\Program Files\\7-Zip-Zstandard\\7z.dll,14"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.tpz\shell]
+@=""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.tpz\shell\open]
+@=""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.tpz\shell\open\command]
+@="\"C:\\Program Files\\7-Zip-Zstandard\\7zFM.exe\" \"%1\""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.txz]
+@="txz Archive"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.txz\DefaultIcon]
+@="C:\\Program Files\\7-Zip-Zstandard\\7z.dll,23"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.txz\shell]
+@=""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.txz\shell\open]
+@=""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.txz\shell\open\command]
+@="\"C:\\Program Files\\7-Zip-Zstandard\\7zFM.exe\" \"%1\""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.vhd]
+@="vhd Archive"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.vhd\DefaultIcon]
+@="C:\\Program Files\\7-Zip-Zstandard\\7z.dll,20"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.vhd\shell]
+@=""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.vhd\shell\open]
+@=""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.vhd\shell\open\command]
+@="\"C:\\Program Files\\7-Zip-Zstandard\\7zFM.exe\" \"%1\""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.wim]
+@="wim Archive"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.wim\DefaultIcon]
+@="C:\\Program Files\\7-Zip-Zstandard\\7z.dll,15"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.wim\shell]
+@=""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.wim\shell\open]
+@=""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.wim\shell\open\command]
+@="\"C:\\Program Files\\7-Zip-Zstandard\\7zFM.exe\" \"%1\""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.xar]
+@="xar Archive"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.xar\DefaultIcon]
+@="C:\\Program Files\\7-Zip-Zstandard\\7z.dll,19"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.xar\shell]
+@=""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.xar\shell\open]
+@=""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.xar\shell\open\command]
+@="\"C:\\Program Files\\7-Zip-Zstandard\\7zFM.exe\" \"%1\""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.xz]
+@="xz Archive"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.xz\DefaultIcon]
+@="C:\\Program Files\\7-Zip-Zstandard\\7z.dll,23"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.xz\shell]
+@=""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.xz\shell\open]
+@=""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.xz\shell\open\command]
+@="\"C:\\Program Files\\7-Zip-Zstandard\\7zFM.exe\" \"%1\""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.z]
+@="z Archive"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.z\DefaultIcon]
+@="C:\\Program Files\\7-Zip-Zstandard\\7z.dll,5"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.z\shell]
+@=""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.z\shell\open]
+@=""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.z\shell\open\command]
+@="\"C:\\Program Files\\7-Zip-Zstandard\\7zFM.exe\" \"%1\""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.zip]
+@="zip Archive"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.zip\DefaultIcon]
+@="C:\\Program Files\\7-Zip-Zstandard\\7z.dll,1"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.zip\shell]
+@=""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.zip\shell\open]
+@=""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.zip\shell\open\command]
+@="\"C:\\Program Files\\7-Zip-Zstandard\\7zFM.exe\" \"%1\""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.zst]
+@="zst Archive"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.zst\DefaultIcon]
+@="C:\\Program Files\\7-Zip-Zstandard\\7z.dll,25"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.zst\shell]
+@=""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.zst\shell\open]
+@=""
+
+[HKEY_LOCAL_MACHINE\Software\Classes\7-Zip-Zstandard.zst\shell\open\command]
+@="\"C:\\Program Files\\7-Zip-Zstandard\\7zFM.exe\" \"%1\""

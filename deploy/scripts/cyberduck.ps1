@@ -11,4 +11,6 @@ if (!$PSSenderInfo) {
 
 Start-Process -Wait $pkg /quiet
 
-Set-HidpiMode 'C:\Program Files\Cyberduck\Cyberduck.exe'
+# CUSTOM:
+
+Repair-HidpiCompatibility 'C:\Program Files\Cyberduck\Cyberduck.exe'

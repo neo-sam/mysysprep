@@ -21,7 +21,7 @@ if ($cfg.optimizePerformance) {
     Set-ItemProperty HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer 'Max Cached Icons' -Type String (16mb)
 
     foreach ($item in 'exefile', 'Msi.Package', 'batfile', 'cmdfile') {
-        Set-ItemProperty "HKLM:\Software\Classes\$item\shellex\ContextMenuHandlers\Compatibility" '(Default)' '""'
+        Set-Item "HKLM:\Software\Classes\$item\shellex\ContextMenuHandlers\Compatibility" '""'
     }
 }
 

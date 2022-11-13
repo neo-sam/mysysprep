@@ -27,6 +27,11 @@ $Error.Clear()
 # Optimize
 Set-ItemProperty HKCU:\SOFTWARE\Policies\Microsoft\Windows\Explorer ShowRunAsDifferentUserInStart 1
 
+# Hide New User
+$hideUsersRegPath = 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon\SpecialAccounts\UserList'
+if (!(Test-Path $hideUsersRegPath)) { mkdir -f $hideUsersRegPath >$null }
+Set-ItemProperty $hideUsersRegPath $username 0
+
 # Create a new user
 net user $username /add > $null
 if ((Get-ItemPropertyValue HKLM:\SYSTEM\CurrentControlSet\Control\Lsa LimitBlankPasswordUse) -eq 1) {
@@ -40,20 +45,28 @@ if ((Get-ItemPropertyValue HKLM:\SYSTEM\CurrentControlSet\Control\Lsa LimitBlank
     }
 }
 Set-Localuser $username -PasswordNeverExpires $true
-Set-ItemProperty (mkdir -f 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon\SpecialAccounts\UserList').PSPath $username 0
 
 if ($onlyApp) {
     New-LocalGroup $uappGroup -ea 0 >$null
     Add-LocalGroupMember $uappGroup $username
 }
 if ( $null -eq $username ) { $username = Read-Host 'Define your username' }
+$homepath = "C:\Users\$username"
+
 function runWith {
     param ( [string]$command )
     if ($password) { runas /profile /user:$username $command }
     else { '' | runas /profile /user:$username $command >$null }
 }
-$homepath = "C:\Users\$username"
+
 runWith "cmd /c exit"
+if (!(Test-Path $homepath)) {
+    net user $username /delete > $null
+    Write-Host -ForegroundColor Red 'A problem happend. Please restart your computer to try again!'
+    [Console]::ReadKey()>$null
+    exit
+}
+
 Push-Location $homepath
 attrib -h AppData
 @('.\Favorites', '.\Links', '.\Saved Games') | ForEach-Object { attrib +h $_ }
@@ -74,7 +87,7 @@ Pop-Location
 
 # Add shortcuts to desktop
 $ws = New-Object -ComObject WScript.Shell
-$pwshlink = $ws.CreateShortcut("$([Environment]::GetFolderPath("Desktop"))\PowerShell as $username(user).lnk")
+$pwshlink = $ws.CreateShortcut("$([Environment]::GetFolderPath('Desktop'))\PowerShell as $username(user).lnk")
 $pwshlink.IconLocation = "powershell.exe"
 $pwshlink.TargetPath = "%windir%\system32\cmd.exe"
 $pwshlink.WorkingDirectory = $homepath
@@ -86,7 +99,7 @@ else {
 }
 $pwshlink.Save()
 if ($onlyApp) {
-    $applink = $ws.CreateShortcut("$([Environment]::GetFolderPath("Desktop"))\EDITME as $appname(app).lnk")
+    $applink = $ws.CreateShortcut("$([Environment]::GetFolderPath('Desktop'))\EDITME as $appname(app).lnk")
     $applink.IconLocation = "%windir%\system32\shell32.dll,133"
     $applink.TargetPath = "%windir%\system32\cmd.exe"
     if ($password) {

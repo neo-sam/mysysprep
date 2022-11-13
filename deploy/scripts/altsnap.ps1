@@ -9,13 +9,10 @@ if (!$PSSenderInfo) {
     }
 }
 
-mkdir -f C:\SetupFw | Out-Null
+Copy-Item $pkg "$(Get-BasePath -UserDeploy)\install-altsnap.exe"
+$deployScriptName = 'install-altsnap.ps1'
 
-Copy-Item $pkg "C:\SetupFw\install-altsnap.exe"
-
-$scriptPath = "C:\SetupFw\install-altsnap.ps1"
 $lnkname = "$(Get-Translation 'Install' -cn '安装') AltSnap"
-New-SetupScriptShortcut -psspath $scriptPath -lnkname $lnkname
 
 $parts = ((Get-Content 'config\install-altsnap.ps1') -join "`n") -split '; config here'
 $content = @(
@@ -26,4 +23,6 @@ $content = @(
 if ((Get-Culture).Name -eq 'zh-CN') {
     $content = $content -replace '(?<=Language=)en-US', 'zh-CN'
 }
-$content > $scriptPath
+$content | Out-File -Encoding unicode "$(Get-BasePath -UserDeploy)\install-altsnap.ps1"
+
+New-UserDeployShortcut -ScriptName $deployScriptName -LinkName $lnkname

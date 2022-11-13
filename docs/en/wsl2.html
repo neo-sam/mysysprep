@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../github-markdown.css" />
+    <link rel="stylesheet" href="../custom.css" />
+    <title>WSL2</title>
+  </head>
+  <body class="markdown-body">
+    <h2>Installation</h2>
+    <p>Execute PowerShell script as administrator:</p>
+    <ol>
+      <li>
+        <p>Install HyperV support</p>
+        <pre><code>dism /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
+dism /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
+</code></pre>
+      </li>
+      <li>
+        <p>Add boot menu entries (Optional):</p>
+        <pre><code># choose time
+bcdedit /timeout 2
+# recommend use legacy boot menu ( which won't boot twice if select not default )
+bcdedit /set "{current}" bootmenupolicy legacy
+
+bcdedit /set "{current}" hypervisorlaunchtype off
+bcdedit /copy "{current}" /d "HyperV off"
+bcdedit /set "{current}" hypervisorlaunchtype auto
+bcdedit /copy "{current}" /d "HyperV on"
+</code></pre>
+        <p>Tweak boot menu: set "Startup and Recovery"</p>
+        <pre><code>cmd /c "rundll32 shell32.dll,Control_RunDLL sysdm.cpl,,3"</code></pre>
+      </li>
+      <li>Reboot</li>
+      <li>
+        <a href="ms-windows-store://pdp?mode=mini&productId=9P9TQF7MRM4R">Install or Update WSL Kernel</a>
+      </li>
+      <li>
+        Optional: enable "Give me updates for other Microsoft products when I
+        update Windows" at
+        <a href="ms-settings:windowsupdate-options">system settings</a>.
+      </li>
+    </ol>
+  </body>
+</html>

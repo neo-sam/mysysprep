@@ -6,25 +6,31 @@ if (!$PSSenderInfo) {
     if (-not $pkg) { return }
     return @{
         name   = 'Sysinternals'
-        target = "$targetPath"
+        target = $targetPath
     }
     return
 }
 
-Expand-Archive -Force $pkg $(mkdir -f tmp\sysinternals)
+$tmpdir = "$(mkdir -f "$env:TMP\win-sf\Sysinternals")"
 
-$excludeList = @()
+Expand-Archive -Force $pkg $tmpdir
+
 if ([Environment]::OSVersion.Version.Build -ge 10240) {
     $excludeList += 'desktops*'
 }
 
-Copy-Item 'tmp\sysinternals\*' -Exclude $excludeList (mkdir -f $targetPath)
-Push-SystemPath $targetPath
+Move-Item $tmpdir $env:SystemRoot
 
-Push-Location C:\Windows\Sysinternals
+# CUSTOM:
 
-Get-ChildItem autologon*, tcpview*, winobj* |
-Where-Object Extension -eq .exe |
-Set-HidpiMode
+Push-Location $targetPath
+
+Push-SystemPath .
+
+# Get-ChildItem * -Exclude @() | Remove-Item
+
+Get-ChildItem autologon*, tcpview*, winobj* |`
+    Where-Object Extension -eq .exe |`
+    Repair-HidpiCompatibility
 
 Pop-Location

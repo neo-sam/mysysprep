@@ -14,6 +14,8 @@ Start-Process -Wait $pkg '/qb /norestart',
 'ADD_EXPLORER_CONTEXT_MENU_OPENPOWERSHELL=1',
 '/l*v log\powershell.log'
 
+# CUSTOM:
+
 @"
 if (Test-Path 'C:\Windows\System32\WindowsPowerShell\v1.0\profile.ps1') {
     . 'C:\Windows\System32\WindowsPowerShell\v1.0\profile.ps1'

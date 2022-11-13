@@ -26,34 +26,35 @@ if ($cfg.biggerThumbnail) {
 # Only Windows 11
 if ([Environment]::OSVersion.Version.Build -ge 22000) {
     if ($cfg.optimize) {
-        $regkey = (mkdir -f 'HKLM:\SYSTEM\CurrentControlSet\Control\FeatureManagement\Overrides\4\1887869580').PSPath
+        $regkey = Get-RegItemOrNew 'HKLM:\SYSTEM\CurrentControlSet\Control\FeatureManagement\Overrides\4\1887869580'
         Set-ItemProperty $regkey EnabledState 2
         Set-ItemProperty $regkey EnabledStateOptions 0
     }
 
-    Set-ItemProperty ( Get-CurrentAndNewUserPaths `
-            "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced"
+    Set-ItemProperty (
+        Get-CurrentAndNewUserPaths 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced'
     ) MMTaskbarMode 2
-    Set-ItemProperty ( Get-CurrentAndNewUserPaths `
-            "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced"
+    Set-ItemProperty (
+        Get-CurrentAndNewUserPaths 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced'
     ) MultiTaskingAltTabFilter 3
 
     if ($cfg.win11alignLeft) {
         Set-ItemProperty (
-            Get-CurrentAndNewUserPaths "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced"
+            Get-CurrentAndNewUserPaths 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced'
         ) TaskbarAl 0
     }
     if ($cfg.win11noWidgets) {
         Set-ItemProperty (
-            Get-CurrentAndNewUserPaths "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced"
+            Get-CurrentAndNewUserPaths 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced'
         ) TaskbarDa 0
+
         Set-ItemProperty (
-            mkdir -f 'HKLM:\SOFTWARE\Policies\Microsoft\Dsh'
-        ).PSPath AllowNewsAndInterests 0
+            Get-RegItemOrNew 'HKLM:\SOFTWARE\Policies\Microsoft\Dsh'
+        ) AllowNewsAndInterests 0
     }
     if ($cfg.win11noMsTeam) {
         Set-ItemProperty (
-            Get-CurrentAndNewUserPaths "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced"
+            Get-CurrentAndNewUserPaths 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced'
         ) TaskbarMn 2
     }
 }
@@ -64,7 +65,7 @@ else {
         ) TaskbarGlomLevel 1
     }
     if ($cfg.win10noAd) {
-        $regkeys = Get-CurrentAndNewUserPaths "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Feeds"
+        $regkeys = Get-CurrentAndNewUserPaths 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Feeds'
         Set-ItemProperty $regkeys ShellFeedsTaskbarViewMode 2
         Set-ItemProperty $regkeys ShellFeedsTaskbarContentUpdateMode 1
         Set-ItemProperty $regkeys ShellFeedsTaskbarOpenOnHover 0

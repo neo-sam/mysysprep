@@ -1,6 +1,7 @@
 {
     "recommendations": [
         "ms-vscode.powershell",
+        "esbenp.prettier-vscode",
         "bierner.markdown-mermaid"
     ]
 }

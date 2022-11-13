@@ -11,7 +11,7 @@ if (!$PSSenderInfo) {
 
 Start-Process -Wait $pkg /S
 
-Set-HidpiMode 'C:\Program Files\Everything\Everything.exe'
+# CUSTOM:
 
 if (Test-Path ($it = 'config\Everything.ini')) {
     if (!(Test-Path ($that = "$env:APPDATA\Everything\Everything.ini"))) {
@@ -19,3 +19,5 @@ if (Test-Path ($it = 'config\Everything.ini')) {
     }
     Copy-Item $it (mkdir -f 'C:\Users\Default\AppData\Roaming\Everything')
 }
+
+Repair-HidpiCompatibility 'C:\Program Files\Everything\Everything.exe'

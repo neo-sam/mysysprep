@@ -33,21 +33,21 @@
 
 ### 开发者工具
 
-- VirtualBox: Oracle 公司维护的免费开源虚拟化平台
+- PowerShell Core: PowerShell 最新稳定版
 
-  从[高校镜像站](https://mirrorz.org/app/VirtualBox)下载
+  找到 `win-x64.msi` 下载，见[高校镜像站](https://mirrorz.org/list/PowerShell)
 
 - Git for Windows: 开发必备
 
   找到 `64-bit, exe` 下载，见[高校镜像站](https://mirrorz.org/app/Git)
 
-- PowerShell Core: PowerShell 最新稳定版
-
-  找到 `win-x64.msi` 下载，见[高校镜像站](https://mirrorz.org/list/PowerShell)
-
 - gVim: 文本编辑器
 
   按修改时间倒排，找到最新版 `.exe` 下载，见[高校镜像站](https://mirrorz.org/list/vim)
+
+- VirtualBox: Oracle 公司维护的免费开源虚拟化平台
+
+  从[高校镜像站](https://mirrorz.org/app/VirtualBox)下载
 
 ### 更多
 
@@ -69,14 +69,15 @@
 - Workrave 长时间工作休息提醒
 - Cyberduck 云端存储浏览器
 
+- VSCode 开发神器
 - gsudo 获取管理员权限
 - Sysinternals 系统实用程序
 - ImDisk Toolkit 挂载内存盘、镜像文件
-- OpenSSH 组件升级包
+- OpenSSH 组件升级包（ 可选 ）
 
 ### 手动安装
 
-请下载到 `.\archived` 目录内，需要手动安装
+请下载到 `.\manual` 目录内，需要手动安装
 
 - Brave: 免费的 Chromium 发行版
 

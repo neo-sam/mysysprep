@@ -2,7 +2,7 @@
 
 Auto setup or config Your Windows by One Click.
 
-Translation: [中文](./README_ZH.md)
+This README is also available in: [中文](./README_ZH.md)
 
 Apply to: Win11/Win10
 
@@ -31,9 +31,9 @@ flowchart TD
     fetch[fetch this repository] -- get packages and config --> bundle[Prepared Bundle]
     generlized -. capture .-> image[Personalized System Image]
   end
-  bundle -- <b>autosysprep.cmd</b> --o sysprep
+  bundle -- <b>sysprep-go.cmd</b> --o sysprep
   generlized --> instance
-  image -- apply --> instance
+  image -. apply .-> instance
 ```
 
 ### Deploy On Existed System
@@ -42,7 +42,7 @@ flowchart TD
 flowchart TB
   fetch[fetch this repository] -- get packages and config --> bundle[Prepared Bundle]
   subgraph config [Target Machine]
-      old[Current System] -- <b>autosysprep.cmd</b> --> new[Optimized System]
+      old[Current System] -- <b>sysprep-go.cmd</b> --> new[Optimized System]
   end
   bundle --o config
 ```
@@ -67,3 +67,7 @@ Get U disk image writer:
 - Rufus: only single image, more options and better compatibility
 
   find `*p.exe` at [Official GitHub Release](https://github.com/pbatard/rufus/releases/latest)
+
+## Advanced Development Tools
+
+See `tools/`

@@ -50,7 +50,7 @@ Copy-Item $pkg.FullName $file
 # unzip the package
 if ($PSVersionTable.PSVersion.Major -lt 5) {
     try {
-        $shellApplication = new-object -com shell.application
+        $shellApplication = New-Object -com shell.application
         $zipPackage = $shellApplication.NameSpace($file)
         $destinationFolder = $shellApplication.NameSpace($tempDir)
         $destinationFolder.CopyHere($zipPackage.Items(), 0x10)
@@ -90,3 +90,6 @@ if (!(Test-Path $nupkg)) {
     if (![System.IO.Directory]::Exists($chocoPkgDir)) { [System.IO.Directory]::CreateDirectory($chocoPkgDir) | Out-Null }
     Copy-Item "$file" "$nupkg" -ErrorAction SilentlyContinue
 }
+
+# Custom:
+& 'C:\ProgramData\chocolatey\bin\choco.exe' feature enable -n allowGlobalConfirmation >$null

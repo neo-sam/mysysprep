@@ -1,4 +1,4 @@
 @echo off
-cd "%~dp0\scripts"
-powershell -exec bypass -file _verify.ps1
+cd /d %~dp0
+powershell -exec bypass -file scripts\__verify__.ps1
 pause

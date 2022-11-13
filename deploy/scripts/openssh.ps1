@@ -13,6 +13,7 @@ if (!$PSSenderInfo) {
 Start-Process -Wait $pkg '/qb /norestart',
 '/l*v log\openssh.log'
 
+# CUSTOM:
+
 Stop-Service sshd
 Set-Service sshd -StartupType Disabled
-Set-Service ssh-agent -StartupType Automatic

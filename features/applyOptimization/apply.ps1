@@ -2,11 +2,11 @@
 
 # Skip first screen
 Set-ItemProperty (
-    mkdir -f HKLM:\SOFTWARE\Policies\Microsoft\MicrosoftEdge
-).PSPath PreventFirstRunPage 0
+    Get-RegItemOrNew HKLM:\SOFTWARE\Policies\Microsoft\MicrosoftEdge
+) PreventFirstRunPage 0
 Set-ItemProperty (
-    mkdir -f HKLM:\SOFTWARE\Policies\Microsoft\WindowsMediaPlayer
-).PSPath GroupPrivacyAcceptance 1
+    Get-RegItemOrNew HKLM:\SOFTWARE\Policies\Microsoft\WindowsMediaPlayer
+) GroupPrivacyAcceptance 1
 
 # Disable hiberboot for SSD
 if (Get-Command -ea 0 Get-PhysicalDisk) {
@@ -16,11 +16,15 @@ if (Get-Command -ea 0 Get-PhysicalDisk) {
 }
 
 # No crash report or capbility check
-Disable-BundledService PcaSvc, WerSvc
+Disable-BundledService WerSvc
+Set-Service PcaSvc -StartupType Disabled
+Stop-Service PcaSvc -ea 0
 
+<#
 # Windows10 only: colorize window title
 if ([Environment]::OSVersion.Version.Build -le 22000) {
     Set-ItemProperty (
         Get-CurrentAndNewUserPaths "HKCU:\SOFTWARE\Microsoft\Windows\DWM"
     ) ColorPrevalence 1
 }
+#>

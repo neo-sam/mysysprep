@@ -27,9 +27,9 @@ flowchart TD
     fetch[获取本项目源码] -- 获取安装包并自定义配置 --> bundle[准备好的部署工具]
     generlized -. 捕抓 .-> image[个性化的系统镜像]
   end
-  bundle -- <b>autosysprep.cmd</b> --o sysprep
+  bundle -- <b>sysprep-go.cmd</b> --o sysprep
   generlized --> instance
-  image -- 释放 --> instance
+  image -. 释放 .-> instance
 ```
 
 ### 部署到现有系统上
@@ -38,7 +38,7 @@ flowchart TD
 flowchart TB
   fetch[获取本项目源码] -- 获取安装包并自定义配置 --> bundle[准备好的部署工具]
   subgraph config [目标机器]
-      old[当前系统] -- <b>autosysprep.cmd</b> --> new[调整过的系统]
+      old[当前系统] -- <b>sysprep-go.cmd</b> --> new[调整过的系统]
   end
   bundle --o config
 ```
@@ -77,3 +77,7 @@ flowchart TB
 
 - [微 PE 工具箱](https://www.wepe.com.cn/ubook/start.html)
 - [优启通 EasyU](https://www.upe.net/)
+
+## 二次开发的技巧
+
+内容请见 `tools/`

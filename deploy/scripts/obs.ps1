@@ -10,4 +10,7 @@ if (!$PSSenderInfo) {
 }
 
 Start-Process -Wait $pkg '/NCRC /S'
+
+# CUSTOM:
+
 Remove-Item 'C:\Users\public\Desktop\OBS Studio.lnk'

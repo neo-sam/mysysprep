@@ -15,9 +15,7 @@ if (!$PSSenderInfo) {
     return
 }
 
-$tmpdir = 'tmp\fonts'
-
-mkdir -f $tmpdir >$null
+$tmpdir = "$(mkdir -f "$env:TMP\win-sf\fonts")"
 
 if (($it = Get-ChildItem -ea 0 '03_NotoSansCJK-OTC.zip') `
         -and !(Test-Path C:\Windows\Fonts\NotoSansCJK*)

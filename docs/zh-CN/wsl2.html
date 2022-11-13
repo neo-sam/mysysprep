@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="../github-markdown.css" />
+  <link rel="stylesheet" href="../custom.css" />
+  <title>WSL2</title>
+</head>
+
+<body class="markdown-body">
+  <h2>安装</h2>
+  <p>以管理员身份运行 PowerShell 脚本：</p>
+  <ol>
+    <li>
+      <p>安装 HyperV 组件</p>
+      <pre><code>dism /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
+dism /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
+</code></pre>
+    </li>
+    <li>
+      <p>可选：添加系统启动选项</p>
+      <pre><code># 降低选择等待时间
+bcdedit /timeout 2
+# 推荐使用传统菜单（ 不会二次启动 ）
+bcdedit /set "{current}" bootmenupolicy legacy
+
+bcdedit /set "{current}" hypervisorlaunchtype off
+bcdedit /copy "{current}" /d "HyperV off"
+bcdedit /set "{current}" hypervisorlaunchtype auto
+bcdedit /copy "{current}" /d "HyperV on"
+</code></pre>
+      <p>按需调整启动菜单：设置“启动与故障恢复”</p>
+      <pre><code>cmd /c "rundll32 shell32.dll,Control_RunDLL sysdm.cpl,,3"</code></pre>
+      </li>
+      <li>重启</li>
+      <li>
+      <a href="ms-windows-store://pdp?mode=mini&productId=9P9TQF7MRM4R">安装或更新 WSL 内核</a>
+      </li>
+      </li>
+      <li>
+        可选：<a href="ms-settings:windowsupdate-options">设置自动更新</a>，
+        启动“接收其它 Microsoft 产品的更新”。
+      </li>
+      </ol>
+      </body>
+
+</html>

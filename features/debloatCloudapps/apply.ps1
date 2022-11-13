@@ -14,4 +14,5 @@ Microsoft.549981C3F5F10
 Clipchamp.Clipchamp
 Microsoft.Todos
 Microsoft.PowerAutomateDesktop
+Microsoft.MixedReality.Portal
 '@

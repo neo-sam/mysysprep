@@ -1,7 +1,7 @@
 Set-Location (mkdir -f 'C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Quick Settings')
 Remove-Item -Recurse -Force *
 
-$names = switch ( (Get-WinSystemLocale).Name ) {
+$names = switch ((Get-Culture).Name) {
     zh-CN {
         @{
             at_desktop         = '快速设置'
@@ -36,121 +36,120 @@ $names = switch ( (Get-WinSystemLocale).Name ) {
     }
 }
 
+$isWin11 = $osbver -ge 22000
+
 $wshell = New-Object -comObject WScript.Shell
 
 function New-Shortcut([String]$name) {
     return $wshell.CreateShortcut("$PWD\$name.lnk")
 }
 
-function Set-ShortcutRequireAdmin($shortcut) {
+function Set-RunAsAdmin($shortcut) {
     $path = $shortcut.FullName
     $bytes = [System.IO.File]::ReadAllBytes($path)
     $bytes[0x15] = $bytes[0x15] -bor 0x20
     [System.IO.File]::WriteAllBytes($path, $bytes)
 }
 
-$iswin11 = [Environment]::OSVersion.Version.Build -ge 22000
-
-function Set-ShortcutDisableIcon($shortcut) {
-    $shortcut.IconLocation = if ($iswin11) { "imageres.dll,230" } else { "imageres.dll,229" }
+function Set-IconToEnable($shortcut) {
+    $shortcut.IconLocation = if ($isWin11) { "imageres.dll,233" } else { "imageres.dll,232" }
 }
 
-function Set-ShortcutEnableIcon($shortcut) {
-    $shortcut.IconLocation = if ($iswin11) { "imageres.dll,233" } else { "imageres.dll,232" }
+function Set-IconToDisable($shortcut) {
+    $shortcut.IconLocation = if ($isWin11) { "imageres.dll,230" } else { "imageres.dll,229" }
 }
 
-function Set-ShortcutRestartIcon($shortcut) {
-    $shortcut.IconLocation = if ($iswin11) { "imageres.dll,229" } else { "imageres.dll,228" }
-}
-
-function Set-ShortcutEditIcon($shortcut) {
+function Set-IconToEdit($shortcut) {
     $shortcut.IconLocation = "shell32.dll,269"
 }
 
-function Set-ShortcutDeleteFileIcon($shortcut) {
+function Set-IconToRestart($shortcut) {
+    $shortcut.IconLocation = if ($isWin11) { "imageres.dll,229" } else { "imageres.dll,228" }
+}
+
+function Set-IconToCleanFile($shortcut) {
     $shortcut.IconLocation = "shell32.dll,152"
 }
 
-function Set-ShortcutConfigIcon($shortcut) {
-    $shortcut.IconLocation = "shell32.dll,314"
+function Set-IconToConfig($shortcut) {
+    $shortcut.IconLocation = "shell32.dll,21"
 }
 
-function Set-ShortcutDeleteFileIcon($shortcut) {
-    $shortcut.IconLocation = "shell32.dll,152"
+if ($osbver -ge 17763) {
+    $it = New-Shortcut $names.enable_darkmode
+    $it.TargetPath = "reg"
+    $it.Arguments = "add HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize /v AppsUseLightTheme /t REG_DWORD /d 0 /f"
+    Set-IconToEnable $it
+    $it.Save()
+
+    $it = New-Shortcut $names.disable_darkmode
+    $it.TargetPath = "reg"
+    $it.Arguments = "add HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize /v AppsUseLightTheme /t REG_DWORD /d 1 /f"
+    Set-IconToDisable $it
+    $it.Save()
 }
-
-$it = New-Shortcut $names.enable_darkmode
-$it.TargetPath = "reg"
-$it.Arguments = "add HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize /v AppsUseLightTheme /t REG_DWORD /d 0 /f"
-Set-ShortcutEnableIcon $it
-$it.Save()
-
-$it = New-Shortcut $names.disable_darkmode
-$it.TargetPath = "reg"
-$it.Arguments = "add HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize /v AppsUseLightTheme /t REG_DWORD /d 1 /f"
-Set-ShortcutDisableIcon $it
-$it.Save()
 
 $it = New-Shortcut $names.edit_hosts
 $it.TargetPath = "notepad"
 $it.Arguments = "C:\Windows\system32\drivers\etc\hosts"
-Set-ShortcutEditIcon $it
+Set-IconToEdit $it
 $it.Save()
-Set-ShortcutRequireAdmin $it
+Set-RunAsAdmin $it
 
 $it = New-Shortcut $names.flushdns
 $it.TargetPath = "ipconfig"
 $it.Arguments = "/flushdns"
-Set-ShortcutRestartIcon $it
+Set-IconToRestart $it
 $it.Save()
-Set-ShortcutRequireAdmin $it
+Set-RunAsAdmin $it
 
 $it = New-Shortcut $names.restartexp
 $it.TargetPath = "powershell"
 $it.Arguments = "-c kill -n explorer"
-Set-ShortcutRestartIcon $it
+Set-IconToRestart $it
 $it.Save()
 
 $it = New-Shortcut $names.edit_desktopicon
 $it.TargetPath = "control"
 $it.Arguments = "desk.cpl,,0"
+Set-IconToConfig $it
 $it.Save()
 
 $it = New-Shortcut $names.enable_hyperv
 $it.TargetPath = "bcdedit"
 $it.Arguments = "/set {current} hypervisorlaunchtype auto"
-Set-ShortcutEnableIcon $it
+Set-IconToEnable $it
 $it.Save()
-Set-ShortcutRequireAdmin $it
+Set-RunAsAdmin $it
 
 $it = New-Shortcut $names.disable_hyperv
 $it.TargetPath = "bcdedit"
 $it.Arguments = "/set {current} hypervisorlaunchtype off"
-Set-ShortcutDisableIcon $it
+Set-IconToDisable $it
 $it.Save()
-Set-ShortcutRequireAdmin $it
+Set-RunAsAdmin $it
 
 $it = New-Shortcut $names.clear_histpwsh
 $it.TargetPath = "powershell"
 $it.Arguments = "-c cmd /c del %APPDATA%\Microsoft\Windows\PowerShell\PSReadLine\ConsoleHost_history.txt"
-Set-ShortcutDeleteFileIcon $it
+Set-IconToCleanFile $it
 $it.Save()
 
-if ($iswin11) {
+if ($isWin11) {
     $it = New-Shortcut $names.enable_w11ctxmenu
     $it.TargetPath = "reg"
     $it.Arguments = "add HKCU\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\InprocServer32 /f /ve"
-    Set-ShortcutEnableIcon $it
+    Set-IconToEnable $it
     $it.Save()
 
     $it = New-Shortcut $names.disable_w11ctxmenu
     $it.TargetPath = "reg"
     $it.Arguments = "delete HKCU\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\InprocServer32 /f /ve"
-    Set-ShortcutDisableIcon $it
+    Set-IconToDisable $it
     $it.Save()
 }
 
 $it = $wshell.CreateShortcut("C:\Users\Public\Desktop\$($names.at_desktop).lnk")
 $it.TargetPath = "$PWD"
-Set-ShortcutConfigIcon $it
+$it.IconLocation = 'control.exe'
 $it.Save()

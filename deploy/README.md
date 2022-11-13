@@ -46,13 +46,18 @@ Download into `.\deploy`
 
 ### For Developers
 
-- Chocolatey: Packages Manager
+- VSCode
 
-  [Download Installer directly](https://community.chocolatey.org/api/v2/package/chocolatey)
+  Download Installer directly:
+  [x64](https://code.visualstudio.com/sha/download?build=stable&os=win32-x64)
+  |
+  [Arm64](https://code.visualstudio.com/sha/download?build=stable&os=win32-arm64)
+  |
+  [x86](https://code.visualstudio.com/sha/download?build=stable&os=win32)
 
-- gsudo: acquire administration privilege
+- PowerShell Core: better than classic PowerShell
 
-  [Download GitHub Release directly](https://github.com/gerardog/gsudo/releases/latest/download/gsudoSetup.msi)
+  Find `win-x64.msi` at [Official GitHub Release](https://aka.ms/powershell-release?tag=stable)
 
 - Sysinternals: advanced system utilities and technical information
 
@@ -62,17 +67,27 @@ Download into `.\deploy`
 
   [Official Download Page](https://gitforwindows.org/)
 
-- PowerShell Core: better than classic PowerShell
-
-  Find `win-x64.msi` at [Official GitHub Release](https://aka.ms/powershell-release?tag=stable)
-
 - gVim: text editor Vim with GUI
 
   Click "Last modified" and find the latest `.exe` at [Official Download Page](https://ftp.nluug.nl/pub/vim/pc/)
 
+- Chocolatey: Packages Manager
+
+  [Download Installer directly](https://community.chocolatey.org/api/v2/package/chocolatey)
+
+- gsudo: acquire administration privilege
+
+  [Download GitHub Release directly](https://github.com/gerardog/gsudo/releases/latest/download/gsudoSetup.msi)
+
+- ImDisk Toolkit: ramdisk for Windows and mounting of image files
+
+  [Official Download Page](https://sourceforge.net/projects/imdisk-toolkit/files/latest/download)
+
 - VirtualBox: free open source virtualization platform by Oracle
 
   Find `Windows hosts` at [Official Download Page](https://www.virtualbox.org/wiki/Downloads#VirtualBoxbinaries)
+
+<details><summary>Optional ...</summary><br/>
 
 - OpenSSH: fix the bug of internal version of SSH
 
@@ -80,9 +95,7 @@ Download into `.\deploy`
 
   find `OpenSSH-Win64-v` at [Official GitHub Page](https://github.com/PowerShell/Win32-OpenSSH/releases/latest)
 
-- ImDisk Toolkit: ramdisk for Windows and mounting of image files
-
-  [Official Download Page](https://sourceforge.net/projects/imdisk-toolkit/files/latest/download)
+</details><br/>
 
 ### Portable Applications
 
@@ -91,7 +104,7 @@ unpack it into current repository
 
 ### Miscellaneous
 
-Manuall Installers, put them into `.\archived`
+Manuall Installers, put them into `.\manual`
 
 - Brave: Free Chromium Distribution
 
@@ -101,11 +114,13 @@ Manuall Installers, put them into `.\archived`
 
   [Get Online Installer](https://setup.office.com/)
 
-Hardware Drivers:
+<details><summary>Hardware Drivers ...</summary><br/>
 
 - Logi Options+
 
   [Get Online Installer](https://www.logitech.com/software/logi-options-plus.html)
+
+</details><br/>
 
 ## Signature Verification
 

@@ -1,10 +1,12 @@
 /log/
-/tmp/
-/archived/
+/manual/
+/*.ps1
 /*.exe
 /*.msi
+/*.msixbundle
 /*.zip
 /*.nupkg
 /*.ttf
 /*.ttc
 /*.otf
+/*.msu

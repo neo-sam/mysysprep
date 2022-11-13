@@ -11,7 +11,9 @@ if (!$PSSenderInfo) {
 
 Start-Process -Wait $pkg "/LOADINF=config/git.ini /SILENT /SUPPRESSMSGBOXES /NORESTART /SP-"
 
-Push-SystemPath "C:\Program Files\Git\bin"
+# CUSTOM:
+
+Push-SystemPath 'C:\Program Files\Git\bin'
 
 if (Test-Path ($it = 'config\.minttyrc')) {
     if (!(Test-Path ($that = "$env:USERPROFILE\.minttyrc"))) {
