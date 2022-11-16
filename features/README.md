@@ -2,7 +2,7 @@ Translation: [中文](./README_ZH.md)
 
 | name                        | usage                                                    |
 | --------------------------- | -------------------------------------------------------- |
-| addDocument                 | add documentation                                        |
+| addDocuments                | add documentation                                        |
 | addNewIsolatedUserScript    | add "New Privacy-isolated User" guidance into Start Menu |
 | addProfileToPwsh            | add preferred PowerShell profile                         |
 | addQuickSettings            |                                                          |

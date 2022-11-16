@@ -1,4 +1,6 @@
 #Requires -RunAsAdministrator
 
-Set-Service ssh-agent -StartupType Automatic
-Start-Service ssh-agent
+if ($it = Get-Service -ea 0 ssh-agent) {
+    $it | Set-Service -StartupType Automatic
+    $it | Start-Service
+}

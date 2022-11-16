@@ -24,7 +24,7 @@ if ($cfg.biggerThumbnail) {
 }
 
 # Only Windows 11
-if ([Environment]::OSVersion.Version.Build -ge 22000) {
+if ($osver.Major -eq 11) {
     if ($cfg.optimize) {
         $regkey = Get-RegItemOrNew 'HKLM:\SYSTEM\CurrentControlSet\Control\FeatureManagement\Overrides\4\1887869580'
         Set-ItemProperty $regkey EnabledState 2
@@ -64,28 +64,32 @@ else {
             Get-CurrentAndNewUserPaths 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced'
         ) TaskbarGlomLevel 1
     }
-    if ($cfg.win10noAd) {
-        $regkeys = Get-CurrentAndNewUserPaths 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Feeds'
-        Set-ItemProperty $regkeys ShellFeedsTaskbarViewMode 2
-        Set-ItemProperty $regkeys ShellFeedsTaskbarContentUpdateMode 1
-        Set-ItemProperty $regkeys ShellFeedsTaskbarOpenOnHover 0
-    }
-    if ($cfg.win10noPeople) {
-        Set-ItemProperty (
-            Get-CurrentAndNewUserPaths 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced\People'
-        ) PeopleBand 0
-    }
-    if ($cfg.win10noCortana) {
-        Set-ItemProperty (
-            Get-CurrentAndNewUserPaths 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced'
-        ) ShowCortanaButton 0
-    }
-    if ($cfg.win10noSearchBar) {
-        Set-ItemProperty (
-            Get-CurrentAndNewUserPaths 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Search'
-        ) SearchboxTaskbarMode 1
-    }
-    if ($cfg.win10oldVolumeMixer) {
-        Set-ItemProperty 'HKLM:\Software\Microsoft\Windows NT\CurrentVersion\MTCUVC' EnableMtcUvc 0
+    if ($osver.Major -eq 10) {
+        if ($cfg.win10noAd) {
+            $regkeys = Get-CurrentAndNewUserPaths 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Feeds'
+            Set-ItemProperty $regkeys ShellFeedsTaskbarViewMode 2
+            Set-ItemProperty $regkeys ShellFeedsTaskbarContentUpdateMode 1
+            Set-ItemProperty $regkeys ShellFeedsTaskbarOpenOnHover 0
+        }
+        if ($cfg.win10noPeople) {
+            Set-ItemProperty (
+                Get-CurrentAndNewUserPaths 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced\People'
+            ) PeopleBand 0
+        }
+        if ($cfg.win10noCortana) {
+            Set-ItemProperty (
+                Get-CurrentAndNewUserPaths 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced'
+            ) ShowCortanaButton 0
+        }
+        if ($cfg.win10noSearchBar) {
+            Set-ItemProperty (
+                Get-CurrentAndNewUserPaths 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Search'
+            ) SearchboxTaskbarMode 1
+        }
+        if ($cfg.win10oldVolumeMixer) {
+            Set-ItemProperty (
+                Get-RegItemOrNew 'HKLM:\Software\Microsoft\Windows NT\CurrentVersion\MTCUVC'
+            )  EnableMtcUvc 0
+        }
     }
 }

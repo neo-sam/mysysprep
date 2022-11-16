@@ -1,6 +1,6 @@
 | 名称                        | 作用                               |
 | --------------------------- | ---------------------------------- |
-| addDocument                 | 添加实用说明文档                   |
+| addDocuments                | 添加实用说明文档                   |
 | addNewIsolatedUserScript    | 添加“新数据保护隔离账号”到开始菜单 |
 | addProfileToPwsh            | 添加推荐的 PowerShell 配置         |
 | addQuickSettings            | 添加实用的快捷方式                 |

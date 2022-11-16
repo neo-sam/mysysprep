@@ -7,4 +7,4 @@
 
 To load config variables, run:
 
-    . .\tools\Import-Config.ps1
+    . .\tools\Import-Library.ps1

@@ -4,7 +4,7 @@ Auto setup or config Your Windows by One Click.
 
 This README is also available in: [中文](./README_ZH.md)
 
-Apply to: Win11/Win10
+Suitable: Win11/Win10, [Win7](./win7/README.md). x64 CPU arch.
 
 ## How To Use?
 

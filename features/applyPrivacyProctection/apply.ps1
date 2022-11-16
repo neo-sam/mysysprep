@@ -37,4 +37,12 @@ Set-ItemProperty (
 ) DisableTelemetry 1
 
 Disable-BundledService dmwappushservice, DiagTrack
-Disable-BundledTask Consolidator, UsbCeip, DmClient, DmClientOnScenarioDownload
+
+& {
+    schtasks /Change /TN "Microsoft\Windows\Customer Experience Improvement Program\Consolidator" /Disable
+    schtasks /Change /TN "Microsoft\Windows\Customer Experience Improvement Program\UsbCeip" /Disable
+    if ($osver.Build -gt 7601) {
+        schtasks /Change /TN "Microsoft\Windows\Feedback\Siuf\DmClient" /Disable
+        schtasks /Change /TN "Microsoft\Windows\Feedback\Siuf\DmClientOnScenarioDownload" /Disable
+    }
+}>$null

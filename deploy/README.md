@@ -55,6 +55,15 @@ Download into `.\deploy`
   |
   [x86](https://code.visualstudio.com/sha/download?build=stable&os=win32)
 
+  <details> <summary>Support Latest Windows 7 Version: <b>1.70.3</b></summary>
+
+  Download Installer directly:
+  [x64](https://update.code.visualstudio.com/1.70.2/win32-x64/stable)
+  |
+  [Arm64](https://update.code.visualstudio.com/1.70.2/win32-arm64-user/stable)
+
+  </details><br/>
+
 - PowerShell Core: better than classic PowerShell
 
   Find `win-x64.msi` at [Official GitHub Release](https://aka.ms/powershell-release?tag=stable)

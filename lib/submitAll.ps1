@@ -26,13 +26,15 @@ Confirm: start to SYSPREP.EXE now?
                 'OKCancel', 'Warning'))
     ) {
         & 'C:\Windows\System32\Sysprep\Sysprep.exe' /oobe /generalize /shutdown
+        exit
     }
 }
-else {
-    if ('OK' -eq ([System.Windows.MessageBox]::Show('Restart File Explorer to finish?', 'sysprep-go.ps1',
-                'OKCancel', 'Warning'))
-    ) {
-        Stop-Process -Name explorer
-    }
+
+if ('OK' -eq (
+        [System.Windows.MessageBox]::Show('Restart File Explorer to finish?', 'sysprep-go.ps1',
+            'OKCancel', 'Warning')
+    )) {
+    Stop-Process -Name explorer
 }
+
 [Console]::ReadKey()>$null

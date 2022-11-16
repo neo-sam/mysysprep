@@ -13,6 +13,10 @@ if ($cfg.useRecylebinForUdisk) {
     ) RecycleBinDrives 0xffffffff
 }
 
+if ($cfg.showDevicesOnlyInThisPc) {
+    Import-RegFile showDevicesOnlyInThisPc.reg
+}
+
 if ($cfg.optimizePerformance) {
     Set-ItemProperty (
         Get-CurrentAndNewUserPaths 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced'

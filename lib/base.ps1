@@ -68,7 +68,9 @@ function Repair-HidpiCompatibility([string[]]$paths = @()) {
         if ($_ -ne $null) { $paths += ([IO.FileInfo]$_).FullName }
     }end {
         foreach ($path in $paths) {
-            Set-ItemProperty 'HKLM:\Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers' $path '~ HIGHDPIAWARE'
+            if (!( Test-Path ($it = 'HKLM:\Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers')
+                )) { mkdir -f $it >$null }
+            Set-ItemProperty $it $path '~ HIGHDPIAWARE'
         }
     }
 }

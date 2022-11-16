@@ -3,18 +3,28 @@ $names = switch ((Get-Culture).Name) {
     Default { @{ userProfile = 'User Profile' } }
 }
 
-$osbver = [Environment]::OSVersion.Version.Build
+$osver = [Environment]::OSVersion.Version
 
 function Get-RegItemOrNew([string]$path) {
-    if (Test-Path $path) {
-        return (Get-Item $path).PSPath
-    }
-    else {
-        return (mkdir -f $path).PSPath
-    }
+    if (Test-Path $path) { (Get-Item $path).PSPath }
+    else { (mkdir -f $path).PSPath }
 }
 
 $showIcoRegkey = Get-RegItemOrNew 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\HideDesktopIcons\NewStartPanel'
+function Show-DesktopIcon([string]$guid) {
+    Set-ItemProperty $showIcoRegkey "{$guid}" 0
+}
+function Hide-DesktopIcon([string]$guid) {
+    Set-ItemProperty $showIcoRegkey "{$guid}" 1
+}
+
+function Add-ExplorerSidebar([string]$guid, [string]$order = $null) {
+    $item = Get-RegItemOrNew "HKCU:\Software\Classes\CLSID\{$guid}"
+    Set-ItemProperty $item System.IsPinnedToNameSpaceTree 1
+    if ($order) {
+        Set-ItemProperty $item SortOrderIndex $order
+    }
+}
 
 function addDesktopIconConfigMenuItem {
     $regkey = Get-RegItemOrNew 'HKCU:\Software\Classes\DesktopBackground\Shell\DesktopIcon'
@@ -26,28 +36,30 @@ function addDesktopIconConfigMenuItem {
     ) 'control desk.cpl,,0'
 }
 
-function showUserFolderAtDesktop {
-    Set-ItemProperty $showIcoRegkey '{59031A47-3F72-44A7-89C5-5595FE6B30EE}' 0
+function showUserProfileIcon {
+    $guid = '59031A47-3F72-44A7-89C5-5595FE6B30EE'
+
+    Show-DesktopIcon $guid
+    Add-ExplorerSidebar $guid
+
     Set-Item (
-        Get-RegItemOrNew 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\CLSID\{59031A47-3F72-44A7-89C5-5595FE6B30EE}'
+        Get-RegItemOrNew "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\CLSID\{$guid}"
     ) $names.userProfile
-    Set-ItemProperty (
-        Get-RegItemOrNew 'HKCU:\Software\Classes\CLSID\{59031a47-3f72-44a7-89c5-5595fe6b30ee}'
-    ) System.IsPinnedToNameSpaceTree 1
 }
 
-function showLibrariesAtDesktop {
-    Set-ItemProperty $showIcoRegkey '{031E4825-7B94-4dc3-B131-E946B44C8DD5}' 0
-    Set-ItemProperty (
-        Get-RegItemOrNew 'HKCU:\Software\Classes\CLSID\{031E4825-7B94-4dc3-B131-E946B44C8DD5}'
-    ) System.IsPinnedToNameSpaceTree 1
+function showLibrariesIcon {
+    $guid = '031E4825-7B94-4dc3-B131-E946B44C8DD5'
+
+    Show-DesktopIcon $guid
+    Add-ExplorerSidebar $guid -order 1
 }
 
-function showThisPcAtDesktop {
-    Set-ItemProperty $showIcoRegkey '{20D04FE0-3AEA-1069-A2D8-08002B30309D}' 0
+function showThisPcIcon {
+    Show-DesktopIcon '20D04FE0-3AEA-1069-A2D8-08002B30309D'
+    Add-ExplorerSidebar $guid
 }
 
-function showNetworkInterfacesAtDesktop {
+function showInterfacesIconAtDesktop {
     Set-Item (
         Get-RegItemOrNew 'HKCU:\Software\Classes\CLSID\{7007ACC7-3202-11D1-AAD2-00805FC1270E}\DefaultIcon'
     ) "imageres.dll,114"
@@ -55,20 +67,25 @@ function showNetworkInterfacesAtDesktop {
     Get-RegItemOrNew 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Desktop\NameSpace\{7007ACC7-3202-11D1-AAD2-00805FC1270E}' >$null
 }
 
-function showRecentFoldersInExplorerSidebar {
-    $icon = if ($osbver -lt 22000) { "shell32.dll,319" } else { "shell32.dll,316" }
-    Set-Item (
-        Get-RegItemOrNew 'HKCU:\Software\Classes\CLSID\{22877A6D-37A1-461A-91B0-DBDA5AAEBC99}\DefaultIcon'
-    ) $icon
-    Set-ItemProperty (
-        Get-RegItemOrNew 'HKCU:\Software\Classes\CLSID\{22877A6D-37A1-461A-91B0-DBDA5AAEBC99}'
-    ) System.IsPinnedToNamespaceTree 1
+function showRecyleBinIconAtExplorerSidebar {
+    Add-ExplorerSidebar '645FF040-5081-101B-9F08-00AA002F954E'
 }
 
-function showRecyleBinInExplorerSidebar {
-    Set-ItemProperty (
-        Get-RegItemOrNew 'HKCU:\Software\Classes\CLSID\{645FF040-5081-101B-9F08-00AA002F954E}'
-    ) System.IsPinnedToNameSpaceTree 1
+function showRecentFoldersIconAtExplorerSidebar {
+    $guid = '22877A6D-37A1-461A-91B0-DBDA5AAEBC99'
+    Get-RegItemOrNew "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Desktop\NameSpace\{$guid}" >$null
+
+    Add-ExplorerSidebar $guid
+    Hide-DesktopIcon $guid
+
+    $icon = switch ($osver.Major) {
+        6 { 'imageres.dll,112' }
+        10 { 'shell32.dll,316' }
+        11 { 'shell32.dll,319' }
+    }
+    Set-Item (
+        Get-RegItemOrNew "HKCU:\Software\Classes\CLSID\{$guid}\DefaultIcon"
+    ) $icon
 }
 
 Remove-Item -Force "$([Environment]::GetFolderPath('Desktop'))\Firstrun.lnk" -ea 0

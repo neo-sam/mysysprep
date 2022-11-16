@@ -1,4 +1,28 @@
-#Requires -RunAsAdministrator
+if (!(
+        [Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()
+    ).IsInRole([Security.Principal.WindowsBuiltInRole] 'Administrator')
+) {
+    Write-Error 'Require to run as the Administrator.'
+    [Console]::ReadKey()>$null
+    exit
+}
+
+if ($PSVersionTable.PSVersion.Major -lt 5) {
+    Add-Type -AssemblyName PresentationFramework
+    if ([System.Windows.MessageBox]::Show('Please update to PowerShell 5 on Windows 7!',
+            'PowerShell Version is too old',
+            'OK', 'Warning') -eq 'OK'
+    ) {
+        if (!(Test-Path ($it = 'HKLM:\Software\Classes\.md'))) {
+            Set-Item (mkdir -f $it).PSPath "md_auto_file"
+            Set-Item (
+                mkdir -f "HKLM:\Software\Classes\md_auto_file\shell\edit\command"
+            ).PSPath "`"C:\Windows\system32\notepad.exe`" `"%1`""
+        }
+        Start-Process .\win7
+    }
+    exit
+}
 
 Stop-Process -Name sysprep -ea 0
 
@@ -52,7 +76,7 @@ while ($job = Get-JobOrWait) {
     try {
         Receive-Job $job -ErrorAction Stop
         Write-Host -ForegroundColor Green `
-            "Succeeded: $name"
+            "Succeeded: $name $('({0:F2}s)' -f ($job.PsEndTime - $job.PsBeginTime).TotalSeconds)"
     }
     catch {
         Write-Host -ForegroundColor Red @"

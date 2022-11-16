@@ -1,7 +1,7 @@
 # Please edit below flags: set 0 to 1 meaning enable it
 
 $Script:features = [ordered]@{
-    addDocument                 = 0
+    addDocuments                 = 0
     addNewIsolatedUserScript    = 0
     addProfileToPwsh            = 0
     addQuickSettings            = 0
@@ -40,13 +40,13 @@ $Script:it = $null
 
 if ($features.addUserFirstRun -ne 0) {
     $features.addUserFirstRun = [ordered]@{
-        addDesktopIconConfigMenuItem       = 0
-        showUserFolderAtDesktop            = 0
-        showLibrariesAtDesktop             = 0
-        showThisPcAtDesktop                = 0
-        showNetworkInterfacesAtDesktop     = 0
-        showRecentFoldersInExplorerSidebar = 0
-        showRecyleBinInExplorerSidebar     = 0
+        addDesktopIconConfigMenuItem           = 0
+        showUserProfileIcon                    = 0
+        showLibrariesIcon                      = 0
+        showThisPcIcon                         = 0
+        showInterfacesIconAtDesktop            = 0
+        showRecyleBinIconAtExplorerSidebar     = 0
+        showRecentFoldersIconAtExplorerSidebar = 0
     }
 }
 
@@ -73,12 +73,17 @@ if ($features.tweakIme -ne 0) {
 }
 
 if ($features.tweakNewFileTypes -ne 0) {
-    $features.tweakNewFileTypes = @{
-        removeBmp = 0
-        removeRtf = 0
-        addCmd    = 0
-        addMd     = 0
-        addPs1    = 0
+    $features.tweakNewFileTypes = [ordered]@{
+        addCmd        = 0
+        addMd         = 0
+        addPs1        = 0
+        addIni        = 0
+        addReg        = 0
+        removeBmp     = 0
+        removeRtf     = 0
+        # Windows 7:
+        removeContact = 0
+        removeJnt     = 0
     }
 }
 

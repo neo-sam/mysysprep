@@ -13,7 +13,7 @@ $names = switch ((Get-Culture).Name) {
             restartexp         = '重启文件资源管理器'
             enable_hyperv      = '激活 - HyperV (需重启)'
             disable_hyperv     = '禁用 - HyperV (需重启)'
-            clear_histpwsh     = '清除 - PowerShell 历史记录'
+            clear_pwshhist     = '清除 - PowerShell 历史记录'
             enable_w11ctxmenu  = '激活 - 新风格菜单 (需注销)'
             disable_w11ctxmenu = '禁用 - 新风格菜单 (需注销)'
         }
@@ -29,7 +29,7 @@ $names = switch ((Get-Culture).Name) {
             restartexp         = 'Restart Explorer'
             enable_hyperv      = 'Enable - HyperV (need Reboot)'
             disable_hyperv     = 'Disable - HyperV (need Reboot)'
-            clear_histpwsh     = 'Clear - History of PowerShell'
+            clear_pwshhist     = 'Clear - History of PowerShell'
             enable_w11ctxmenu  = 'Enable - New Design Context Menu (need Relogin)'
             disable_w11ctxmenu = 'Disable - New Design Context Menu (need Relogin)'
         }
@@ -52,23 +52,45 @@ function Set-RunAsAdmin($shortcut) {
 }
 
 function Set-IconToEnable($shortcut) {
-    $shortcut.IconLocation = if ($isWin11) { "imageres.dll,233" } else { "imageres.dll,232" }
+    $shortcut.IconLocation = switch ($osver.Major) {
+        6 { 'imageres.dll,101' }
+        10 { 'imageres.dll,232' }
+        11 { 'imageres.dll,233' }
+    }
 }
 
 function Set-IconToDisable($shortcut) {
-    $shortcut.IconLocation = if ($isWin11) { "imageres.dll,230" } else { "imageres.dll,229" }
+    $shortcut.IconLocation = switch ($osver.Major) {
+        6 { 'imageres.dll,100' }
+        10 { 'imageres.dll,229' }
+        11 { 'imageres.dll,230' }
+    }
+}
+
+function Set-IconToEnableInAdmin($shortcut) {
+    $shortcut.IconLocation = 'imageres.dll,101'
+}
+
+function Set-IconToDisableInAdmin($shortcut) {
+    $shortcut.IconLocation = 'imageres.dll,100'
 }
 
 function Set-IconToEdit($shortcut) {
-    $shortcut.IconLocation = "shell32.dll,269"
+    $shortcut.IconLocation = switch ($osver.Major) {
+        6 { 'notepad.exe' }
+        Default { 'shell32.dll,269' }
+    }
 }
 
 function Set-IconToRestart($shortcut) {
-    $shortcut.IconLocation = if ($isWin11) { "imageres.dll,229" } else { "imageres.dll,228" }
+    $shortcut.IconLocation = 'imageres.dll,63'
 }
 
 function Set-IconToCleanFile($shortcut) {
-    $shortcut.IconLocation = "shell32.dll,152"
+    $shortcut.IconLocation = switch ($osver.Major) {
+        6 { 'shell32.dll,271' }
+        Default { 'shell32.dll,152' }
+    }
 }
 
 function Set-IconToConfig($shortcut) {
@@ -118,18 +140,18 @@ $it.Save()
 $it = New-Shortcut $names.enable_hyperv
 $it.TargetPath = "bcdedit"
 $it.Arguments = "/set {current} hypervisorlaunchtype auto"
-Set-IconToEnable $it
+Set-IconToEnableInAdmin $it
 $it.Save()
 Set-RunAsAdmin $it
 
 $it = New-Shortcut $names.disable_hyperv
 $it.TargetPath = "bcdedit"
 $it.Arguments = "/set {current} hypervisorlaunchtype off"
-Set-IconToDisable $it
+Set-IconToDisableInAdmin $it
 $it.Save()
 Set-RunAsAdmin $it
 
-$it = New-Shortcut $names.clear_histpwsh
+$it = New-Shortcut $names.clear_pwshhist
 $it.TargetPath = "powershell"
 $it.Arguments = "-c cmd /c del %APPDATA%\Microsoft\Windows\PowerShell\PSReadLine\ConsoleHost_history.txt"
 Set-IconToCleanFile $it

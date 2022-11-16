@@ -1,6 +1,7 @@
 $features.tweakExplorer = @{
-    showFileExtension    = 1
-    useRecylebinForUdisk = 1
-    optimizePerformance  = 1
-    optimize             = 1
+    showFileExtension       = 1
+    showDevicesOnlyInThisPc = 1
+    useRecylebinForUdisk    = 1
+    optimizePerformance     = 1
+    optimize                = 1
 }

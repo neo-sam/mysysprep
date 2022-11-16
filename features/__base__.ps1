@@ -1,11 +1,12 @@
 . .\lib\base.ps1
 . .\lib\prepareForRegOfAllUsers.ps1
 
+$Script:osver = [Environment]::OSVersion.Version
 $Script:osbver = [Environment]::OSVersion.Version.Build
 
 function Disable-BundledService([String[]]$names) {
-    $services = Get-Service $names | Where-Object { $_.StartType -ne 'Disabled' }
-    $services | Stop-Service
+    $services = Get-Service -ea 0 $names | Where-Object { $_.StartType -ne 'Disabled' }
+    $services | Stop-Service -ea 0
     $services | Set-Service -StartupType Disabled
 }
 

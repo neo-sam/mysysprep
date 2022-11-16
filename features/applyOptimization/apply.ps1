@@ -16,9 +16,7 @@ if (Get-Command -ea 0 Get-PhysicalDisk) {
 }
 
 # No crash report or capbility check
-Disable-BundledService WerSvc
-Set-Service PcaSvc -StartupType Disabled
-Stop-Service PcaSvc -ea 0
+Disable-BundledService PcaSvc, WerSvc
 
 <#
 # Windows10 only: colorize window title

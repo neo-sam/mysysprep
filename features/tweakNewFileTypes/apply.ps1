@@ -1,21 +1,35 @@
 #Requires -RunAsAdministrator
 param($cfg)
 
-if ($cfg.removeBmp) { Remove-Item HKLM:\SOFTWARE\Classes\.bmp\ShellNew -ea 0 }
-if ($cfg.removeRtf) { Remove-Item HKLM:\SOFTWARE\Classes\.rtf\ShellNew -ea 0 }
+function Remove-NewFileType([string]$ext) {
+    Remove-Item -ea 0 "HKLM:\SOFTWARE\Classes\$ext\ShellNew"
+}
+
+function Add-NewFileType([string]$ext) {
+    Set-ItemProperty ( Get-RegItemOrNew `
+            "HKLM:\SOFTWARE\Classes\$ext\ShellNew") NullFile ''
+}
+
+if ($cfg.removeBmp) { Remove-NewFileType .bmp }
+if ($cfg.removeRtf) { Remove-NewFileType .rtf }
+# Windows 7:
+if ($cfg.removeContact) { Remove-NewFileType .contact }
+if ($cfg.removeJnt) {
+    Remove-Item -ea 0 'HKLM:\SOFTWARE\Classes\.jnt\jntfile\ShellNew'
+}
 
 if ($cfg.addMd) {
-    if ($null -eq (Get-ItemProperty ($it = 'HKLM:\SOFTWARE\Classes\.md')).'(default)') {
+    Add-NewFileType .md
+
+    if ($null -eq (Get-ItemProperty -ea 0 ($it = 'HKLM:\SOFTWARE\Classes\.md')).'(default)') {
         Set-Item (Get-RegItemOrNew $it) 'VSCode.md'
     }
-    Set-ItemProperty (Get-RegItemOrNew "$it\ShellNew") NullFile ''
 }
 
-if ($cfg.addCmd) {
-    Set-ItemProperty ( Get-RegItemOrNew `
-            'HKLM:\SOFTWARE\Classes\.cmd\ShellNew') NullFile ''
-}
-if ($cfg.addPs1) {
-    Set-ItemProperty ( Get-RegItemOrNew `
-            'HKLM:\SOFTWARE\Classes\.ps1\ShellNew') NullFile ''
-}
+if ($cfg.addCmd) { Add-NewFileType .cmd }
+
+if ($cfg.addPs1) { Add-NewFileType .ps1 }
+
+if ($cfg.addIni) { Add-NewFileType .ini }
+
+if ($cfg.addReg) { Add-NewFileType .reg }

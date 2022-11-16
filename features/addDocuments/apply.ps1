@@ -33,15 +33,19 @@ function New-DocShortcut([string]$id, [string]$name, [string]$icon = $null) {
     $it.save()
 }
 
+$readmeIcon = if ($osver.Major -lt 7) { 'imageres.dll,203' } else { 'imageres.dll,204' }
 New-DocShortcut readme (
     Get-Translation 'README' -cn '自述文件'
-) 'shell32.dll,208'
+) $readmeIcon
+
 New-DocShortcut input (
-    Get-Translation 'Input & Keyboard' -cn '键盘与输入法'
-) 'ddores.dll,28'
+    Get-Translation 'Keyboard & Input' -cn '键盘与输入法'
+) 'imageres.dll,173'
+
 New-DocShortcut options (
     Get-Translation 'Options' -cn '选项'
 ) 'control.exe'
+
 if (Get-Module -ListAvailable Appx) {
     if (Get-AppxPackage Microsoft.WindowsStore) {
         New-DocShortcut store (
@@ -49,6 +53,7 @@ if (Get-Module -ListAvailable Appx) {
         ) 'explorer.exe,17'
     }
 }
+
 if ($osbver -ge 18362) { New-DocShortcut wsl2 WSL2 'wsl.exe' }
 
 $it = $ws.CreateShortcut("$linksFolderPath\$(

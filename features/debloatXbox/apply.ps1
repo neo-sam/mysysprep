@@ -1,5 +1,7 @@
 #Requires -RunAsAdministrator
 
+if ($osbver.Major -lt 7) { exit }
+
 Disable-BundledService XblAuthManager, XblGameSave, XboxGipSvc, XboxNetApiSvc
 Disable-BundledTask XblGameSaveTask
 

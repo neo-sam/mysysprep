@@ -1,1 +1,1 @@
-$features.addDocument = 1
+$features.addDocuments = 1
