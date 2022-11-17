@@ -1,7 +1,10 @@
 . .\lib\base.ps1
 
 & .\lib\applyNewPinnedTaskbar.ps1
-if ($isAuditMode) { & .\lib\makeUnattendXmlFile.ps1 }
+if ($isAuditMode) {
+    & .\lib\Add-UnattendFile.ps1
+    Start-Process -WindowStyle Minimized notepad.exe C:\Windows\Panther\unattend.xml
+}
 
 if (Test-Path 'C:\Windows\System32\WindowsPowerShell\v1.0\profile.ps1') {
     try { Set-ExecutionPolicy -Scope LocalMachine RemoteSigned -Force }
@@ -25,6 +28,7 @@ Confirm: start to SYSPREP.EXE now?
                 'sysprep-go.ps1 | FINISHED!',
                 'OKCancel', 'Warning'))
     ) {
+        Stop-Process -Name explorer
         & 'C:\Windows\System32\Sysprep\Sysprep.exe' /oobe /generalize /shutdown
         exit
     }
