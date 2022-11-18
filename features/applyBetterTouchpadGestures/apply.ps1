@@ -1,3 +1,3 @@
 #Requires -RunAsAdministrator
 
-applyRegForMeAndDefault 'apply.reg'
+Import-RegFileForMeAndDefault 'apply.reg'

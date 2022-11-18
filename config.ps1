@@ -1,7 +1,9 @@
 # Please edit below flags: set 0 to 1 meaning enable it
 
+$Script:appFolderPath = 'C:\Program Files\win-sf'
+
 $Script:features = [ordered]@{
-    addDocuments                 = 0
+    addDocuments                = 0
     addNewIsolatedUserScript    = 0
     addProfileToPwsh            = 0
     addQuickSettings            = 0
@@ -110,10 +112,10 @@ if ($features.tweakTaskbar -ne 0) {
     }
 }
 
-$Script:skipDeploy = 0
+$Script:ignorePackages = 0
 
 $Script:unattend = [ordered]@{
-    oobeSkipEula           = 0
-    oobeSkipLoginMs        = 0
-    oobeSkipPrivacyOptions = 0
+    skipOobeEula           = 0
+    skipOobeMsLogin        = 0
+    skipOobePrivacyOptions = 0
 }

@@ -7,10 +7,11 @@ param(
 $name = (Get-Item $path).Name
 Push-Location "$PSScriptRoot\.."
 
-. .\lib\loadAllConfig.ps1
+.\lib\loadModules.ps1
+Import-Module ConfigLoader
 
 $object = if ($null -eq $InputObject) {
-    if ($flag = $features[$name]) { $flag }
+    if ($flag = Get-FeatureConfig $name) { $flag }
     else { 1 }
 }
 elseif ($InputObject.GetType() -eq [string]) {
@@ -20,7 +21,6 @@ else {
     $InputObject
 }
 
-. .\features\__base__.ps1
 try {
     Push-Location "$PSScriptRoot\$name"
     & .\apply.ps1 $object

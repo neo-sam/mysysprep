@@ -1,53 +1,41 @@
-if (!(
-        [Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()
-    ).IsInRole([Security.Principal.WindowsBuiltInRole] 'Administrator')
-) {
-    Write-Error 'Require to run as the Administrator.'
-    [Console]::ReadKey()>$null
-    exit
-}
+. .\lib\loadModules.ps1
+
+Stop-Process -ea 0 -Name sysprep
 
 if ($PSVersionTable.PSVersion.Major -lt 5) {
-    Add-Type -AssemblyName PresentationFramework
-    if ([System.Windows.MessageBox]::Show('Please update to PowerShell 5 on Windows 7!',
-            'PowerShell Version is too old',
-            'OK', 'Warning') -eq 'OK'
-    ) {
-        if (!(Test-Path ($it = 'HKLM:\Software\Classes\.md'))) {
-            Set-Item (mkdir -f $it).PSPath "md_auto_file"
-            Set-Item (
-                mkdir -f "HKLM:\Software\Classes\md_auto_file\shell\edit\command"
-            ).PSPath "`"C:\Windows\system32\notepad.exe`" `"%1`""
-        }
-        Start-Process .\win7
-    }
+    .\lib\doPowershellUpdate.ps1
     exit
 }
 
-Stop-Process -Name sysprep -ea 0
+if (!(Test-RunAsAdmin)) {
+    Write-Error 'Require to run as the Administrator.'
+    Read-AnyKey
+    exit
+}
 
-.\lib\checkToDeployManually.ps1
+if (Test-Path -Exclude .gitkeep ".\packages\manual\*") {
+    .\packages\lib\doManually.ps1
+    if ($LASTEXITCODE) { exit }
+}
 
-. .\lib\loadAllConfig.ps1
-
-. .\lib\base.ps1
-if ($isAuditMode) {
+if (Test-AuditMode) {
     net user Administrator /active:yes >$null
 }
 
-Write-Output '==> [features] start'
+Write-Output '==> Start to apply features'
 
 function getInitScript([string]$name) {
     return [scriptblock]::Create(
-        @("cd (`$proot='$(Get-Location)')",
-            '. features\__base__.ps1',
+        @("cd '$(Get-Location)'"
+            '.\lib\loadModules.ps1'
+            'Import-Module ConfigLoader'
             "cd features\$name"
         ) -join ';'
     )
 }
 
 foreach ($feature in Get-ChildItem .\features -Directory -Exclude _*) {
-    if ($cfg = $features[($name = $feature.Name)]) {
+    if ($cfg = Get-FeatureConfig ($name = $feature.Name)) {
         Start-Job -Name $name -FilePath ".\features\$name\apply.ps1" -ArgumentList $cfg `
             -InitializationScript (getInitScript $name) | Out-Null
 
@@ -60,7 +48,7 @@ foreach ($feature in Get-ChildItem .\features -Directory -Exclude _*) {
     }
 }
 
-Write-Output '==> [features] doing...', ''
+Write-Output '', 'Runing ...', ''
 
 function Get-JobOrWait {
     [OutputType([Management.Automation.Job])] param()
@@ -90,13 +78,21 @@ $($_.Exception.Message)
     }
 }
 
-Write-Output '==> [features] end', ''
+Write-Output 'OK!', ''
 
 try {
-    if (Test-Path .\deploy) {
-        & .\deploy\scripts\__main__.ps1
+    if ((Test-Path .\packages) -and !(Test-IgnorePackages)) {
+        & .\packages\lib\main.ps1
     }
-    & .\lib\submitAll.ps1
+
+    if (Test-Path 'C:\Windows\System32\WindowsPowerShell\v1.0\profile.ps1') {
+        try {
+            Set-ExecutionPolicy -Scope LocalMachine RemoteSigned -Force
+        }
+        catch [System.Security.SecurityException] {}
+    }
+
+    .\lib\submit.ps1
 }
 catch {
     Write-Error $_.Exception.Message

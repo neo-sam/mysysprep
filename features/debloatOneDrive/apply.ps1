@@ -1,7 +1,7 @@
 #Requires -RunAsAdministrator
 # reference: https://github.com/W4RH4WK/Debloat-Windows-10
 
-if ($osbver.Major -lt 7) { exit }
+if (Test-Windows7) { exit }
 
 Stop-Process -Name OneDrive -ea 0
 

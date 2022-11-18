@@ -1,13 +1,13 @@
 #Requires -RunAsAdministrator
 param($cfg)
 
-$regkeys = Get-CurrentAndNewUserPaths 'HKCU:\Software\Microsoft\InputMethod\CandidateWindow\CHS\1'
+$regpath = 'HKCU:\Software\Microsoft\InputMethod\CandidateWindow\CHS\1'
 
 if ($cfg.candidates -gt 0) {
-    Set-ItemProperty $regkeys EnableFixedCandidateCountMode 1
-    Set-ItemProperty $regkeys MaxCandidates $cfg.candidates
+    Set-ItemPropertyWithDefaultUser $regpath EnableFixedCandidateCountMode 1
+    Set-ItemPropertyWithDefaultUser $regpath MaxCandidates $cfg.candidates
 }
 
 if ($cfg.biggerFontSize) {
-    Set-ItemProperty $regkeys FontStyleTSF3 '20.00pt;Regular;;Microsoft YaHei UI'
+    Set-ItemPropertyWithDefaultUser $regpath FontStyleTSF3 '20.00pt;Regular;;Microsoft YaHei UI'
 }

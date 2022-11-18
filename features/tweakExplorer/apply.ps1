@@ -2,15 +2,15 @@
 param($cfg)
 
 if ($cfg.showFileExtension) {
-    Set-ItemProperty (
-        Get-CurrentAndNewUserPaths 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced'
-    ) HideFileExt 0
+    Set-ItemPropertyWithDefaultUser `
+        'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced'`
+        HideFileExt 0
 }
 
 if ($cfg.useRecylebinForUdisk) {
-    Set-ItemProperty (
-        Get-CurrentAndNewUserPaths 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer'
-    ) RecycleBinDrives 0xffffffff
+    Set-ItemPropertyWithDefaultUser `
+        'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer'`
+        RecycleBinDrives 0xffffffff
 }
 
 if ($cfg.showDevicesOnlyInThisPc) {
@@ -18,9 +18,9 @@ if ($cfg.showDevicesOnlyInThisPc) {
 }
 
 if ($cfg.optimizePerformance) {
-    Set-ItemProperty (
-        Get-CurrentAndNewUserPaths 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced'
-    ) SeparateProcess 1
+    Set-ItemPropertyWithDefaultUser `
+        'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced'`
+        SeparateProcess 1
 
     Set-ItemProperty HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer 'Max Cached Icons' -Type String (16mb)
 
@@ -30,16 +30,16 @@ if ($cfg.optimizePerformance) {
 }
 
 if ($cfg.optimize) {
-    Set-ItemProperty -Type Binary (
-        Get-CurrentAndNewUserPaths 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer'
-    ) link ([byte[]](0x00, 0x00, 0x00, 0x00))
+    Set-ItemPropertyWithDefaultUser `
+        'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer'`
+        link ([byte[]](0x00, 0x00, 0x00, 0x00))
 
-    $advancedkeys = Get-CurrentAndNewUserPaths 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced'
-    Set-ItemProperty $advancedkeys NavPaneExpandToCurrentFolder 1
-    Set-ItemProperty $advancedkeys AutoCheckSelect 1
-    Set-ItemProperty $advancedkeys 'Append Completion' 'yes'
+    $regpath = 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced'
+    Set-ItemProperty $regpath NavPaneExpandToCurrentFolder 1
+    Set-ItemProperty $regpath AutoCheckSelect 1
+    Set-ItemProperty $regpath 'Append Completion' 'yes'
 
-    Set-ItemProperty (
-        Get-CurrentAndNewUserPaths 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\NamingTemplates'
-    ) 'CopyNameTemplate' '%s'
+    Set-ItemPropertyWithDefaultUser `
+        'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\NamingTemplates'`
+        'CopyNameTemplate' '%s'
 }

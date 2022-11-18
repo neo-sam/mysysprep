@@ -7,11 +7,11 @@ $features.tweakStartmenu = @{
 $features.applyClassicPhotoViewer = 1
 $features.debloatNewPhotoViewer = 1
 
-if (Test-Path '.\deploy\Thunderbird Setup *.exe') {
+if (Test-Path '.\packages\Thunderbird Setup *.exe') {
     $features.debloatNewEmailAndCalendar = 1
 }
 
-if (Test-Path '.\deploy\vlc-*-win64.exe') {
+if (Test-Path '.\packages\vlc-*-win64.exe') {
     $features.debloatNewMediaPlayer = 1
 }
 

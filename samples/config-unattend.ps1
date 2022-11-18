@@ -1,3 +1,3 @@
-$unattend.oobeSkipEula = 1
-$unattend.oobeSkipLoginMs = 1
-$unattend.oobeSkipPrivacyOptions = 1
+$unattend.skipOobeEula = 1
+$unattend.skipOobeMsLogin = 1
+$unattend.skipOobePrivacyOptions = 1

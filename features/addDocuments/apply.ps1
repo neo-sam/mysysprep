@@ -1,6 +1,6 @@
 #Requires -RunAsAdministrator
 
-$docsFolderPath = Get-BasePath -Docs
+$docsFolderPath = Get-AppFolderPath -Docs
 
 $localizedFolderPath = switch ((Get-Culture).Name) {
     zh-CN { "$docsFolderPath\zh-CN" }
@@ -12,7 +12,7 @@ $linksFolderName = Get-Translation 'User Guide' -cn '使用说明'
 
 Push-Location $docsFolderPath
 Remove-Item -Recurse -Force *
-Copy-Item -Recurse -Force "$proot\docs\*" .
+Copy-Item -Recurse -Force "$(Get-ProjectLocation)\docs\*" .
 mkdir -f $linksFolderPath >$null
 Pop-Location
 
@@ -33,7 +33,7 @@ function New-DocShortcut([string]$id, [string]$name, [string]$icon = $null) {
     $it.save()
 }
 
-$readmeIcon = if ($osver.Major -lt 7) { 'imageres.dll,203' } else { 'imageres.dll,204' }
+$readmeIcon = if (Test-Windows7) { 'imageres.dll,203' } else { 'imageres.dll,204' }
 New-DocShortcut readme (
     Get-Translation 'README' -cn '自述文件'
 ) $readmeIcon
@@ -54,7 +54,7 @@ if (Get-Module -ListAvailable Appx) {
     }
 }
 
-if ($osbver -ge 18362) { New-DocShortcut wsl2 WSL2 'wsl.exe' }
+if ((Get-OSVersionBuild) -ge 18362) { New-DocShortcut wsl2 WSL2 'wsl.exe' }
 
 $it = $ws.CreateShortcut("$linksFolderPath\$(
     Get-Translation 'GitHub Project Homepage' -cn 'GitHub 项目主页'
@@ -62,7 +62,7 @@ $it = $ws.CreateShortcut("$linksFolderPath\$(
 $it.TargetPath = "https://github.com/setupfw/win-sf"
 $it.save()
 
-if ($features.addNewIsolatedUserScript) {
+if (Get-FeatureConfig addNewIsolatedUserScript) {
     New-DocShortcut multiuser (
         Get-Translation 'Isolated Multi User Proctect' -cn '多用户安全隔离'
     ) 'imageres.dll,74'

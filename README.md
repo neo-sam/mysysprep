@@ -11,7 +11,7 @@ Suitable: Win11/Win10, [Win7](./win7/README.md). x64 CPU arch.
 1. Git clone or download this repository into your U disk.
 2. Copy or learn the config files from `samples/`
 3. [Enable or tweak features in `config.ps`](./features/README.md)
-4. [Add packages into `deploy/`](./deploy/README.md)
+4. [Add packages into `packages/`](./packages/README.md)
 
 ### Deploy On New Machine
 

@@ -21,8 +21,8 @@ Disable-BundledService PcaSvc, WerSvc
 <#
 # Windows10 only: colorize window title
 if ([Environment]::OSVersion.Version.Build -le 22000) {
-    Set-ItemProperty (
-        Get-CurrentAndNewUserPaths "HKCU:\SOFTWARE\Microsoft\Windows\DWM"
-    ) ColorPrevalence 1
+    Set-ItemPropertyWithDefaultUser `
+        "HKCU:\SOFTWARE\Microsoft\Windows\DWM" `
+        ColorPrevalence 1
 }
 #>

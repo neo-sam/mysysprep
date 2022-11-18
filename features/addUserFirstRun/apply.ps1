@@ -2,7 +2,7 @@
 
 param($cfg)
 
-$firstrunPath = "$(Get-BasePath -Scripts)\firstrun.ps1"
+$firstrunPath = "$(Get-AppFolderPath -Scripts)\firstrun.ps1"
 
 if ($text = Get-Content '.\script.ps1' -ea 0) {
     if ($cfg | Get-Member GetEnumerator) {

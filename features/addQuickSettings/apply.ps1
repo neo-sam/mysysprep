@@ -36,7 +36,7 @@ $names = switch ((Get-Culture).Name) {
     }
 }
 
-$isWin11 = $osbver -ge 22000
+$isWin11 = (Get-OSVersionBuild) -ge 22000
 
 $wshell = New-Object -comObject WScript.Shell
 
@@ -97,7 +97,7 @@ function Set-IconToConfig($shortcut) {
     $shortcut.IconLocation = "shell32.dll,21"
 }
 
-if ($osbver -ge 17763) {
+if ((Get-OSVersionBuild) -ge 17763) {
     $it = New-Shortcut $names.enable_darkmode
     $it.TargetPath = "reg"
     $it.Arguments = "add HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize /v AppsUseLightTheme /t REG_DWORD /d 0 /f"

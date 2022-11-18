@@ -7,7 +7,7 @@
 1. 克隆本项目代码到 U 盘内
 2. 参考或复制 `samples/` 目录内的配置文件
 3. [修改 `config.ps` 激活/配置所需特性](./features/README_ZH.md)
-4. [添加安装包到 `deploy/` 目录内](./deploy/README_ZH.md)
+4. [添加安装包到 `packages/` 目录内](./packages/README_ZH.md)
 
 ### 部署到新机器上
 

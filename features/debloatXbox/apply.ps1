@@ -1,9 +1,10 @@
 #Requires -RunAsAdministrator
 
-if ($osbver.Major -lt 7) { exit }
-
 Disable-BundledService XblAuthManager, XblGameSave, XboxGipSvc, XboxNetApiSvc
-Disable-BundledTask XblGameSaveTask
+
+if (!(Test-Windows7)) {
+    Disable-BundledTask XblGameSaveTask
+}
 
 Uninstall-BundledAppx @'
 Microsoft.Xbox.TCUI

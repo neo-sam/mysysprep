@@ -2,9 +2,9 @@
 param($cfg)
 
 if ($cfg.disableWebSearch) {
-    Set-ItemProperty (
-        Get-CurrentAndNewUserPaths 'HKCU:\SOFTWARE\Policies\Microsoft\Windows\Explorer'
-    ) DisableSearchBoxSuggestions 1
+    Set-ItemPropertyWithDefaultUser `
+        'HKCU:\SOFTWARE\Policies\Microsoft\Windows\Explorer'`
+        DisableSearchBoxSuggestions 1
 }
 
 if ($cfg.disableFileSearch) {
