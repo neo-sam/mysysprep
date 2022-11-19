@@ -97,18 +97,18 @@ if ($features.tweakStartmenu -ne 0) {
 }
 
 if ($features.tweakTaskbar -ne 0) {
-    $features.tweakTaskbar = @{
-        optimize            = 0
-        biggerThumbnail     = 0
-        groupWhenOverflow   = 0
-        win10noAd           = 0
-        win10noPeople       = 0
-        win10noCortana      = 0
-        win10noSearchBar    = 0
-        win10oldVolumeMixer = 0
-        win11alignLeft      = 0
-        win11noWidgets      = 0
-        win11noMsTeam       = 0
+    $features.tweakTaskbar = [ordered]@{
+        optimize                 = 0
+        biggerThumbnail          = 0
+        groupWhenOverflow        = 0
+        w10noAd                  = 0
+        w10noCortanaIcon         = 0
+        w10noContactIcon         = 0
+        w11setAlignLeft          = 0
+        w10setSearchBarIconOnly  = 0
+        w10setVolumeMixerClassic = 0
+        w11noWidgets             = 0
+        w11noMsTeamIcon          = 0
     }
 }
 

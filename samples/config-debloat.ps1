@@ -18,7 +18,7 @@ if (Test-Path '.\packages\vlc-*-win64.exe') {
 if ($features.tweakTaskbar -eq 0) { $features.tweakTaskbar = [ordered]@{} }
 $it = $features.tweakTaskbar
 
-$it.win10noPeople = 1
-$it.win10noCortana = 1
-$it.win11noWidgets = 1
-$it.win11noMsTeam = 1
+$it.w10noContactIcon = 1
+$it.w10noCortanaIcon = 1
+$it.w11noWidgets = 1
+$it.w11noMsTeamIcon = 1

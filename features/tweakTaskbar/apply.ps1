@@ -37,12 +37,12 @@ if (Test-Windows11) {
         'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced'`
         MultiTaskingAltTabFilter 3
 
-    if ($cfg.win11alignLeft) {
+    if ($cfg.w11setAlignLeft) {
         Set-ItemPropertyWithDefaultUser `
             'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced'`
             TaskbarAl 0
     }
-    if ($cfg.win11noWidgets) {
+    if ($cfg.w11noWidgets) {
         Set-ItemPropertyWithDefaultUser `
             'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced'`
             TaskbarDa 0
@@ -51,7 +51,7 @@ if (Test-Windows11) {
             'HKLM:\SOFTWARE\Policies\Microsoft\Dsh'
         AllowNewsAndInterests 0
     }
-    if ($cfg.win11noMsTeam) {
+    if ($cfg.w11noMsTeamIcon) {
         Set-ItemPropertyWithDefaultUser `
             'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced'`
             TaskbarMn 2
@@ -64,28 +64,28 @@ else {
             TaskbarGlomLevel 1
     }
     if (Test-Windows10) {
-        if ($cfg.win10noAd) {
+        if ($cfg.w10noAd) {
             $regpath = 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Feeds'
             Set-ItemPropertyWithDefaultUser $regpath ShellFeedsTaskbarViewMode 2
             Set-ItemPropertyWithDefaultUser $regpath ShellFeedsTaskbarContentUpdateMode 1
             Set-ItemPropertyWithDefaultUser $regpath ShellFeedsTaskbarOpenOnHover 0
         }
-        if ($cfg.win10noPeople) {
+        if ($cfg.w10noContactIcon) {
             Set-ItemPropertyWithDefaultUser `
                 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced\People'`
                 PeopleBand 0
         }
-        if ($cfg.win10noCortana) {
+        if ($cfg.w10noCortanaIcon) {
             Set-ItemPropertyWithDefaultUser `
                 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced'`
                 ShowCortanaButton 0
         }
-        if ($cfg.win10noSearchBar) {
+        if ($cfg.w10setSearchBarIconOnly) {
             Set-ItemPropertyWithDefaultUser `
                 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Search'`
                 SearchboxTaskbarMode 1
         }
-        if ($cfg.win10oldVolumeMixer) {
+        if ($cfg.w10setVolumeMixerClassic) {
             Set-ItemProperty (
                 Get-RegItemOrNew 'HKLM:\Software\Microsoft\Windows NT\CurrentVersion\MTCUVC'
             ) EnableMtcUvc 0
