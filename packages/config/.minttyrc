@@ -1,9 +1,8 @@
-Font=Cascadia Mono
-FontHeight=14
-
 CursorType=block
 CursorBlinks=yes
 
 ThemeFile=dracula
 
 Transparency=24
+
+FontHeight=14
