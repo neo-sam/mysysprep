@@ -65,5 +65,5 @@ $it.save()
 if (Get-FeatureConfig addNewIsolatedUserScript) {
     New-DocShortcut multiuser (
         Get-Translation 'Isolated Multi User Proctect' -cn '多用户安全隔离'
-    ) 'imageres.dll,74'
+    ) 'imageres.dll,83'
 }

@@ -60,10 +60,10 @@ function Set-IconToEnable($shortcut) {
 }
 
 function Set-IconToDisable($shortcut) {
-    $shortcut.IconLocation = switch ($osver.Major) {
-        6 { 'imageres.dll,100' }
-        10 { 'imageres.dll,229' }
-        11 { 'imageres.dll,230' }
+    $shortcut.IconLocation = switch ($null) {
+        { Test-Windows7 } { 'imageres.dll,100'; break }
+        { Test-Windows10 } { 'imageres.dll,229'; break }
+        { Test-Windows11 } { 'imageres.dll,230' }
     }
 }
 
@@ -76,10 +76,8 @@ function Set-IconToDisableInAdmin($shortcut) {
 }
 
 function Set-IconToEdit($shortcut) {
-    $shortcut.IconLocation = switch ($osver.Major) {
-        6 { 'notepad.exe' }
-        Default { 'shell32.dll,269' }
-    }
+    $shortcut.IconLocation = if (Test-Windows7) { 'notepad.exe' } `
+        else { 'shell32.dll,269' }
 }
 
 function Set-IconToRestart($shortcut) {
@@ -87,10 +85,8 @@ function Set-IconToRestart($shortcut) {
 }
 
 function Set-IconToCleanFile($shortcut) {
-    $shortcut.IconLocation = switch ($osver.Major) {
-        6 { 'shell32.dll,271' }
-        Default { 'shell32.dll,152' }
-    }
+    $shortcut.IconLocation = if (Test-Windows7) { 'shell32.dll,271' } `
+        else { 'shell32.dll,152' }
 }
 
 function Set-IconToConfig($shortcut) {

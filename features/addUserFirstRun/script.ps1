@@ -3,7 +3,7 @@ $names = switch ((Get-Culture).Name) {
     Default { @{ userProfile = 'User Profile' } }
 }
 
-$osver = [Environment]::OSVersion.Version
+$osvm = [Environment]::OSVersion.Version.Major
 
 function Get-RegItemOrNew([string]$path) {
     if (Test-Path $path) { (Get-Item $path).PSPath }
@@ -78,10 +78,10 @@ function showRecentFoldersIconAtExplorerSidebar {
     Add-ExplorerSidebar $guid
     Hide-DesktopIcon $guid
 
-    $icon = switch ($osver.Major) {
+    $icon = switch ($osvm) {
         6 { 'imageres.dll,112' }
-        10 { 'shell32.dll,316' }
-        11 { 'shell32.dll,319' }
+        10 { 'shell32.dll,319' }
+        11 { 'shell32.dll,316' }
     }
     Set-Item (
         Get-RegItemOrNew "HKCU:\Software\Classes\CLSID\{$guid}\DefaultIcon"
