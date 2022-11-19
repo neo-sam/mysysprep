@@ -17,17 +17,22 @@ Write-Output '', '==> FINISHED!'
 Add-Type -AssemblyName PresentationFramework
 
 if (Test-AuditMode) {
-    if ('OK' -eq ([System.Windows.MessageBox]::Show(@'
-Repository: https://github.com/setupfw/win-sf
-Author: littleboyharry
-Status: prepared
-Blessing: have a nice day! ^_^
+    if ('OK' -eq (
+            [System.Windows.MessageBox]::Show(@"
+$(Get-Translation 'Repository: ' `
+-cn '反馈：'
+)https://github.com/setupfw/win-sf/issues/new
+$(Get-Translation 'Author: ' `
+-cn '作者：')LittleboyHarry
+$(Get-Translation 'Blessing: have a nice day! ^_^' `
+-cn '寄语：大吉大利，祝你鸿运当头！')
 
-Confirm: start to SYSPREP.EXE now?
-'@,
-                'sysprep-go.ps1 | FINISHED!',
-                'OKCancel', 'Warning'))
-    ) {
+$(Get-Translation 'Confirm: start to SYSPREP.EXE now?' `
+-cn '是否结束审核模式，封装系统以便使用？')
+"@,
+                "win-sf | $(Get-Translation 'COMPLETED' -cn '已完成')",
+                'OKCancel', 'Warning')
+        )) {
         Stop-Process -Name explorer
         & 'C:\Windows\System32\Sysprep\Sysprep.exe' /oobe /generalize /shutdown
         exit
@@ -35,7 +40,9 @@ Confirm: start to SYSPREP.EXE now?
 }
 
 if ('OK' -eq (
-        [System.Windows.MessageBox]::Show('Restart File Explorer to finish?', 'sysprep-go.ps1',
+        [System.Windows.MessageBox]::Show(
+        (Get-Translation 'Restart File Explorer to finish?' -cn '重启文件资源管理器以生效？'),
+            'sysprep-go.ps1',
             'OKCancel', 'Warning')
     )) {
     Stop-Process -Name explorer
