@@ -27,3 +27,9 @@ $it.removeRtf = 1
 # Windows 7:
 $it.removeJnt = 1
 $it.removeContact = 1
+
+if ($features.tweakSendTo -ne 0) {
+    $features.tweakSendTo = [ordered]@{}
+}
+$features.tweakSendTo.optimize = 1
+$features.tweakSendTo.addStartMenu = 1

@@ -34,6 +34,7 @@ $Script:features = [ordered]@{
     tweakExplorer               = 0
     tweakIme                    = 0
     tweakNewFileTypes           = 0
+    tweakSendTo                 = 0
     tweakStartmenu              = 0
     tweakTaskbar                = 0
 }
@@ -89,8 +90,15 @@ if ($features.tweakNewFileTypes -ne 0) {
     }
 }
 
+if ($features.tweakSendTo -ne 0) {
+    $features.tweakSendTo = [ordered]@{
+        optimize     = 0
+        addStartMenu = 0
+    }
+}
+
 if ($features.tweakStartmenu -ne 0) {
-    $features.tweakStartmenu = @{
+    $features.tweakStartmenu = [ordered]@{
         disableWebSearch  = 0
         disableFileSearch = 0
     }
