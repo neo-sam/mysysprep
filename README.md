@@ -53,6 +53,10 @@ flowchart TB
 
 ## Install a new Windows
 
+<details>
+<summary>Binary Assets ...</summary>
+<br/>
+
 System Images:
 
 - [Windows 10](https://www.microsoft.com/software-download/windows10)
@@ -67,6 +71,73 @@ Get U disk image writer:
 - Rufus: only single image, more options and better compatibility
 
   find `*p.exe` at [Official GitHub Release](https://github.com/pbatard/rufus/releases/latest)
+
+</details>
+
+## Make and Apply a System Image
+
+<details>
+<summary>Encapsule as an Image ...</summary>
+<br/>
+
+1.  Generalized shutdown in `sysprep.exe`
+2.  Boot into Recovery Mode or WinPE in USB
+3.  Check or mount driver letters, list a table:
+
+        echo lis vol | diskpart
+
+4.  Set temporary directory to attain enough disk space:
+
+        set tmp=d:\tmp
+        mkdir %tmp%
+
+5.  Capture command:
+
+        start cmd /k dism /capture-image /capturedir:c: /imagefile:D:\mywin.esd /name:mysys /compress:max /checkintegrity /verify
+
+| Command Parameters | Usage                            |
+| ------------------ | -------------------------------- |
+| start cmd /k       | run it in new command prompt     |
+| /capturedir        | the system partition letter      |
+| /imagefile         | type your full backup image path |
+| /name              | customized Name                  |
+| /compress          | optional: max,fast,none          |
+| /checkintegrity    | /verify optional: verify         |
+
+`.wim` is a legacy compatible and low compression format
+
+`.esd` is the new high compression ratio format with long compression time
+
+</details>
+
+<details>
+<summary>Restore from an Image ...</summary>
+<br/>
+
+1.  Boot into Recovery Mode or WinPE in USB
+2.  Mount the target system partition as C drive
+3.  Restore command:
+
+        dism /apply-image /index:1 /verify /applydir:c: /imagefile:D:\backup\system.esd
+
+Attention:
+
+- `/index` should be 1 as default
+- optional: `/verify`
+- optional: `/compact` slim down system data, from 40G~ to 20G~ as usual
+
+Adding a UEFI boot entry:
+
+<pre><code>mountvol u: /s
+bcdboot c:\windows /s u:
+</code></pre>
+
+(Optional) Add another WinOS:
+
+<pre><code>bcdboot d:\windows /s u: /d /addlast
+</code></pre>
+
+</details>
 
 ## Advanced Development Tools
 
