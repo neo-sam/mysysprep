@@ -55,6 +55,8 @@
 
 - VSCode 开发神器
 - gsudo 获取管理员权限
+- Windows Terminal
+- Tabby 终端模拟器
 - Sysinternals 系统实用程序
 - ImDisk Toolkit 挂载内存盘、镜像文件
 - OpenSSH 组件升级包（ 可选 ）

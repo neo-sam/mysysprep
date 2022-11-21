@@ -72,6 +72,14 @@ Download into `.\packages`
 
   Find `win-x64.msi` at [Official GitHub Release](https://aka.ms/powershell-release?tag=stable)
 
+- Windows Terminal
+
+  [Official GitHub Page](https://github.com/microsoft/terminal/releases/latest)
+
+- [Tabby](https://tabby.sh/): most popular social terminal emulator
+
+  [Official GitHub Page](https://github.com/Eugeny/tabby/releases/latest)
+
 - Sysinternals: advanced system utilities and technical information
 
   [Download Content directly](https://download.sysinternals.com/files/SysinternalsSuite.zip)
@@ -90,7 +98,7 @@ Download into `.\packages`
 
 - gsudo: acquire administration privilege
 
-  [Download GitHub Release directly](https://github.com/gerardog/gsudo/releases/latest/download/gsudoSetup.msi)
+  [Official GitHub Page](https://github.com/gerardog/gsudo/releases/latest/download/gsudoSetup.msi)
 
 - ImDisk Toolkit: ramdisk for Windows and mounting of image files
 
