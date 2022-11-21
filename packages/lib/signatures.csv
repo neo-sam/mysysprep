@@ -7,6 +7,7 @@ Thunderbird,Thunderbird Setup *.exe,"CN=Mozilla Corporation, OU=Firefox Engineer
 VLC,vlc-*-win64.exe,"CN=VideoLAN, O=VideoLAN, L=Paris, C=FR"
 Cyberduck,Cyberduck-Installer-*.exe,"CN=iterate GmbH, O=iterate GmbH, STREET=Junkerngasse 12, L=Bern, S=Bern, PostalCode=3011, C=CH"
 OBS,OBS-Studio-*-Full-Installer-x64.exe,"CN=Hugh Bailey, O=Hugh Bailey, L=Temecula, S=California, C=US"
+KDE Connect,kdeconnect-kde-*-windows-*.exe,"CN=K Desktop Environment e.V., O=K Desktop Environment e.V., STREET=Prinzenstr 85 F, L=Berlin, S=Berlin, PostalCode=10969, C=DE"
 
 PowerShell,PowerShell-*-win-x64.msi,"CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US"
 VSCode,VSCodeSetup-*.exe,"CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US"

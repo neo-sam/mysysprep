@@ -32,6 +32,10 @@ Download into `.\packages`
 
   [Official GitHub Release](https://github.com/rcaelers/workrave/releases/latest)
 
+- KDE Connect: with your phone
+
+  Find `Offline installers` at [Official Download Page](https://kdeconnect.kde.org/download.html)
+
 - OBS: free live recorder
 
   [Official Download Page](https://obsproject.com/)

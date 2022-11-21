@@ -51,6 +51,7 @@
 
 - Workrave 长时间工作休息提醒
 - Cyberduck 云端存储浏览器
+- KDE Connect 手机互联
 
 - VSCode 开发神器
 - gsudo 获取管理员权限
