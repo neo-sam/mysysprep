@@ -3,12 +3,13 @@
 # Input parameters
 $uappPrefix = 'isoapp-'
 $uappGroup = 'isoapps'
-$onlyAppYes = New-Object System.Management.Automation.Host.ChoiceDescription '&Yes'
-$onlyAppNo = New-Object System.Management.Automation.Host.ChoiceDescription '&No'
-$onlyAppOptions = [System.Management.Automation.Host.ChoiceDescription[]]($onlyAppNo, $onlyAppYes)
-$onlyApp = $host.ui.PromptForChoice('Will this user have a only application?', $null, $onlyAppOptions, 1) -eq 1
+$onlyapp = $host.ui.PromptForChoice('Will this user have a only application?', $null,
+    [System.Management.Automation.Host.ChoiceDescription[]](
+    (New-Object System.Management.Automation.Host.ChoiceDescription '&No'),
+    (New-Object System.Management.Automation.Host.ChoiceDescription '&Yes')
+    ), 1) -eq 1
 while (1) {
-    if ($onlyApp) {
+    if ($onlyapp) {
         Write-Host
         $appname = Read-Host 'Define your app ID (lowercase)'
         if ($appname -eq '') { continue }
@@ -35,10 +36,11 @@ Set-ItemProperty $hideUsersRegPath $username 0
 # Create a new user
 net user $username /add > $null
 if ((Get-ItemPropertyValue HKLM:\SYSTEM\CurrentControlSet\Control\Lsa LimitBlankPasswordUse) -eq 1) {
-    $passwordNo = New-Object System.Management.Automation.Host.ChoiceDescription '&No'
-    $passwordYes = New-Object System.Management.Automation.Host.ChoiceDescription '&Yes'
-    $passwordOptions = [System.Management.Automation.Host.ChoiceDescription[]]($passwordNo, $passwordYes)
-    $password = $host.ui.PromptForChoice('Require login password?', $null, $passwordOptions, 0) -eq 1
+    $password = $host.ui.PromptForChoice('Require login password?', $null,
+        ([System.Management.Automation.Host.ChoiceDescription[]](
+        (New-Object System.Management.Automation.Host.ChoiceDescription '&No'),
+        (New-Object System.Management.Automation.Host.ChoiceDescription '&Yes')
+        )), 0) -eq 1
     if ($password) { net user $username * }
     else {
         Set-ItemProperty HKLM:\SYSTEM\CurrentControlSet\Control\Lsa LimitBlankPasswordUse 0
@@ -46,7 +48,7 @@ if ((Get-ItemPropertyValue HKLM:\SYSTEM\CurrentControlSet\Control\Lsa LimitBlank
 }
 Set-Localuser $username -PasswordNeverExpires $true
 
-if ($onlyApp) {
+if ($onlyapp) {
     New-LocalGroup $uappGroup -ea 0 >$null
     Add-LocalGroupMember $uappGroup $username
 }
@@ -87,28 +89,30 @@ Pop-Location
 
 # Add shortcuts to desktop
 $ws = New-Object -ComObject WScript.Shell
-$pwshlink = $ws.CreateShortcut("$([Environment]::GetFolderPath('Desktop'))\PowerShell as $username(user).lnk")
-$pwshlink.IconLocation = "powershell.exe"
-$pwshlink.TargetPath = "%windir%\system32\cmd.exe"
-$pwshlink.WorkingDirectory = $homepath
-if ($password) {
-    $pwshlink.Arguments = "/c `"runas /profile /user:$username ^`"cmd /c cd $homepath ^& powershell ^`"`""
+
+$startmenu = "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\$username"
+if ($onlyapp) {
+    $startmenu = "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\New Isolated User App ($appname)"
 }
-else {
-    $pwshlink.Arguments = "/c `"echo.|runas /profile /user:$username ^`"cmd /c cd $homepath ^& powershell ^`"`""
+mkdir -f $startmenu
+
+$it = $ws.CreateShortcut("$startmenu\PowerShell as $username(user).lnk")
+$it.IconLocation = "powershell.exe"
+$it.TargetPath = "%windir%\system32\cmd.exe"
+$it.WorkingDirectory = $homepath
+if ($password) { $it.Arguments = "/c `"runas /profile /user:$username ^`"cmd /c cd $homepath ^& powershell ^`"`"" }
+else { $it.Arguments = "/c `"echo.|runas /profile /user:$username ^`"cmd /c cd $homepath ^& powershell ^`"`"" }
+$it.Save()
+
+if ($onlyapp) {
+    $it = $ws.CreateShortcut("$startmenu\EDITME as $appname(app).lnk")
+    $it.IconLocation = "%windir%\system32\shell32.dll,133"
+    $it.TargetPath = "%windir%\system32\cmd.exe"
+    if ($password) { $it.Arguments = "/c `"runas /profile /user:$username ^`"EDITME^`"`"" }
+    else { $it.Arguments = "/c `"echo.|runas /profile /user:$username ^`"EDITME^`"`"" }
+    $it.Save()
 }
-$pwshlink.Save()
-if ($onlyApp) {
-    $applink = $ws.CreateShortcut("$([Environment]::GetFolderPath('Desktop'))\EDITME as $appname(app).lnk")
-    $applink.IconLocation = "%windir%\system32\shell32.dll,133"
-    $applink.TargetPath = "%windir%\system32\cmd.exe"
-    if ($password) {
-        $applink.Arguments = "/c `"runas /profile /user:$username ^`"EDITME^`"`""
-    }
-    else {
-        $applink.Arguments = "/c `"echo.|runas /profile /user:$username ^`"EDITME^`"`""
-    }
-    $applink.Save()
-}
+
+Start-Process $startmenu
 
 if ($Error) { Read-Host 'Press Enter Key to close' }
