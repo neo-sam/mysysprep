@@ -1,4 +1,4 @@
-Push-Location "$PSScriptRoot\.."
+Push-Location (Join-Path "$PSScriptRoot\.." '.\packages')
 foreach ($file in Get-ChildItem *.exe, *.msi, *.msu, *.ps1, *.msixbundle) {
     $result = Get-AuthenticodeSignature $file
     ([PSCustomObject]@{

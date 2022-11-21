@@ -31,7 +31,7 @@ flowchart TD
     fetch[fetch this repository] -- get packages and config --> bundle[Prepared Bundle]
     generlized -. capture .-> image[Personalized System Image]
   end
-  bundle -- <b>sysprep-go.cmd</b> --o sysprep
+  bundle -- <b>apply.cmd</b> --o sysprep
   generlized --> instance
   image -. apply .-> instance
 ```
@@ -42,7 +42,7 @@ flowchart TD
 flowchart TB
   fetch[fetch this repository] -- get packages and config --> bundle[Prepared Bundle]
   subgraph config [Target Machine]
-      old[Current System] -- <b>sysprep-go.cmd</b> --> new[Optimized System]
+      old[Current System] -- <b>apply.cmd</b> --> new[Optimized System]
   end
   bundle --o config
 ```
@@ -138,7 +138,3 @@ bcdboot c:\windows /s u:
 </code></pre>
 
 </details>
-
-## Advanced Development Tools
-
-See `tools/`

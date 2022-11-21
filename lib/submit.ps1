@@ -42,7 +42,7 @@ $(Get-Translation 'Confirm: start to SYSPREP.EXE now?' `
 if ('OK' -eq (
         [System.Windows.MessageBox]::Show(
         (Get-Translation 'Restart File Explorer to finish?' -cn '重启文件资源管理器以生效？'),
-            'sysprep-go.ps1',
+            'apply.ps1',
             'OKCancel', 'Warning')
     )) {
     Stop-Process -Name explorer

@@ -14,7 +14,7 @@ if (!(Test-RunAsAdmin)) {
 }
 
 if (Test-Path -Exclude .gitkeep ".\packages\manual\*") {
-    .\packages\lib\doManually.ps1
+    .\lib\tryToOpenManualInstallPackages.ps1
     if ($LASTEXITCODE) { exit }
 }
 

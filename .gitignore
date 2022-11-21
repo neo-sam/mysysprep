@@ -1,1 +1,2 @@
-/config-*.ps1
+/config-override.ps1
+/specify*.ps1
