@@ -9,12 +9,13 @@ if (!$PSSenderInfo) {
     }
 }
 
-Copy-Item $pkg "$(Get-AppFolderPath -UserDeploy)\install-altsnap.exe"
-$deployScriptName = 'install-altsnap.ps1'
+$filename = $pkg.Name
+Copy-Item $pkg "$(Get-AppFolderPath -UserDeploy)\$filename"
+$scriptName = 'setupAltsnap'
 
-$lnkname = "$(Get-Translation 'Install' -cn '安装') AltSnap"
+$lnkname = "$(Get-Translation 'Setup' -cn '安装') AltSnap"
 
-$parts = ((Get-Content 'config\install-altsnap.ps1') -join "`n") -split '; config here'
+$parts = ((Get-Content 'config\setupAltsnap.ps1') -join "`n") -split '; config here'
 $content = @(
     $parts[0],
     ((Get-Content 'config\altsnap.ini') -join "`n"),
@@ -23,6 +24,6 @@ $content = @(
 if ((Get-Culture).Name -eq 'zh-CN') {
     $content = $content -replace '(?<=Language=)en-US', 'zh-CN'
 }
-$content | Out-File -Encoding unicode "$(Get-AppFolderPath -UserDeploy)\install-altsnap.ps1"
+$content | Out-File -Encoding unicode "$(Get-AppFolderPath -UserDeploy)\$scriptName"
 
-New-UserDeployShortcut -ScriptName $deployScriptName -LinkName $lnkname
+New-UserDeployShortcut -ScriptName $scriptName -LinkName $lnkname

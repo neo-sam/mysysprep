@@ -1,5 +1,10 @@
 $env:__COMPAT_LAYER = "RunAsInvoker"
-Start-Process -Wait 'install-altsnap.exe' '/NCRC /S'
+$it = Get-ChildItem -ea 0 'AltSnap*-x64-inst.exe'
+if ($it.count -ne 0) {
+    Write-Error 'Task Crash!'
+    [System.Console]::ReadKey()>$null
+}
+Start-Process -Wait $it.FullName '/NCRC /S'
 
 # Remove desktop shortcut
 
