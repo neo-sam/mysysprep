@@ -1,3 +1,7 @@
+#Requires -RunAsAdministrator
+
+param($cfg)
+
 Set-Location (mkdir -f 'C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Quick Settings')
 Remove-Item -Recurse -Force *
 
@@ -36,12 +40,8 @@ $names = switch ((Get-Culture).Name) {
     }
 }
 
-$isWin11 = (Get-OSVersionBuild) -ge 22000
-
-$wshell = New-Object -comObject WScript.Shell
-
 function New-Shortcut([String]$name) {
-    return $wshell.CreateShortcut("$PWD\$name.lnk")
+    return (Get-WscriptShell).CreateShortcut("$PWD\$name.lnk")
 }
 
 function Set-RunAsAdmin($shortcut) {
@@ -90,84 +90,84 @@ function Set-IconToCleanFile($shortcut) {
 }
 
 function Set-IconToConfig($shortcut) {
-    $shortcut.IconLocation = "shell32.dll,21"
+    $shortcut.IconLocation = 'shell32.dll,21'
 }
 
-if ((Get-OSVersionBuild) -ge 17763) {
+if ($cfg.createAll -or ((Get-OSVersionBuild) -ge 17763)) {
     $it = New-Shortcut $names.enable_darkmode
-    $it.TargetPath = "reg"
-    $it.Arguments = "add HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize /v AppsUseLightTheme /t REG_DWORD /d 0 /f"
+    $it.TargetPath = 'reg'
+    $it.Arguments = 'add HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize /v AppsUseLightTheme /t REG_DWORD /d 0 /f'
     Set-IconToEnable $it
     $it.Save()
 
     $it = New-Shortcut $names.disable_darkmode
-    $it.TargetPath = "reg"
-    $it.Arguments = "add HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize /v AppsUseLightTheme /t REG_DWORD /d 1 /f"
+    $it.TargetPath = 'reg'
+    $it.Arguments = 'add HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize /v AppsUseLightTheme /t REG_DWORD /d 1 /f'
     Set-IconToDisable $it
     $it.Save()
 }
 
 $it = New-Shortcut $names.edit_hosts
-$it.TargetPath = "notepad"
-$it.Arguments = "C:\Windows\system32\drivers\etc\hosts"
+$it.TargetPath = 'notepad'
+$it.Arguments = 'C:\Windows\system32\drivers\etc\hosts'
 Set-IconToEdit $it
 $it.Save()
 Set-RunAsAdmin $it
 
 $it = New-Shortcut $names.flushdns
-$it.TargetPath = "ipconfig"
-$it.Arguments = "/flushdns"
+$it.TargetPath = 'ipconfig'
+$it.Arguments = '/flushdns'
 Set-IconToRestart $it
 $it.Save()
 Set-RunAsAdmin $it
 
 $it = New-Shortcut $names.restartexp
-$it.TargetPath = "powershell"
-$it.Arguments = "-c kill -n explorer"
+$it.TargetPath = 'powershell'
+$it.Arguments = '-c kill -n explorer'
 Set-IconToRestart $it
 $it.Save()
 
 $it = New-Shortcut $names.edit_desktopicon
-$it.TargetPath = "control"
-$it.Arguments = "desk.cpl,,0"
+$it.TargetPath = 'control'
+$it.Arguments = 'desk.cpl,,0'
 Set-IconToConfig $it
 $it.Save()
 
 $it = New-Shortcut $names.enable_hyperv
-$it.TargetPath = "bcdedit"
-$it.Arguments = "/set {current} hypervisorlaunchtype auto"
+$it.TargetPath = 'bcdedit'
+$it.Arguments = '/set {current} hypervisorlaunchtype auto'
 Set-IconToEnableInAdmin $it
 $it.Save()
 Set-RunAsAdmin $it
 
 $it = New-Shortcut $names.disable_hyperv
-$it.TargetPath = "bcdedit"
-$it.Arguments = "/set {current} hypervisorlaunchtype off"
+$it.TargetPath = 'bcdedit'
+$it.Arguments = '/set {current} hypervisorlaunchtype off'
 Set-IconToDisableInAdmin $it
 $it.Save()
 Set-RunAsAdmin $it
 
 $it = New-Shortcut $names.clear_pwshhist
-$it.TargetPath = "powershell"
-$it.Arguments = "-c cmd /c del %APPDATA%\Microsoft\Windows\PowerShell\PSReadLine\ConsoleHost_history.txt"
+$it.TargetPath = 'powershell'
+$it.Arguments = '-c cmd /c del %APPDATA%\Microsoft\Windows\PowerShell\PSReadLine\ConsoleHost_history.txt'
 Set-IconToCleanFile $it
 $it.Save()
 
-if ($isWin11) {
+if ($cfg.createAll -or (Test-Windows11)) {
     $it = New-Shortcut $names.enable_w11ctxmenu
-    $it.TargetPath = "reg"
-    $it.Arguments = "add HKCU\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\InprocServer32 /f /ve"
+    $it.TargetPath = 'reg'
+    $it.Arguments = 'add HKCU\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\InprocServer32 /f /ve'
     Set-IconToEnable $it
     $it.Save()
 
     $it = New-Shortcut $names.disable_w11ctxmenu
-    $it.TargetPath = "reg"
-    $it.Arguments = "delete HKCU\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\InprocServer32 /f /ve"
+    $it.TargetPath = 'reg'
+    $it.Arguments = 'delete HKCU\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\InprocServer32 /f /ve'
     Set-IconToDisable $it
     $it.Save()
 }
 
-$it = $wshell.CreateShortcut("C:\Users\Public\Desktop\$($names.at_desktop).lnk")
+$it = (Get-WscriptShell).CreateShortcut("C:\Users\Public\Desktop\$($names.at_desktop).lnk")
 $it.TargetPath = "$PWD"
 $it.IconLocation = 'control.exe'
 $it.Save()
