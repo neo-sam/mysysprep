@@ -1,6 +1,6 @@
 Write-Output 'Please manually deploy and confirm...'
 
-Start-Process "$PSScriptRoot\..\manual"
+Start-Process "$PSScriptRoot\..\packages\manual"
 
 if ($host.ui.PromptForChoice(
                 'Please manually deploy yourselft at first.',

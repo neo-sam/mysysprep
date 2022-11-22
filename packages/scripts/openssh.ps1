@@ -1,17 +1,19 @@
 #Requires -RunAsAdministrator
+param([switch]$GetMetadata)
 
-$pkg = Get-ChildItem -ea 0 'OpenSSH-Win64-v*.msi'
-if (!$PSSenderInfo) {
-    if (-not $pkg) { return }
+$match = Get-ChildItem -ea 0 'OpenSSH-Win64-v*.msi'
+
+if ($GetMetadata) {
     return @{
         name   = 'Upgraded OpenSSH'
-        target = 'C:\Program Files\OpenSSH\sshd.exe'
-        mutex  = 1
+        match  = $match
+        mutex  = $true
+        ignore = { Test-Path 'C:\Program Files\OpenSSH\sshd.exe' }
     }
 }
 
-Start-Process -Wait $pkg '/qb /norestart',
-'/l*v log\openssh.log'
+Start-Process -Wait $match '/qb /norestart',
+'/l*v logs\openssh.log'
 
 # CUSTOM:
 

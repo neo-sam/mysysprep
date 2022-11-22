@@ -6,6 +6,8 @@ This README is also available in: [中文](./README_ZH.md)
 
 Suitable: Win11/Win10, [Win7](./win7/README.md). x64 CPU arch.
 
+![Screenshot](https://user-images.githubusercontent.com/13063376/203465422-aca51ba7-d9fe-4233-9b2b-383b12e853d6.png)
+
 ## How To Use?
 
 1. Git clone or download this repository into your U disk.

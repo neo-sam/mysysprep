@@ -1,12 +1,14 @@
 #Requires -RunAsAdministrator
+param([switch]$GetMetadata)
 
-$pkg = Get-ChildItem -ea 0 'chocolatey.*.nupkg'
+$match = Get-ChildItem -ea 0 'chocolatey.*.nupkg'
 $ChocoInstallPath = "$($env:SystemDrive)\ProgramData\Chocolatey\bin"
-if (!$PSSenderInfo) {
-    if (-not $pkg) { return }
+
+if ($GetMetadata) {
     return @{
         name   = 'Chocolatey'
-        target = "$ChocoInstallPath\choco.exe"
+        match  = $match
+        ignore = if ({ Test-Path "$ChocoInstallPath\choco.exe" }) { { 1 } }else { { 0 } }
     }
 }
 
@@ -45,7 +47,7 @@ $tempDir = Join-Path $chocTempDir "chocInstall"
 if (![System.IO.Directory]::Exists($tempDir)) { [System.IO.Directory]::CreateDirectory($tempDir) | Out-Null }
 $file = Join-Path $tempDir "chocolatey.zip"
 
-Copy-Item $pkg.FullName $file
+Copy-Item $match.FullName $file
 
 # unzip the package
 if ($PSVersionTable.PSVersion.Major -lt 5) {
@@ -67,7 +69,7 @@ else {
 $toolsFolder = Join-Path $tempDir "tools"
 $chocInstallPS1 = Join-Path $toolsFolder "chocolateyInstall.ps1"
 
-powershell -exec bypass -file $chocInstallPS1 > log\chocolatey.log
+powershell -exec bypass -file $chocInstallPS1 > logs\chocolatey.log
 
 # Write-Output 'Ensuring chocolatey commands are on the path'
 $chocInstallVariableName = 'ChocolateyInstall'

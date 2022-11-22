@@ -5,10 +5,10 @@ if (!$PSSenderInfo) {
     if (-not $pkg) { return }
     return @{
         name   = 'VeraCrypt'
+        mutex  = $true
         target = 'C:\Program Files\VeraCrypt\VeraCrypt.exe'
-        mutex  = 1
     }
     return
 }
 
-Start-Process -Wait $pkg '/qb /norestart /l*v log\veracrypt.log ACCEPTLICENSE=YES'
+Start-Process -Wait $match '/qb /norestart /l*v logs\veracrypt.log ACCEPTLICENSE=YES'

@@ -1,15 +1,18 @@
 #Requires -RunAsAdministrator
+param([switch]$GetMetadata)
 
-$pkg = Get-ChildItem -ea 0 'Git-*-64-bit.exe'
-if (!$PSSenderInfo) {
-    if (-not $pkg) { return }
+$match = Get-ChildItem -ea 0 'Git-*-64-bit.exe'
+$appbin = 'C:\Program Files\Git\cmd\git.exe'
+
+if ($GetMetadata) {
     return @{
         name   = 'Git'
-        target = 'C:\Program Files\Git\cmd\git.exe'
+        match  = $match
+        ignore = if (Test-Path $appbin) { { 1 } }else { { 0 } }
     }
 }
 
-Start-Process -Wait $pkg "/LOADINF=config/git.ini /SILENT /SUPPRESSMSGBOXES /NORESTART /SP-"
+Start-Process -Wait $match "/LOADINF=config/git.ini /SILENT /SUPPRESSMSGBOXES /NORESTART /SP-"
 
 # CUSTOM:
 

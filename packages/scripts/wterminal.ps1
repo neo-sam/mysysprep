@@ -1,10 +1,14 @@
 #Requires -RunAsAdministrator
+param([switch]$GetMetadata)
 
-$pkg = Get-ChildItem -ea 0 'Microsoft.WindowsTerminal_*_8wekyb3d8bbwe.msixbundle'
-if (!$PSSenderInfo) {
-    if (-not $pkg) { return }
+$match = Get-ChildItem -ea 0 'Microsoft.WindowsTerminal_*_8wekyb3d8bbwe.msixbundle'
+
+if ($GetMetadata) {
     return @{
-        name = 'Windows Terminal'
+        name    = 'Windows Terminal'
+        match   = $match
+        variant = $true
+        ignore  = { !(Get-Module -ListAvailable Appx) }
     }
 }
 

@@ -1,16 +1,18 @@
 #Requires -RunAsAdministrator
+param([switch]$GetMetadata)
 
-$pkg = Get-ChildItem -ea 0 'AltSnap*-x64-inst.exe'
-if (!$PSSenderInfo) {
-    if (-not $pkg) { return }
+$match = Get-ChildItem -ea 0 'AltSnap*-x64-inst.exe'
+
+if ($GetMetadata) {
     return @{
         name   = 'AltSnap'
-        target = "$env:APPDATA\AltSnap\AltSnap.exe"
+        match  = $match
+        ignore = { Test-Path "$(Get-AppFolderPath -UserDeploy)\AltSnap*-x64-inst.exe" }
     }
 }
 
-$filename = $pkg.Name
-Copy-Item $pkg "$(Get-AppFolderPath -UserDeploy)\$filename"
+$filename = $match.Name
+Copy-Item $match "$(Get-AppFolderPath -UserDeploy)\$filename"
 $scriptName = 'setupAltsnap'
 
 $lnkname = "$(Get-Translation 'Setup' -cn '安装') AltSnap"
@@ -24,6 +26,6 @@ $content = @(
 if ((Get-Culture).Name -eq 'zh-CN') {
     $content = $content -replace '(?<=Language=)en-US', 'zh-CN'
 }
-$content | Out-File -Encoding unicode "$(Get-AppFolderPath -UserDeploy)\$scriptName"
+$content | Out-File -Encoding unicode "$(Get-AppFolderPath -UserDeploy)\$scriptName.ps1"
 
 New-UserDeployShortcut -ScriptName $scriptName -LinkName $lnkname

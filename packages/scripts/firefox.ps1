@@ -1,12 +1,15 @@
 #Requires -RunAsAdministrator
+param([switch]$GetMetadata)
 
-$pkg = Get-ChildItem -ea 0 'Firefox Setup *.exe'
-if (!$PSSenderInfo) {
-    if (-not $pkg) { return }
+$match = Get-ChildItem -ea 0 'Firefox Setup *.exe'
+$appbin = 'C:\Program Files\Mozilla Firefox\firefox.exe'
+
+if ($GetMetadata) {
     return @{
         name   = 'Firefox'
-        target = 'C:\Program Files\Mozilla Firefox\firefox.exe'
+        match  = $match
+        ignore = if (Test-Path $appbin) { { 1 } }else { { 0 } }
     }
 }
 
-Start-Process -Wait $pkg '/S /DesktopShortcut=false'
+Start-Process -Wait $match '/S /DesktopShortcut=false'

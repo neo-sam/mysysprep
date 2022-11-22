@@ -6,17 +6,20 @@ Push-Location $PSScriptRoot\..
 
 $file = Get-ChildItem $path
 
-$job = Start-Job -FilePath $file.FullName `
-    -InitializationScript ([scriptblock]::Create(
-        @(
-            ". $PSScriptRoot\..\lib\loadModules.ps1"
-            'Import-Module ConfigLoader'
-            "`$ErrorActionPreference = 'Stop'"
-            "cd '$(Resolve-Path $PSScriptRoot\..)'"
-        ) -join ';'
-    ))
+$scriptBlock = {
+    param($path)
+    Set-Location "$Using:PSScriptRoot\.."
+    .\lib\loadModules.ps1
+    Import-Module ConfigLoader
+    $ErrorActionPreference = 'Stop'
+    $PSDefaultParameterValues = @{
+        'Start-Process:WindowStyle' = 'Minimized'
+    }
+    Set-Location 'packages'
+    & $path
+}
 
-Receive-Job $job -Wait
+Start-RSJob $scriptBlock -ArgumentList $file.FullName | Wait-RSJob | Receive-RSJob
 
 .\lib\submitNewUserRegistry.ps1
 Pop-Location

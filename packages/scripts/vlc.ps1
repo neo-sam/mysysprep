@@ -1,12 +1,14 @@
 #Requires -RunAsAdministrator
+param([switch]$GetMetadata)
 
-$pkg = Get-ChildItem -ea 0 'vlc-*-win64.exe'
-if (!$PSSenderInfo) {
-    if (-not $pkg) { return }
+$match = Get-ChildItem -ea 0 'vlc-*-win64.exe'
+
+if ($GetMetadata) {
     return @{
         name   = 'VLC'
-        target = 'C:\Program Files\VideoLAN\VLC\vlc.exe'
+        match  = $match
+        ignore = { Test-Path 'C:\Program Files\VideoLAN\VLC\vlc.exe' }
     }
 }
 
-Start-Process -Wait $pkg /S
+Start-Process -Wait $match /S

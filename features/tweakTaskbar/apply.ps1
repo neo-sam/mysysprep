@@ -54,7 +54,7 @@ if (Test-Windows11) {
     if ($cfg.w11noMsTeamIcon) {
         Set-ItemPropertyWithDefaultUser `
             'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced'`
-            TaskbarMn 2
+            TaskbarMn 0
     }
 }
 else {
@@ -66,9 +66,9 @@ else {
     if (Test-Windows10) {
         if ($cfg.w10noAd) {
             $regpath = 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Feeds'
-            Set-ItemPropertyWithDefaultUser $regpath ShellFeedsTaskbarViewMode 2
-            Set-ItemPropertyWithDefaultUser $regpath ShellFeedsTaskbarContentUpdateMode 1
-            Set-ItemPropertyWithDefaultUser $regpath ShellFeedsTaskbarOpenOnHover 0
+            Set-ItemProperty $regpath ShellFeedsTaskbarViewMode 2
+            Set-ItemProperty $regpath ShellFeedsTaskbarContentUpdateMode 1
+            Set-ItemProperty $regpath ShellFeedsTaskbarOpenOnHover 0
         }
         if ($cfg.w10noContactIcon) {
             Set-ItemPropertyWithDefaultUser `

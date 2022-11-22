@@ -1,15 +1,17 @@
 #Requires -RunAsAdministrator
+param([switch]$GetMetadata)
 
-$pkg = Get-ChildItem -ea 0 'VSCodeSetup-*.exe'
-if (!$PSSenderInfo) {
-    if (-not $pkg) { return }
+$match = Get-ChildItem -ea 0 'VSCodeSetup-*.exe'
+
+if ($GetMetadata) {
     return @{
         name   = 'VSCode'
-        target = 'C:\Program Files\Microsoft VS Code\Code.exe'
+        match  = $match
+        ignore = { Test-Path 'C:\Program Files\Microsoft VS Code\Code.exe' }
     }
 }
 
-Start-Process -Wait $pkg '/SILENT /tasks=addtopath,addcontextmenufiles,addcontextmenufolders,associatewithfiles,desktopicon'
+Start-Process -Wait $match '/SILENT /tasks=addtopath,addcontextmenufiles,addcontextmenufolders,associatewithfiles,desktopicon'
 
 # CUSTOM:
 

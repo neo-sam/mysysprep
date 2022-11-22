@@ -1,15 +1,17 @@
 #Requires -RunAsAdministrator
+param([switch]$GetMetadata)
 
-$pkg = Get-ChildItem -ea 0 '7z*-zstd-*.exe'
-if (!$PSSenderInfo) {
-    if (-not $pkg) { return }
+$match = Get-ChildItem -ea 0 '7z*-zstd-*.exe'
+
+if ($GetMetadata) {
     return @{
         name   = '7zip-zstd'
-        target = 'C:\Program Files\7-Zip-Zstandard\7z.exe'
+        match  = $match
+        ignore = { Test-Path 'C:\Program Files\7-Zip-Zstandard\7z.exe' }
     }
 }
 
-Start-Process -Wait $pkg /S
+Start-Process -Wait $match /S
 
 # CUSTOM:
 

@@ -1,15 +1,18 @@
 #Requires -RunAsAdministrator
+param([switch]$GetMetadata)
 
-$pkg = Get-ChildItem -ea 0 'Everything-*.x64.Lite-Setup.exe'
-if (!$PSSenderInfo) {
-    if (-not $pkg) { return }
+$match = Get-ChildItem -ea 0 'Everything-*.x64.Lite-Setup.exe'
+$appbin = 'C:\Program Files\Everything\Everything.exe'
+
+if ($GetMetadata) {
     return @{
         name   = 'Everything'
-        target = 'C:\Program Files\Everything\Everything.exe'
+        match  = $match
+        ignore = if (Test-Path $appbin) { { 1 } }else { { 0 } }
     }
 }
 
-Start-Process -Wait $pkg /S
+Start-Process -Wait $match /S
 
 # CUSTOM:
 
@@ -20,4 +23,4 @@ if (Test-Path ($it = 'config\Everything.ini')) {
     Copy-Item $it (mkdir -f 'C:\Users\Default\AppData\Roaming\Everything')
 }
 
-Repair-HidpiCompatibility 'C:\Program Files\Everything\Everything.exe'
+Repair-HidpiCompatibility $appbin

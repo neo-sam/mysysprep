@@ -1,12 +1,14 @@
 #Requires -RunAsAdministrator
+param([switch]$GetMetadata)
 
-$pkg = Get-ChildItem -ea 0 'qbittorrent_enhanced_*_x64_setup.exe'
-if (!$PSSenderInfo) {
-    if (-not $pkg) { return }
+$match = Get-ChildItem -ea 0 'qbittorrent_enhanced_*_x64_setup.exe'
+
+if ($GetMetadata) {
     return @{
         name   = 'qBittorrent Enhanced'
-        target = 'C:\Program Files\qBittorrent\qbittorrent.exe'
+        match  = $match
+        ignore = { Test-Path 'C:\Program Files\qBittorrent\qbittorrent.exe' }
     }
 }
 
-Start-Process -Wait $pkg /S
+Start-Process -Wait $match /S

@@ -1,15 +1,17 @@
 #Requires -RunAsAdministrator
+param([switch]$GetMetadata)
 
-$pkg = Get-ChildItem -ea 0 'workrave-win32-v*.exe'
-if (!$PSSenderInfo) {
-    if (-not $pkg) { return }
+$match = Get-ChildItem -ea 0 'workrave-win32-v*.exe'
+
+if ($GetMetadata) {
     return @{
         name   = 'Workrave'
-        target = 'C:\Program Files (x86)\Workrave\lib\Workrave.exe'
+        match  = $match
+        ignore = { Test-Path 'C:\Program Files (x86)\Workrave\lib\Workrave.exe' }
     }
 }
 
-Start-Process -Wait $pkg '/SILENT /SUPPRESSMSGBOXES /NORESTART /SP-'
+Start-Process -Wait $match '/SILENT /SUPPRESSMSGBOXES /NORESTART /SP-'
 
 # CUSTOM:
 

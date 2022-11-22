@@ -1,13 +1,14 @@
 #Requires -RunAsAdministrator
+param([switch]$GetMetadata)
 
-$pkg = Get-ChildItem -ea 0 'Thunderbird Setup *.exe'
-if (!$PSSenderInfo) {
-    if (-not $pkg) { return }
+$match = Get-ChildItem -ea 0 'Thunderbird Setup *.exe'
+
+if ($GetMetadata) {
     return @{
         name   = 'Thunderbird'
-        target = 'C:\Program Files\Mozilla Thunderbird\thunderbird.exe'
+        match  = $match
+        ignore = { Test-Path 'C:\Program Files\Mozilla Thunderbird\thunderbird.exe' }
     }
-    return
 }
 
-Start-Process -Wait $pkg '/S /DesktopShortcut=false'
+Start-Process -Wait $match '/S /DesktopShortcut=false'

@@ -1,66 +1,82 @@
 #Requires -RunAsAdministrator
 
-. .\lib\loadModules.ps1
+Push-Location $PSScriptRoot\..\..
+& .\lib\loadModules.ps1
 
-Push-Location $PSScriptRoot\..
-
-$initSb = [scriptblock]::Create(@(
-        ". '$PSScriptRoot\..\..\lib\loadModules.ps1'"
-        'Import-Module ConfigLoader'
-        "`$ErrorActionPreference = 'Stop'"
-        "cd '$(Resolve-Path $PSScriptRoot\..)'"
-        @'
-$PSDefaultParameterValues = @{
-'Start-Process:WindowStyle'='Minimized'
+$scriptBlock = {
+    param($path)
+    Set-Location "$Using:PSScriptRoot\..\.."
+    .\lib\loadModules.ps1
+    Import-Module ConfigLoader
+    $ErrorActionPreference = 'Stop'
+    $PSDefaultParameterValues = @{
+        'Start-Process:WindowStyle' = 'Minimized'
+    }
+    Set-Location 'packages'
+    & $path
 }
-'@
-    ) -join ';')
 
 $deployTasks = @()
 $deployMutexTasks = @()
 
-function Get-JobOrWait {
+function Get-RSJobOrWait {
     [OutputType([Management.Automation.Job])] param()
-    while (Get-Job) {
-        if ($job = Get-Job -State Failed | Select-Object -First 1) { return $job }
-        if ($job = Get-Job -State Completed | Select-Object -First 1) { return $job }
-        if ($job = Get-Job | Wait-Job -Any -Timeout 1) { return $job }
+    while (Get-RSJob) {
+        if ($job = Get-RSJob -State Failed | Select-Object -First 1) {
+            Remove-RSJob $job
+            return $job
+        }
+        if ($job = Get-RSJob -State Completed | Select-Object -First 1) {
+            Remove-RSJob $job
+            return $job
+        }
+        Get-RSJob | Wait-RSJob -Timeout 1 | Out-Null
     }
 }
 
 Write-Output '==> Start to add packages'
 mkdir -f .\log > $null
 
-$tasks = Get-ChildItem "scripts\*.ps1" -Exclude '__*__.ps1'
-foreach ($fetchTask in $tasks) {
-    $task = & $fetchTask
-    $name = $task.name
+Set-Location "$PSScriptRoot\.."
+$scripts = Get-ChildItem "scripts\*.ps1" -Exclude '__*__.ps1'
+foreach ($scriptFile in $scripts) {
+    $metadata = & $scriptFile -GetMetadata
+    $name = $metadata.name
 
-    if ($null -eq $name) { continue }
-
-    if (($null -ne $task.target) -and (Test-Path $task.target -ea 0)) {
+    if ($null -eq $metadata.match) { continue }
+    if (!($metadata.variant) -and ($metadata.match.Count -ne 1)) {
+        Write-Host -ForegroundColor Red 'Multiple Version Conflict:'
+        foreach ($pkg in $metadata.match) {
+            Write-Host -ForegroundColor Red $pkg
+        }
+        Write-Host
+        continue
+    }
+    if (& $metadata.ignore) {
         Write-Output "Ignored installed: $name"
         continue
     }
-    $task.path = $fetchTask
-    if ( $task.mutex ) { $deployMutexTasks += $task }
+
+    $task = @{
+        name = $name
+        path = $scriptFile.FullName
+    }
+    if ( $metadata.mutex ) { $deployMutexTasks += $task }
     else { $deployTasks += $task }
 }
 
 foreach ($task in $deployTasks) {
     $name = $task.name
     Write-Output "Adding a package: $name"
-    Start-Job `
-        -InitializationScript $initSb `
-        -Name $task.name -FilePath $task.path | Out-Null
+    Start-RSJob $scriptBlock -Name $name -ArgumentList $task.path | Out-Null
 }
 
 Write-Output '', 'Doing...', ''
 
-while ($job = Get-JobOrWait) {
+while ($job = Get-RSJobOrWait) {
     $name = $job.Name
     try {
-        Receive-Job $job -ErrorAction Stop
+        Receive-RSJob $job -ErrorAction Stop
         Write-Host -ForegroundColor Green `
             "Succeeded to add the package: $name"
     }
@@ -71,9 +87,6 @@ $($_.Exception.Message)
 
 "@
     }
-    finally {
-        Remove-Job $job
-    }
 }
 
 Write-Output 'Doing installation...', ''
@@ -82,10 +95,7 @@ foreach ($task in $deployMutexTasks) {
     $name = $task.name
     Write-Output "Installing a package: $name"
     try {
-        $job = Start-Job `
-            -InitializationScript $initSb `
-            -Name $task.name -FilePath $task.path
-        Wait-Job $job | Receive-Job
+        Start-RSJob $scriptBlock -Name $name -ArgumentList $task.path | Wait-RSJob | Receive-RSJob
         Write-Host -ForegroundColor Green `
             "Succeeded to install: $name"
     }
@@ -95,9 +105,6 @@ Failed to install: $name, reason:
 $($_.Exception.Message)
 
 "@
-    }
-    finally {
-        if ($job) { Remove-Job $job }
     }
 }
 

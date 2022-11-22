@@ -94,7 +94,7 @@ $startmenu = "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\$username"
 if ($onlyapp) {
     $startmenu = "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\New Isolated User App ($appname)"
 }
-mkdir -f $startmenu
+mkdir -f $startmenu >$null
 
 $it = $ws.CreateShortcut("$startmenu\PowerShell as $username(user).lnk")
 $it.IconLocation = "powershell.exe"

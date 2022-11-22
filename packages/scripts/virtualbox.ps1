@@ -1,17 +1,18 @@
 #Requires -RunAsAdministrator
+param([switch]$GetMetadata)
 
-$pkg = Get-ChildItem -ea 0 'virtualbox-*win*.exe'
-if (!$PSSenderInfo) {
-    if (-not $pkg) { return }
+$match = Get-ChildItem -ea 0 'virtualbox-*win*.exe'
+
+if ($GetMetadata) {
     return @{
         name   = 'VirtualBox'
-        target = 'C:\Program Files\Oracle\VirtualBox\VirtualBox.exe'
-        mutex  = 1
+        match  = $match
+        mutex  = $true
+        ignore = { Test-Path 'C:\Program Files\Oracle\VirtualBox\VirtualBox.exe' }
     }
-    return
 }
 
-Start-Process -Wait $pkg '-s -l -msiparams REBOOT=ReallySuppress'
+Start-Process -Wait $match '-s -l -msiparams REBOOT=ReallySuppress'
 
 # CUSTOM:
 

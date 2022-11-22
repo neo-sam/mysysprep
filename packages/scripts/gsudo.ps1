@@ -1,14 +1,16 @@
 #Requires -RunAsAdministrator
+param([switch]$GetMetadata)
 
-$pkg = Get-ChildItem -ea 0 'gsudoSetup.msi'
-if (!$PSSenderInfo) {
-    if (-not $pkg) { return }
+$match = Get-ChildItem -ea 0 'gsudoSetup.msi'
+$appbin = 'C:\Program Files (x86)\gsudo\gsudo.exe'
+
+if ($GetMetadata) {
     return @{
         name   = 'gsudo'
-        target = 'C:\Program Files (x86)\gsudo\gsudo.exe'
-        mutex  = 1
+        match  = $match
+        mutex  = $true
+        ignore = if (Test-Path $appbin) { { 1 } }else { { 0 } }
     }
 }
 
-Start-Process -Wait $pkg '/qb /norestart',
-'/l*v log\gsudo.log'
+Start-Process -Wait $match "/qb /norestart /l*v logs\gsudo.log"

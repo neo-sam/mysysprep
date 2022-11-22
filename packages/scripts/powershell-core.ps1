@@ -1,18 +1,21 @@
 #Requires -RunAsAdministrator
-$pkg = Get-ChildItem -ea 0 'PowerShell-*-win-x64.msi'
-if (!$PSSenderInfo) {
-    if (-not $pkg) { return }
+param([switch]$GetMetadata)
+
+$match = Get-ChildItem -ea 0 'PowerShell-*-win-x64.msi'
+
+if ($GetMetadata) {
     return @{
         name   = 'PowerShell Core'
-        target = 'C:\Program Files\PowerShell\*\pwsh.exe'
-        mutex  = 1
+        match  = $match
+        mutex  = $true
+        ignore = { Test-Path 'C:\Program Files\PowerShell\*\pwsh.exe' }
     }
 }
 
-Start-Process -Wait $pkg '/qb /norestart',
+Start-Process -Wait $match '/qb /norestart',
 'ADD_FILE_CONTEXT_MENU_RUNPOWERSHELL=1',
 'ADD_EXPLORER_CONTEXT_MENU_OPENPOWERSHELL=1',
-'/l*v log\powershell.log'
+'/l*v logs\powershell.log'
 
 # CUSTOM:
 

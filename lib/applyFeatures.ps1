@@ -2,20 +2,17 @@ Push-Location $PSScriptRoot\..
 & .\lib\loadModules.ps1
 Import-Module ConfigLoader
 
-function getInitScript([string]$name) {
-    return [scriptblock]::Create(
-        @("cd '$(Get-Location)'"
-            "& '$PSScriptRoot\loadModules.ps1'"
-            'Import-Module ConfigLoader'
-            "cd features\$name"
-        ) -join ';'
-    )
+$scriptBlock = {
+    param($name, $cfg)
+    Set-Location "$Using:PSScriptRoot\.."
+    & .\lib\loadModules.ps1
+    Set-Location ".\features\$name"
+    . .\apply.ps1 $cfg
 }
 
 foreach ($feature in Get-ChildItem .\features -Directory -Exclude _*) {
     if ($cfg = Get-FeatureConfig ($name = $feature.Name)) {
-        Start-Job -Name $name -FilePath ".\features\$name\apply.ps1" -ArgumentList $cfg `
-            -InitializationScript (getInitScript $name) | Out-Null
+        Start-RSJob $scriptBlock -Name $name -ArgumentList $name, $cfg | Out-Null
 
         $formatted = switch ($cfg) {
             1 { 'true' }
@@ -28,21 +25,20 @@ foreach ($feature in Get-ChildItem .\features -Directory -Exclude _*) {
 
 Write-Output '', 'Running ...', ''
 
-function Get-JobOrWait {
-    [OutputType([Management.Automation.Job])] param()
-    while (Get-Job) {
-        if ($job = Get-Job -State Failed | Select-Object -First 1) { return $job }
-        if ($job = Get-Job -State Completed | Select-Object -First 1) { return $job }
-        if ($job = Get-Job | Wait-Job -Any -Timeout 1) { return $job }
+function Get-RSJobOrWait {
+    while (Get-RSJob) {
+        if ($jobs = Get-RSJob -State Failed) { return $jobs[0] }
+        if ($jobs = Get-RSJob -State Completed) { return $jobs[0] }
+        Get-RSJob | Wait-RSJob -Timeout 1 | Out-Null
     }
 }
 
-while ($job = Get-JobOrWait) {
+while ($job = Get-RSJobOrWait) {
     $name = $job.Name
     try {
-        Receive-Job $job -ErrorAction Stop
+        Receive-RSJob $job -ErrorAction Stop
         Write-Host -ForegroundColor Green `
-            "Succeeded: $name $('({0:F2}s)' -f ($job.PsEndTime - $job.PsBeginTime).TotalSeconds)"
+            "Succeeded: $name"
     }
     catch {
         Write-Host -ForegroundColor Red @"
@@ -52,7 +48,7 @@ $($_.Exception.Message)
 "@
     }
     finally {
-        Remove-Job $job
+        Remove-RSJob $job
     }
 }
 

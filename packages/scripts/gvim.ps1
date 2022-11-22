@@ -1,16 +1,18 @@
 #Requires -RunAsAdministrator
+param([switch]$GetMetadata)
 
-$pkg = Get-ChildItem -ea 0 'gvim*.exe'
-$targetPath = 'C:\Program Files (x86)\Vim\vim*\gvim.exe'
-if (!$PSSenderInfo) {
-    if (-not $pkg) { return }
+$match = Get-ChildItem -ea 0 'gvim*.exe'
+$appmatch = 'C:\Program Files (x86)\Vim\vim*\gvim.exe'
+
+if ($GetMetadata) {
     return @{
         name   = 'gVim'
-        target = $targetPath
+        match  = $match
+        ignore = if (Test-Path $appmatch) { { 1 } }else { { 0 } }
     }
 }
 
-Start-Process -Wait $pkg /S
+Start-Process -Wait $match /S
 
 # CUSTOM:
 
@@ -19,7 +21,7 @@ Add-SystemPath (Get-ChildItem "C:\Program Files (x86)\Vim\vim*\" -ea Stop).FullN
 Set-Location C:\Users\Public\Desktop\
 Remove-Item 'gVim Easy *.lnk', 'gVim Read only *.lnk'
 
-$appPath = (Get-ChildItem $targetPath).FullName
+$appPath = (Get-ChildItem $appmatch).FullName
 foreach ($ext in 'viminfo', 'gitconfig', 'minttyrc', 'bash_history') {
     Set-Item (
         Get-RegItemOrNew "HKLM:\Software\Classes\.$ext"

@@ -1,12 +1,14 @@
 #Requires -RunAsAdministrator
+param([switch]$GetMetadata)
 
-$pkg = Get-ChildItem -ea 0 'tabby-*-setup-*.exe'
-if (!$PSSenderInfo) {
-    if (-not $pkg) { return }
+$match = Get-ChildItem -ea 0 'tabby-*-setup-*.exe'
+
+if ($GetMetadata) {
     return @{
         name   = 'Tabby'
-        target = 'C:\Program Files\Tabby\Tabby.exe'
+        match  = $match
+        ignore = { Test-Path 'C:\Program Files\Tabby\Tabby.exe' }
     }
 }
 
-Start-Process -Wait $pkg '/allusers /S'
+Start-Process -Wait $match '/allusers /S'

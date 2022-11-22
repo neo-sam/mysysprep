@@ -1,17 +1,19 @@
 #Requires -RunAsAdministrator
+param([switch]$GetMetadata)
 
-$pkg = Get-ChildItem -ea 0 'ImDiskTk-x64.zip'
-if (!$PSSenderInfo) {
-    if (-not $pkg) { return }
+$match = Get-ChildItem -ea 0 'ImDiskTk-x64.zip'
+
+if ($GetMetadata) {
     return @{
         name   = 'imdisk'
-        target = 'C:\Program Files\ImDisk\config.exe'
+        match  = $match
+        ignore = { Test-Path 'C:\Program Files\ImDisk\config.exe' }
     }
 }
 
 $tmpdir = "$(mkdir -f "$env:TMP\win-sf\imdisk")"
 
-Expand-Archive -Force $pkg $(mkdir -f $tmpdir)
+Expand-Archive -Force $match $(mkdir -f $tmpdir)
 
 Start-Process -Wait extrac32.exe "/e /y /l $tmpdir/imdisk_files $(Get-ChildItem "$tmpdir\ImDiskTk*\files.cab")"
 Start-Process -Wait "$tmpdir\imdisk_files\config.exe" '/fullsilent', `

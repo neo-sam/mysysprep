@@ -3,6 +3,7 @@ $names = switch ((Get-Culture).Name) {
     Default { @{ userProfile = 'User Profile' } }
 }
 
+$osvb = [Environment]::OSVersion.Version.Build
 $osvm = [Environment]::OSVersion.Version.Major
 
 function Get-RegItemOrNew([string]$path) {
@@ -78,14 +79,25 @@ function showRecentFoldersIconAtExplorerSidebar {
     Add-ExplorerSidebar $guid
     Hide-DesktopIcon $guid
 
+    osvb
+
     $icon = switch ($osvm) {
         6 { 'imageres.dll,112' }
-        10 { 'shell32.dll,319' }
-        11 { 'shell32.dll,316' }
+        Default {
+            if ($osvb -le 22000) { 'shell32.dll,319' }
+            else { 'shell32.dll,316' }
+        }
     }
     Set-Item (
         Get-RegItemOrNew "HKCU:\Software\Classes\CLSID\{$guid}\DefaultIcon"
     ) $icon
+}
+
+function hideWin10TaskbarAd {
+    $regpath = 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Feeds'
+    Set-ItemProperty $regpath ShellFeedsTaskbarViewMode 2
+    Set-ItemProperty $regpath ShellFeedsTaskbarContentUpdateMode 1
+    Set-ItemProperty $regpath ShellFeedsTaskbarOpenOnHover 0
 }
 
 Remove-Item -Force "$([Environment]::GetFolderPath('Desktop'))\Firstrun.lnk" -ea 0

@@ -1,15 +1,17 @@
 #Requires -RunAsAdministrator
+param([switch]$GetMetadata)
 
-$pkg = Get-ChildItem -ea 0 'Twinkle.Tray.v*.exe'
-if (!$PSSenderInfo) {
-    if (-not $pkg) { return }
+$match = Get-ChildItem -ea 0 'Twinkle.Tray.v*.exe'
+
+if ($GetMetadata) {
     return @{
         name   = 'Twinkle Tray'
-        target = "$(Get-AppFolderPath -UserDeploy)\Twinkle.Tray.v*.exe"
+        match  = $match
+        ignore = { Test-Path "$(Get-AppFolderPath -UserDeploy)\Twinkle.Tray.v*.exe" }
     }
 }
 
-Start-Process -Wait $pkg /S
+Start-Process -Wait $match /S
 Copy-Item $pkg (Get-AppFolderPath -UserDeploy)
 
 $shortcut = "$([Environment]::GetFolderPath('Desktop'))\$(

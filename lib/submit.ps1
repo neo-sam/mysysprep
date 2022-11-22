@@ -20,8 +20,8 @@ if (Test-AuditMode) {
     if ('OK' -eq (
             [System.Windows.MessageBox]::Show(@"
 $(Get-Translation 'Repository: ' `
--cn '反馈：'
-)https://github.com/setupfw/win-sf/issues/new
+-cn '项目：'
+)https://github.com/setupfw/win-sf
 $(Get-Translation 'Author: ' `
 -cn '作者：')LittleboyHarry
 $(Get-Translation 'Blessing: have a nice day! ^_^' `

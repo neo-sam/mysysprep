@@ -1,16 +1,19 @@
 #Requires -RunAsAdministrator
+param([switch]$GetMetadata)
 
-$pkg = Get-ChildItem -ea 0 'Cyberduck-Installer-*.exe'
-if (!$PSSenderInfo) {
-    if (-not $pkg) { return }
+$match = Get-ChildItem -ea 0 'Cyberduck-Installer-*.exe'
+$appbin = 'C:\Program Files\Cyberduck\Cyberduck.exe'
+
+if ($GetMetadata) {
     return @{
         name   = 'Cyberduck'
-        target = 'C:\Program Files\Cyberduck\Cyberduck.exe'
+        match  = $match
+        ignore = if (Test-Path $appbin) { { 1 } }else { { 0 } }
     }
 }
 
-Start-Process -Wait $pkg /quiet
+Start-Process -Wait $match /quiet
 
 # CUSTOM:
 
-Repair-HidpiCompatibility 'C:\Program Files\Cyberduck\Cyberduck.exe'
+Repair-HidpiCompatibility $appbin
