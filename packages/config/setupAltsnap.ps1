@@ -1,6 +1,6 @@
 $env:__COMPAT_LAYER = "RunAsInvoker"
 $it = Get-ChildItem -ea 0 'AltSnap*-x64-inst.exe'
-if ($it.count -ne 0) {
+if ($it.count -ne 1) {
     Write-Error 'Task Crash!'
     [System.Console]::ReadKey()>$null
 }

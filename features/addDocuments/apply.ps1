@@ -12,7 +12,7 @@ $linksFolderName = Get-Translation 'User Guide' -cn '使用说明'
 
 Push-Location $docsFolderPath
 Remove-Item -Recurse -Force *
-Copy-Item -Recurse -Force "$(Get-ProjectLocation)\docs\*" .
+Copy-Item -Recurse -Force "$PSScriptRoot\docs\*" .
 mkdir -f $linksFolderPath >$null
 Pop-Location
 

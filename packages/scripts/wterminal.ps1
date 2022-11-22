@@ -8,21 +8,23 @@ if (!$PSSenderInfo) {
     }
 }
 
+function Add-AppxProvisionedPackageAndExit([string]$path) {
+    Add-AppxProvisionedPackage -Online -SkipLicense -PackagePath $path | Out-Null
+    exit
+}
+
 if (Test-Windows10) {
     if ($it = Get-ChildItem -ea 0 'Microsoft.WindowsTerminal_Win10_*_8wekyb3d8bbwe.msixbundle') {
-        Add-AppxProvisionedPackage -Online -SkipLicense -PackagePath $it.FullName
-        exit
+        Add-AppxProvisionedPackageAndExit $it.FullName
     }
 }
 
 if (Test-Windows11) {
     if ($it = Get-ChildItem -ea 0 'Microsoft.WindowsTerminal_Win11_*_8wekyb3d8bbwe.msixbundle') {
-        Add-AppxProvisionedPackage -Online -SkipLicense -PackagePath $it.FullName
-        exit
+        Add-AppxProvisionedPackageAndExit $it.FullName
     }
 }
 
 if ($it = Get-ChildItem -ea 0 'Microsoft.WindowsTerminal_*_8wekyb3d8bbwe.msixbundle') {
-    Add-AppxProvisionedPackage -Online -SkipLicense -PackagePath $it
-    exit
+    Add-AppxProvisionedPackageAndExit $it.FullName
 }

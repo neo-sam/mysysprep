@@ -5,7 +5,7 @@
 Push-Location $PSScriptRoot\..
 
 $initSb = [scriptblock]::Create(@(
-        ". $PSScriptRoot\..\..\lib\loadModules.ps1"
+        ". '$PSScriptRoot\..\..\lib\loadModules.ps1'"
         'Import-Module ConfigLoader'
         "`$ErrorActionPreference = 'Stop'"
         "cd '$(Resolve-Path $PSScriptRoot\..)'"
@@ -55,7 +55,7 @@ foreach ($task in $deployTasks) {
         -Name $task.name -FilePath $task.path | Out-Null
 }
 
-Write-Output '', 'doing...', ''
+Write-Output '', 'Doing...', ''
 
 while ($job = Get-JobOrWait) {
     $name = $job.Name
@@ -76,7 +76,7 @@ $($_.Exception.Message)
     }
 }
 
-Write-Output 'doing installation...', ''
+Write-Output 'Doing installation...', ''
 
 foreach ($task in $deployMutexTasks) {
     $name = $task.name

@@ -47,9 +47,9 @@ if (Test-Windows11) {
             'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced'`
             TaskbarDa 0
 
-        Get-RegItemOrNew `
-            'HKLM:\SOFTWARE\Policies\Microsoft\Dsh'
-        AllowNewsAndInterests 0
+        Set-ItemProperty (
+            Get-RegItemOrNew  'HKLM:\SOFTWARE\Policies\Microsoft\Dsh'
+        ) AllowNewsAndInterests 0
     }
     if ($cfg.w11noMsTeamIcon) {
         Set-ItemPropertyWithDefaultUser `

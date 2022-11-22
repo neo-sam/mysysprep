@@ -52,10 +52,10 @@ function Set-RunAsAdmin($shortcut) {
 }
 
 function Set-IconToEnable($shortcut) {
-    $shortcut.IconLocation = switch ($osver.Major) {
-        6 { 'imageres.dll,101' }
-        10 { 'imageres.dll,232' }
-        11 { 'imageres.dll,233' }
+    $shortcut.IconLocation = switch ($null) {
+        { Test-Windows7 } { 'imageres.dll,101'; break }
+        { Test-Windows10 } { 'imageres.dll,232'; break }
+        { Test-Windows11 } { 'imageres.dll,233' }
     }
 }
 

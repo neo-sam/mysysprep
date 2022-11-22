@@ -1,14 +1,15 @@
 #Requires -RunAsAdministrator
 
 param([Parameter(Mandatory)]$path)
-$file = Get-ChildItem $path
 
-Push-Location $PSScriptRoot\..\..
+Push-Location $PSScriptRoot\..
+
+$file = Get-ChildItem $path
 
 $job = Start-Job -FilePath $file.FullName `
     -InitializationScript ([scriptblock]::Create(
         @(
-            ". $PSScriptRoot\..\..\lib\loadModules.ps1"
+            ". $PSScriptRoot\..\lib\loadModules.ps1"
             'Import-Module ConfigLoader'
             "`$ErrorActionPreference = 'Stop'"
             "cd '$(Resolve-Path $PSScriptRoot\..)'"

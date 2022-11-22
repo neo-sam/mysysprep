@@ -1,4 +1,4 @@
-$checkpoints = Import-Csv '.\lib\signatures.csv' -Encoding UTF8
+$checkpoints = Import-Csv "$PSScriptRoot\signatures.csv" -Encoding UTF8
 
 :nextfile foreach ($file in Get-ChildItem *.exe, *.msi, *.msu, *.ps1, *.msixbundle) {
     foreach ($checkpoint in $checkpoints) {

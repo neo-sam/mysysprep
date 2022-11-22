@@ -22,7 +22,7 @@ else {
 }
 
 try {
-    Push-Location "$PSScriptRoot\$name"
+    Push-Location "features\$name"
     & .\apply.ps1 $object
 }
 finally {

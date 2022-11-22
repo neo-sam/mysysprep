@@ -28,7 +28,7 @@ $it.removeRtf = 1
 $it.removeJnt = 1
 $it.removeContact = 1
 
-if ($features.tweakSendTo -ne 0) {
+if ($features.tweakSendTo -eq 0) {
     $features.tweakSendTo = [ordered]@{}
 }
 $features.tweakSendTo.optimize = 1
