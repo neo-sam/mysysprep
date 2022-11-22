@@ -1,0 +1,160 @@
+<Types>
+  <Type>
+    <Name>RSJob</Name>
+    <Members>
+      <ScriptProperty>
+        <Name>HasMoreData</Name>
+        <GetScriptBlock>            
+            $Flags = 'nonpublic','instance','static'
+            $_Worker = $This.innerjob.GetType().GetField('worker',$Flags)
+            if ($_Worker -eq $null) { $_Worker = $This.innerjob.GetType().GetField('_worker',$Flags) }
+            $Worker = $_Worker.GetValue($This.innerjob)
+
+            $_CRP = $worker.GetType().GetProperty('CurrentlyRunningPipeline',$Flags)
+            $CRP = $_CRP.GetValue($Worker, $Null)
+            $State = If (-NOT $This.handle.IsCompleted -AND -NOT [bool]$CRP) {
+                [System.Management.Automation.PSInvocationState]::NotStarted
+            }
+            Else {
+                $This.InnerJob.InvocationStateInfo.State
+            }
+            If ($PSVersionTable['PSEdition'] -and $PSVersionTable.PSEdition -eq 'Core') {
+                $IsReceived =$This.IsReceived
+            }
+            Else {
+                $Field = $This.gettype().GetField('IsReceived',$Flags)
+                $IsReceived = $Field.GetValue($This)
+            }
+            If ($IsReceived) {
+                $False
+            }
+            Else {
+                If ($State -eq 'Completed' -AND $This.Handle.IsCompleted -AND (-Not $This.Completed)) {
+                    $Output = $This.Innerjob.GetType().GetProperty('OutputBuffer',$Flags)
+                    $Results = $Output.GetValue($This.Innerjob)
+                    If ($Results.count -gt 0 -AND (-NOT [string]::IsNullOrEmpty($Results))) {
+                        $True
+                    }
+                    Else {
+                        $False
+                    }
+                }
+                Else {
+                    If ($This.Output -AND (-NOT [string]::IsNullOrEmpty($This.Output))) {
+                        $True
+                    }
+                    Else {
+                        $False
+                    }
+                }
+            }
+        </GetScriptBlock>
+      </ScriptProperty>
+    </Members>
+  </Type>
+  <Type>
+    <Name>RSJob</Name>
+    <Members>
+      <ScriptProperty>
+        <Name>State</Name>
+        <GetScriptBlock>
+            $Flags = 'nonpublic','instance','static'
+            $_Worker = $This.innerjob.GetType().GetField('worker',$Flags)
+            if ($_Worker -eq $null) { $_Worker = $This.innerjob.GetType().GetField('_worker',$Flags) }
+            $Worker = $_Worker.GetValue($This.innerjob)
+
+            $_CRP = $worker.GetType().GetProperty('CurrentlyRunningPipeline',$Flags)
+            $CRP = $_CRP.GetValue($Worker, $Null)
+            If (-NOT $This.handle.IsCompleted -AND -NOT [bool]$CRP) {
+                [System.Management.Automation.PSInvocationState]::NotStarted
+            }
+            Else {
+                $This.InnerJob.InvocationStateInfo.State
+            }
+        </GetScriptBlock>
+      </ScriptProperty>
+    </Members>
+  </Type>
+  <Type>
+    <Name>RSJob</Name>
+    <Members>
+      <ScriptProperty>
+        <Name>HasErrors</Name>
+        <GetScriptBlock>
+         If ($psversiontable.psversion.major -ge 3){
+            $this.innerjob.HadErrors
+         }
+         Else {
+            ($this.innerjob.Streams.Error.Count -ne 0)
+         }
+        </GetScriptBlock>
+      </ScriptProperty>
+    </Members>
+  </Type>
+  <Type>
+    <Name>RSJob</Name>
+    <Members>
+      <ScriptProperty>
+        <Name>Verbose</Name>
+        <GetScriptBlock>
+          $this.InnerJob.Streams.Verbose
+        </GetScriptBlock>
+      </ScriptProperty>
+    </Members>
+  </Type>
+  <Type>
+    <Name>RSJob</Name>
+    <Members>
+      <ScriptProperty>
+        <Name>Debug</Name>
+        <GetScriptBlock>
+          $this.InnerJob.Streams.Debug
+        </GetScriptBlock>
+      </ScriptProperty>
+    </Members>
+  </Type>
+  <Type>
+    <Name>RSJob</Name>
+    <Members>
+      <ScriptProperty>
+        <Name>Warning</Name>
+        <GetScriptBlock>
+          $this.InnerJob.Streams.Warning
+        </GetScriptBlock>
+      </ScriptProperty>
+    </Members>
+  </Type>
+  <Type>
+    <Name>RSJob</Name>
+    <Members>
+      <ScriptProperty>
+        <Name>Progress</Name>
+        <GetScriptBlock>
+          $this.InnerJob.Streams.Progress
+        </GetScriptBlock>
+      </ScriptProperty>
+    </Members>
+  </Type>
+  <Type>
+    <Name>RSRunspacePool</Name>
+    <Members>
+      <ScriptProperty>
+        <Name>AvailableJobs</Name>
+        <GetScriptBlock>
+          $this.Runspacepool.GetAvailableRunspaces()
+        </GetScriptBlock>
+      </ScriptProperty>
+    </Members>
+  </Type>
+  <Type>
+    <Name>RSRunspacePool</Name>
+    <Members>
+      <ScriptProperty>
+        <Name>State</Name>
+        <GetScriptBlock>
+          $this.RunspacePool.RunspacePoolStateInfo.State
+        </GetScriptBlock>
+      </ScriptProperty>
+    </Members>
+  </Type>
+</Types>

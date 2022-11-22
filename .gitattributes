@@ -1,2 +1,4 @@
 *.ps1 text working-tree-encoding=utf-16le-bom eol=crlf
+*.psm1 text working-tree-encoding=utf-16le-bom eol=crlf
+*.psd1 text working-tree-encoding=utf-16le-bom eol=crlf
 *.reg text working-tree-encoding=utf-16le-bom eol=crlf
