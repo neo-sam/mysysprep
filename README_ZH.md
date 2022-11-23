@@ -103,20 +103,19 @@ flowchart TB
 
 5.  打包为新镜像：
 
-        start cmd /k dism /capture-image /capturedir:c: /imagefile:D:\mywin.esd /name:mysys /compress:max /checkintegrity /verify
+        start cmd /k dism /capture-image /capturedir:c: /imagefile:D:\mywin.esd /name:mysys /compress:max f/verify /checkintegrity
 
-| Command Parameters | Usage                            |
-| ------------------ | -------------------------------- |
-| start cmd /k       | run it in new command prompt     |
-| /capturedir        | the system partition letter      |
-| /imagefile         | type your full backup image path |
-| /name              | customized Name                  |
-| /compress          | optional: max,fast,none          |
-| /checkintegrity    | /verify optional: verify         |
+| Command Parameters      | Usage                      |
+| ----------------------- | -------------------------- |
+| start cmd /k            | 在分离的新窗口内执行       |
+| /capturedir             | 填入捕抓的系统盘符         |
+| /imagefile              | 备份镜像的完整路径名       |
+| /name                   | 名称自定                   |
+| /compress               | 可选参数：max,fast,none    |
+| /verify /checkintegrity | 可选参数：完整性和错误校验 |
 
-`.wim` is a legacy compatible and low compression format
-
-`.esd` is the new high compression ratio format with long compression time
+- 旧版兼容的低压缩率格式：`.wim`
+- 新版压缩时间长的高压缩率格式：`.esd`
 
 </details>
 

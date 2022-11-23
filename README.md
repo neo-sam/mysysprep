@@ -95,16 +95,16 @@ Get U disk image writer:
 
 5.  Capture command:
 
-        start cmd /k dism /capture-image /capturedir:c: /imagefile:D:\mywin.esd /name:mysys /compress:max /checkintegrity /verify
+        start cmd /k dism /capture-image /capturedir:c: /imagefile:D:\mywin.esd /name:mysys /compress:max /verify /checkintegrity
 
-| Command Parameters | Usage                            |
-| ------------------ | -------------------------------- |
-| start cmd /k       | run it in new command prompt     |
-| /capturedir        | the system partition letter      |
-| /imagefile         | type your full backup image path |
-| /name              | customized Name                  |
-| /compress          | optional: max,fast,none          |
-| /checkintegrity    | /verify optional: verify         |
+| Command Parameters      | Usage                            |
+| ----------------------- | -------------------------------- |
+| start cmd /k            | run it in new command prompt     |
+| /capturedir             | the system partition letter      |
+| /imagefile              | type your full backup image path |
+| /name                   | customized Name                  |
+| /compress               | (optional) max,fast,none         |
+| /verify /checkintegrity | (optional)                       |
 
 `.wim` is a legacy compatible and low compression format
 
