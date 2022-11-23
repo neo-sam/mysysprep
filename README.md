@@ -2,11 +2,14 @@
 
 Auto setup or config Your Windows by One Click.
 
-This README is also available in: [中文](./README_ZH.md)
+![Screenshot](https://user-images.githubusercontent.com/13063376/203465422-aca51ba7-d9fe-4233-9b2b-383b12e853d6.png)
 
 Suitable: Win11/Win10, [Win7](./win7/README.md). x64 CPU arch.
 
-![Screenshot](https://user-images.githubusercontent.com/13063376/203465422-aca51ba7-d9fe-4233-9b2b-383b12e853d6.png)
+I want you to
+[![HackerNews](https://img.shields.io/badge/vote%20on-hacker%20news-orange?logo=ycombinator)](https://news.ycombinator.com/item?id=33715265)
+
+This README is also available in languages: [🇨🇳 中文](./README_ZH.md)
 
 ## How To Use?
 
