@@ -1,6 +1,6 @@
 # Windows 一键部署脚手架
 
-适用于：Win11/Win10
+适用于：Win11/Win10, [Win7](./win7/README.md)
 
 ## 使用方法
 
