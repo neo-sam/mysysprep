@@ -82,6 +82,7 @@ flowchart TB
 - [微 PE 工具箱](https://www.wepe.com.cn/ubook/start.html)
 - [优启通 EasyU](https://www.upe.net/)
 
+<br/>
 </details>
 
 ## 制作并使用系统镜像
@@ -101,7 +102,7 @@ flowchart TB
         set tmp=d:\tmp
         mkdir %tmp%
 
-5.  打包为新镜像：
+5.  打包为新镜像：（ 使用 notepad.exe 打开 README_ZH.md 以复制代码 ）
 
         start cmd /k dism /capture-image /verify /checkintegrity /name:mysys /compress:max /capturedir:c: /imagefile:D:\mywin.esd
 
@@ -117,6 +118,7 @@ flowchart TB
 - 旧版兼容的低压缩率格式：`.wim`
 - 新版压缩时间长的高压缩率格式：`.esd`
 
+<br/>
 </details>
 
 <details>
@@ -125,7 +127,7 @@ flowchart TB
 
 1.  进入恢复模式或从 USB 启动 WinPE
 2.  建议把目标的系统分区挂载为 C 盘
-3.  执行恢复指令：
+3.  执行恢复指令：（ 使用 notepad.exe 打开 README_ZH.md 以复制代码 ）
 
         dism /apply-image /index:1 /verify /applydir:c: /imagefile:D:\backup\system.esd
 

@@ -6,8 +6,7 @@ Auto setup or config Your Windows by One Click.
 
 Suitable: Win11/Win10, [Win7](./win7/README.md). x64 CPU arch.
 
-I want you to
-[![HackerNews](https://img.shields.io/badge/vote%20on-hacker%20news-orange?logo=ycombinator)](https://news.ycombinator.com/item?id=33715265)
+[![HackerNews](https://img.shields.io/badge/Need%20your%20vote%20on-hacker%20news!-orange?logo=ycombinator)](https://news.ycombinator.com/item?id=33715265)
 
 This README is also available in languages: [🇨🇳 中文](./README_ZH.md)
 
@@ -77,6 +76,7 @@ Get U disk image writer:
 
   find `*p.exe` at [Official GitHub Release](https://github.com/pbatard/rufus/releases/latest)
 
+<br/>
 </details>
 
 ## Make and Apply a System Image
@@ -96,7 +96,7 @@ Get U disk image writer:
         set tmp=d:\tmp
         mkdir %tmp%
 
-5.  Capture command:
+5.  Capture command: (open README.md by notepad.exe to copy code)
 
         start cmd /k dism /capture-image /verify /checkintegrity /name:mysys /compress:max /capturedir:c: /imagefile:D:\mywin.esd
 
@@ -113,7 +113,7 @@ Get U disk image writer:
 
 `.esd` is the new high compression ratio format with long compression time
 
-</details>
+<br/></details>
 
 <details>
 <summary>Restore from an Image ...</summary>
@@ -121,7 +121,7 @@ Get U disk image writer:
 
 1.  Boot into Recovery Mode or WinPE in USB
 2.  Mount the target system partition as C drive
-3.  Restore command:
+3.  Restore command: (open README.md by notepad.exe to copy code)
 
         dism /apply-image /index:1 /verify /applydir:c: /imagefile:D:\backup\system.esd
 
