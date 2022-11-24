@@ -26,6 +26,7 @@ $Script:features = [ordered]@{
     enableClipboardHistory      = 0
     enableSshAgent              = 0
 
+    fixAppxNetIsolation         = 0
     fixHidpiBlur                = 0
 
     addUserFirstRun             = 0

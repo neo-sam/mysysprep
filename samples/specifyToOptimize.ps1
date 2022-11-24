@@ -33,3 +33,5 @@ if ($features.tweakSendTo -eq 0) {
 }
 $features.tweakSendTo.optimize = 1
 $features.tweakSendTo.addStartMenu = 1
+
+$features.fixAppxNetIsolation = 1
