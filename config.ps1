@@ -7,6 +7,7 @@ $Script:features = [ordered]@{
     addNewIsolatedUserScript    = 0
     addProfileToPwsh            = 0
     addQuickSettings            = 0
+    addGitKnownHosts            = 0
 
     applyBetterTouchpadGestures = 0
     applyClassicPhotoViewer     = 0

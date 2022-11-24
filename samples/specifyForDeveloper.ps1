@@ -10,3 +10,5 @@ $it.addMd = 1
 $it.addPs1 = 1
 $it.addIni = 1
 $it.addReg = 1
+
+$features.addGitKnownHosts = 1
