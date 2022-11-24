@@ -72,10 +72,6 @@ Download into `.\packages`
 
   Find `win-x64.msi` at [Official GitHub Release](https://aka.ms/powershell-release?tag=stable)
 
-- Windows Terminal
-
-  [Official GitHub Page](https://github.com/microsoft/terminal/releases/latest)
-
 - [Tabby](https://tabby.sh/): most popular social terminal emulator
 
   [Official GitHub Page](https://github.com/Eugeny/tabby/releases/latest)
@@ -103,6 +99,10 @@ Download into `.\packages`
 - ImDisk Toolkit: ramdisk for Windows and mounting of image files
 
   [Official Download Page](https://sourceforge.net/projects/imdisk-toolkit/files/latest/download)
+
+- ADB: Android SDK Platform-Tools
+
+  [Download Content directly](https://dl.google.com/android/repository/platform-tools-latest-windows.zip)
 
 - VirtualBox: free open source virtualization platform by Oracle
 

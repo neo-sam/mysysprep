@@ -28,6 +28,10 @@
 
   按修改时间倒排，找到最新版 `.exe` 下载，见[高校镜像站](https://mirrorz.org/list/vim)
 
+- ADB: 安卓手机/虚拟机调试工具
+
+  [Download Content directly](https://dl.google.com/android/repository/platform-tools-latest-windows.zip)
+
 - VirtualBox: Oracle 公司维护的免费开源虚拟化平台
 
   从[高校镜像站](https://mirrorz.org/app/VirtualBox)下载
@@ -55,7 +59,6 @@
 
 - VSCode 开发神器
 - gsudo 获取管理员权限
-- Windows Terminal
 - Tabby 终端模拟器
 - Sysinternals 系统实用程序
 - ImDisk Toolkit 挂载内存盘、镜像文件
