@@ -103,7 +103,7 @@ flowchart TB
 
 5.  打包为新镜像：
 
-        start cmd /k dism /capture-image /capturedir:c: /imagefile:D:\mywin.esd /name:mysys /compress:max f/verify /checkintegrity
+        start cmd /k dism /capture-image /verify /checkintegrity /name:mysys /compress:max /capturedir:c: /imagefile:D:\mywin.esd
 
 | Command Parameters      | Usage                      |
 | ----------------------- | -------------------------- |

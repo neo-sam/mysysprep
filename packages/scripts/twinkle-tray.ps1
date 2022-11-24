@@ -11,7 +11,7 @@ if ($GetMetadata) {
     }
 }
 
-Start-Process -Wait $match /S
+Start-Process -Wait $match '/NCRC /S'
 Copy-Item $pkg (Get-AppFolderPath -UserDeploy)
 
 $shortcut = "$([Environment]::GetFolderPath('Desktop'))\$(

@@ -12,9 +12,6 @@ $scriptBlock = {
     .\lib\loadModules.ps1
     Import-Module ConfigLoader
     $ErrorActionPreference = 'Stop'
-    $PSDefaultParameterValues = @{
-        'Start-Process:WindowStyle' = 'Minimized'
-    }
     Set-Location 'packages'
     & $path
 }

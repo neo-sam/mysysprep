@@ -115,4 +115,4 @@ if ($onlyapp) {
 
 Start-Process $startmenu
 
-if ($Error) { Read-Host 'Press Enter Key to close' }
+if ($Error) { Pause }

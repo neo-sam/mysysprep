@@ -22,7 +22,7 @@ $content = @(
     $parts[0],
     ((Get-Content 'config\altsnap.ini') -join "`n"),
     $parts[1]
-) -join '' -replace '# Remove desktop shortcut', "rm -fo `"`$([Environment]::GetFolderPath('Desktop'))\$lnkname.lnk`""
+) -join ''
 if ((Get-Culture).Name -eq 'zh-CN') {
     $content = $content -replace '(?<=Language=)en-US', 'zh-CN'
 }

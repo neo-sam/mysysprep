@@ -16,7 +16,6 @@ Git,Git-*-64-bit.exe,"CN=Johannes Schindelin, O=Johannes Schindelin, S=Nordrhein
 VBox,virtualbox-*win*.exe,"CN=Oracle Corporation, OU=VirtualBox, O=Oracle Corporation, L=Redwood City, S=California, C=US"
 gsudo,gsudoSetup.msi,"CN=Gerardo Grignoli, O=Gerardo Grignoli, S=Buenos Aires, C=AR"
 Tabby,tabby-*-setup-*.exe,"CN=syslink GmbH, O=syslink GmbH, L=Düsseldorf, S=Nordrhein-Westfalen, C=DE"
-WindowsTerminal,Microsoft.WindowsTerminal_*_8wekyb3d8bbwe.msixbundle,"CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US"
 
 gVim,gvim*.exe
 qBittorrent,qbittorrent_*_x64_setup

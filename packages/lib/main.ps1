@@ -9,9 +9,6 @@ $scriptBlock = {
     .\lib\loadModules.ps1
     Import-Module ConfigLoader
     $ErrorActionPreference = 'Stop'
-    $PSDefaultParameterValues = @{
-        'Start-Process:WindowStyle' = 'Minimized'
-    }
     Set-Location 'packages'
     & $path
 }
@@ -52,7 +49,7 @@ foreach ($scriptFile in $scripts) {
         Write-Host
         continue
     }
-    if (& $metadata.ignore) {
+    if ($metadata.ignore -and (& $metadata.ignore)) {
         Write-Output "Ignored installed: $name"
         continue
     }

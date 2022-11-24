@@ -7,8 +7,6 @@ if ($it.count -ne 1) {
 }
 Start-Process -Wait $it.FullName '/NCRC /S'
 
-# Remove desktop shortcut
-
 Set-ItemProperty 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Run' AltSnap "`"$env:APPDATA\AltSnap\AltSnap.exe`""
 
 @"
@@ -17,11 +15,12 @@ Set-ItemProperty 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Run' AltSnap "
 
 & "$env:APPDATA\AltSnap\AltSnap.exe"
 
-if ($Error) { Write-Error $Error }
-
-Add-Type -AssemblyName PresentationFramework
-[System.Windows.MessageBox]::Show(
-    'Hold Windows Key + Mouse Action on windows to take effect!',
-    'AltSnap installed!',
-    'OK', 'Information'
-)
+if ($Error) { Pause }
+else {
+    Add-Type -AssemblyName PresentationFramework
+    [System.Windows.MessageBox]::Show(
+        'Hold Windows Key + Mouse Action on windows to take effect!',
+        'AltSnap installed!',
+        'OK', 'Information'
+    )
+}

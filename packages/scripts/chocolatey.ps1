@@ -8,7 +8,7 @@ if ($GetMetadata) {
     return @{
         name   = 'Chocolatey'
         match  = $match
-        ignore = if ({ Test-Path "$ChocoInstallPath\choco.exe" }) { { 1 } }else { { 0 } }
+        ignore = if (Test-Path "$ChocoInstallPath\choco.exe") { { 1 } }else { { 0 } }
     }
 }
 

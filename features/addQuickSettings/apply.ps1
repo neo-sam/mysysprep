@@ -90,7 +90,7 @@ function Set-IconToCleanFile($shortcut) {
 }
 
 function Set-IconToConfig($shortcut) {
-    $shortcut.IconLocation = 'shell32.dll,21'
+    $shortcut.IconLocation = 'control.exe'
 }
 
 if ($cfg.createAll -or ((Get-OSVersionBuild) -ge 17763)) {
@@ -169,5 +169,5 @@ if ($cfg.createAll -or (Test-Windows11)) {
 
 $it = (Get-WscriptShell).CreateShortcut("C:\Users\Public\Desktop\$($names.at_desktop).lnk")
 $it.TargetPath = "$PWD"
-$it.IconLocation = 'control.exe'
+$it.IconLocation = 'shell32.dll,21'
 $it.Save()

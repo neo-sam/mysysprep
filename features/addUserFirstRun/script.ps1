@@ -79,8 +79,6 @@ function showRecentFoldersIconAtExplorerSidebar {
     Add-ExplorerSidebar $guid
     Hide-DesktopIcon $guid
 
-    osvb
-
     $icon = switch ($osvm) {
         6 { 'imageres.dll,112' }
         Default {
