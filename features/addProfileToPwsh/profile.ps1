@@ -5,3 +5,7 @@ if (Get-Module PSReadLine) {
     Set-PSReadLineKeyHandler -Key "Tab" -Function MenuComplete
     function Suspend-PSHistory { Set-PSReadLineOption -HistorySaveStyle SaveNothing }
 }
+
+function which([string]$command) {
+    (Get-Command $command).Source
+}
