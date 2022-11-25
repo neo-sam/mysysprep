@@ -13,7 +13,7 @@ PowerShell,PowerShell-*-win-x64.msi,"CN=Microsoft Corporation, O=Microsoft Corpo
 VSCode,VSCodeSetup-*.exe,"CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US"
 OpenSSH,OpenSSH-Win64-v*.msi,"CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US"
 Git,Git-*-64-bit.exe,"CN=Johannes Schindelin, O=Johannes Schindelin, S=Nordrhein-Westfalen, C=DE"
-VBox,virtualbox-*win*.exe,"CN=Oracle Corporation, OU=VirtualBox, O=Oracle Corporation, L=Redwood City, S=California, C=US"
+VBox,VirtualBox-*-Win.exe,"CN=Oracle Corporation, OU=VirtualBox, O=Oracle Corporation, L=Redwood City, S=California, C=US"
 gsudo,gsudoSetup.msi,"CN=Gerardo Grignoli, O=Gerardo Grignoli, S=Buenos Aires, C=AR"
 Tabby,tabby-*-setup-*.exe,"CN=syslink GmbH, O=syslink GmbH, L=Düsseldorf, S=Nordrhein-Westfalen, C=DE"
 

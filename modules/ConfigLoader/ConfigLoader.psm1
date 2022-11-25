@@ -51,5 +51,5 @@ function Get-FeatureConfig([string]$key) {
 function Test-IgnorePackages { $ignorePackages }
 
 function Test-ShouldManuallyAddPkgs {
-    (Test-Path -Exclude .gitkeep ".\packages\manual\*") -and (!$ignoreManualPackages)
+    return !$ignoreManualPackages
 }

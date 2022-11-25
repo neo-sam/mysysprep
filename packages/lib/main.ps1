@@ -31,7 +31,7 @@ function Get-RSJobOrWait {
     }
 }
 
-Write-Output '==> Start to add packages'
+Write-Output '==> start to add packages'
 mkdir -f .\log > $null
 
 Set-Location "$PSScriptRoot\.."
@@ -50,7 +50,7 @@ foreach ($scriptFile in $scripts) {
         continue
     }
     if ($metadata.ignore -and (& $metadata.ignore)) {
-        Write-Output "Ignored installed: $name"
+        Write-Output "(-) skip: $name"
         continue
     }
 
@@ -64,47 +64,47 @@ foreach ($scriptFile in $scripts) {
 
 foreach ($task in $deployTasks) {
     $name = $task.name
-    Write-Output "Adding a package: $name"
+    Write-Output "(+): $name"
     Start-RSJob $scriptBlock -Name $name -ArgumentList $task.path | Out-Null
 }
 
-Write-Output '', 'Doing...', ''
+Write-Output '', '|-> Adding packages...', ''
 
 while ($job = Get-RSJobOrWait) {
     $name = $job.Name
     try {
         Receive-RSJob $job -ErrorAction Stop
         Write-Host -ForegroundColor Green `
-            "Succeeded to add the package: $name"
+            "[+] $name"
     }
     catch {
         Write-Host -ForegroundColor Red @"
-Failed to add the package: $name, reason:
-$($_.Exception.Message)
+[!] $name
+>E: $($_.Exception.Message)
 
 "@
     }
 }
 
-Write-Output 'Doing installation...', ''
+Write-Output '|-> Adding packges one by one...', ''
 
 foreach ($task in $deployMutexTasks) {
     $name = $task.name
-    Write-Output "Installing a package: $name"
+    Write-Output "(+) $name"
     try {
         Start-RSJob $scriptBlock -Name $name -ArgumentList $task.path | Wait-RSJob | Receive-RSJob
         Write-Host -ForegroundColor Green `
-            "Succeeded to install: $name"
+            "[+] $name"
     }
     catch {
         Write-Host -ForegroundColor Red @"
-Failed to install: $name, reason:
-$($_.Exception.Message)
+[!] $name
+>E: $($_.Exception.Message)
 
 "@
     }
 }
 
-Write-Output 'OK!'
+Write-Output '==> end to add packages'
 
 Pop-Location

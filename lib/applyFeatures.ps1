@@ -23,7 +23,7 @@ foreach ($feature in Get-ChildItem .\features -Directory -Exclude _*) {
     }
 }
 
-Write-Output '', 'Running ...', ''
+Write-Output '', '|-> submit changes ...', ''
 
 function Get-RSJobOrWait {
     while (Get-RSJob) {
@@ -38,12 +38,12 @@ while ($job = Get-RSJobOrWait) {
     try {
         Receive-RSJob $job -ErrorAction Stop
         Write-Host -ForegroundColor Green `
-            "Succeeded: $name"
+            "[+] $name"
     }
     catch {
         Write-Host -ForegroundColor Red @"
-Failed to add: $name, reason:
-$($_.Exception.Message)
+[!] $name
+>E: $($_.Exception.Message)
 
 "@
     }
@@ -53,4 +53,3 @@ $($_.Exception.Message)
 }
 
 Pop-Location
-Write-Output 'OK!', ''

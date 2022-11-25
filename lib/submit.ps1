@@ -12,10 +12,10 @@ if (Test-AuditMode) {
 
 .\lib\submitNewUserRegistry.ps1
 
-Write-Output '', '==> FINISHED!'
+Write-Output '', '==> FINISHED ALL!'
 
 if (Test-AuditMode) {
-    if (askWarningDialog 'win-sf' `
+    if (askInformationDialog 'win-sf' `
             @"
 $(Get-Translation 'Repository: ' -cn '项目：')https://github.com/setupfw/win-sf
 $(Get-Translation 'Author: ' -cn '作者：')LittleboyHarry

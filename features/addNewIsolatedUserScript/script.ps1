@@ -40,8 +40,8 @@ net user $username /add > $null
 if ((Get-ItemPropertyValue HKLM:\SYSTEM\CurrentControlSet\Control\Lsa LimitBlankPasswordUse) -eq 1) {
     $password = $host.ui.PromptForChoice('Require login password?', $null,
         ([System.Management.Automation.Host.ChoiceDescription[]](
-        (New-Object System.Management.Automation.Host.ChoiceDescription '&No'),
-        (New-Object System.Management.Automation.Host.ChoiceDescription '&Yes')
+            (New-Object System.Management.Automation.Host.ChoiceDescription '&No'),
+            (New-Object System.Management.Automation.Host.ChoiceDescription '&Yes')
         )), 0) -eq 1
     if ($password) { net user $username * }
     else {

@@ -2,10 +2,8 @@
 
 Stop-Process -ea 0 -Name sysprep
 
-if ($PSVersionTable.PSVersion.Major -lt 5) {
-    .\lib\doPowershellUpdate.ps1
-    exit
-}
+.\lib\doPowershellUpdate.ps1
+if ($LASTEXITCODE) { exit }
 
 if (!(Test-RunAsAdmin)) {
     Write-Error 'Require to run as the Administrator.'
@@ -13,17 +11,16 @@ if (!(Test-RunAsAdmin)) {
     exit
 }
 
-if (Test-ShouldManuallyAddPkgs) {
-    .\lib\tryToOpenManualInstallPackages.ps1
-    if ($LASTEXITCODE) { exit }
-}
+.\lib\tryToManuallyAddPkgs.ps1
+if ($LASTEXITCODE) { exit }
 
 if (Test-AuditMode) {
     net user Administrator /active:yes >$null
 }
 
-Write-Output '==> Start to apply features'
+Write-Output '==> start to apply features'
 .\lib\applyFeatures.ps1
+Write-Output '==> end to apply features'
 
 try {
     if ((Test-Path .\packages) -and !(Test-IgnorePackages)) {
