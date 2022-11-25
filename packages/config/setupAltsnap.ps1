@@ -18,6 +18,19 @@ Set-ItemProperty 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Run' AltSnap "
 if ($Error) { Pause }
 else {
     Add-Type -AssemblyName PresentationFramework
+    Add-Type -Name WinDPI -Namespace Native -MemberDefinition '
+[DllImport("SHCore.dll", SetLastError = true)]
+public static extern bool SetProcessDpiAwareness(PROCESS_DPI_AWARENESS awareness);
+
+public enum PROCESS_DPI_AWARENESS
+{
+    Process_DPI_Unaware = 0,
+    Process_System_DPI_Aware = 1,
+    Process_Per_Monitor_DPI_Aware = 2
+}
+'
+    [Native.WinDPI]::SetProcessDPIAwareness([Native.WinDPI+PROCESS_DPI_AWARENESS]::Process_Per_Monitor_DPI_Aware) | Out-Null
+
     [System.Windows.MessageBox]::Show(
         'Hold Windows Key + Mouse Action on windows to take effect!',
         'AltSnap installed!',

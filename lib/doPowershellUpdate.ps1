@@ -1,19 +1,12 @@
 .\lib\loadModules.ps1
-Add-Type -AssemblyName PresentationFramework
 
-$reponse = [System.Windows.MessageBox]::Show(
-    (
+if (askWarningDialog(
+        Get-Translation 'Discarded PowerShell Version' `
+            -cn '不支持旧版 PowerShell' ,
         Get-Translation 'Please update to PowerShell 5!' `
             -cn '请升级 PowerShell 到 5 版以上'
-    ),
-    (
-        Get-Translation 'Discarded PowerShell Version' `
-            -cn '不支持旧版 PowerShell'
-    ),
-    'OK', 'Warning'
-)
-
-if ($reponse -eq 'OK') {
+    )
+) {
     if (!(Test-Path ($it = 'HKLM:\Software\Classes\.md'))) {
         Set-Item (mkdir -f $it).PSPath "md_auto_file"
         Set-Item (

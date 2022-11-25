@@ -14,11 +14,8 @@ if (Test-AuditMode) {
 
 Write-Output '', '==> FINISHED!'
 
-Add-Type -AssemblyName PresentationFramework
-
 if (Test-AuditMode) {
-    if ('OK' -eq (
-            [System.Windows.MessageBox]::Show(@"
+    if (askWarningDialog ( "win-sf | $(Get-Translation 'COMPLETED' -cn '已完成')", @"
 $(Get-Translation 'Repository: ' `
 -cn '项目：'
 )https://github.com/setupfw/win-sf
@@ -29,22 +26,14 @@ $(Get-Translation 'Blessing: have a nice day! ^_^' `
 
 $(Get-Translation 'Confirm: start to SYSPREP.EXE now?' `
 -cn '是否结束审核模式，封装系统以便使用？')
-"@,
-                "win-sf | $(Get-Translation 'COMPLETED' -cn '已完成')",
-                'OKCancel', 'Warning')
-        )) {
+"@)) {
         Stop-Process -Name explorer
         & 'C:\Windows\System32\Sysprep\Sysprep.exe' /oobe /generalize /shutdown
         exit
     }
 }
 
-if ('OK' -eq (
-        [System.Windows.MessageBox]::Show(
-        (Get-Translation 'Restart File Explorer to finish?' -cn '重启文件资源管理器以生效？'),
-            'apply.ps1',
-            'OKCancel', 'Warning')
-    )) {
+if (askQuestionDialog('winsf', (Get-Translation 'Restart File Explorer to finish?' -cn '重启文件资源管理器以生效？'))) {
     Stop-Process -Name explorer
 }
 
