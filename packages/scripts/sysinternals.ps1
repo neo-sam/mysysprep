@@ -12,18 +12,8 @@ if ($GetMetadata) {
     }
 }
 
-$tmpdir = "$(mkdir -f "$env:TMP\win-sf\Sysinternals")"
-
-Expand-Archive -Force $match $tmpdir
-
-if ([Environment]::OSVersion.Version.Build -ge 10240) {
-    $excludeList += 'desktops*'
-}
-
 mkdir -f $targetPath >$null
-Push-Location $tmpdir
-Move-Item * $targetPath
-Pop-Location
+Expand-Archive -Force $match $targetPath
 
 # CUSTOM:
 

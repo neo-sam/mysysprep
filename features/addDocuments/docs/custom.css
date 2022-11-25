@@ -10,9 +10,14 @@
     padding: 15px;
   }
 }
-code{
-    user-select: all;
-}
-p>code{
+
+p > code {
   white-space: nowrap;
+}
+
+pre {
+  user-select: all;
+}
+pre > code {
+  user-select: text;
 }

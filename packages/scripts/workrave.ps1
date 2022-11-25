@@ -26,6 +26,9 @@ $keepBreakSeconds = 6 * 60
 
 $volume = 38
 
+Set-ItemProperty 'HKLM:\Software\Microsoft\Windows\CurrentVersion\Run' Workrave 'C:\Program Files (x86)\Workrave\lib\Workrave.exe'
+Remove-Item 'C:\Users\Public\Desktop\Workrave.lnk'
+
 if (Test-Path ($it = 'config\workrave.reg')) {
     Import-RegFileForMeAndDefault $it
     $regpath = 'HKCU:\Software\Workrave\timers\micro_pause'
@@ -39,7 +42,5 @@ if (Test-Path ($it = 'config\workrave.reg')) {
     $regpath = 'HKCU:\Software\Workrave\sound'
     Set-ItemPropertyWithDefaultUser $regpath volume "$volume"
 }
-
-Set-ItemProperty 'HKLM:\Software\Microsoft\Windows\CurrentVersion\Run' Workrave 'C:\Program Files (x86)\Workrave\lib\Workrave.exe'
 
 Repair-HidpiCompatibility 'C:\Program Files (x86)\Workrave\lib\Workrave.exe'

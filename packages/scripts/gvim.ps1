@@ -16,10 +16,10 @@ Start-Process -Wait $match /S
 
 # CUSTOM:
 
-Add-SystemPath (Get-ChildItem "C:\Program Files (x86)\Vim\vim*\" -ea Stop).FullName
-
 Set-Location C:\Users\Public\Desktop\
 Remove-Item 'gVim Easy *.lnk', 'gVim Read only *.lnk'
+
+Add-SystemPath (Get-ChildItem "C:\Program Files (x86)\Vim\vim*\" -ea Stop).FullName
 
 $appPath = (Get-ChildItem $appmatch).FullName
 foreach ($ext in 'viminfo', 'gitconfig', 'minttyrc', 'bash_history') {
