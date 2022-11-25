@@ -11,7 +11,7 @@ if ($GetMetadata) {
     }
 }
 
-Start-Process -Wait $match '/SILENT /SUPPRESSMSGBOXES /NORESTART /SP-'
+Start-Process -Wait $match '/VERYSILENT /SUPPRESSMSGBOXES /NORESTART /SP-'
 
 # CUSTOM:
 

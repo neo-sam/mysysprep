@@ -12,7 +12,7 @@ if ($GetMetadata) {
     }
 }
 
-Start-Process -Wait $match "/LOADINF=config/git.ini /SILENT /SUPPRESSMSGBOXES /NORESTART /SP-"
+Start-Process -Wait $match "/LOADINF=config/git.ini /VERYSILENT /SUPPRESSMSGBOXES /NORESTART /SP-"
 
 # CUSTOM:
 

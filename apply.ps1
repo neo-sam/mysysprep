@@ -18,13 +18,15 @@ if (Test-AuditMode) {
     net user Administrator /active:yes >$null
 }
 
-Write-Output '==> start to apply features'
+Write-Output '==> Apply features'
 .\lib\applyFeatures.ps1
-Write-Output '==> end to apply features'
+Write-Output '<== Applied features', '', '', ''
 
 try {
     if ((Test-Path .\packages) -and !(Test-IgnorePackages)) {
+        Write-Output '==> Add packages'
         & .\packages\lib\main.ps1
+        Write-Output '<== Added packages', '', '', ''
     }
 
     if (Test-Path 'C:\Windows\System32\WindowsPowerShell\v1.0\profile.ps1') {

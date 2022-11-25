@@ -2,13 +2,14 @@
 param([switch]$GetMetadata)
 
 $match = Get-ChildItem -ea 0 'virtualbox-*win*.exe'
+$appdir = 'C:\Program Files\Oracle\VirtualBox'
 
 if ($GetMetadata) {
     return @{
         name   = 'VirtualBox'
         match  = $match
         mutex  = $true
-        ignore = { Test-Path 'C:\Program Files\Oracle\VirtualBox\VirtualBox.exe' }
+        ignore = { Test-Path "$appdir\VirtualBox.exe" }
     }
 }
 
@@ -16,4 +17,6 @@ Start-Process -Wait $match '-s -l -msiparams REBOOT=ReallySuppress'
 
 # CUSTOM:
 
-Add-SystemPath 'C:\Program Files\Oracle\VirtualBox'
+if (!(Test-Path $appdir)) { throw 'Installed Failed' }
+
+Add-SystemPath $appdir

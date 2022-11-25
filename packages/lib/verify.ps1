@@ -1,4 +1,5 @@
-. .\lib\loadModules.ps1
+$Host.UI.RawUI.WindowTitle = 'Signature Verification'
+& $PSScriptRoot\..\..\lib\loadModules.ps1
 $checkpoints = Import-Csv "$PSScriptRoot\signatures.csv" -Encoding UTF8
 
 $scriptBlock = {
@@ -29,21 +30,30 @@ $unknownScriptBlock = {
     })
 }
 
+Push-Location $PSScriptRoot\..
 :nextfile foreach ($file in Get-ChildItem *.exe, *.msi, *.msu, *.ps1, *.msixbundle) {
     foreach ($checkpoint in $checkpoints) {
         if ($file.Name -like $checkpoint.Pattern) {
-            Start-RSJob $scriptBlock -Args $file.Name, $file.FullName, $checkpoint | Out-Null
+            Start-RSJob $scriptBlock -ArgumentList $file.Name, $file.FullName, $checkpoint | Out-Null
             continue nextfile
         }
     }
-    Start-RSJob $unknownScriptBlock -Args $file.Name | Out-Null
+    Start-RSJob $unknownScriptBlock -ArgumentList $file.Name | Out-Null
 }
 
-Get-PSJob | Wait-PSJob
-$result = Get-PSJob | Receive-RSJob | Select-Object Name, Type, Verified | Sort-Object Verified
+$activity = 'Verifying packages:'
+while (Get-RSJob -State Running) {
+    Write-Progress $activity 0 `
+        -status "$((Get-RSJob -State Completed).Count) / $((Get-RSJob).Count)" `
+        -PercentComplete ((Get-RSJob -State Completed).Count / (Get-RSJob).Count * 100)
+    Start-Sleep -Milliseconds 16
+}
+Write-Progress $activity 0 -Completed
+
+$result = Get-RSJob | Receive-RSJob | Select-Object Name, Type, Verified | Sort-Object Verified
 
 if ($resultA = $result | Where-Object { $_.Verified -ne $null } | Format-Table) {
-    Write-Output 'Signature Verification:' $resultA
+    Write-Output $resultA
 }
 
 
@@ -58,6 +68,10 @@ if ($resultB = ($result | Where-Object { $_.Verified -eq $null }).Name) {
     } | Format-List
 }
 
+Get-RSJob | Remove-RSJob
+
 if ($null -eq $resultA -and $null -eq $resultB) {
-    Write-Output 'Nothing. Please add your packages into this folder'
+    Write-Output 'NA', (Get-Translation 'Please add your packages into this folder, refer to README.md' -cn '请添加内容到当前目录，阅读 README_ZH.md 了解更多信息')
 }
+
+Pop-Location

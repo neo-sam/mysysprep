@@ -9,6 +9,7 @@ $scriptBlock = {
     .\lib\loadModules.ps1
     Import-Module ConfigLoader
     $ErrorActionPreference = 'Stop'
+    $PSDefaultParameterValues.Add('Start-Process:WindowStyle', 'Hidden')
     Set-Location 'packages'
     & $path
 }
@@ -16,25 +17,8 @@ $scriptBlock = {
 $deployTasks = @()
 $deployMutexTasks = @()
 
-function Get-RSJobOrWait {
-    [OutputType([Management.Automation.Job])] param()
-    while (Get-RSJob) {
-        if ($job = Get-RSJob -State Failed | Select-Object -First 1) {
-            Remove-RSJob $job
-            return $job
-        }
-        if ($job = Get-RSJob -State Completed | Select-Object -First 1) {
-            Remove-RSJob $job
-            return $job
-        }
-        Get-RSJob | Wait-RSJob -Timeout 1 | Out-Null
-    }
-}
-
-Write-Output '==> start to add packages'
-mkdir -f .\log > $null
-
 Set-Location "$PSScriptRoot\.."
+mkdir -f .\logs > $null
 $scripts = Get-ChildItem "scripts\*.ps1" -Exclude '__*__.ps1'
 foreach ($scriptFile in $scripts) {
     $metadata = & $scriptFile -GetMetadata
@@ -64,47 +48,46 @@ foreach ($scriptFile in $scripts) {
 
 foreach ($task in $deployTasks) {
     $name = $task.name
-    Write-Output "(+): $name"
+    Write-Output "(+) $name"
     Start-RSJob $scriptBlock -Name $name -ArgumentList $task.path | Out-Null
 }
 
-Write-Output '', '|-> Adding packages...', ''
+Write-Output '', '--> Adding packages:'
 
 while ($job = Get-RSJobOrWait) {
     $name = $job.Name
-    try {
-        Receive-RSJob $job -ErrorAction Stop
-        Write-Host -ForegroundColor Green `
-            "[+] $name"
+    $result = Receive-RSJob $job
+    if ($job.HasErrors) {
+        Write-Host -ForegroundColor Red "[!] $name"
+        if ($result) {
+            Write-Host -ForegroundColor Red "    $result"
+            Write-Host
+        }
     }
-    catch {
-        Write-Host -ForegroundColor Red @"
-[!] $name
->E: $($_.Exception.Message)
-
-"@
+    else {
+        Write-Output $result
+        Write-Host -ForegroundColor Green "[+] $name"
     }
+    Remove-RSJob $job
 }
 
-Write-Output '|-> Adding packges one by one...', ''
+Write-Output '', '--> Adding packges one by one:'
 
 foreach ($task in $deployMutexTasks) {
     $name = $task.name
     Write-Output "(+) $name"
     try {
-        Start-RSJob $scriptBlock -Name $name -ArgumentList $task.path | Wait-RSJob | Receive-RSJob
+        & $task.path
         Write-Host -ForegroundColor Green `
             "[+] $name"
     }
     catch {
         Write-Host -ForegroundColor Red @"
 [!] $name
->E: $($_.Exception.Message)
+    $($_.Exception.Message)
 
 "@
     }
 }
-
-Write-Output '==> end to add packages'
 
 Pop-Location

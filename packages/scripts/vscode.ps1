@@ -11,7 +11,7 @@ if ($GetMetadata) {
     }
 }
 
-Start-Process -Wait $match '/SILENT /tasks=addtopath,addcontextmenufiles,addcontextmenufolders,associatewithfiles,desktopicon'
+Start-Process -Wait $match '/VERYSILENT /tasks=addtopath,addcontextmenufiles,addcontextmenufolders,associatewithfiles,desktopicon'
 
 # CUSTOM:
 

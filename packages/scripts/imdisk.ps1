@@ -21,6 +21,7 @@ Start-Process -Wait "$tmpdir\imdisk_files\config.exe" '/fullsilent', `
     '/shortcuts_desktop:0' , '/shortcuts_all:0'
 
 Move-Item "$env:APPDATA\Microsoft\Windows\Start Menu\Programs\ImDisk" 'C:\ProgramData\Microsoft\Windows\Start Menu\Programs'
+icacls.exe 'C:\ProgramData\Microsoft\Windows\Start Menu\Programs\ImDisk' /reset >$null
 
 foreach ($_ in @("config", "MountImg", "RamDiskUI")) {
     Repair-HidpiCompatibility "C:\Program Files\ImDisk\$_.exe"

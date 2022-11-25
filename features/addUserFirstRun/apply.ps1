@@ -13,9 +13,6 @@ if ($text = Get-Content '.\script.ps1' -ea 0) {
             }
         }
     }
-    if (((Get-FeatureConfig tweakTaskbar).w10noAd) -and (Test-Windows10)) {
-        $text += 'hideWin10TaskbarAd'
-    }
     $text | Out-File -Encoding unicode $firstrunPath
 }
 

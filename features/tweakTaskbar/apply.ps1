@@ -64,12 +64,6 @@ else {
             TaskbarGlomLevel 1
     }
     if (Test-Windows10) {
-        if ($cfg.w10noAd) {
-            $regpath = 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Feeds'
-            Set-ItemProperty $regpath ShellFeedsTaskbarViewMode 2
-            Set-ItemProperty $regpath ShellFeedsTaskbarContentUpdateMode 1
-            Set-ItemProperty $regpath ShellFeedsTaskbarOpenOnHover 0
-        }
         if ($cfg.w10noContactIcon) {
             Set-ItemPropertyWithDefaultUser `
                 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced\People'`

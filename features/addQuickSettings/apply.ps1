@@ -175,7 +175,7 @@ if ($cfg.createAll -or (Test-Windows11)) {
     $it.Save()
 }
 
-$it = New-Shortcut -Lnk "C:\Users\Public\Desktop\$($names.at_desktop).lnk"
+$it = New-Shortcut -Lnk "C:\Users\Public\Desktop\$($names.at_desktop)"
 $it.TargetPath = "$PWD"
 $it.IconLocation = 'shell32.dll,21'
 $it.Save()

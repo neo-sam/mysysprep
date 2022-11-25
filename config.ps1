@@ -111,7 +111,6 @@ if ($features.tweakTaskbar -ne 0) {
         optimize                 = 0
         biggerThumbnail          = 0
         groupWhenOverflow        = 0
-        w10noAd                  = 0
         w10noCortanaIcon         = 0
         w10noContactIcon         = 0
         w11setAlignLeft          = 0

@@ -56,14 +56,14 @@ function Uninstall-BundledAppx([string]$names) {
             $splitToPrint = 0
             if ($null -ne $app) {
                 $app | Remove-AppxPackage
-                Write-Output "[-] Appx:`n    $name"
+                Write-Output "<X> Appx:`n    $name"
                 $splitToPrint = 1
             }
             Wait-Process dism -ea 0
             $papp = Get-AppxProvisionedPackage -Online | Where-Object DisplayName -like $name
             if ($null -ne $app) {
                 $papp | Remove-AppxProvisionedPackage -Online | Out-Null
-                Write-Output "[-] Provisioned Appx:`n    $name"
+                Write-Output "<X> Provisioned Appx:`n    $name"
                 $splitToPrint = 1
             }
             if ( $splitToPrint) { Write-Host }

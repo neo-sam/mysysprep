@@ -91,11 +91,4 @@ function showRecentFoldersIconAtExplorerSidebar {
     ) $icon
 }
 
-function hideWin10TaskbarAd {
-    $regpath = 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Feeds'
-    Set-ItemProperty $regpath ShellFeedsTaskbarViewMode 2
-    Set-ItemProperty $regpath ShellFeedsTaskbarContentUpdateMode 1
-    Set-ItemProperty $regpath ShellFeedsTaskbarOpenOnHover 0
-}
-
 Remove-Item -Force "$([Environment]::GetFolderPath('Desktop'))\Firstrun.lnk" -ea 0

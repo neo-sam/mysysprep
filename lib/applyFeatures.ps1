@@ -23,33 +23,23 @@ foreach ($feature in Get-ChildItem .\features -Directory -Exclude _*) {
     }
 }
 
-Write-Output '', '|-> submit changes ...', ''
-
-function Get-RSJobOrWait {
-    while (Get-RSJob) {
-        if ($jobs = Get-RSJob -State Failed) { return $jobs[0] }
-        if ($jobs = Get-RSJob -State Completed) { return $jobs[0] }
-        Get-RSJob | Wait-RSJob -Timeout 1 | Out-Null
-    }
-}
+Write-Output '', '--> submit changes ...'
 
 while ($job = Get-RSJobOrWait) {
     $name = $job.Name
-    try {
-        Receive-RSJob $job -ErrorAction Stop
-        Write-Host -ForegroundColor Green `
-            "[+] $name"
+    $result = Receive-RSJob $job
+    if ($job.HasErrors) {
+        Write-Host -ForegroundColor Red "[!] $name"
+        if ($result) {
+            Write-Host -ForegroundColor Red "    $result"
+            Write-Host
+        }
     }
-    catch {
-        Write-Host -ForegroundColor Red @"
-[!] $name
->E: $($_.Exception.Message)
-
-"@
+    else {
+        Write-Output $result
+        Write-Host -ForegroundColor Green "[+] $name"
     }
-    finally {
-        Remove-RSJob $job
-    }
+    Remove-RSJob $job
 }
 
 Pop-Location
