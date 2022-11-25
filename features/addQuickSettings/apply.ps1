@@ -46,10 +46,6 @@ $names = switch ((Get-Culture).Name) {
     }
 }
 
-function New-Shortcut([String]$name) {
-    return (Get-WscriptShell).CreateShortcut("$PWD\$name.lnk")
-}
-
 function Set-RunAsAdmin($shortcut) {
     $path = $shortcut.FullName
     $bytes = [System.IO.File]::ReadAllBytes($path)
@@ -100,14 +96,14 @@ function Set-IconToConfig($shortcut) {
 }
 
 if ($cfg.createAll -or ((Get-OSVersionBuild) -ge 17763)) {
-    $it = New-Shortcut $names.darkmode_enable
+    $it = New-Shortcut -Lnk $names.darkmode_enable
     $it.TargetPath = 'reg'
     $it.Arguments = 'add HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize /v AppsUseLightTheme /t REG_DWORD /d 0 /f'
     $it.Description = $names.darkmode_desc
     Set-IconToEnable $it
     $it.Save()
 
-    $it = New-Shortcut $names.darkmode_disable
+    $it = New-Shortcut -Lnk $names.darkmode_disable
     $it.TargetPath = 'reg'
     $it.Arguments = 'add HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize /v AppsUseLightTheme /t REG_DWORD /d 1 /f'
     $it.Description = $names.darkmode_desc
@@ -115,33 +111,33 @@ if ($cfg.createAll -or ((Get-OSVersionBuild) -ge 17763)) {
     $it.Save()
 }
 
-$it = New-Shortcut $names.edit_hosts
+$it = New-Shortcut -Lnk $names.edit_hosts
 $it.TargetPath = 'notepad'
 $it.Arguments = 'C:\Windows\system32\drivers\etc\hosts'
 Set-IconToEdit $it
 $it.Save()
 Set-RunAsAdmin $it
 
-$it = New-Shortcut $names.dns_flush
+$it = New-Shortcut -Lnk $names.dns_flush
 $it.TargetPath = 'ipconfig'
 $it.Arguments = '/dns_flush'
 Set-IconToRestart $it
 $it.Save()
 Set-RunAsAdmin $it
 
-$it = New-Shortcut $names.explorer_restart
+$it = New-Shortcut -Lnk $names.explorer_restart
 $it.TargetPath = 'powershell'
 $it.Arguments = '-c kill -n explorer'
 Set-IconToRestart $it
 $it.Save()
 
-$it = New-Shortcut $names.edit_desktopicon
+$it = New-Shortcut -Lnk $names.edit_desktopicon
 $it.TargetPath = 'control'
 $it.Arguments = 'desk.cpl,,0'
 Set-IconToConfig $it
 $it.Save()
 
-$it = New-Shortcut $names.hyperv_enable
+$it = New-Shortcut -Lnk $names.hyperv_enable
 $it.TargetPath = 'bcdedit'
 $it.Arguments = '/set {current} hypervisorlaunchtype auto'
 $it.Description = $names.hyperv_desc
@@ -149,7 +145,7 @@ Set-IconToEnableInAdmin $it
 $it.Save()
 Set-RunAsAdmin $it
 
-$it = New-Shortcut $names.hyperv_disable
+$it = New-Shortcut -Lnk $names.hyperv_disable
 $it.TargetPath = 'bcdedit'
 $it.Arguments = '/set {current} hypervisorlaunchtype off'
 $it.Description = $names.hyperv_desc
@@ -157,21 +153,21 @@ Set-IconToDisableInAdmin $it
 $it.Save()
 Set-RunAsAdmin $it
 
-$it = New-Shortcut $names.clear_pwshhist
+$it = New-Shortcut -Lnk $names.clear_pwshhist
 $it.TargetPath = 'powershell'
 $it.Arguments = '-c cmd /c del %APPDATA%\Microsoft\Windows\PowerShell\PSReadLine\ConsoleHost_history.txt'
 Set-IconToCleanFile $it
 $it.Save()
 
 if ($cfg.createAll -or (Test-Windows11)) {
-    $it = New-Shortcut $names.w11ctxmenu_enable
+    $it = New-Shortcut -Lnk $names.w11ctxmenu_enable
     $it.TargetPath = 'reg'
     $it.Arguments = 'add HKCU\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\InprocServer32 /f /ve'
     $it.Description = $names.w11ctxmenu_desc
     Set-IconToEnable $it
     $it.Save()
 
-    $it = New-Shortcut $names.w11ctxmenu_disable
+    $it = New-Shortcut -Lnk $names.w11ctxmenu_disable
     $it.TargetPath = 'reg'
     $it.Arguments = 'delete HKCU\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\InprocServer32 /f /ve'
     $it.Description = $names.w11ctxmenu_desc
@@ -179,7 +175,7 @@ if ($cfg.createAll -or (Test-Windows11)) {
     $it.Save()
 }
 
-$it = (Get-WscriptShell).CreateShortcut("C:\Users\Public\Desktop\$($names.at_desktop).lnk")
+$it = New-Shortcut -Lnk "C:\Users\Public\Desktop\$($names.at_desktop).lnk"
 $it.TargetPath = "$PWD"
 $it.IconLocation = 'shell32.dll,21'
 $it.Save()

@@ -1,5 +1,12 @@
 $wshell = New-Object -ComObject WScript.Shell
-function Get-WscriptShell { $wshell }
+function New-Shortcut([string]$path, [switch]$Lnk, [switch]$Url ) {
+    if ($Lnk) { $path += '.lnk' }
+    elseif ($Url) { $path += '.url' }
+
+    if ((Split-Path $path) -eq '') { $path = "$pwd\$path" }
+
+    $wshell.CreateShortcut($path)
+}
 
 function Add-SystemPath([string]$path) {
     $abspath = (Resolve-Path $path).ToString()
@@ -19,8 +26,7 @@ function New-UserDeployShortcut(
     [string]$LinkName,
     [string]$icon = 'msiexec.exe'
 ) {
-    $path = "C:\Users\Default\Desktop\$(Get-Translation 'Setup' -cn '安装') $LinkName.lnk"
-    $it = (Get-WscriptShell).CreateShortcut($path)
+    $it = New-Shortcut -Lnk "C:\Users\Default\Desktop\$(Get-Translation 'Setup' -cn '安装') $LinkName"
     $it.TargetPath = "powershell.exe"
     $it.Arguments = "-exec bypass -file `"$(Get-AppFolderPath -Scripts)\$ScriptName.ps1`""
     $it.IconLocation = $icon

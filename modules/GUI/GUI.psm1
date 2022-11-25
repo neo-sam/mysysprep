@@ -57,3 +57,14 @@ function showWarningDialog([string]$title, [string]$message) {
         Pause
     }
 }
+
+function showInformationDialog([string]$title, [string]$message) {
+    if ($guiAvailable) {
+        [System.Windows.MessageBox]::Show($message, $title, 'OK', 'Information')
+    }
+    else {
+        Write-Output $title
+        Write-Output $message
+        Pause
+    }
+}
