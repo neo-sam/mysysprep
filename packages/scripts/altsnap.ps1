@@ -7,15 +7,14 @@ if ($GetMetadata) {
     return @{
         name   = 'AltSnap'
         match  = $match
-        ignore = { Test-Path "$(Get-AppFolderPath -UserDeploy)\AltSnap*-x64-inst.exe" }
+        ignore = { Test-Path "$(Get-AppFolderPath -UserPkgs)\AltSnap*-x64-inst.exe" }
     }
 }
 
 $filename = $match.Name
-Copy-Item $match "$(Get-AppFolderPath -UserDeploy)\$filename"
+Copy-Item $match "$(Get-AppFolderPath -UserPkgs)\$filename"
 $scriptName = 'setupAltsnap'
-
-$lnkname = "$(Get-Translation 'Setup' -cn '安装') AltSnap"
+$scriptPath = "$(Get-AppFolderPath -Scripts)\$scriptName.ps1"
 
 $parts = ((Get-Content 'config\setupAltsnap.ps1') -join "`n") -split '; config here'
 $content = @(
@@ -26,6 +25,7 @@ $content = @(
 if ((Get-Culture).Name -eq 'zh-CN') {
     $content = $content -replace '(?<=Language=)en-US', 'zh-CN'
 }
-$content | Out-File -Encoding unicode "$(Get-AppFolderPath -UserDeploy)\$scriptName.ps1"
+$content >$scriptPath
+New-UserDeployShortcut $scriptName 'AltSnap'
 
-New-UserDeployShortcut -ScriptName $scriptName -LinkName $lnkname
+& $scriptPath -NoHint

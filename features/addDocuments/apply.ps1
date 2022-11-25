@@ -17,17 +17,16 @@ mkdir -f $linksFolderPath >$null
 Pop-Location
 
 if (!(Test-Path ($path = "C:\users\Default\Desktop\$linksFolderName.lnk"))) {
-    $it = (New-Object -ComObject WScript.Shell).CreateShortcut($path)
+    $it = (Get-WscriptShell).CreateShortcut($path)
     $it.TargetPath = $linksFolderPath
     $it.IconLocation = 'imageres.dll,107'
     $it.save()
 }
-Copy-Item -Force $path ([Environment]::GetFolderPath('Desktop'))
+Copy-ToCurrentDesktop $path
 Copy-Item -Force $path 'C:\ProgramData\Microsoft\Windows\Start Menu\Programs'
 
-$ws = New-Object -ComObject WScript.Shell
 function New-DocShortcut([string]$id, [string]$name, [string]$icon = $null) {
-    $it = $ws.CreateShortcut("$linksFolderPath\$name.lnk")
+    $it = (Get-WscriptShell).CreateShortcut("$linksFolderPath\$name.lnk")
     $it.TargetPath = "$localizedFolderPath\$id.html"
     if ($icon) { $it.IconLocation = $icon }
     $it.save()
@@ -56,7 +55,7 @@ if (Get-Module -ListAvailable Appx) {
 
 if ((Get-OSVersionBuild) -ge 18362) { New-DocShortcut wsl2 WSL2 'wsl.exe' }
 
-$it = $ws.CreateShortcut("$linksFolderPath\$(
+$it = (Get-WscriptShell).CreateShortcut("$linksFolderPath\$(
     Get-Translation 'GitHub Project Homepage' -cn 'GitHub 项目主页'
 ).url")
 $it.TargetPath = "https://github.com/setupfw/win-sf"

@@ -20,7 +20,7 @@ if ($text = Get-Content '.\script.ps1' -ea 0) {
 }
 
 if (!$isAuditMode) {
-    $it = (New-Object -ComObject WScript.Shell).CreateShortcut("C:\Users\Default\Desktop\Firstrun.lnk")
+    $it = (Get-WscriptShell).CreateShortcut("C:\Users\Default\Desktop\Firstrun.lnk")
     $it.TargetPath = "powershell.exe"
     $it.Arguments = "-exec bypass -file `"$firstrunPath`""
     $it.IconLocation = "shell32.dll,99"

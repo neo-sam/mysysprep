@@ -7,17 +7,26 @@ if ($GetMetadata) {
     return @{
         name   = 'Twinkle Tray'
         match  = $match
-        ignore = { Test-Path "$(Get-AppFolderPath -UserDeploy)\Twinkle.Tray.v*.exe" }
+        ignore = { Test-Path "$(Get-AppFolderPath -UserPkgs)\Twinkle.Tray.v*.exe" }
     }
 }
 
-Start-Process -Wait $match '/NCRC /S'
-Copy-Item $pkg (Get-AppFolderPath -UserDeploy)
+Copy-Item $match (Get-AppFolderPath -UserPkgs)
 
-$shortcut = "$([Environment]::GetFolderPath('Desktop'))\$(
-    Get-Translation 'Setup' -cn '安装') AltSnap.lnk"
-$it = (Get-WscriptShell).CreateShortcut($shortcut)
-$it.IconLocation = 'msiexec.exe'
-$it.TargetPath = (Get-ChildItem -ea 0 $target).FullName
-$it.Save()
-Copy-Item $shortcut 'C:\Users\Default\Desktop'
+$scriptName = 'setupTwinkleTray'
+(Convert-ScriptBlockToText {
+    $it = Get-ChildItem -ea 0 "$PSScriptRoot\..\userpkgs\Twinkle.Tray.v*.exe"
+    if ($it.count -ne 1) {
+        Write-Error 'Task Crash!'
+        [System.Console]::ReadKey()>$null
+        exit
+    }
+    Start-Process -Wait $it.FullName '/NCRC /S'
+    if ($Error) { Pause }
+    else {
+        Start-Process "$env:LOCALAPPDATA\Programs\twinkle-tray\Twinkle Tray.exe"
+    }
+}) > "$(Get-AppFolderPath -Scripts)\$scriptName.ps1"
+New-UserDeployShortcut $scriptName 'Twinkle Tray'
+
+Start-Process -Wait $match '/NCRC /S'

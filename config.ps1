@@ -123,6 +123,7 @@ if ($features.tweakTaskbar -ne 0) {
 }
 
 $Script:ignorePackages = 0
+$Script:ignoreManualPackages = 0
 
 $Script:unattend = [ordered]@{
     skipOobeEula           = 0

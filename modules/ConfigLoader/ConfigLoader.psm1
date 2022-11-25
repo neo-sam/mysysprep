@@ -18,15 +18,15 @@ if ($null -eq $appFolderPath) {
 
 function Get-AppFolderPath(
     [switch]$Scripts,
-    [switch]$UserDeploy,
+    [switch]$UserPkgs,
     [switch]$Docs
 ) {
     mkdir -f $appFolderPath >$null
     if ($Scripts) {
         return "$(mkdir -f "$appFolderPath\scripts")"
     }
-    if ($UserDeploy) {
-        return "$(mkdir -f "$appFolderPath\userdeploy")"
+    if ($UserPkgs) {
+        return "$(mkdir -f "$appFolderPath\userpkgs")"
     }
     if ($Docs) {
         return "$(mkdir -f "$appFolderPath\docs")"
@@ -49,3 +49,7 @@ function Get-FeatureConfig([string]$key) {
 }
 
 function Test-IgnorePackages { $ignorePackages }
+
+function Test-ShouldManuallyAddPkgs {
+    (Test-Path -Exclude .gitkeep ".\packages\manual\*") -and (!$ignoreManualPackages)
+}

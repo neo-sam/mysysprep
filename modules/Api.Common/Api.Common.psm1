@@ -10,21 +10,21 @@ function Add-SystemPath([string]$path) {
     )
 }
 
+function Copy-ToCurrentDesktop([string]$path) {
+    Copy-Item -Force $path ([Environment]::GetFolderPath('Desktop'))
+}
+
 function New-UserDeployShortcut(
     [string]$ScriptName,
     [string]$LinkName,
     [string]$icon = 'msiexec.exe'
 ) {
-    $shortcut = "$([Environment]::GetFolderPath('Desktop'))\$LinkName.lnk"
-    $userDeployBasePath = Get-AppFolderPath -UserDeploy
-
-    $it = (Get-WscriptShell).CreateShortcut($shortcut)
-    $it.IconLocation = $icon
-    $it.WorkingDirectory = $userDeployBasePath
+    $path = "C:\Users\Default\Desktop\$(Get-Translation 'Setup' -cn '安装') $LinkName.lnk"
+    $it = (Get-WscriptShell).CreateShortcut($path)
     $it.TargetPath = "powershell.exe"
-    $it.Arguments = "-exec bypass -file `"$userDeployBasePath\$ScriptName.ps1`""
+    $it.Arguments = "-exec bypass -file `"$(Get-AppFolderPath -Scripts)\$ScriptName.ps1`""
+    $it.IconLocation = $icon
     $it.Save()
-    Copy-Item $shortcut 'C:\Users\Default\Desktop'
 }
 
 function Disable-BundledService([String[]]$names) {
@@ -103,4 +103,8 @@ function Repair-HidpiCompatibility([string[]]$paths = @()) {
             Set-ItemProperty $it $path '~ HIGHDPIAWARE'
         }
     }
+}
+
+function Convert-ScriptBlockToText([scriptblock]$block) {
+    ($block.ToString() -split "`n" -replace '^    ', '' -join "`n").Trim()
 }

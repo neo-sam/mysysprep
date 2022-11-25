@@ -1,5 +1,6 @@
+param([switch]$NoHint)
 $env:__COMPAT_LAYER = "RunAsInvoker"
-$it = Get-ChildItem -ea 0 "$PSScriptRoot\AltSnap*-x64-inst.exe"
+$it = Get-ChildItem -ea 0 "$PSScriptRoot\..\userpkgs\AltSnap*-x64-inst.exe"
 if ($it.count -ne 1) {
     Write-Error 'Task Crash!'
     [System.Console]::ReadKey()>$null
@@ -17,6 +18,7 @@ Set-ItemProperty 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Run' AltSnap "
 
 if ($Error) { Pause }
 else {
+    if ($NoHint) { exit }
     Add-Type -AssemblyName PresentationFramework
     Add-Type -Name WinDPI -Namespace Native -MemberDefinition '
 [DllImport("SHCore.dll", SetLastError = true)]

@@ -5,7 +5,7 @@ Copy-Item 'script.ps1' $target
 
 $shortcut = "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\New Isolated User.lnk"
 
-$it = (New-Object -ComObject WScript.Shell).CreateShortcut($shortcut)
+$it = (Get-WscriptShell).CreateShortcut($shortcut)
 $it.IconLocation = 'imageres.dll,73'
 $it.TargetPath = "powershell.exe"
 $it.Arguments = "-exec bypass -file `"$target`""

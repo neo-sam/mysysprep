@@ -19,7 +19,3 @@ function askWarningDialog([string]$title, [string]$message) {
 function askQuestionDialog([string]$title, [string]$message) {
     'Yes' -eq [System.Windows.MessageBox]::Show($message, $title, 'YesNo', 'Question')
 }
-
-function showInformationDialog([string]$title, [string]$message) {
-    [System.Windows.MessageBox]::Show( $message, $title, 'OK', 'Information') | Out-Null
-}
