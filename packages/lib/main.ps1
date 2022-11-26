@@ -46,13 +46,16 @@ foreach ($scriptFile in $scripts) {
     else { $deployTasks += $task }
 }
 
+Write-Output '', '--> Add packages:'
+$activity = 'Adding packages ...'
+$jobsCount = $deployTasks.Count
+$jobsEndCount = 0
+
 foreach ($task in $deployTasks) {
     $name = $task.name
     Write-Output "(+) $name"
     Start-RSJob $scriptBlock -Name $name -ArgumentList $task.path | Out-Null
 }
-
-Write-Output '', '--> Adding packages:'
 
 while ($job = Get-RSJobOrWait) {
     $name = $job.Name
@@ -69,9 +72,18 @@ while ($job = Get-RSJobOrWait) {
         Write-Host -ForegroundColor Green "[+] $name"
     }
     Remove-RSJob $job
-}
 
-Write-Output '', '--> Adding packges one by one:'
+    $jobsEndCount++
+    Write-Progress $activity 0 `
+        -status "$jobsEndCount / $jobsCount" `
+        -PercentComplete ($jobsEndCount / $jobsCount * 100)
+}
+Write-Progress $activity 0 -Completed
+
+Write-Output '', '--> Add packges one by one:'
+$activity = 'Adding packages one by one ...'
+$jobsCount = $deployMutexTasks.Count
+$jobsEndCount = 0
 
 foreach ($task in $deployMutexTasks) {
     $name = $task.name
@@ -88,6 +100,12 @@ foreach ($task in $deployMutexTasks) {
 
 "@
     }
+
+    $jobsEndCount++
+    Write-Progress $activity 0 `
+        -status "$jobsEndCount / $jobsCount" `
+        -PercentComplete ($jobsEndCount / $jobsCount * 100)
 }
+Write-Progress $activity 0 -Completed
 
 Pop-Location

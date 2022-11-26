@@ -10,9 +10,16 @@ $scriptBlock = {
     . .\apply.ps1 $cfg
 }
 
+Write-Output '', '--> Submit changes:'
+$activity = 'Applying changes ...'
+$jobsCount = 0
+$jobsEndCount = 0
+
 foreach ($feature in Get-ChildItem .\features -Directory -Exclude _*) {
     if ($cfg = Get-FeatureConfig ($name = $feature.Name)) {
         Start-RSJob $scriptBlock -Name $name -ArgumentList $name, $cfg | Out-Null
+
+        $jobsCount++
 
         $formatted = switch ($cfg) {
             1 { 'true' }
@@ -22,8 +29,6 @@ foreach ($feature in Get-ChildItem .\features -Directory -Exclude _*) {
         Write-Host "let $name", '=', ($formatted + ';')
     }
 }
-
-Write-Output '', '--> submit changes ...'
 
 while ($job = Get-RSJobOrWait) {
     $name = $job.Name
@@ -40,6 +45,12 @@ while ($job = Get-RSJobOrWait) {
         Write-Host -ForegroundColor Green "[+] $name"
     }
     Remove-RSJob $job
+
+    $jobsEndCount++
+    Write-Progress $activity 0 `
+        -status "$jobsEndCount / $jobsCount" `
+        -PercentComplete ($jobsEndCount / $jobsCount * 100)
 }
+Write-Progress $activity 0 -Completed
 
 Pop-Location
