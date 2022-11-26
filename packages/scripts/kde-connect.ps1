@@ -7,7 +7,7 @@ if ($GetMetadata) {
     return @{
         name   = 'KDE Connect'
         match  = $match
-        ignore = { Test-Path 'C:\Program Files\KDE Connect\bin\kdeconnect-app.exe' }
+        ignore = Get-BooleanReturnFn (Test-Path 'C:\Program Files\KDE Connect\bin\kdeconnect-app.exe')
     }
 }
 

@@ -7,7 +7,7 @@ if ($GetMetadata) {
         name   = 'VeraCrypt'
         match  = $match
         mutex  = $true
-        target = 'C:\Program Files\VeraCrypt\VeraCrypt.exe'
+        ignore = Get-BooleanReturnFn (Test-Path 'C:\Program Files\VeraCrypt\VeraCrypt.exe')
     }
 }
 

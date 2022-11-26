@@ -7,7 +7,7 @@ if ($GetMetadata) {
     return @{
         name   = 'OBS'
         match  = $match
-        ignore = { Test-Path 'C:\Program Files\obs-studio\bin\64bit\obs64.exe' }
+        ignore = Get-BooleanReturnFn (Test-Path 'C:\Program Files\obs-studio\bin\64bit\obs64.exe')
     }
 }
 

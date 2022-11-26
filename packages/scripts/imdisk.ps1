@@ -7,7 +7,7 @@ if ($GetMetadata) {
     return @{
         name   = 'imdisk'
         match  = $match
-        ignore = { Test-Path 'C:\Program Files\ImDisk\config.exe' }
+        ignore = Get-BooleanReturnFn (Test-Path 'C:\Program Files\ImDisk\config.exe')
     }
 }
 

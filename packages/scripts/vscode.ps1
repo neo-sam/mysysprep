@@ -7,7 +7,7 @@ if ($GetMetadata) {
     return @{
         name   = 'VSCode'
         match  = $match
-        ignore = { Test-Path 'C:\Program Files\Microsoft VS Code\Code.exe' }
+        ignore = Get-BooleanReturnFn (Test-Path 'C:\Program Files\Microsoft VS Code\Code.exe')
     }
 }
 

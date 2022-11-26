@@ -7,7 +7,7 @@ if ($GetMetadata) {
     return @{
         name   = 'qBittorrent Enhanced'
         match  = $match
-        ignore = { Test-Path 'C:\Program Files\qBittorrent\qbittorrent.exe' }
+        ignore = Get-BooleanReturnFn (Test-Path 'C:\Program Files\qBittorrent\qbittorrent.exe')
     }
 }
 

@@ -7,7 +7,7 @@ if ($GetMetadata) {
     return @{
         name   = 'Tabby'
         match  = $match
-        ignore = { Test-Path 'C:\Program Files\Tabby\Tabby.exe' }
+        ignore = Get-BooleanReturnFn (Test-Path 'C:\Program Files\Tabby\Tabby.exe')
     }
 }
 

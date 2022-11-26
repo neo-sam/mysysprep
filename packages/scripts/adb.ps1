@@ -8,7 +8,7 @@ if ($GetMetadata) {
     return @{
         name   = 'ADB'
         match  = $match
-        ignore = if (Test-Path $appdir) { { 1 } } else { { 0 } }
+        ignore = Get-BooleanReturnFn (Test-Path $appdir)
     }
 }
 

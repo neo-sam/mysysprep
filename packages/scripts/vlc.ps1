@@ -7,7 +7,7 @@ if ($GetMetadata) {
     return @{
         name   = 'VLC'
         match  = $match
-        ignore = { Test-Path 'C:\Program Files\VideoLAN\VLC\vlc.exe' }
+        ignore = Get-BooleanReturnFn (Test-Path 'C:\Program Files\VideoLAN\VLC\vlc.exe')
     }
 }
 

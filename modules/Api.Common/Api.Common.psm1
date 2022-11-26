@@ -114,3 +114,9 @@ function Repair-HidpiCompatibility([string[]]$paths = @()) {
 function Convert-ScriptBlockToText([scriptblock]$block) {
     ($block.ToString() -split "`n" -replace '^    ', '' -join "`n").Trim()
 }
+
+$returnFnFalse = { $false }
+$returnFnTrue = { $true }
+function Get-BooleanReturnFn([bool]$value) {
+    if ($value) { $returnFnTrue } else { $returnFnFalse }
+}

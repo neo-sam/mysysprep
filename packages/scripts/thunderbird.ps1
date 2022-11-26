@@ -7,7 +7,7 @@ if ($GetMetadata) {
     return @{
         name   = 'Thunderbird'
         match  = $match
-        ignore = { Test-Path 'C:\Program Files\Mozilla Thunderbird\thunderbird.exe' }
+        ignore = Get-BooleanReturnFn (Test-Path 'C:\Program Files\Mozilla Thunderbird\thunderbird.exe')
     }
 }
 

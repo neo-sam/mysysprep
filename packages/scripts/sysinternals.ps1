@@ -8,7 +8,7 @@ if ($GetMetadata) {
     return @{
         name   = 'Sysinternals'
         match  = $match
-        ignore = if (Test-Path $targetPath) { { 1 } } else { { 0 } }
+        ignore = Get-BooleanReturnFn (Test-Path $targetPath)
     }
 }
 

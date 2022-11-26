@@ -7,7 +7,7 @@ if ($GetMetadata) {
     return @{
         name   = 'AltSnap'
         match  = $match
-        ignore = { Test-Path "$(Get-AppFolderPath -UserPkgs)\AltSnap*-x64-inst.exe" }
+        ignore = Get-BooleanReturnFn (Test-Path "$(Get-AppFolderPath -UserPkgs)\AltSnap*-x64-inst.exe")
     }
 }
 

@@ -8,7 +8,7 @@ if ($GetMetadata) {
         name   = 'Upgraded OpenSSH'
         match  = $match
         mutex  = $true
-        ignore = { Test-Path 'C:\Program Files\OpenSSH\sshd.exe' }
+        ignore = Get-BooleanReturnFn (Test-Path 'C:\Program Files\OpenSSH\sshd.exe')
     }
 }
 

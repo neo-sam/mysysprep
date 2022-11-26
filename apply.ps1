@@ -20,13 +20,13 @@ if (Test-AuditMode) {
 
 Write-Output '==> Apply features'
 .\lib\applyFeatures.ps1
-Write-Output '<== Applied features', '', '', ''
+Write-Output '<== Applied features', '', ''
 
 try {
     if ((Test-Path .\packages) -and !(Test-IgnorePackages)) {
         Write-Output '==> Add packages'
         & .\packages\lib\main.ps1
-        Write-Output '<== Added packages', '', '', ''
+        Write-Output '<== Added packages', '', ''
     }
 
     if (Test-Path 'C:\Windows\System32\WindowsPowerShell\v1.0\profile.ps1') {

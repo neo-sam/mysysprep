@@ -7,7 +7,7 @@ if ($GetMetadata) {
     return @{
         name   = 'Workrave'
         match  = $match
-        ignore = { Test-Path 'C:\Program Files (x86)\Workrave\lib\Workrave.exe' }
+        ignore = Get-BooleanReturnFn (Test-Path 'C:\Program Files (x86)\Workrave\lib\Workrave.exe')
     }
 }
 

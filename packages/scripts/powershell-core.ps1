@@ -8,7 +8,7 @@ if ($GetMetadata) {
         name   = 'PowerShell Core'
         match  = $match
         mutex  = $true
-        ignore = { Test-Path 'C:\Program Files\PowerShell\*\pwsh.exe' }
+        ignore = Get-BooleanReturnFn (Test-Path 'C:\Program Files\PowerShell\*\pwsh.exe')
     }
 }
 

@@ -7,7 +7,7 @@ if ($GetMetadata) {
     return @{
         name   = '7zip-zstd'
         match  = $match
-        ignore = { Test-Path 'C:\Program Files\7-Zip-Zstandard\7z.exe' }
+        ignore = Get-BooleanReturnFn (Test-Path 'C:\Program Files\7-Zip-Zstandard\7z.exe')
     }
 }
 

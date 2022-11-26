@@ -8,7 +8,7 @@ if ($GetMetadata) {
     return @{
         name   = 'Git'
         match  = $match
-        ignore = if (Test-Path $appbin) { { 1 } }else { { 0 } }
+        ignore = Get-BooleanReturnFn (Test-Path $appbin)
     }
 }
 

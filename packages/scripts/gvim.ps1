@@ -8,7 +8,7 @@ if ($GetMetadata) {
     return @{
         name   = 'gVim'
         match  = $match
-        ignore = if (Test-Path $appmatch) { { 1 } }else { { 0 } }
+        ignore = Get-BooleanReturnFn (Test-Path $appmatch)
     }
 }
 

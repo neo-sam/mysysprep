@@ -10,7 +10,6 @@ $scriptBlock = {
     . .\apply.ps1 $cfg
 }
 
-Write-Output '', '--> Submit changes:'
 $activity = 'Applying changes ...'
 $jobsCount = 0
 $jobsEndCount = 0
@@ -29,6 +28,8 @@ foreach ($feature in Get-ChildItem .\features -Directory -Exclude _*) {
         Write-Host "let $name", '=', ($formatted + ';')
     }
 }
+
+Write-Output '', '--> Submit changes:'
 
 while ($job = Get-RSJobOrWait) {
     $name = $job.Name

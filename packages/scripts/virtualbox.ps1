@@ -9,7 +9,7 @@ if ($GetMetadata) {
         name   = 'VirtualBox'
         match  = $match
         mutex  = $true
-        ignore = { Test-Path "$appdir\VirtualBox.exe" }
+        ignore = Get-BooleanReturnFn (Test-Path "$appdir\VirtualBox.exe")
     }
 }
 

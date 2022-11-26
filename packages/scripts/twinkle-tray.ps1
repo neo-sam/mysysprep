@@ -7,7 +7,7 @@ if ($GetMetadata) {
     return @{
         name   = 'Twinkle Tray'
         match  = $match
-        ignore = { Test-Path "$(Get-AppFolderPath -UserPkgs)\Twinkle.Tray.v*.exe" }
+        ignore = Get-BooleanReturnFn (Test-Path "$(Get-AppFolderPath -UserPkgs)\Twinkle.Tray.v*.exe")
     }
 }
 
