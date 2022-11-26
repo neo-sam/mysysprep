@@ -6,7 +6,10 @@ Auto setup or config Your Windows by One Click.
 
 Suitable: Win11/Win10, [Win7](./win7/README.md). x64 CPU arch.
 
-[![HackerNews](https://img.shields.io/badge/Need%20your%20vote%20on-hacker%20news!-orange?logo=ycombinator)](https://news.ycombinator.com/item?id=33715265)
+[![HackerNews](https://img.shields.io/badge/Need%20your%20vote-on%20hacker%20news!-orange?logo=ycombinator)](https://news.ycombinator.com/item?id=33715265)
+
+[![Reddit](https://img.shields.io/badge/Discussion-in%20r/Windows11-red?logo=reddit)](https://www.reddit.com/r/Windows11/comments/z3eaa7/an_opensource_system_auto_setup_framework/)
+[![Reddit](https://img.shields.io/badge/Discussion-in%20r/Windows10-red?logo=reddit)](https://www.reddit.com/r/Windows10/comments/z3ewg5/an_opensource_system_auto_setup_framework/)
 
 This README is also available in languages: [🇨🇳 中文](./README_ZH.md)
 
