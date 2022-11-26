@@ -27,5 +27,6 @@ if ((Get-Culture).Name -eq 'zh-CN') {
 }
 $content >$scriptPath
 New-UserDeployShortcut $scriptName 'AltSnap'
-
-& $scriptPath -NoHint
+if (!(Test-AuditMode)) {
+    & $scriptPath -NoHint
+}

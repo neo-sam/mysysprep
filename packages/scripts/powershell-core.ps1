@@ -24,4 +24,4 @@ if (Test-Path 'C:\Windows\System32\WindowsPowerShell\v1.0\profile.ps1') {
     . 'C:\Windows\System32\WindowsPowerShell\v1.0\profile.ps1'
 }
 Set-PSReadLineOption -PredictionSource History
-"@ > "$((Get-ChildItem 'C:\Program Files\PowerShell\*')[-1].FullName)\profile.ps1"
+"@ | Out-File -Encoding oem "$((Get-ChildItem 'C:\Program Files\PowerShell\*')[-1].FullName)\profile.ps1"

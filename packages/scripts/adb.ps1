@@ -16,4 +16,5 @@ $tmpdir = "$(mkdir -f "$env:TMP\win-sf")"
 
 Expand-Archive -Force $match $tmpdir
 Move-Item $tmpdir\platform-tools 'C:\Program Files'
+icacls.exe 'C:\Program Files\platform-tools' /reset >$null
 Add-SystemPath $appdir

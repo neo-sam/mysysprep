@@ -11,6 +11,7 @@ $features.addUserFirstRun = [ordered]@{
     showInterfacesIconAtDesktop            = 1
     showRecyleBinIconAtExplorerSidebar     = 1
     showRecentFoldersIconAtExplorerSidebar = 1
+    showThisPcAsDefault                    = 1
 }
 
 if ($features.tweakContextmenu -eq 0) { $features.tweakContextmenu = [ordered]@{} }

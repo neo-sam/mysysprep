@@ -13,15 +13,20 @@ if (Test-AuditMode) {
 Write-Output '!!! FINISHED ALL !!!'
 
 & {
-    Set-Location ([Environment]::GetFolderPath('Desktop'))
-    Set-Location (mkdir -f (Get-Translation 'System Config' -cn '系统配置'))
+    Push-Location ([Environment]::GetFolderPath('Desktop'))
+    $path = "$(mkdir -f (Get-Translation 'System Config' -cn '系统配置'))"
+    Set-Location $path
+    $icon = 'C:\windows\system32\SHELL32.dll,314'
+    if (Test-Windows7) { $icon = 'C:\Windows\System32\control.exe,0' }
+    if (Test-Windows10) { $icon = 'C:\windows\system32\SHELL32.dll,316' }
+    Set-FolderIcon $path $icon
 
     $it = New-Shortcut -Lnk (Get-Translation 'Tweak Desktop of New User ' -cn '调整新的用户桌面')
     $it.TargetPath = 'C:\Users\Default\Desktop'
     $it.Save()
 
     $it = New-Shortcut -Lnk (Get-Translation 'Tweak Desktop of All Users' -cn '调整所有用户桌面')
-    $it.TargetPath = 'C:\Users\Default\Desktop'
+    $it.TargetPath = 'C:\Users\Public\Desktop'
     $it.Save()
 
     $it = New-Shortcut -Lnk (Get-Translation 'Tweak Start Menu' -cn '调整开始菜单')
@@ -52,6 +57,8 @@ Write-Output '!!! FINISHED ALL !!!'
     }
 
     Start-Process .
+    Pop-Location
+
     Start-Sleep 1
 }
 

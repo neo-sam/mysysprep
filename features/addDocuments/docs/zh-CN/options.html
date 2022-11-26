@@ -9,38 +9,20 @@
     <title>选项</title>
   </head>
   <body class="markdown-body">
-    <h2>使用“库”</h2>
-    <details>
-      <summary>管理开始菜单的方法</summary>
-      <br />
-      <ol>
-        <li>打开 “库”，新建名为 “开始菜单” 的库</li>
-        <li>右键菜单 “属性” 编辑</li>
-        <li>
-          <p>“添加”：</p>
-
-          <pre><code>%APPDATA%\Microsoft\Windows\Start Menu\Programs
+    <h2>添加 Windows 双系统到启动菜单</h2>
+    <p>假设第二系统分区挂载到 B:</p>
+    <pre><code>
+mountvol a: /s
+bcdboot b:\windows /addlast /d /s a:
 </code></pre>
-        </li>
-        <li>
-          <p>“添加”：</p>
-          <pre><code>C:\ProgramData\Microsoft\Windows\Start Menu\Programs
+    <p>避免二次启动，请使用经典启动菜单、标记当前系统为 main:</p>
+    <pre><code>bcdedit /set "{current}" bootmenupolicy legacy
+bcdedit /set "{current}" description main
 </code></pre>
-          <p>点击 “设置公共保存位置”。( 修改该目录需要权限 )</p>
-        </li>
-        <li>
-          <p>按需要“更改库图标”。添加项目到开始菜单：</p>
-          <ol>
-            <li>把需要的快捷方式拖入库即可</li>
-            <li>使库成为发送目标 <code>shell:sendto</code></li>
-          </ol>
-        </li>
-      </ol>
-    </details>
-    <h2>激活恢复分区</h2>
+    <h2>重置恢复分区</h2>
     <details>
       <summary>方法</summary>
-      <br/>
+      <br />
       <ol>
         <li>运行 <code>diskpart</code>, 选中恢复分区</li>
         <li>

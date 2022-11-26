@@ -144,10 +144,4 @@ flowchart TB
 bcdboot c:\windows /s u:
 </code></pre>
 
-可选 ）添加第二个 Windows 系统分区：
-
-<pre>
-<code>bcdboot d:\windows /s u: /d /addlast</code>
-</pre>
-
 </details>

@@ -80,6 +80,10 @@ attrib -h AppData
 icacls . /grant "${env:USERNAME}:(CI)(OI)(F)" >$null
 runWith "powershell -wi h -c Set-ExecutionPolicy rem -s c -f"
 
+function Convert-ScriptBlockToText([scriptblock]$block) {
+    ($block.ToString() -split "`n" -replace '^    ', '' -join "`n").Trim()
+}
+
 (Convert-ScriptBlockToText {
     $env:__COMPAT_LAYER = 'RunAsInvoker'
     function quit {

@@ -21,3 +21,7 @@ pre {
 pre > code {
   user-select: text;
 }
+
+button {
+  padding: 4px 16px;
+}

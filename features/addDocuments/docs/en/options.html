@@ -9,40 +9,22 @@
     <title>Options</title>
   </head>
   <body class="markdown-body">
-    <h2>Create a Library to Manage Start Menu</h2>
-    <details>
-      <summary>To manage start menu by a library ...</summary>
-      <br />
-      <ol>
-        <li>Focus on "Libraries", new a library named as "Start Menu"</li>
-        <li>Right "Context Menu > Properties"</li>
-        <li>
-          <p>"Add...:"</p>
-          <pre><code>%APPDATA%\Microsoft\Windows\Start Menu\Programs
+    <h2>Add dual system to boot menu</h2>
+    <p>If you mount the second system partition as B:</p>
+    <pre><code>mountvol a: /s
+bcdboot b:\windows /addlast /d /s a:
 </code></pre>
-        </li>
-        <li>
-          <p>"Add...:"</p>
-          <pre><code>C:\ProgramData\Microsoft\Windows\Start Menu\Programs
+    <p>
+      To avoid twice boot, enable classic boot menu and mark the current system
+      as main:
+    </p>
+    <pre><code>bcdedit /set "{current}" bootmenupolicy legacy
+bcdedit /set "{current}" description main
 </code></pre>
-          <p>
-            Click "Save public save location". Require administrator to modify
-            this directory.
-          </p>
-        </li>
-        <li>
-          <p>Change the icon if you prefer. To add items:</p>
-          <ol>
-            <li>Drop new shortcuts into the library</li>
-            <li>Make the library a send target <code>shell:sendto</code></li>
-          </ol>
-        </li>
-      </ol>
-    </details>
-    <h2>Enable Recovery Mode</h2>
+    <h2>Reset Recovery Mode</h2>
     <details>
       <summary>How to do?</summary>
-      <br/>
+      <br />
       <ol>
         <li>Execute <code>diskpart</code>, select recovery partition.</li>
         <li>

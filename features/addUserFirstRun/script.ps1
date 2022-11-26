@@ -63,7 +63,7 @@ function showThisPcIcon {
 function showInterfacesIconAtDesktop {
     Set-Item (
         Get-RegItemOrNew 'HKCU:\Software\Classes\CLSID\{7007ACC7-3202-11D1-AAD2-00805FC1270E}\DefaultIcon'
-    ) "imageres.dll,114"
+    ) 'imageres.dll,114'
 
     Get-RegItemOrNew 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Desktop\NameSpace\{7007ACC7-3202-11D1-AAD2-00805FC1270E}' >$null
 }
@@ -82,13 +82,19 @@ function showRecentFoldersIconAtExplorerSidebar {
     $icon = switch ($osvm) {
         6 { 'imageres.dll,112' }
         Default {
-            if ($osvb -le 22000) { 'shell32.dll,319' }
+            if ($osvb -lt 22000) { 'shell32.dll,319' }
             else { 'shell32.dll,316' }
         }
     }
     Set-Item (
         Get-RegItemOrNew "HKCU:\Software\Classes\CLSID\{$guid}\DefaultIcon"
     ) $icon
+}
+
+function showThisPcAsDefault {
+    Set-ItemProperty (
+        Get-RegItemOrNew 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced'
+    ) LaunchTo 1
 }
 
 Remove-Item -Force "$([Environment]::GetFolderPath('Desktop'))\Firstrun.lnk" -ea 0

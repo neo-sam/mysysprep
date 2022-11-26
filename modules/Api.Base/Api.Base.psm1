@@ -1,3 +1,13 @@
+function Get-ProjectLocation {
+    "$(Resolve-Path $PSScriptRoot\..\..\)"
+}
+
+$returnFnFalse = { $false }
+$returnFnTrue = { $true }
+function Get-BooleanReturnFn([bool]$value) {
+    if ($value) { $returnFnTrue } else { $returnFnFalse }
+}
+
 function Get-Translation(
     [Parameter(Mandatory, ValueFromPipeline)]
     [string]$text,
@@ -7,4 +17,17 @@ function Get-Translation(
         zh-CN { if ($cn) { return $cn } }
     }
     return $text
+}
+
+function Convert-ScriptBlockToText([scriptblock]$block) {
+    ($block.ToString() -split "`n" -replace '^    ', '' -join "`n").Trim()
+}
+
+function Get-CimOrWimInstance([string]$className) {
+    if ($PSVersionTable.PSVersion.Major -gt 5) {
+        return Get-CimInstance $className
+    }
+    else {
+        return Get-WmiObject $className
+    }
 }

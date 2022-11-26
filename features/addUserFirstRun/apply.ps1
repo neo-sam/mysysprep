@@ -16,7 +16,7 @@ if ($text = Get-Content '.\script.ps1' -ea 0) {
     $text | Out-File -Encoding unicode $firstrunPath
 }
 
-if (!$isAuditMode) {
+if (!(Test-AuditMode)) {
     $it = New-Shortcut "C:\Users\Default\Desktop\Firstrun.lnk"
     $it.TargetPath = "powershell.exe"
     $it.Arguments = "-exec bypass -file `"$firstrunPath`""

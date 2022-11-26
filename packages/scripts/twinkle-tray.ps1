@@ -29,4 +29,6 @@ $scriptName = 'setupTwinkleTray'
 }) > "$(Get-AppFolderPath -Scripts)\$scriptName.ps1"
 New-UserDeployShortcut $scriptName 'Twinkle Tray'
 
-Start-Process -Wait $match '/NCRC /S'
+if (!(Test-AuditMode)) {
+    Start-Process -Wait $match '/NCRC /S'
+}

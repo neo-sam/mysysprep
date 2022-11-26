@@ -101,7 +101,7 @@ Get U disk image writer:
 
 5.  Capture command: (open README.md by notepad.exe to copy code)
 
-        start cmd /k dism /capture-image /verify /checkintegrity /name:mysys /compress:max /capturedir:c: /imagefile:D:\mywin.esd
+        start cmd /k dism /capture-image /verify /checkintegrity /name:mysys /compress:max /capturedir:c: /imagefile:d:\mywin.esd
 
 | Command Parameters      | Usage                            |
 | ----------------------- | -------------------------------- |
@@ -138,11 +138,6 @@ Adding a UEFI boot entry:
 
 <pre><code>mountvol u: /s
 bcdboot c:\windows /s u:
-</code></pre>
-
-(Optional) Add another WinOS:
-
-<pre><code>bcdboot d:\windows /s u: /d /addlast
 </code></pre>
 
 </details>

@@ -52,6 +52,7 @@ if ($features.addUserFirstRun -ne 0) {
         showInterfacesIconAtDesktop            = 0
         showRecyleBinIconAtExplorerSidebar     = 0
         showRecentFoldersIconAtExplorerSidebar = 0
+        showThisPcAsDefault                    = 0
     }
 }
 

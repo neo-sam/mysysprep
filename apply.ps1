@@ -11,12 +11,12 @@ if (!(Test-RunAsAdmin)) {
     exit
 }
 
-.\lib\tryToManuallyAddPkgs.ps1
-if ($LASTEXITCODE) { exit }
-
 if (Test-AuditMode) {
     net user Administrator /active:yes >$null
 }
+
+.\lib\tryToManuallyAddPkgs.ps1
+if ($LASTEXITCODE) { exit }
 
 Write-Output '==> Apply features'
 .\lib\applyFeatures.ps1
