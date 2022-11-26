@@ -1,13 +1,3 @@
-$wshell = New-Object -ComObject WScript.Shell
-function New-Shortcut([string]$path, [switch]$Lnk, [switch]$Url ) {
-    if ($Lnk) { $path += '.lnk' }
-    elseif ($Url) { $path += '.url' }
-
-    if ((Split-Path $path) -eq '') { $path = "$pwd\$path" }
-
-    $wshell.CreateShortcut($path)
-}
-
 function Add-SystemPath([string]$path) {
     $abspath = (Resolve-Path $path).ToString()
     if ($env:path -like "*$abspath*") { return }
@@ -19,18 +9,6 @@ function Add-SystemPath([string]$path) {
 
 function Copy-ToCurrentDesktop([string]$path) {
     Copy-Item -Force $path ([Environment]::GetFolderPath('Desktop'))
-}
-
-function New-UserDeployShortcut(
-    [string]$ScriptName,
-    [string]$LinkName,
-    [string]$icon = 'msiexec.exe'
-) {
-    $it = New-Shortcut -Lnk "C:\Users\Default\Desktop\$(Get-Translation 'Setup' -cn '安装') $LinkName"
-    $it.TargetPath = "powershell.exe"
-    $it.Arguments = "-exec bypass -file `"$(Get-AppFolderPath -Scripts)\$ScriptName.ps1`""
-    $it.IconLocation = $icon
-    $it.Save()
 }
 
 function Disable-BundledService([String[]]$names) {
@@ -72,17 +50,6 @@ function Uninstall-BundledAppx([string]$names) {
         $ProgressPreference = $ProgressPreferenceBefore
         [void]$mutex.ReleaseMutex()
     }
-}
-
-function Get-Translation(
-    [Parameter(Mandatory, ValueFromPipeline)]
-    [string]$text,
-    [string]$cn
-) {
-    switch ((Get-Culture).Name) {
-        zh-CN { if ($cn) { return $cn } }
-    }
-    return $text
 }
 
 function Get-ProjectLocation {
