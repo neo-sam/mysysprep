@@ -10,6 +10,9 @@ if (Test-AuditMode) {
 
 .\lib\submitNewUserRegistry.ps1
 
+Copy-Item 'C:\Users\Public\Desktop\*.lnk' 'C:\Users\Default\Desktop\'
+Move-Item 'C:\Users\Public\Desktop\*.lnk' . -Force
+
 Write-Output '!!! FINISHED ALL !!!'
 
 & {
@@ -21,23 +24,27 @@ Write-Output '!!! FINISHED ALL !!!'
     if (Test-Windows10) { $icon = 'C:\windows\system32\SHELL32.dll,316' }
     Set-FolderIcon $path $icon
 
-    $it = New-Shortcut -Lnk (Get-Translation 'Tweak Desktop of New User ' -cn '调整新的用户桌面')
+    $it = New-Shortcut -Lnk (Get-Translation 'Tweak desktop context for new user' -cn '调整桌面内容 (配给新用户)')
     $it.TargetPath = 'C:\Users\Default\Desktop'
+    $it.IconLocation = 'imageres.dll,174'
     $it.Save()
 
-    $it = New-Shortcut -Lnk (Get-Translation 'Tweak Desktop of All Users' -cn '调整所有用户桌面')
+    $it = New-Shortcut -Lnk (Get-Translation 'Tweak desktop context for all users' -cn '调整桌面内容 (配给全用户)')
     $it.TargetPath = 'C:\Users\Public\Desktop'
+    $it.IconLocation = 'imageres.dll,174'
     $it.Save()
 
-    $it = New-Shortcut -Lnk (Get-Translation 'Tweak Start Menu' -cn '调整开始菜单')
+    $it = New-Shortcut -Lnk (Get-Translation 'Tweak start menu' -cn '调整开始菜单')
     $it.TargetPath = 'C:\ProgramData\Microsoft\Windows\Start Menu\Programs'
+    $it.IconLocation = 'shell32.dll,19'
     $it.Save()
 
-    $it = New-Shortcut -Lnk (Get-Translation 'Add or Remove Startup Items' -cn '添加或删除自启动项')
+    $it = New-Shortcut -Lnk (Get-Translation 'Tweak startup items' -cn '调整自启动项')
     $it.TargetPath = 'C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Startup'
+    $it.IconLocation = 'shell32.dll,24'
     $it.Save()
 
-    $it = New-Shortcut -Lnk (Get-Translation 'Restart Explorer' -cn '重启文件资源管理器')
+    $it = New-Shortcut -Lnk (Get-Translation 'Restart explorer' -cn '重启文件资源管理器')
     $it.TargetPath = 'powershell'
     $it.Arguments = '-c kill -n explorer'
     $it.IconLocation = 'imageres.dll,63'
@@ -53,6 +60,17 @@ Write-Output '!!! FINISHED ALL !!!'
         $it.TargetPath = 'C:\Windows\System32\Sysprep\Sysprep.exe'
         $it.Arguments = '/oobe /generalize /shutdown'
         $it.IconLocation = 'shell32.dll,151'
+        $it.Save()
+    }
+    else {
+        $it = New-Shortcut -Lnk (Get-Translation 'Tweak start menu for current user' -cn '调整开始菜单 (当前用户)')
+        $it.TargetPath = '%APPDATA%\Microsoft\Windows\Start Menu\Programs'
+        $it.IconLocation = 'shell32.dll,19'
+        $it.Save()
+
+        $it = New-Shortcut -Lnk (Get-Translation 'Tweak startup items for current user' -cn '调整自启动项 (当前用户)')
+        $it.TargetPath = '%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup'
+        $it.IconLocation = 'shell32.dll,24'
         $it.Save()
     }
 

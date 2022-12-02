@@ -19,8 +19,7 @@ gsudo,gsudoSetup.msi,"CN=Gerardo Grignoli, O=Gerardo Grignoli, S=Buenos Aires, C
 Tabby,tabby-*-setup-*.exe,"CN=syslink GmbH, O=syslink GmbH, L=Düsseldorf, S=Nordrhein-Westfalen, C=DE"
 
 gVim,gvim*.exe
-qBittorrent,qbittorrent_*_x64_setup
-qBittorrentEnhanced,qbittorrent_enhanced_*_x64_setup.exe
+qBittorrent,qbittorrent_*_setup.exe
 7zip-zstd,7z*-zstd-*.exe
 Workrave,workrave-win32-v*.exe
 Chocolatey,chocolatey.*.nupkg

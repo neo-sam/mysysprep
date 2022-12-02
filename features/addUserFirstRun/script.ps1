@@ -92,9 +92,7 @@ function showRecentFoldersIconAtExplorerSidebar {
 }
 
 function showThisPcAsDefault {
-    Set-ItemProperty (
-        Get-RegItemOrNew 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced'
-    ) LaunchTo 1
+    Set-ItemProperty 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced' LaunchTo 1
 }
 
 Remove-Item -Force "$([Environment]::GetFolderPath('Desktop'))\Firstrun.lnk" -ea 0

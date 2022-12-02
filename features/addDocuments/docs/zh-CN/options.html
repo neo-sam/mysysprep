@@ -11,13 +11,12 @@
   <body class="markdown-body">
     <h2>添加 Windows 双系统到启动菜单</h2>
     <p>假设第二系统分区挂载到 B:</p>
-    <pre><code>
-mountvol a: /s
+    <pre><code>mountvol a: /s
 bcdboot b:\windows /addlast /d /s a:
 </code></pre>
     <p>避免二次启动，请使用经典启动菜单、标记当前系统为 main:</p>
     <pre><code>bcdedit /set "{current}" bootmenupolicy legacy
-bcdedit /set "{current}" description main
+bcdedit /set "{current}" description Main
 </code></pre>
     <h2>重置恢复分区</h2>
     <details>

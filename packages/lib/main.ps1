@@ -85,6 +85,7 @@ $activity = 'Adding packages one by one ...'
 $jobsCount = $deployMutexTasks.Count
 $jobsEndCount = 0
 
+$PSDefaultParameterValues.Add('Start-Process:WindowStyle', 'Hidden')
 foreach ($task in $deployMutexTasks) {
     $name = $task.name
     Write-Output "(+) $name"

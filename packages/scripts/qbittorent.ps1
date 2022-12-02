@@ -1,14 +1,14 @@
 #Requires -RunAsAdministrator
 param([switch]$GetMetadata)
 
-$match = Get-ChildItem -ea 0 'qbittorrent_enhanced_*_x64_setup.exe'
+$match = Get-ChildItem -ea 0 'qbittorrent_*_setup.exe'
 
 if ($GetMetadata) {
     return @{
-        name   = 'qBittorrent Enhanced'
+        name   = 'qBittorrent'
         match  = $match
         ignore = Get-BooleanReturnFn (Test-Path 'C:\Program Files\qBittorrent\qbittorrent.exe')
     }
 }
 
-Start-Process -Wait $match /S
+Start-Process -Wait $match '/NCRC /S'
