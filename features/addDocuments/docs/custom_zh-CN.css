@@ -1,0 +1,7 @@
+.editable::before {
+  content: "编辑";
+}
+.editable.editing::before {
+  content: "完成修改";
+  width: calc(16px * 2 + 4rem);
+}

@@ -6,21 +6,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../github-markdown.css" />
     <link rel="stylesheet" href="../custom.css" />
+    <script src="../custom.js"></script>
     <title>Options</title>
   </head>
   <body class="markdown-body">
     <h2>Add dual system to boot menu</h2>
     <p>If you mount the second system partition as B:</p>
-    <pre><code>mountvol a: /s
+    <div class="editable">
+      <pre><code>mountvol a: /s
 bcdboot b:\windows /addlast /d /s a:
 </code></pre>
+    </div>
     <p>
       To avoid twice boot, enable classic boot menu and mark the current system
       as main:
     </p>
-    <pre><code>bcdedit /set "{current}" bootmenupolicy legacy
+    <div class="editable">
+      <pre><code>bcdedit /set "{current}" bootmenupolicy legacy
 bcdedit /set "{current}" description Main
 </code></pre>
+    </div>
     <h2>Reset Recovery Mode</h2>
     <details>
       <summary>How to do?</summary>
@@ -29,11 +34,13 @@ bcdedit /set "{current}" description Main
         <li>Execute <code>diskpart</code>, select recovery partition.</li>
         <li>
           <p>Execute:</p>
-          <pre><code>format quick fs=ntfs label=Recovery
+          <div class="editable">
+            <pre><code>format quick fs=ntfs label=Recovery
 set id=de94bba4-06d1-4d40-a16a-bfd50179d6ac
 gpt attributes=0x8000000000000001
 assign letter r
 </code></pre>
+          </div>
         </li>
         <li>
           Use 7zip to extract <code>\sources\install.wim</code>
@@ -41,10 +48,12 @@ assign letter r
         </li>
         <li>
           <p>Execute:</p>
-          <pre><code>reagentc /setreimage /path r:\recovery
+          <div class="editable">
+            <pre><code>reagentc /setreimage /path r:\recovery
 reagentc /enable
 mountvol r: /d
 </code></pre>
+          </div>
         </li>
       </ol>
     </details>

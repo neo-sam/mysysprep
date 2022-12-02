@@ -25,3 +25,50 @@ pre > code {
 button {
   padding: 4px 16px;
 }
+
+.editable {
+  position: relative;
+}
+
+.editable > pre {
+  box-sizing: border-box;
+  min-height: calc(16px + 1rem + 16px * 2);
+
+  padding: calc(16px + 0.5em);
+}
+
+.editable::before {
+  content: "Edit";
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+  width: 53px;
+  height: 33px;
+
+  border: 1px solid;
+  border-radius: 6px;
+  border-color: gray;
+  background-color: rgba(96, 96, 96, 0.62);
+  color: white;
+
+  opacity: 0;
+  transition: opacity 0.1s;
+
+  cursor: pointer;
+}
+.editable:hover::before {
+  opacity: 1;
+}
+
+.editable.editing > pre {
+  outline: 1px solid;
+  user-select: text;
+}
+.editable.editing::before {
+  content: "Done";
+  width: 60px;
+}
