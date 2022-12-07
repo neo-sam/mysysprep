@@ -34,8 +34,6 @@ bcdedit /set "{current}" hypervisorlaunchtype auto
 bcdedit /copy "{current}" /d "HyperV on"
 </code></pre>
         </div>
-        <p>按需调整启动菜单：设置“启动与故障恢复”</p>
-        <pre><code>cmd /c "rundll32 shell32.dll,Control_RunDLL sysdm.cpl,,3"</code></pre>
       </li>
       <li>重启</li>
       <li>

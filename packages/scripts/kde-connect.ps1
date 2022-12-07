@@ -11,4 +11,4 @@ if ($GetMetadata) {
     }
 }
 
-Start-Process -Wait $match /S
+Start-Process -Wait $match '/NCRC /S'

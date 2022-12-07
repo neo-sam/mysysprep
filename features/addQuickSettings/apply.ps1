@@ -14,7 +14,7 @@ $names = switch ((Get-Culture).Name) {
             darkmode_disable   = '禁用 - 深色模式'
             darkmode_desc      = '需重启文件管理器'
             edit_hosts         = '编辑 - HOSTS'
-            edit_desktopicon   = '调整桌面图标'
+            edit_env           = '编辑 - 环境变量'
             explorer_restart   = '重启文件资源管理器'
             dns_flush          = '重置 DNS 解析'
             hyperv_enable      = '激活 - HyperV'
@@ -23,6 +23,10 @@ $names = switch ((Get-Culture).Name) {
             w11ctxmenu_enable  = '激活 - 新风格菜单'
             w11ctxmenu_disable = '禁用 - 新风格菜单'
             w11ctxmenu_desc    = '需注销'
+            tweak_desktopicon  = '调整 - 桌面图标'
+            tweak_restorepoint = '调整 - 还原点'
+            tweak_advanced     = '调整 - 高级系统设置'
+            tweak_screensaver  = '调整 - 屏幕保护程序'
         }
     }
     default {
@@ -33,7 +37,7 @@ $names = switch ((Get-Culture).Name) {
             darkmode_disable   = 'Disable - Dark Mode'
             darkmode_desc      = 'Need restart explorer'
             edit_hosts         = 'Edit - HOSTS'
-            edit_desktopicon   = 'Edit - Desktop Icon'
+            edit_env           = 'Edit - Environment Variables'
             explorer_restart   = 'Restart Explorer'
             dns_flush          = 'Flush DNS resolve'
             hyperv_enable      = 'Enable - HyperV'
@@ -42,9 +46,18 @@ $names = switch ((Get-Culture).Name) {
             w11ctxmenu_enable  = 'Enable - New Design Context Menu'
             w11ctxmenu_disable = 'Disable - New Design Context Menu'
             w11ctxmenu_desc    = 'Need relogin'
+            tweak_desktopicon  = 'Tweak - Desktop Icon'
+            tweak_restorepoint = 'Tweak - Restore Points'
+            tweak_advanced     = 'Tweak - Advanced System Properties'
+            tweak_screensaver  = 'Tweak - Screensaver'
         }
     }
 }
+
+$s = New-Shortcut -Lnk "C:\Users\Public\Desktop\$($names.at_desktop)"
+$s.TargetPath = "$PWD"
+$s.IconLocation = 'shell32.dll,21'
+$s.Save()
 
 function Set-RunAsAdmin($shortcut) {
     $path = $shortcut.FullName
@@ -91,91 +104,108 @@ function Set-IconToCleanFile($shortcut) {
         else { 'shell32.dll,152' }
 }
 
-function Set-IconToConfig($shortcut) {
+function Set-IconToConfigPanel($shortcut) {
     $shortcut.IconLocation = 'control.exe'
 }
 
 if ($cfg.createAll -or ((Get-OSVersionBuild) -ge 17763)) {
-    $it = New-Shortcut -Lnk $names.darkmode_enable
-    $it.TargetPath = 'reg'
-    $it.Arguments = 'add HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize /v AppsUseLightTheme /t REG_DWORD /d 0 /f'
-    $it.Description = $names.darkmode_desc
-    Set-IconToEnable $it
-    $it.Save()
+    $s = New-Shortcut -Lnk $names.darkmode_enable
+    $s.TargetPath = 'reg'
+    $s.Arguments = 'add HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize /v AppsUseLightTheme /t REG_DWORD /d 0 /f'
+    $s.Description = $names.darkmode_desc
+    Set-IconToEnable $s
+    $s.Save()
 
-    $it = New-Shortcut -Lnk $names.darkmode_disable
-    $it.TargetPath = 'reg'
-    $it.Arguments = 'add HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize /v AppsUseLightTheme /t REG_DWORD /d 1 /f'
-    $it.Description = $names.darkmode_desc
-    Set-IconToDisable $it
-    $it.Save()
+    $s = New-Shortcut -Lnk $names.darkmode_disable
+    $s.TargetPath = 'reg'
+    $s.Arguments = 'add HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize /v AppsUseLightTheme /t REG_DWORD /d 1 /f'
+    $s.Description = $names.darkmode_desc
+    Set-IconToDisable $s
+    $s.Save()
 }
 
-$it = New-Shortcut -Lnk $names.edit_hosts
-$it.TargetPath = 'notepad'
-$it.Arguments = 'C:\Windows\system32\drivers\etc\hosts'
-Set-IconToEdit $it
-$it.Save()
-Set-RunAsAdmin $it
+$s = New-Shortcut -Lnk $names.edit_hosts
+$s.TargetPath = 'notepad'
+$s.Arguments = 'C:\Windows\system32\drivers\etc\hosts'
+Set-IconToEdit $s
+$s.Save()
+Set-RunAsAdmin $s
 
-$it = New-Shortcut -Lnk $names.dns_flush
-$it.TargetPath = 'ipconfig'
-$it.Arguments = '/dns_flush'
-Set-IconToRestart $it
-$it.Save()
-Set-RunAsAdmin $it
+$s = New-Shortcut -Lnk $names.dns_flush
+$s.TargetPath = 'ipconfig'
+$s.Arguments = '/dns_flush'
+Set-IconToRestart $s
+$s.Save()
+Set-RunAsAdmin $s
 
-$it = New-Shortcut -Lnk $names.explorer_restart
-$it.TargetPath = 'powershell'
-$it.Arguments = '-c kill -n explorer'
-Set-IconToRestart $it
-$it.Save()
+$s = New-Shortcut -Lnk $names.explorer_restart
+$s.TargetPath = 'powershell'
+$s.Arguments = '-c kill -n explorer'
+Set-IconToRestart $s
+$s.Save()
 
-$it = New-Shortcut -Lnk $names.edit_desktopicon
-$it.TargetPath = 'control'
-$it.Arguments = 'desk.cpl,,0'
-Set-IconToConfig $it
-$it.Save()
+$s = New-Shortcut -Lnk $names.tweak_desktopicon
+$s.TargetPath = 'control'
+$s.Arguments = 'desk.cpl,,0'
+Set-IconToConfigPanel $s
+$s.Save()
 
-$it = New-Shortcut -Lnk $names.hyperv_enable
-$it.TargetPath = 'bcdedit'
-$it.Arguments = '/set {current} hypervisorlaunchtype auto'
-$it.Description = $names.hyperv_desc
-Set-IconToEnableInAdmin $it
-$it.Save()
-Set-RunAsAdmin $it
+$s = New-Shortcut -Lnk $names.hyperv_enable
+$s.TargetPath = 'bcdedit'
+$s.Arguments = '/set {current} hypervisorlaunchtype auto'
+$s.Description = $names.hyperv_desc
+Set-IconToEnableInAdmin $s
+$s.Save()
+Set-RunAsAdmin $s
 
-$it = New-Shortcut -Lnk $names.hyperv_disable
-$it.TargetPath = 'bcdedit'
-$it.Arguments = '/set {current} hypervisorlaunchtype off'
-$it.Description = $names.hyperv_desc
-Set-IconToDisableInAdmin $it
-$it.Save()
-Set-RunAsAdmin $it
+$s = New-Shortcut -Lnk $names.hyperv_disable
+$s.TargetPath = 'bcdedit'
+$s.Arguments = '/set {current} hypervisorlaunchtype off'
+$s.Description = $names.hyperv_desc
+Set-IconToDisableInAdmin $s
+$s.Save()
+Set-RunAsAdmin $s
 
-$it = New-Shortcut -Lnk $names.clear_pwshhist
-$it.TargetPath = 'powershell'
-$it.Arguments = '-c cmd /c del %APPDATA%\Microsoft\Windows\PowerShell\PSReadLine\ConsoleHost_history.txt'
-Set-IconToCleanFile $it
-$it.Save()
+$s = New-Shortcut -Lnk $names.clear_pwshhist
+$s.TargetPath = 'powershell'
+$s.Arguments = '-c cmd /c del %APPDATA%\Microsoft\Windows\PowerShell\PSReadLine\ConsoleHost_history.txt'
+Set-IconToCleanFile $s
+$s.Save()
 
 if ($cfg.createAll -or (Test-Windows11)) {
-    $it = New-Shortcut -Lnk $names.w11ctxmenu_enable
-    $it.TargetPath = 'reg'
-    $it.Arguments = 'add HKCU\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\InprocServer32 /f /ve'
-    $it.Description = $names.w11ctxmenu_desc
-    Set-IconToEnable $it
-    $it.Save()
+    $s = New-Shortcut -Lnk $names.w11ctxmenu_enable
+    $s.TargetPath = 'reg'
+    $s.Arguments = 'add HKCU\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\InprocServer32 /f /ve'
+    $s.Description = $names.w11ctxmenu_desc
+    Set-IconToEnable $s
+    $s.Save()
 
-    $it = New-Shortcut -Lnk $names.w11ctxmenu_disable
-    $it.TargetPath = 'reg'
-    $it.Arguments = 'delete HKCU\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\InprocServer32 /f /ve'
-    $it.Description = $names.w11ctxmenu_desc
-    Set-IconToDisable $it
-    $it.Save()
+    $s = New-Shortcut -Lnk $names.w11ctxmenu_disable
+    $s.TargetPath = 'reg'
+    $s.Arguments = 'delete HKCU\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\InprocServer32 /f /ve'
+    $s.Description = $names.w11ctxmenu_desc
+    Set-IconToDisable $s
+    $s.Save()
 }
 
-$it = New-Shortcut -Lnk "C:\Users\Public\Desktop\$($names.at_desktop)"
-$it.TargetPath = "$PWD"
-$it.IconLocation = 'shell32.dll,21'
-$it.Save()
+$s = New-Shortcut -Lnk $names.tweak_advanced
+$s.TargetPath = 'SystemPropertiesAdvanced.exe'
+Set-IconToConfigPanel $s
+$s.Save()
+
+$s = New-Shortcut -Lnk $names.tweak_restorepoint
+$s.TargetPath = 'SystemPropertiesProtection.exe'
+Set-IconToConfigPanel $s
+$s.Save()
+
+$s = New-Shortcut -Lnk $names.edit_env
+$s.TargetPath = 'rundll32.exe'
+$s.Arguments = 'sysdm.cpl,EditEnvironmentVariables'
+Set-IconToEdit $s
+$s.Save()
+
+$s = New-Shortcut -Lnk $names.tweak_screensaver
+$s.TargetPath = 'rundll32.exe'
+$s.Arguments = 'shell32.dll,Control_RunDLL desk.cpl,,1'
+$s.IconLocation = 'shell32.dll,25'
+$s.Save()

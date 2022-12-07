@@ -28,3 +28,10 @@ Get-ChildItem autologon*, tcpview*, winobj* |`
     Repair-HidpiCompatibility
 
 Pop-Location
+
+if (Get-ChildItem -ea 0 'VeraCrypt_Setup_x64_*.msi') {
+    $it = New-Shortcut ($path = "C:\users\Default\Desktop\Autologon.lnk")
+    $it.TargetPath = "$targetPath\Autologon.exe"
+    $it.save()
+    Copy-ToCurrentDesktop $path
+}
