@@ -1,2 +1,4 @@
+*.swp
+
 /config-override.ps1
 /specify*.ps1

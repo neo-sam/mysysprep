@@ -1,0 +1,265 @@
+# [
+# arch
+awk
+b2sum
+base32
+base64
+basename
+basenc
+# bash
+# bunzip2
+bzcat
+bzip2
+# bzip2recover
+# captoinfo
+# cat
+# chattr
+# chcon
+# chgrp
+# chmod
+# chown
+# chroot
+cksum
+# clear
+cmp
+column
+comm
+# cp
+csplit
+# cut
+cygcheck
+cygpath
+# cygwin-console-helper
+d2u
+# dash
+# date
+dd
+df
+# diff
+diff3
+# dir
+dircolors
+# dirmngr-client
+# dirmngr
+dirname
+dos2unix
+# du
+# dumpsexp
+# echo
+env
+envsubst
+ex
+# expand
+expr
+factor
+# false
+# fido2-assert
+# fido2-cred
+# fido2-token
+file
+# find
+fmt
+fold
+# funzip
+# gawk-5.0.0
+gawk
+# gencat
+# getconf
+# getfacl
+# getopt
+# gettext
+# gkill
+# gmondump
+# gpg-agent
+# gpg-connect-agent
+# gpg-error
+# gpg-wks-server
+# gpg
+# gpgconf
+# gpgparsemail
+# gpgscm
+# gpgsm
+# gpgsplit
+# gpgtar
+# gpgv
+grep
+# groups
+gzip
+head
+# hmac256
+# hostid
+# hostname
+iconv
+# id
+# infocmp
+# infotocap
+# install
+join
+# kbxutil
+# kill
+# ldd
+# ldh
+less
+# lessecho
+# lesskey
+# link
+ln
+locale
+# locate
+# logname
+# ls
+lsattr
+mac2unix
+md5sum
+# minidumper
+mintty
+# mkdir
+# mkfifo
+mkgroup
+mknod
+mkpasswd
+mktemp
+# mount
+# mpicalc
+# msgattrib
+# msgcat
+# msgcmp
+# msgcomm
+# msgconv
+# msgen
+# msgexec
+# msgfilter
+# msgfmt
+# msggrep
+# msginit
+# msgmerge
+# msgunfmt
+# msguniq
+# mv
+nano
+# nettle-hash
+# nettle-lfib-stream
+# nettle-pbkdf2
+# ngettext
+# nice
+# nl
+# nohup
+nproc
+numfmt
+od
+openssl
+p11-kit
+passwd
+paste
+patch
+pathchk
+perl
+# perl5.36.0
+# pinentry-w32
+pinentry
+pinky
+# pkcs1-conv
+pldd
+pluginviewer
+pr
+printenv
+printf
+profiler
+# ps
+psl
+ptx
+# pwd
+readlink
+realpath
+rebase
+recode-sr-latin
+regtool
+# reset
+# rm
+# rmdir
+rnano
+# runcon
+rview
+rvim
+# scp
+sdiff
+sed
+seq
+# setfacl
+# setmetamode
+# sexp-conv
+# sftp
+# sh
+sha1sum
+sha224sum
+sha256sum
+sha384sum
+sha512sum
+shred
+shuf
+# sleep
+# sort
+split
+# ssh-add
+# ssh-agent
+# ssh-keygen
+# ssh-keyscan
+# ssh-pageant
+# ssh
+sshd
+ssp
+stat
+# stdbuf
+# strace
+# stty
+sum
+# sync
+# tabs
+tac
+tail
+# tar
+# tee
+test
+# tic
+tig
+# timeout
+# toe
+touch
+# tput
+tr
+# true
+truncate
+# trust
+# tset
+# tsort
+# tty
+# tzset
+u2d
+# umount
+# uname
+# unexpand
+uniq
+unix2dos
+unix2mac
+# unlink
+unzip
+unzipsfx
+# users
+vdir
+view
+# vim
+vimdiff
+# watchgnupg
+wc
+# which
+# who
+# whoami
+# winpty-agent
+# winpty-debugserver
+# winpty
+xargs
+# xgettext
+# xxd
+# yat2m
+yes
+zipinfo

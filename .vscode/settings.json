@@ -1,7 +1,8 @@
 {
     "files.associations": {
         "*.reg": "ini",
-        "**/lib/newdesktop/*.txt": "markdown"
+        "**/lib/newdesktop/*.txt": "markdown",
+        "**/features/customPwshProfile/git-aliases.txt": "shellscript"
     },
     "[ini]": {
         "files.encoding": "utf16le",

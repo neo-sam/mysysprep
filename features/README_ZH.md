@@ -9,6 +9,7 @@
 | applyOptimization           | 作者推荐                           |
 | applyRemapIcon              | 作者推荐                           |
 | applyBetterTouchpadGestures | 作者推荐的触摸板手势               |
+| customGitBash               | 自定义 Git Bash 配置               |
 | customSshKnownHosts         | 自定义 Git 主机验证                |
 | customMintty                | 自定义 Mintty 终端外观             |
 | customPwshProfile           | 自定义 PowerShell 配置             |

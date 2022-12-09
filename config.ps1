@@ -13,6 +13,7 @@ $Script:features = [ordered]@{
     applyPrivacyProctection     = 0
     applyRemapIcon              = 0
 
+    customGitBash               = 0
     customMintty                = 0
     customPwshProfile           = 0
     customSshKnownHosts         = 0

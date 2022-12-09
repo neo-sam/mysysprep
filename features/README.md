@@ -11,6 +11,7 @@ Translation: [中文](./README_ZH.md)
 | applyOptimization           | recommended                                              |
 | applyRemapIcon              | recommended                                              |
 | applyBetterTouchpadGestures | preferred touchpad gestures                              |
+| customGitBash               | custom Git Bash profile                                  |
 | customSshKnownHosts         | custom verified known hosts                              |
 | customMintty                | custom Mintty terminal                                   |
 | customPwshProfile           | custom PowerShell profile                                |
