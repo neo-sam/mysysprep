@@ -17,3 +17,7 @@ set guioptions-=T
 
 " Eliminate alt menukey conflict:
 " set winaltkeys=no
+
+" fonts
+" set gfn=Cascadia_Code:h12:W500:cANSI:qDRAFT
+" set gfw=黑体:h13

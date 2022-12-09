@@ -16,11 +16,12 @@ Start-Process -Wait $match /S
 
 # CUSTOM:
 
-if (Test-Path ($it = 'config\Everything.ini')) {
-    if (!(Test-Path ($that = "$env:APPDATA\Everything\Everything.ini"))) {
-        Copy-Item $it $that
-    }
-    Copy-Item $it (mkdir -f 'C:\Users\Default\AppData\Roaming\Everything')
-}
-
 Repair-HidpiCompatibility $appbin
+
+if (Test-Path ($templ = 'config\Everything.ini')) {
+    $target = "$(mkdir -f 'C:\Users\Default\AppData\Roaming\Everything')\Everything.ini"
+    Get-Content $templ | Set-Content -Encoding oem $target
+    if (!(Test-Path ($that = "$env:APPDATA\Everything\Everything.ini"))) {
+        Copy-Item $target $that
+    }
+}

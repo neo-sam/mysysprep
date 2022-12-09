@@ -8,14 +8,14 @@ else {
     Write-MergeAdviceIfDifferent .vimrc $thisUserProfile
 }
 
-$gvimrcTempl = Get-Content -ea 0 -raw 'g.vimrc'
+$gvimrcTempl = Get-Content -Encoding utf8 -ea 0 -raw 'g.vimrc'
 if ($gvimrcTempl) {
     $txt = $gvimrcTempl
     if ((Test-AppxSystemAvailable) -and (Get-AppxPackage Microsoft.WindowsTerminal)) {
-        $txt = $txt -replace '" (?=set gfn)', ''
+        $txt = $txt -replace '" (?=set gfn=Cascadia_Code)', ''
     }
     if ((Get-Culture).TwoLetterISOLanguageName -eq 'zh') {
-        $txt = $txt -replace '" (?=set gfw)', ''
+        $txt = $txt -replace '" (?=set gfw=)', ''
     }
     $txt | Out-FileUtf8NoBom ($newUserGvimrc = 'C:\Users\Default\_gvimrc')
 
