@@ -2,7 +2,6 @@
 | --------------------------- | ---------------------------------- |
 | addDocuments                | 添加实用说明文档                   |
 | addNewIsolatedUserScript    | 添加“新数据保护隔离账号”到开始菜单 |
-| addProfileToPwsh            | 添加推荐的 PowerShell 配置         |
 | addQuickSettings            | 添加实用的快捷方式                 |
 | addUserFirstRun             |                                    |
 | applyPrivacyProctection     |                                    |
@@ -10,6 +9,10 @@
 | applyOptimization           | 作者推荐                           |
 | applyRemapIcon              | 作者推荐                           |
 | applyBetterTouchpadGestures | 作者推荐的触摸板手势               |
+| customSshKnownHosts         | 自定义 Git 主机验证                |
+| customMintty                | 自定义 Mintty 终端外观             |
+| customPwshProfile           | 自定义 PowerShell 配置             |
+| customVim                   | 自定义 Vim 配置                    |
 | debloatOneDrive             | 卸载 OneDrive                      |
 | debloatXbox                 | 卸载 Xbox                          |
 | disableAd                   | 屏蔽广告                           |

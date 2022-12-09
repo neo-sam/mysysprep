@@ -43,7 +43,7 @@ New-DocShortcut options (
     Get-Translation 'Options' -cn '选项'
 ) 'control.exe'
 
-if (Get-Module -ListAvailable Appx) {
+if (Test-AppxSystemAvailable) {
     if (Get-AppxPackage Microsoft.WindowsStore) {
         New-DocShortcut store (
             Get-Translation 'Store Apps for You' -cn '应用商店推荐应用'

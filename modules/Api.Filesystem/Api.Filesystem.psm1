@@ -18,3 +18,14 @@ FolderType=Generic
 
     Pop-Location
 }
+
+function Out-FileUtf8NoBom(
+    [Parameter(Mandatory)][string]$path,
+    [Parameter(ValueFromPipeline)][string]$InputObject
+) {
+    [System.IO.File]::WriteAllBytes($path,
+        [system.Text.Encoding]::UTF8.GetBytes(
+            ($InputObject.TrimEnd() -replace "`r", '') + "`n"
+        )
+    )
+}

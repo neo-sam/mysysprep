@@ -4,7 +4,6 @@ Translation: [中文](./README_ZH.md)
 | --------------------------- | -------------------------------------------------------- |
 | addDocuments                | add documentation                                        |
 | addNewIsolatedUserScript    | add "New Privacy-isolated User" guidance into Start Menu |
-| addProfileToPwsh            | add preferred PowerShell profile                         |
 | addQuickSettings            |                                                          |
 | addUserFirstRun             |                                                          |
 | applyPrivacyProctection     |                                                          |
@@ -12,7 +11,10 @@ Translation: [中文](./README_ZH.md)
 | applyOptimization           | recommended                                              |
 | applyRemapIcon              | recommended                                              |
 | applyBetterTouchpadGestures | preferred touchpad gestures                              |
-| fixHidpiBlur                | fix bug                                                  |
+| customSshKnownHosts         | custom verified known hosts                              |
+| customMintty                | custom Mintty terminal                                   |
+| customPwshProfile           | custom PowerShell profile                                |
+| customVim                   | custom Vim profile                                       |
 | debloatOneDrive             |                                                          |
 | debloatXbox                 |                                                          |
 | disableAd                   |                                                          |
@@ -22,6 +24,7 @@ Translation: [中文](./README_ZH.md)
 | debloatCloudapps            | debloat Microsoft provisioned cloud applications         |
 | enableClipboardHistory      |                                                          |
 | enableSshAgent              | to remember and passthrough the passphrases of ssh keys  |
+| fixHidpiBlur                | fix bug                                                  |
 | tweakIme                    | tweak input method ...                                   |
 | tweakContextmenu            | ...                                                      |
 | tweakExplorer               | ...                                                      |

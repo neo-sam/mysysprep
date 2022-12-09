@@ -1,8 +1,6 @@
 CursorType=block
 CursorBlinks=yes
 
-ThemeFile=dracula
-
-Transparency=24
+Transparency=medium
 
 FontHeight=14

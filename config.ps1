@@ -5,15 +5,18 @@ $Script:appFolderPath = 'C:\Program Files\win-sf'
 $Script:features = [ordered]@{
     addDocuments                = 0
     addNewIsolatedUserScript    = 0
-    addProfileToPwsh            = 0
     addQuickSettings            = 0
-    addGitKnownHosts            = 0
 
     applyBetterTouchpadGestures = 0
     applyClassicPhotoViewer     = 0
     applyOptimization           = 0
     applyPrivacyProctection     = 0
     applyRemapIcon              = 0
+
+    customMintty                = 0
+    customPwshProfile           = 0
+    customSshKnownHosts         = 0
+    customVim                   = 0
 
     debloatOneDrive             = 0
     debloatCloudapps            = 0

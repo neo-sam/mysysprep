@@ -1,4 +1,3 @@
-$features.addProfileToPwsh = 1
 $features.enableSshAgent = 1
 
 if ($features.tweakNewFileTypes -eq 0) {
@@ -11,4 +10,7 @@ $it.addPs1 = 1
 $it.addIni = 1
 $it.addReg = 1
 
-$features.addGitKnownHosts = 1
+$features.customMintty = 1
+$features.customPwshProfile = 1
+$features.customSshKnownHosts = 1
+$features.customVim = 1

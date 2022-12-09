@@ -1,8 +1,11 @@
 Push-Location $PSScriptRoot\..
 & .\lib\loadModules.ps1
-Import-Module ConfigLoader
 
-$scriptBlock = {
+$activity = 'Applying changes ...'
+$totalJobs = 0
+$totalCompletedJobs = 0
+
+$jobScript = {
     param($name, $cfg)
     Set-Location "$Using:PSScriptRoot\.."
     & .\lib\loadModules.ps1
@@ -10,15 +13,11 @@ $scriptBlock = {
     . .\apply.ps1 $cfg
 }
 
-$activity = 'Applying changes ...'
-$jobsCount = 0
-$jobsEndCount = 0
-
 foreach ($feature in Get-ChildItem .\features -Directory -Exclude _*) {
     if ($cfg = Get-FeatureConfig ($name = $feature.Name)) {
-        Start-RSJob $scriptBlock -Name $name -ArgumentList $name, $cfg | Out-Null
+        Start-RSJob $jobScript -Name $name -ArgumentList $name, $cfg | Out-Null
 
-        $jobsCount++
+        $totalJobs++
 
         $formatted = switch ($cfg) {
             1 { 'true' }
@@ -47,10 +46,10 @@ while ($job = Get-RSJobOrWait) {
     }
     Remove-RSJob $job
 
-    $jobsEndCount++
+    $totalCompletedJobs++
     Write-Progress $activity 0 `
-        -status "$jobsEndCount / $jobsCount" `
-        -PercentComplete ($jobsEndCount / $jobsCount * 100)
+        -status "$totalCompletedJobs / $totalJobs" `
+        -PercentComplete ($totalCompletedJobs / $totalJobs * 100)
 }
 Write-Progress $activity 0 -Completed
 

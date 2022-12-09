@@ -31,3 +31,15 @@ function Get-CimOrWimInstance([string]$className) {
         return Get-WmiObject $className
     }
 }
+
+function Write-MergeAdviceIfDifferent([string]$ref, [string]$to, [switch]$RunAsAdmin) {
+    if ((Get-FileHash $ref).hash -ne (Get-FileHash $to).hash) {
+        if ($RunAsAdmin) {
+            Write-Output 'Please merge the file manually (use vimdiff, run as Admin):'
+        }
+        else {
+            Write-Output 'Please merge the file manually (use vimdiff):'
+        }
+        Write-Output "`"C:\Program Files\Git\usr\bin\vimdiff.exe`" `"$(Resolve-Path $to)`" `"$(Resolve-Path $ref)`""
+    }
+}

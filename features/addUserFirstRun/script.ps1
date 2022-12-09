@@ -1,3 +1,8 @@
+Set-Location $env:USERPROFILE
+if ((Test-Path 'C:\Program Files (x86)\Vim') -or (Test-Path 'C:\Program Files\Git')) {
+    mkdir -f .vim\backups, .vim\undo | Out-Null
+}
+
 $names = switch ((Get-Culture).Name) {
     zh-CN { @{ userProfile = '用户主目录' } }
     Default { @{ userProfile = 'User Profile' } }

@@ -1,6 +1,8 @@
-$unsupport = !(Get-Module -ListAvailable Appx)
+$supportAppx = !!(Get-Command -ea 0 Get-AppxPackage)
+function Test-AppxSystemAvailable { $supportAppx }
+
 function Uninstall-BundledAppx([string]$names) {
-    if ($unsupport) { return }
+    if (!$supportAppx) { return }
     if (($mutex = New-Object System.Threading.Mutex($false, 'WinSf-Appx')).WaitOne()) {
         $ProgressPreferenceBefore = $ProgressPreference
         $ProgressPreference = 'SilentlyContinue'
