@@ -12,6 +12,7 @@ $features.addUserFirstRun = [ordered]@{
     showRecyleBinIconAtExplorerSidebar     = 1
     showRecentFoldersIconAtExplorerSidebar = 1
     showThisPcAsDefault                    = 1
+    hideWindows11SnapBar                   = 1
 }
 
 if ($features.tweakContextmenu -eq 0) { $features.tweakContextmenu = [ordered]@{} }

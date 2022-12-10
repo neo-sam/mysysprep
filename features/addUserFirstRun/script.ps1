@@ -1,7 +1,8 @@
-Set-Location $env:USERPROFILE
+Push-Location $env:USERPROFILE
 if ((Test-Path 'C:\Program Files (x86)\Vim') -or (Test-Path 'C:\Program Files\Git')) {
     mkdir -f .vim\backups, .vim\undo | Out-Null
 }
+Pop-Location
 
 $names = switch ((Get-Culture).Name) {
     zh-CN { @{ userProfile = '用户主目录' } }
@@ -98,6 +99,10 @@ function showRecentFoldersIconAtExplorerSidebar {
 
 function showThisPcAsDefault {
     Set-ItemProperty 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced' LaunchTo 1
+}
+
+function hideWindows11SnapBar {
+    Set-ItemProperty 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced' EnableSnapBar 0
 }
 
 Remove-Item -Force "$([Environment]::GetFolderPath('Desktop'))\Firstrun.lnk" -ea 0
