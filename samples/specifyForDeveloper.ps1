@@ -11,6 +11,7 @@ $it.addIni = 1
 $it.addReg = 1
 
 $features.customGitBash = 1
+$features.customGitTig = 1
 $features.customMintty = 1
 $features.customPwshProfile = 1
 $features.customSshKnownHosts = 1

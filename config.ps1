@@ -14,6 +14,7 @@ $Script:features = [ordered]@{
     applyRemapIcon              = 0
 
     customGitBash               = 0
+    customGitTig                = 0
     customMintty                = 0
     customPwshProfile           = 0
     customSshKnownHosts         = 0
