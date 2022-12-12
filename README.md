@@ -14,7 +14,7 @@ This README is also available in languages: [🇨🇳 中文](./README_ZH.md)
 
 1. Git clone or download this repository into your U disk.
 2. Copy or learn the config files from `samples/`
-3. [Enable or tweak features in `config.ps`](./features/README.md)
+3. [Enable or tweak features in `configuration.ps1`](./features/README.md)
 4. [Add packages into `packages/`](./packages/README.md)
 
 ### Deploy On New Machine
@@ -35,7 +35,7 @@ flowchart TD
     fetch[fetch this repository] -- get packages and config --> bundle[Prepared Bundle]
     generlized -. capture .-> image[Personalized System Image]
   end
-  bundle -- <b>apply.cmd</b> --o sysprep
+  bundle -- <b>setup.cmd</b> --o sysprep
   generlized --> instance
   image -. apply .-> instance
 ```
@@ -46,7 +46,7 @@ flowchart TD
 flowchart TB
   fetch[fetch this repository] -- get packages and config --> bundle[Prepared Bundle]
   subgraph config [Target Machine]
-      old[Current System] -- <b>apply.cmd</b> --> new[Optimized System]
+      old[Current System] -- <b>setup.cmd</b> --> new[Optimized System]
   end
   bundle --o config
 ```

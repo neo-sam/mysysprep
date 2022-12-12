@@ -6,7 +6,7 @@
 
 1. 克隆本项目代码到 U 盘内
 2. [参考或复制 `samples/` 目录内的配置文件](./samples/README_ZH.md)
-3. [修改 `config.ps` 激活/配置所需特性](./features/README_ZH.md)
+3. [修改 `configuration.ps1` 激活/配置所需特性](./features/README_ZH.md)
 4. [添加安装包到 `packages/` 目录内](./packages/README_ZH.md)
 
 ### 部署到新机器上
@@ -27,7 +27,7 @@ flowchart TD
     fetch[获取本项目源码] -- 获取安装包并自定义配置 --> bundle[准备好的部署工具]
     generlized -. 捕抓 .-> image[个性化的系统镜像]
   end
-  bundle -- <b>apply.cmd</b> --o sysprep
+  bundle -- <b>setup.cmd</b> --o sysprep
   generlized --> instance
   image -. 释放 .-> instance
 ```
@@ -38,7 +38,7 @@ flowchart TD
 flowchart TB
   fetch[获取本项目源码] -- 获取安装包并自定义配置 --> bundle[准备好的部署工具]
   subgraph config [目标机器]
-      old[当前系统] -- <b>apply.cmd</b> --> new[调整过的系统]
+      old[当前系统] -- <b>setup.cmd</b> --> new[调整过的系统]
   end
   bundle --o config
 ```

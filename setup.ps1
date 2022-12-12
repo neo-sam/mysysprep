@@ -23,7 +23,7 @@ Write-Output '==> Apply features'
 Write-Output '<== Applied features', '', ''
 
 try {
-    if ((Test-Path .\packages) -and !(Test-IgnorePackages)) {
+    if ((Test-Path .\packages) -and !(Test-SkipAddPackages)) {
         Write-Output '==> Add packages'
         & .\packages\lib\main.ps1
         Write-Output '<== Added packages', '', ''

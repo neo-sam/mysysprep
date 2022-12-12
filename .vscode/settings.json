@@ -4,6 +4,9 @@
         "**/lib/newdesktop/*.txt": "markdown",
         "**/features/customPwshProfile/git-aliases.txt": "shellscript"
     },
+    "search.exclude": {
+        "**/lib/modules/PoshRSJob": true
+    },
     "[ini]": {
         "files.encoding": "utf16le",
         "editor.wordWrap": "off"

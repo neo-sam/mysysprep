@@ -21,4 +21,4 @@ Download:
 
 Put files into this folder.
 
-Run `apply.cmd` in the target machine.
+Run `setup.cmd` in the target machine.

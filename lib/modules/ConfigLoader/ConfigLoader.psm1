@@ -1,16 +1,14 @@
-Push-Location "$PSScriptRoot\..\.."
+Import-Module Api.Common
 
-. .\config.ps1
-
-foreach ($cfgfile in Get-ChildItem '.\specify*.ps1') {
-    . $cfgfile
+Push-Location (Get-ProjectLocation)
+. .\configuration.ps1
+foreach ($sampleScript in Get-ChildItem '.\sample-*.ps1') {
+    . $sampleScript
 }
-
+if (Test-Path ($reconfigScript = '.\reconfig.ps1')) {
+    . $reconfigScript
+}
 Pop-Location
-
-if (Test-Path ($recfg = '.\config-override.ps1')) {
-    . $recfg
-}
 
 if ($null -eq $appFolderPath) {
     $appFolderPath = 'C:\Program Files\win-sf'
@@ -48,7 +46,7 @@ function Get-FeatureConfig([string]$key) {
     else { $features[$key] }
 }
 
-function Test-IgnorePackages { $ignorePackages }
+function Test-SkipAddPackages { $ignorePackages }
 
 function Test-ShouldManuallyAddPkgs {
     return !$ignoreManualPackages

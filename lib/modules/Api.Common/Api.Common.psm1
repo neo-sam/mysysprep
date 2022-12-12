@@ -1,5 +1,5 @@
 function Get-ProjectLocation {
-    "$(Resolve-Path $PSScriptRoot\..\..\)"
+    "$(Resolve-Path $PSScriptRoot\..\..\..)"
 }
 
 $returnFnFalse = { $false }

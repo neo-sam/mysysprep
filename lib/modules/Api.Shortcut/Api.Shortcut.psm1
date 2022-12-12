@@ -1,4 +1,4 @@
-Import-Module Api.Base
+Import-Module Api.Common
 Import-Module ConfigLoader
 
 $wshell = New-Object -ComObject WScript.Shell

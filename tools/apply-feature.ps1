@@ -1,13 +1,17 @@
-#Requires -RunAsAdministrator
 param(
-    [Parameter(Mandatory)]$path,
+    [Parameter(Mandatory)][string[]]$paths,
     [Parameter(ValueFromPipeline)]$InputObject
 )
 
 Push-Location "$PSScriptRoot\.."
 .\lib\loadModules.ps1
 
-$names = (Get-Item $path).Name
+$names = @()
+foreach ($path in $paths) {
+    foreach ($name in (Get-Item $path).Name) {
+        $names += $name
+    }
+}
 
 $activity = 'Applying changes ...'
 $totalJobs = 0
