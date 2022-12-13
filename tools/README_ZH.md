@@ -17,7 +17,3 @@
 导入模块
 
     ./tools/load-modules.ps1
-
-打印配置
-
-    ./tools/Show Config.cmd

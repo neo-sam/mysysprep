@@ -1,7 +1,7 @@
 #Requires -RunAsAdministrator
 param([switch]$GetMetadata)
 
-$match = Get-ChildItem -ea 0 'PowerShell-*-win-x64.msi'
+$match = Get-Item -ea 0 'PowerShell-*-win-x64.msi'
 
 if ($GetMetadata) {
     return @{
@@ -12,10 +12,10 @@ if ($GetMetadata) {
     }
 }
 
-Start-Process -Wait $match '/qb /norestart',
-'ADD_FILE_CONTEXT_MENU_RUNPOWERSHELL=1',
-'ADD_EXPLORER_CONTEXT_MENU_OPENPOWERSHELL=1',
-'/l*v logs\powershell.log'
+Start-ProcessToInstall $match '/qb /norestart', `
+    'ADD_FILE_CONTEXT_MENU_RUNPOWERSHELL=1', `
+    'ADD_EXPLORER_CONTEXT_MENU_OPENPOWERSHELL=1', `
+    '/l*v logs\powershell.log'
 
 # CUSTOM:
 

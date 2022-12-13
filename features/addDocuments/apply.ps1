@@ -18,7 +18,11 @@ Pop-Location
 
 $it = New-Shortcut ($path = "C:\users\Default\Desktop\$linksFolderName.lnk")
 $it.TargetPath = $linksFolderPath
-$it.IconLocation = 'imageres.dll,107'
+$it.IconLocation = switch (1) {
+    { Test-Windows11 } { 'imageres.dll,107' }
+    { Test-Windows10 } { 'imageres.dll,189' }
+    Default { 'imageres.dll,188' }
+}
 $it.save()
 Copy-ToCurrentDesktop $path
 Copy-Item -Force $path 'C:\ProgramData\Microsoft\Windows\Start Menu\Programs'

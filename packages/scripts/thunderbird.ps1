@@ -1,7 +1,7 @@
 #Requires -RunAsAdministrator
 param([switch]$GetMetadata)
 
-$match = Get-ChildItem -ea 0 'Thunderbird Setup *.exe'
+$match = Get-Item -ea 0 'Thunderbird Setup *.exe'
 
 if ($GetMetadata) {
     return @{
@@ -11,4 +11,4 @@ if ($GetMetadata) {
     }
 }
 
-Start-Process -Wait $match '/S /DesktopShortcut=false'
+Start-ProcessToInstall $match '/S /DesktopShortcut=false'

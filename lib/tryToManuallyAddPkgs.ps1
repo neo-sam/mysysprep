@@ -1,14 +1,13 @@
-$hasContent = Test-Path -Exclude .gitkeep "$PSScriptRoot\..\..\packages\manual\*"
-if (!$hasContent -and !(Test-ShouldManuallyAddPkgs)) { exit }
+Push-Location $PSScriptRoot\..
 
-Start-Process "$PSScriptRoot\..\packages\manual"
+Start-Process 'packages\manual'
 if ($host.ui.PromptForChoice(
         (
-            Get-Translation 'Please manually deploy yourselft at first.' `
-                -cn '请完成手动内容安装。'
+            Get-Translation 'Dectected packages which should be deploy manually.' `
+                -cn '注意：检测到需手动安装的软件包。'
         ), (
-            Get-Translation 'Continue to deploy?' `
-                -cn '是否开始自动安装？'
+            Get-Translation 'Continue to auto deploy?' `
+                -cn '确认：是否继续全自动安装？'
         ),
         [System.Management.Automation.Host.ChoiceDescription[]](
             (New-Object System.Management.Automation.Host.ChoiceDescription '&Yes'),

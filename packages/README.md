@@ -4,7 +4,26 @@ Translate: [中文](./README_ZH.md)
 
 ## Get Your Required
 
-Download into `.\packages`
+Download all content into `.\packages`
+
+- To support old Windows 7 ...
+
+  <details><summary>Requirements</summary><br/>
+
+  - [.NET Framework 4.5.2](https://www.microsoft.com/en-us/download/confirmation.aspx?id=42642) or higher version, Verify by PowerShell:
+
+        (Get-FileHash -Algorithm SHA256 'NDP452-KB2901907-x86-x64-AllOS-ENU.exe').Hash -eq '6C2C589132E830A185C5F40F82042BEE3022E721A216680BD9B3995BA86F3781'
+
+  - [Windows Management Framework 5.1](https://www.microsoft.com/en-us/download/details.aspx?id=54616)
+
+    1.  Select `Win7AndW2K8R2-KB3191566-x64.zip` to download
+    2.  Verify by PowerShell:
+
+            (Get-FileHash -Algorithm SHA256 'Win7AndW2K8R2-KB3191566-x64.zip').Hash -eq 'F383C34AA65332662A17D95409A2DDEDADCEDA74427E35D05024CD0A6A2FA647'
+
+    3.  Extract the archive
+
+  </details><br/>
 
 - Firefox: privacy-first browser
 

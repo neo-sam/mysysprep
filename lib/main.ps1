@@ -1,9 +1,15 @@
-. .\lib\loadModules.ps1
+$script:PSScriptRoot = Split-Path $MyInvocation.MyCommand.Path -Parent
 
 Stop-Process -ea 0 -Name sysprep
 
-.\lib\doPowershellUpdate.ps1
-if ($LASTEXITCODE) { exit }
+if ($PSVersionTable.PSVersion.Major -lt 5) {
+    Write-Host -ForegroundColor Yellow `
+        'Unsupported PowerShell version, should update to PowerShell 5!'
+    .\lib\doPowershellUpdate.ps1
+    exit
+}
+
+. .\lib\loadModules.ps1
 
 if (!(Test-RunAsAdmin)) {
     Write-Error 'Require to run as the Administrator.'
@@ -15,8 +21,10 @@ if (Test-AuditMode) {
     net user Administrator /active:yes >$null
 }
 
-.\lib\tryToManuallyAddPkgs.ps1
-if ($LASTEXITCODE) { exit }
+if (Test-ShouldManuallyAddPkgs) {
+    .\lib\tryToManuallyAddPkgs.ps1
+    if ($LASTEXITCODE) { exit }
+}
 
 Write-Output '==> Apply features'
 .\lib\applyFeatures.ps1

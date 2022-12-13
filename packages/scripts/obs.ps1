@@ -1,7 +1,7 @@
 #Requires -RunAsAdministrator
 param([switch]$GetMetadata)
 
-$match = Get-ChildItem -ea 0 'OBS-Studio-*-Full-Installer-x64.exe'
+$match = Get-Item -ea 0 'OBS-Studio-*-Full-Installer-x64.exe'
 
 if ($GetMetadata) {
     return @{
@@ -11,7 +11,7 @@ if ($GetMetadata) {
     }
 }
 
-Start-Process -Wait $match '/NCRC /S'
+Start-ProcessToInstall $match '/NCRC /S'
 
 # CUSTOM:
 

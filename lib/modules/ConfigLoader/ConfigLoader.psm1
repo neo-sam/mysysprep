@@ -49,5 +49,6 @@ function Get-FeatureConfig([string]$key) {
 function Test-SkipAddPackages { $ignorePackages }
 
 function Test-ShouldManuallyAddPkgs {
-    return !$ignoreManualPackages
+    $hasContent = Test-Path -Exclude .gitkeep "$(Get-ProjectLocation)\packages\manual\*"
+    return $hasContent -and !$ignoreManualPackages
 }

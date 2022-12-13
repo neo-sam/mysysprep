@@ -2,9 +2,30 @@
 
 ## 下载安装包
 
-如果部分链接下载速度慢，推荐[安装迅雷](https://dl.xunlei.com/)加速下载
+如果部分链接下载速度慢，推荐[安装迅雷](https://dl.xunlei.com/)加速下载。
+
+请将安装包放置在本目录下，安装框架将会自动部署。
 
 ### 常用必备
+
+- 为了支持 Windows 7 系列的老系统 ……
+
+  <details><summary>升级与补丁</summary><br/>
+
+  - 安装 [.NET Framework 4.5.2](https://www.microsoft.com/en-us/download/confirmation.aspx?id=42642) 或更高版本，使用 PowerShell 校验安装包：
+
+        (Get-FileHash -Algorithm SHA256 'NDP452-KB2901907-x86-x64-AllOS-ENU.exe').Hash -eq '6C2C589132E830A185C5F40F82042BEE3022E721A216680BD9B3995BA86F3781'
+
+  - 安装 [Windows Management Framework 5.1](https://www.microsoft.com/en-us/download/details.aspx?id=54616)
+
+    1.  选择 `Win7AndW2K8R2-KB3191566-x64.zip` 以下载
+    2.  使用 PowerShell 校验安装包:
+
+            (Get-FileHash -Algorithm SHA256 'Win7AndW2K8R2-KB3191566-x64.zip').Hash -eq 'F383C34AA65332662A17D95409A2DDEDADCEDA74427E35D05024CD0A6A2FA647'
+
+    3.  解压内容
+
+  </details><br/>
 
 - Firefox: 有效保护隐私的浏览器
 

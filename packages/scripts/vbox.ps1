@@ -1,7 +1,7 @@
 #Requires -RunAsAdministrator
 param([switch]$GetMetadata)
 
-$match = Get-ChildItem -ea 0 'virtualbox-*win*.exe'
+$match = Get-Item -ea 0 'virtualbox-*win*.exe'
 $appdir = 'C:\Program Files\Oracle\VirtualBox'
 
 if ($GetMetadata) {
@@ -13,10 +13,11 @@ if ($GetMetadata) {
     }
 }
 
-Start-Process -Wait $match '-s -l -msiparams REBOOT=ReallySuppress'
+Start-ProcessToInstall $match '-s -l -msiparams REBOOT=ReallySuppress'
+if (!(Test-Path $appdir)) { throw 'Installed Failed' }
 
 # CUSTOM:
 
-if (!(Test-Path $appdir)) { throw 'Installed Failed' }
-
 Add-SystemPath $appdir
+
+Move-DesktopIconFromPublicToDefaultAndCurrentUserIfAuditMode 'Oracle VM VirtualBox'

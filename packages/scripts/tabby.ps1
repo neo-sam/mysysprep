@@ -1,7 +1,7 @@
 #Requires -RunAsAdministrator
 param([switch]$GetMetadata)
 
-$match = Get-ChildItem -ea 0 'tabby-*-setup-*.exe'
+$match = Get-Item -ea 0 'tabby-*-setup-*.exe'
 
 if ($GetMetadata) {
     return @{
@@ -11,4 +11,4 @@ if ($GetMetadata) {
     }
 }
 
-Start-Process -Wait $match '/allusers /S'
+Start-ProcessToInstall $match '/allusers /S'

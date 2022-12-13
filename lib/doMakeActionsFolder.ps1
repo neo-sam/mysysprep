@@ -5,19 +5,21 @@ Push-Location ([Environment]::GetFolderPath('Desktop'))
 $path = "$(mkdir -f (Get-Translation 'System Config' -cn '系统配置'))"
 Set-Location $path
 Remove-Item -Recurse *
-$icon = 'C:\windows\system32\SHELL32.dll,314'
-if (Test-Windows7) { $icon = 'C:\Windows\System32\control.exe,0' }
-if (Test-Windows10) { $icon = 'C:\windows\system32\SHELL32.dll,316' }
+$icon = switch (1) {
+    { Test-Windows7 } { 'C:\Windows\System32\SystemPropertiesAdvanced.exe,0' }
+    { Test-Windows10 } { 'C:\windows\system32\SHELL32.dll,316' }
+    Default { 'C:\windows\system32\SHELL32.dll,314' }
+}
 Set-FolderIcon $path $icon
 
 $s = New-Shortcut -Lnk (Get-Translation 'Tweak desktop context for new user' -cn '调整桌面内容 - 新的用户')
 $s.TargetPath = 'C:\Users\Default\Desktop'
-$s.IconLocation = 'imageres.dll,174'
+$s.IconLocation = if (Test-Windows11) { 'imageres.dll,174' } else { 'shell32.dll,34' }
 $s.Save()
 
 $s = New-Shortcut -Lnk (Get-Translation 'Tweak desktop context for all users' -cn '调整桌面内容 - 全部用户')
 $s.TargetPath = 'C:\Users\Public\Desktop'
-$s.IconLocation = 'imageres.dll,174'
+$s.IconLocation = if (Test-Windows11) { 'imageres.dll,174' } else { 'shell32.dll,34' }
 $s.Save()
 
 $s = New-Shortcut -Lnk (Get-Translation 'Tweak start menu' -cn '调整开始菜单')
@@ -60,7 +62,7 @@ else {
     $s.Save()
 }
 
-Start-Process .
+explorer.exe $(Get-Location)
 Pop-Location
 
 Start-Sleep 1

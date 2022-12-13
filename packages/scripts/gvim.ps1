@@ -1,7 +1,7 @@
 #Requires -RunAsAdministrator
 param([switch]$GetMetadata)
 
-$match = Get-ChildItem -ea 0 'gvim*.exe'
+$match = Get-Item -ea 0 'gvim*.exe'
 $appmatch = 'C:\Program Files (x86)\Vim\vim*\gvim.exe'
 
 if ($GetMetadata) {
@@ -12,7 +12,7 @@ if ($GetMetadata) {
     }
 }
 
-Start-Process -Wait $match /S
+Start-ProcessToInstall $match /S
 
 # CUSTOM:
 
@@ -30,3 +30,5 @@ foreach ($ext in 'viminfo', 'gitconfig', 'minttyrc', 'bash_history') {
         Get-RegItemOrNew "HKLM:\Software\Classes\${ext}_auto_file\shell\edit\command"
     ) "`"$appPath`" `"%1`""
 }
+
+Move-DesktopIconFromPublicToDefaultAndCurrentUserIfAuditMode 'gVim *'

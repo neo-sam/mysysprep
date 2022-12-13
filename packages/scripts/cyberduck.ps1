@@ -1,7 +1,7 @@
 #Requires -RunAsAdministrator
 param([switch]$GetMetadata)
 
-$match = Get-ChildItem -ea 0 'Cyberduck-Installer-*.exe'
+$match = Get-Item -ea 0 'Cyberduck-Installer-*.exe'
 $appbin = 'C:\Program Files\Cyberduck\Cyberduck.exe'
 
 if ($GetMetadata) {
@@ -12,7 +12,7 @@ if ($GetMetadata) {
     }
 }
 
-Start-Process -Wait $match /quiet
+Start-ProcessToInstall $match /quiet
 
 # CUSTOM:
 

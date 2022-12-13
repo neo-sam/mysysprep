@@ -1,7 +1,7 @@
 #Requires -RunAsAdministrator
 param([switch]$GetMetadata)
 
-$match = Get-ChildItem -ea 0 'Firefox Setup *.exe'
+$match = Get-Item -ea 0 'Firefox Setup *.exe'
 $appbin = 'C:\Program Files\Mozilla Firefox\firefox.exe'
 
 if ($GetMetadata) {
@@ -12,4 +12,4 @@ if ($GetMetadata) {
     }
 }
 
-Start-Process -Wait $match '/S /DesktopShortcut=false'
+Start-ProcessToInstall $match '/S /DesktopShortcut=false'

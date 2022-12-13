@@ -1,2 +1,4 @@
 .\lib\loadModules.ps1
-Import-Module ConfigLoader
+foreach ($name in (Get-ChildItem .\lib\modules\*).Name) {
+    Import-Module -Force $name
+}

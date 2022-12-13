@@ -1,7 +1,7 @@
 #Requires -RunAsAdministrator
 param([switch]$GetMetadata)
 
-$match = Get-ChildItem -ea 0 'chocolatey.*.nupkg'
+$match = Get-Item -ea 0 'chocolatey.*.nupkg'
 $ChocoInstallPath = "$($env:SystemDrive)\ProgramData\Chocolatey\bin"
 
 if ($GetMetadata) {
