@@ -2,22 +2,28 @@ $Host.UI.RawUI.WindowTitle = 'Signature Verification'
 & $PSScriptRoot\..\..\lib\loadModules.ps1
 $checkpoints = Import-Csv "$PSScriptRoot\signatures.csv" -Encoding UTF8
 
+$jobName = 'Verifying Packages'
+$PSDefaultParameterValues = @{
+    "Get-RSJob:Name"   = $jobName
+    "Start-RSJob:Name" = $jobName
+}
+
 $scriptBlock = {
     param ( $name, $fullname, $checkpoint )
     if ($checkpoint.Subject -eq $null) {
-        ([PSCustomObject]@{
+        [PSCustomObject]@{
             Name     = $name
             Type     = $checkpoint.Type
             Verified = $null
-        })
+        }
     }
     else {
         $signature = Get-AuthenticodeSignature $fullname
-        ([PSCustomObject]@{
+        [PSCustomObject]@{
             Name     = $name
             Type     = $checkpoint.Type
             Verified = $signature.Status -eq 'Valid' -and $signature.SignerCertificate.Subject -eq $checkpoint.Subject
-        })
+        }
     }
 }
 
@@ -40,8 +46,9 @@ Push-Location $PSScriptRoot\..
     }
     Start-RSJob $unknownScriptBlock -ArgumentList $file.Name | Out-Null
 }
+Pop-Location
 
-$activity = 'Verifying packages:'
+$activity = 'Verifying Packages'
 while (Get-RSJob -State Running) {
     Write-Progress $activity 0 `
         -status "$((Get-RSJob -State Completed).Count) / $((Get-RSJob).Count)" `
@@ -50,28 +57,28 @@ while (Get-RSJob -State Running) {
 }
 Write-Progress $activity 0 -Completed
 
-$result = Get-RSJob | Receive-RSJob | Select-Object Name, Type, Verified | Sort-Object Verified
+Get-RSJob | Wait-RSJob | Out-Null
+$result = Get-RSJob |  Receive-RSJob | Select-Object Name, Type, Verified | Sort-Object Verified
 
 if ($resultA = $result | Where-Object { $_.Verified -ne $null } | Format-Table) {
     Write-Output $resultA
 }
 
-
-if ($resultB = ($result | Where-Object { $_.Verified -eq $null }).Name) {
+if ($manualVerifyList = ($result | Where-Object { $_.Verified -eq $null }).Name) {
     Write-Output 'VirusTotal online CHECK:'
 
-    Get-FileHash -Algorithm SHA256 $resultB | ForEach-Object {
+    Push-Location $PSScriptRoot\..
+    Get-FileHash -Algorithm SHA256 $manualVerifyList | ForEach-Object {
         ([PSCustomObject]@{
             Name = (Get-ChildItem $_.Path).Name
             Link = 'https://www.virustotal.com/gui/file/' + $_.Hash
         })
     } | Format-List
+    Pop-Location
 }
 
 Get-RSJob | Remove-RSJob
 
-if ($null -eq $resultA -and $null -eq $resultB) {
+if ($null -eq $resultA -and $null -eq $manualVerifyList) {
     Write-Output 'NA', (Get-Translation 'Please add your packages into this folder, refer to README.md' -cn '请添加内容到当前目录，阅读 README_ZH.md 了解更多信息')
 }
-
-Pop-Location
