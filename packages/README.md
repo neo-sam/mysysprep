@@ -1,10 +1,46 @@
-# Packages
+# Packages Folder
 
-Translate: [中文](./README_ZH.md)
+## Instruction
 
-## Get Your Required
+Translation: [中文](./README_ZH.md)
 
-Download into `.\packages`
+Download all content into `.\packages`, the setup framework will automatically install them.
+
+- The packages with the mark asterisk \*,
+  is required with 7zip to read gzip, xz compression format.
+
+  <details><summary>Please get <code>7z.exe</code> commandline binary into this folder ……</summary><br/>
+
+  1.  [Get installer](https://www.7-zip.org/a/7z2201.exe)
+  2.  Install
+  3.  Copy to this directory:
+
+          cp "C:\Program Files*\7-Zip*\7z.exe" .
+
+  <br/></details>
+
+- If using Windows 7 or Server 2008R2 old system:
+
+  <details><summary>please install the upgarde package or patches ……</summary><br/>
+
+  - [.NET Framework 4.5.2](https://www.microsoft.com/en-us/download/confirmation.aspx?id=42642) or higher version, Verify by PowerShell:
+
+        (Get-FileHash -Algorithm SHA256 'NDP452-KB2901907-x86-x64-AllOS-ENU.exe').Hash -eq '6C2C589132E830A185C5F40F82042BEE3022E721A216680BD9B3995BA86F3781'
+
+  - [Windows Management Framework 5.1](https://www.microsoft.com/en-us/download/details.aspx?id=54616)
+
+    1.  Select `Win7AndW2K8R2-KB3191566-x64.zip` to download
+    2.  Verify by PowerShell:
+
+            (Get-FileHash -Algorithm SHA256 'Win7AndW2K8R2-KB3191566-x64.zip').Hash -eq 'F383C34AA65332662A17D95409A2DDEDADCEDA74427E35D05024CD0A6A2FA647'
+
+    3.  Extract the archive
+
+  </details><br/>
+
+## Get Your Packages
+
+### Recommendation
 
 - Firefox: privacy-first browser
 
@@ -74,7 +110,7 @@ Download into `.\packages`
 
 - [Tabby](https://tabby.sh/): most popular social terminal emulator
 
-  [Official GitHub Page](https://github.com/Eugeny/tabby/releases/latest)
+  [Official GitHub Releases](https://github.com/Eugeny/tabby/releases/latest)
 
 - Sysinternals: advanced system utilities and technical information
 
@@ -94,7 +130,7 @@ Download into `.\packages`
 
 - gsudo: acquire administration privilege
 
-  [Official GitHub Page](https://github.com/gerardog/gsudo/releases/latest/download/gsudoSetup.msi)
+  [Get from GitHub Release](https://github.com/gerardog/gsudo/releases/latest/download/gsudoSetup.msi)
 
 - ImDisk Toolkit: ramdisk for Windows and mounting of image files
 
@@ -114,7 +150,7 @@ Download into `.\packages`
 
       chan_shutdown_read: shutdown() failed for fd 7 [i0 o0]: Not a socket
 
-  find `OpenSSH-Win64-v` at [Official GitHub Page](https://github.com/PowerShell/Win32-OpenSSH/releases/latest)
+  find `OpenSSH-Win64-v` at [Official GitHub Releases](https://github.com/PowerShell/Win32-OpenSSH/releases/latest)
 
 </details><br/>
 

@@ -1,7 +1,7 @@
 #Requires -RunAsAdministrator
 param([switch]$GetMetadata)
 
-$match = Get-ChildItem -ea 0 'platform-tools_r*-windows.zip'
+$match = Get-Item -ea 0 'platform-tools_r*-windows.zip'
 $appdir = 'C:\Program Files\platform-tools'
 
 if ($GetMetadata) {

@@ -1,7 +1,7 @@
 #Requires -RunAsAdministrator
 param([switch]$GetMetadata)
 
-$match = Get-ChildItem -ea 0 '7z*-zstd-*.exe'
+$match = Get-Item -ea 0 '7z*-zstd-*.exe'
 
 if ($GetMetadata) {
     return @{
@@ -11,7 +11,7 @@ if ($GetMetadata) {
     }
 }
 
-Start-Process -Wait $match /S
+Start-ProcessToInstall $match /S
 
 # CUSTOM:
 

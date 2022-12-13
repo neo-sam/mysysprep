@@ -1,7 +1,7 @@
 #Requires -RunAsAdministrator
 param([switch]$GetMetadata)
 
-$match = Get-ChildItem -ea 0 'OpenSSH-Win64-v*.msi'
+$match = Get-Item -ea 0 'OpenSSH-Win64-v*.msi'
 
 if ($GetMetadata) {
     return @{
@@ -12,8 +12,8 @@ if ($GetMetadata) {
     }
 }
 
-Start-Process -Wait $match '/qb /norestart',
-'/l*v logs\openssh.log'
+Start-ProcessToInstall $match '/qb /norestart', `
+    '/l*v logs\openssh.log'
 
 # CUSTOM:
 

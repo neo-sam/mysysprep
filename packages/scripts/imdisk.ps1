@@ -1,7 +1,7 @@
 #Requires -RunAsAdministrator
 param([switch]$GetMetadata)
 
-$match = Get-ChildItem -ea 0 'ImDiskTk-x64.zip'
+$match = Get-Item -ea 0 'ImDiskTk-x64.zip'
 
 if ($GetMetadata) {
     return @{
@@ -15,8 +15,9 @@ $tmpdir = "$(mkdir -f "$env:TMP\win-sf\imdisk")"
 
 Expand-Archive -Force $match $(mkdir -f $tmpdir)
 
-Start-Process -Wait extrac32.exe "/e /y /l $tmpdir/imdisk_files $(Get-ChildItem "$tmpdir\ImDiskTk*\files.cab")"
-Start-Process -Wait "$tmpdir\imdisk_files\config.exe" '/fullsilent', `
+Start-ProcessToInstall extrac32.exe "/e /y /l $tmpdir/imdisk_files $(Get-ChildItem "$tmpdir\ImDiskTk*\files.cab")"
+
+Start-ProcessToInstall "$tmpdir\imdisk_files\config.exe" '/fullsilent', `
     '/discutils:1', '/ramdiskui:1', '/menu_entries:0', `
     '/shortcuts_desktop:0' , '/shortcuts_all:0'
 

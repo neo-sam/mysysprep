@@ -1,7 +1,7 @@
 #Requires -RunAsAdministrator
 param([switch]$GetMetadata)
 
-$match = Get-ChildItem -ea 0 'Twinkle.Tray.v*.exe'
+$match = Get-Item -ea 0 'Twinkle.Tray.v*.exe'
 
 if ($GetMetadata) {
     return @{
@@ -21,7 +21,7 @@ $scriptName = 'setupTwinkleTray'
         [System.Console]::ReadKey()>$null
         exit
     }
-    Start-Process -Wait $it.FullName '/NCRC /S'
+    Start-ProcessToInstall $it.FullName '/NCRC /S'
     if ($Error) { Pause }
     else {
         Start-Process "$env:LOCALAPPDATA\Programs\twinkle-tray\Twinkle Tray.exe"
@@ -30,5 +30,5 @@ $scriptName = 'setupTwinkleTray'
 New-UserDeployShortcut $scriptName 'Twinkle Tray'
 
 if (!(Test-AuditMode)) {
-    Start-Process -Wait $match '/NCRC /S'
+    Start-ProcessToInstall $match '/NCRC /S'
 }

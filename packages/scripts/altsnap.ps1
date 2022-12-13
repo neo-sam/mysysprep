@@ -1,7 +1,7 @@
 #Requires -RunAsAdministrator
 param([switch]$GetMetadata)
 
-$match = Get-ChildItem -ea 0 'AltSnap*-x64-inst.exe'
+$match = Get-Item -ea 0 'AltSnap*-x64-inst.exe'
 
 if ($GetMetadata) {
     return @{

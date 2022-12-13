@@ -1,13 +1,15 @@
 #Requires -RunAsAdministrator
 
-if (Test-Path ($pwshDir = (Get-ChildItem 'C:\Program Files\PowerShell\*')[-1].FullName)) {
-    if (!(Test-Path ($target = "$pwshDir\profile.ps1"))) {
-        Set-Content -Encoding oem $target @'
+if ($pwshdirs = Get-ChildItem -ea 0 'C:\Program Files\PowerShell\*') {
+    if (Test-Path ($pwshDir = $pwshdirs[-1].FullName)) {
+        if (!(Test-Path ($target = "$pwshDir\profile.ps1"))) {
+            Set-Content -Encoding oem $target @'
 if (Test-Path 'C:\Windows\System32\WindowsPowerShell\v1.0\profile.ps1') {
     . 'C:\Windows\System32\WindowsPowerShell\v1.0\profile.ps1'
 }
 Set-PSReadLineOption -PredictionSource History
 '@
+        }
     }
 }
 

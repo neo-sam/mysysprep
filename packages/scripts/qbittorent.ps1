@@ -1,7 +1,7 @@
 #Requires -RunAsAdministrator
 param([switch]$GetMetadata)
 
-$match = Get-ChildItem -ea 0 'qbittorrent_*_setup.exe'
+$match = Get-Item -ea 0 'qbittorrent_*_setup.exe'
 
 if ($GetMetadata) {
     return @{
@@ -11,4 +11,4 @@ if ($GetMetadata) {
     }
 }
 
-Start-Process -Wait $match '/NCRC /S'
+Start-ProcessToInstall $match '/NCRC /S'

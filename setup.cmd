@@ -5,4 +5,4 @@ powershell start -verb runas '%0' elevated & exit /b
 )
 cd /d %~dp0
 title win-sf
-powershell -exec bypass -file setup.ps1
+powershell -exec bypass -file lib/main.ps1

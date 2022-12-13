@@ -1,7 +1,7 @@
 #Requires -RunAsAdministrator
 param([switch]$GetMetadata)
 
-$match = Get-ChildItem -ea 0 'SysinternalsSuite.zip'
+$match = Get-Item -ea 0 'SysinternalsSuite.zip'
 $targetPath = 'C:\Program Files\Sysinternals'
 
 if ($GetMetadata) {
@@ -32,6 +32,7 @@ Pop-Location
 if (Get-ChildItem -ea 0 'VeraCrypt_Setup_x64_*.msi') {
     $it = New-Shortcut ($path = "C:\users\Default\Desktop\Autologon.lnk")
     $it.TargetPath = "$targetPath\Autologon.exe"
+    $it.IconLocation = "imageres.dll,213"
     $it.save()
     Copy-ToCurrentDesktop $path
 }

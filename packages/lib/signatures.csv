@@ -18,6 +18,10 @@ VBox7,VirtualBox-7.*-Win.exe,"CN=Oracle Corporation, OU=VirtualBox, O=Oracle Cor
 gsudo,gsudoSetup.msi,"CN=Gerardo Grignoli, O=Gerardo Grignoli, S=Buenos Aires, C=AR"
 Tabby,tabby-*-setup-*.exe,"CN=syslink GmbH, O=syslink GmbH, L=Düsseldorf, S=Nordrhein-Westfalen, C=DE"
 
+dotnet452,NDP452-KB2901907-x86-x64-AllOS-ENU.exe,"CN=Microsoft Corporation, OU=MOPR, O=Microsoft Corporation, L=Redmond, S=Washington, C=US"
+PowerShell5,Win7AndW2K8R2-KB3191566-x64.msu,"CN=Microsoft Corporation, OU=MOPR, O=Microsoft Corporation, L=Redmond, S=Washington, C=US"
+PowerShell5 Update Script,Install-WMF5.1.ps1,"CN=Microsoft Corporation, OU=MOPR, O=Microsoft Corporation, L=Redmond, S=Washington, C=US"
+
 gVim,gvim*.exe
 qBittorrent,qbittorrent_*_setup.exe
 7zip-zstd,7z*-zstd-*.exe

@@ -1,10 +1,82 @@
-# 部署
+# 安装包目录
 
-## 下载安装包
+## 说明
 
-如果部分链接下载速度慢，推荐[安装迅雷](https://dl.xunlei.com/)加速下载
+请将安装包放置在本目录下，安装框架将会自动部署。
 
-### 常用必备
+- 如果部分链接下载速度慢，推荐[安装迅雷](https://dl.xunlei.com/)加速下载。
+- 以下带 \* 的应用程序，需要能读取 gzip xz 等压缩格式的 7zip 支持：
+
+  <details><summary>请获取 <code>7z.exe</code> 命令行程序到当前目录 ……</summary><br/>
+
+  1.  [从 NJU 镜像站下载安装程序](https://mirror.nju.edu.cn/7-zip/7z2201.exe)
+  2.  安装
+  3.  复制到本目录下：
+
+          cp "C:\Program Files*\7-Zip*\7z.exe" .
+
+  <br/></details>
+
+- 若使用 Windows 7 或 Server 2008R2 老系统：
+
+  <details><summary>请安装升级补丁 ……</summary><br/>
+
+  - 安装 [.NET Framework 4.5.2](https://www.microsoft.com/en-us/download/confirmation.aspx?id=42642) 或更高版本，使用 PowerShell 校验安装包：
+
+        (Get-FileHash -Algorithm SHA256 'NDP452-KB2901907-x86-x64-AllOS-ENU.exe').Hash -eq '6C2C589132E830A185C5F40F82042BEE3022E721A216680BD9B3995BA86F3781'
+
+  - 安装 [Windows Management Framework 5.1](https://www.microsoft.com/en-us/download/details.aspx?id=54616)
+
+    1.  选择 `Win7AndW2K8R2-KB3191566-x64.zip` 以下载
+    2.  使用 PowerShell 校验安装包:
+
+            (Get-FileHash -Algorithm SHA256 'Win7AndW2K8R2-KB3191566-x64.zip').Hash -eq 'F383C34AA65332662A17D95409A2DDEDADCEDA74427E35D05024CD0A6A2FA647'
+
+    3.  解压内容
+
+  </details><br/>
+
+## 获取内容
+
+### 常用软件
+
+- 为了支持 Windows 7 系列的老系统 ……
+
+  <details><summary>升级与补丁</summary><br/>
+
+  - 安装 [.NET Framework 4.5.2](https://www.microsoft.com/en-us/download/confirmation.aspx?id=42642) 或更高版本，使用 PowerShell 校验安装包：
+
+        (Get-FileHash -Algorithm SHA256 'NDP452-KB2901907-x86-x64-AllOS-ENU.exe').Hash -eq '6C2C589132E830A185C5F40F82042BEE3022E721A216680BD9B3995BA86F3781'
+
+  - 安装 [Windows Management Framework 5.1](https://www.microsoft.com/en-us/download/details.aspx?id=54616)
+
+    1.  选择 `Win7AndW2K8R2-KB3191566-x64.zip` 以下载
+    2.  使用 PowerShell 校验安装包:
+
+            (Get-FileHash -Algorithm SHA256 'Win7AndW2K8R2-KB3191566-x64.zip').Hash -eq 'F383C34AA65332662A17D95409A2DDEDADCEDA74427E35D05024CD0A6A2FA647'
+
+    3.  解压内容
+
+  </details><br/>
+
+- 为了支持 Windows 7 系列的老系统 ……
+
+  <details><summary>升级与补丁</summary><br/>
+
+  - 安装 [.NET Framework 4.5.2](https://www.microsoft.com/en-us/download/confirmation.aspx?id=42642) 或更高版本，使用 PowerShell 校验安装包：
+
+        (Get-FileHash -Algorithm SHA256 'NDP452-KB2901907-x86-x64-AllOS-ENU.exe').Hash -eq '6C2C589132E830A185C5F40F82042BEE3022E721A216680BD9B3995BA86F3781'
+
+  - 安装 [Windows Management Framework 5.1](https://www.microsoft.com/en-us/download/details.aspx?id=54616)
+
+    1.  选择 `Win7AndW2K8R2-KB3191566-x64.zip` 以下载
+    2.  使用 PowerShell 校验安装包:
+
+            (Get-FileHash -Algorithm SHA256 'Win7AndW2K8R2-KB3191566-x64.zip').Hash -eq 'F383C34AA65332662A17D95409A2DDEDADCEDA74427E35D05024CD0A6A2FA647'
+
+    3.  解压内容
+
+  </details><br/>
 
 - Firefox: 有效保护隐私的浏览器
 
@@ -36,7 +108,7 @@
 
   从[高校镜像站](https://mirrorz.org/app/VirtualBox)下载
 
-### 更多
+### 其它应用
 
 - qBittorrent-Enhanced-Edition: 改良版 BT 下载器
 

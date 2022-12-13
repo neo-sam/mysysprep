@@ -23,7 +23,7 @@ dism /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
         <p>Add boot menu entries (Optional):</p>
         <div class="editable">
           <pre><code># choose time
-bcdedit /timeout 2
+bcdedit /timeout 3
 # recommend use legacy boot menu ( which won't boot twice if select not default )
 bcdedit /set "{current}" bootmenupolicy legacy
 

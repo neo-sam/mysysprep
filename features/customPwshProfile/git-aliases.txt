@@ -147,7 +147,7 @@ nano
 nproc
 numfmt
 od
-openssl
+# openssl
 p11-kit
 passwd
 paste

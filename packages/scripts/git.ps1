@@ -1,7 +1,7 @@
 #Requires -RunAsAdministrator
 param([switch]$GetMetadata)
 
-$match = Get-ChildItem -ea 0 'Git-*-64-bit.exe'
+$match = Get-Item -ea 0 'Git-*-64-bit.exe'
 $appbin = 'C:\Program Files\Git\cmd\git.exe'
 
 if ($GetMetadata) {
@@ -12,7 +12,7 @@ if ($GetMetadata) {
     }
 }
 
-Start-Process -Wait $match "/LOADINF=config/git.ini /VERYSILENT /SUPPRESSMSGBOXES /NORESTART /SP-"
+Start-ProcessToInstall $match '/LOADINF=config/git.ini /VERYSILENT /SUPPRESSMSGBOXES /NORESTART /SP-'
 
 # CUSTOM:
 

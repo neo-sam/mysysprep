@@ -1,7 +1,7 @@
 #Requires -RunAsAdministrator
 param([switch]$GetMetadata)
 
-$match = Get-ChildItem -ea 0 'Everything-*.x64.Lite-Setup.exe'
+$match = Get-Item -ea 0 'Everything-*.x64.Lite-Setup.exe'
 $appbin = 'C:\Program Files\Everything\Everything.exe'
 
 if ($GetMetadata) {
@@ -12,7 +12,7 @@ if ($GetMetadata) {
     }
 }
 
-Start-Process -Wait $match /S
+Start-ProcessToInstall $match /S
 
 # CUSTOM:
 
@@ -25,3 +25,5 @@ if (Test-Path ($templ = 'config\Everything.ini')) {
         Copy-Item $target $that
     }
 }
+
+Move-DesktopIconFromPublicToDefaultAndCurrentUserIfAuditMode 'Everything'

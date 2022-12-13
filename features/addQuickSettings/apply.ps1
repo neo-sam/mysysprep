@@ -190,7 +190,6 @@ if ($cfg.createAll -or (Test-Windows11)) {
 
 $s = New-Shortcut -Lnk $names.tweak_advanced
 $s.TargetPath = 'SystemPropertiesAdvanced.exe'
-Set-IconToConfigPanel $s
 $s.Save()
 
 $s = New-Shortcut -Lnk $names.tweak_restorepoint

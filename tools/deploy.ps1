@@ -16,7 +16,9 @@ $scriptBlock = {
     & $path
 }
 
-Start-RSJob $scriptBlock -ArgumentList $file.FullName | Wait-RSJob | Receive-RSJob
+.\lib\loadModules.ps1
 
+Start-RSJob $scriptBlock -ArgumentList $file.FullName | Wait-RSJob | Receive-RSJob
 .\lib\submitNewUserRegistry.ps1
+
 Pop-Location

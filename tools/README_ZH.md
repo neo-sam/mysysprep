@@ -10,14 +10,10 @@
 
 ## 安装应用
 
-    ./tools/setup-package.ps1 ./packages/*
+    ./tools/deploy.ps1 ./packages/scripts/*
 
 ## 开发调试
 
 导入模块
 
     ./tools/load-modules.ps1
-
-打印配置
-
-    ./tools/Show Config.cmd

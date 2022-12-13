@@ -1,7 +1,7 @@
 #Requires -RunAsAdministrator
 param([switch]$GetMetadata)
 
-$match = Get-ChildItem -ea 0 'workrave-win32-v*.exe'
+$match = Get-Item -ea 0 'workrave-win32-v*.exe'
 
 if ($GetMetadata) {
     return @{
@@ -11,7 +11,7 @@ if ($GetMetadata) {
     }
 }
 
-Start-Process -Wait $match '/VERYSILENT /SUPPRESSMSGBOXES /NORESTART /SP-'
+Start-ProcessToInstall $match '/VERYSILENT /SUPPRESSMSGBOXES /NORESTART /SP-'
 
 # CUSTOM:
 

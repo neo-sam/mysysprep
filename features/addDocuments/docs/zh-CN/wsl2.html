@@ -24,7 +24,7 @@ dism /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
         <p>可选：添加系统启动选项</p>
         <div class="editable">
           <pre><code># 降低选择等待时间
-bcdedit /timeout 2
+bcdedit /timeout 3
 # 推荐使用传统菜单（ 不会二次启动 ）
 bcdedit /set "{current}" bootmenupolicy legacy
 

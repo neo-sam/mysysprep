@@ -1,7 +1,7 @@
 #Requires -RunAsAdministrator
 param([switch]$GetMetadata)
 
-$match = Get-ChildItem -ea 0 'VeraCrypt_Setup_x64_*.msi'
+$match = Get-Item -ea 0 'VeraCrypt_Setup_x64_*.msi'
 if ($GetMetadata) {
     return @{
         name   = 'VeraCrypt'
@@ -11,4 +11,8 @@ if ($GetMetadata) {
     }
 }
 
-Start-Process -Wait $match '/qb /norestart /l*v logs\veracrypt.log ACCEPTLICENSE=YES'
+Start-ProcessToInstall $match '/qb /norestart /l*v logs\veracrypt.log ACCEPTLICENSE=YES'
+
+# CUSTOM:
+
+Move-DesktopIconFromPublicToDefaultAndCurrentUserIfAuditMode 'VeraCrypt'
