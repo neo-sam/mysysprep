@@ -22,6 +22,8 @@ dotnet452,NDP452-KB2901907-x86-x64-AllOS-ENU.exe,"CN=Microsoft Corporation, OU=M
 PowerShell5,Win7AndW2K8R2-KB3191566-x64.msu,"CN=Microsoft Corporation, OU=MOPR, O=Microsoft Corporation, L=Redmond, S=Washington, C=US"
 PowerShell5 Update Script,Install-WMF5.1.ps1,"CN=Microsoft Corporation, OU=MOPR, O=Microsoft Corporation, L=Redmond, S=Washington, C=US"
 
+7z.exe,7z.exe
+7z.dll,7z.dll
 gVim,gvim*.exe
 qBittorrent,qbittorrent_*_setup.exe
 7zip-zstd,7z*-zstd-*.exe
@@ -32,3 +34,4 @@ Sysinternals,SysinternalsSuite.zip
 AltSnap,AltSnap*-x64-inst.exe
 Twinkle Tray,Twinkle.Tray.v*.exe
 ADB,platform-tools_r*-windows.zip
+MSYS2,msys2-x86_64-latest.tar.xz

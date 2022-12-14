@@ -7,13 +7,14 @@
 - 如果部分链接下载速度慢，推荐[安装迅雷](https://dl.xunlei.com/)加速下载。
 - 以下带 \* 的应用程序，需要能读取 gzip xz 等压缩格式的 7zip 支持：
 
-  <details><summary>请获取 <code>7z.exe</code> 命令行程序到当前目录 ……</summary><br/>
+  <details><summary>请获取 <code>7z.*exe*</code> 命令行程序到当前目录 ……</summary><br/>
 
   1.  [从 NJU 镜像站下载安装程序](https://mirror.nju.edu.cn/7-zip/7z2201.exe)
   2.  安装
   3.  复制到本目录下：
 
-          cp "C:\Program Files*\7-Zip*\7z.exe" .
+          cp 'C:\Program Files*\7-Zip*\7z.exe' .
+          cp 'C:\Program Files*\7-Zip*\7z.dll' .
 
   <br/></details>
 
@@ -57,6 +58,14 @@
 
     3.  解压内容
 
+  - 7zip: 支持 gzip xz 等压缩格式的安装包
+
+    1.  [从 NJU 镜像站下载安装程序](https://mirror.nju.edu.cn/7-zip/7z2201.exe)
+    2.  安装
+    3.  复制过来：
+
+            cp "C:\Program Files*\7-Zip*\7z.exe" .
+
   </details><br/>
 
 - 为了支持 Windows 7 系列的老系统 ……
@@ -75,6 +84,14 @@
             (Get-FileHash -Algorithm SHA256 'Win7AndW2K8R2-KB3191566-x64.zip').Hash -eq 'F383C34AA65332662A17D95409A2DDEDADCEDA74427E35D05024CD0A6A2FA647'
 
     3.  解压内容
+
+  - 7zip: 支持 gzip xz 等压缩格式的安装包
+
+    1.  [从 NJU 镜像站下载安装程序](https://mirror.nju.edu.cn/7-zip/7z2201.exe)
+    2.  安装
+    3.  复制过来：
+
+            cp "C:\Program Files*\7-Zip*\7z.exe" .
 
   </details><br/>
 
@@ -99,6 +116,10 @@
 - gVim: 文本编辑器
 
   按修改时间倒排，找到最新版 `.exe` 下载，见[高校镜像站](https://mirrorz.org/list/vim)
+
+- MSYS2: \* UNIX 移植而来的类库和工具，用于 Windows 开发
+
+  [Official GitHub Page](https://github.com/msys2/msys2-installer/releases)
 
 - ADB: 安卓手机/虚拟机调试工具
 

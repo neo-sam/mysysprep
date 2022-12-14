@@ -15,7 +15,8 @@ Download all content into `.\packages`, the setup framework will automatically i
   2.  Install
   3.  Copy to this directory:
 
-          cp "C:\Program Files*\7-Zip*\7z.exe" .
+          cp 'C:\Program Files*\7-Zip*\7z.exe' .
+          cp 'C:\Program Files*\7-Zip*\7z.dll' .
 
   <br/></details>
 
@@ -36,6 +37,14 @@ Download all content into `.\packages`, the setup framework will automatically i
 
     3.  Extract the archive
 
+  - 7zip: to support compression package formats like gzip and xz.
+
+    1.  [Get installer](https://www.7-zip.org/a/7z2201.exe)
+    2.  Install
+    3.  Copy to this directory:
+
+            cp "C:\Program Files*\7-Zip*\7z.exe" .
+
   </details><br/>
 
 ## Get Your Packages
@@ -44,7 +53,7 @@ Download all content into `.\packages`, the setup framework will automatically i
 
 - Firefox: privacy-first browser
 
-  [Download Installer directly](https://download.mozilla.org/?product=firefox-latest-ssl&os=win64)
+  [Get installer](https://download.mozilla.org/?product=firefox-latest-ssl&os=win64)
 
 - Thunderbird: Mozilla free email client
 
@@ -88,7 +97,7 @@ Download all content into `.\packages`, the setup framework will automatically i
 
 - VSCode
 
-  Download Installer directly:
+  Get installer:
   [x64](https://code.visualstudio.com/sha/download?build=stable&os=win32-x64)
   |
   [Arm64](https://code.visualstudio.com/sha/download?build=stable&os=win32-arm64)
@@ -97,7 +106,7 @@ Download all content into `.\packages`, the setup framework will automatically i
 
   <details> <summary>Support Latest Windows 7 Version: <b>1.70.3</b></summary>
 
-  Download Installer directly:
+  Get installer:
   [x64](https://update.code.visualstudio.com/1.70.2/win32-x64/stable)
   |
   [Arm64](https://update.code.visualstudio.com/1.70.2/win32-arm64-user/stable)
@@ -126,11 +135,15 @@ Download all content into `.\packages`, the setup framework will automatically i
 
 - Chocolatey: Packages Manager
 
-  [Download Installer directly](https://community.chocolatey.org/api/v2/package/chocolatey)
+  [Get installer](https://community.chocolatey.org/api/v2/package/chocolatey)
 
 - gsudo: acquire administration privilege
 
   [Get from GitHub Release](https://github.com/gerardog/gsudo/releases/latest/download/gsudoSetup.msi)
+
+- MSYS2: \* a collection of UNIX tools and libraries for developing on Windows
+
+  [Official GitHub Page](https://github.com/msys2/msys2-installer/releases)
 
 - ImDisk Toolkit: ramdisk for Windows and mounting of image files
 

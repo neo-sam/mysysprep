@@ -14,3 +14,7 @@ function Move-DesktopIconFromPublicToDefaultAndCurrentUserIfAuditMode([string]$p
         Move-Item $path ([Environment]::GetFolderPath('Desktop')) -Force
     }
 }
+
+function Assert-7z {
+    Get-Item './7z.exe' | Out-Null
+}

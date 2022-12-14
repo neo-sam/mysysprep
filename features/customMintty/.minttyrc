@@ -6,4 +6,5 @@ ForegroundColour=255,255,255
 ThemeFile=windows10
 Transparency=medium
 
-FontHeight=14
+# Font=Cascadia Mono
+# FontHeight=14

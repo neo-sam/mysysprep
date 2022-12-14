@@ -2,6 +2,7 @@
 /manual/
 /*.ps1
 /*.exe
+/*.dll
 /*.msi
 /*.msixbundle
 /*.zip
@@ -10,3 +11,4 @@
 /*.ttc
 /*.otf
 /*.msu
+/*.xz

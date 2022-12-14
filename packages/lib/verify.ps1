@@ -69,11 +69,9 @@ if ($manualVerifyList = ($result | Where-Object { $_.Verified -eq $null }).Name)
 
     Push-Location $PSScriptRoot\..
     Get-FileHash -Algorithm SHA256 $manualVerifyList | ForEach-Object {
-        ([PSCustomObject]@{
-            Name = (Get-ChildItem $_.Path).Name
-            Link = 'https://www.virustotal.com/gui/file/' + $_.Hash
-        })
-    } | Format-List
+        Write-Output (Get-ChildItem $_.Path).Name
+        Write-Output ('https://www.virustotal.com/gui/file/' + $_.Hash)
+    }
     Pop-Location
 }
 

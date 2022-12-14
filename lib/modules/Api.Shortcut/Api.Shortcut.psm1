@@ -28,3 +28,13 @@ function Set-ShortcutRunAsAdmin([string]$path) {
     $bytes[0x15] = $bytes[0x15] -bor 0x20
     [IO.File]::WriteAllBytes($path, $bytes)
 }
+
+function New-StartMenuShortcut([string]$target , [string]$name, [string]$dirname ) {
+    $basepath = 'C:\ProgramData\Microsoft\Windows\Start Menu\Programs'
+    if ($dirname) {
+        mkdir -f ($basepath = "$basepath\$dirname") | Out-Null
+    }
+    $s = $wshell.CreateShortcut("$basepath\$name.lnk")
+    $s.TargetPath = $target
+    return $s
+}
