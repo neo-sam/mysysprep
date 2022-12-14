@@ -2,7 +2,7 @@
     "files.associations": {
         "*.reg": "ini",
         "**/lib/newdesktop/*.txt": "markdown",
-        "**/features/customPwshProfile/git-aliases.txt": "shellscript"
+        "**/features/customPwshProfile/GitToolsLoader/aliases.macro.txt": "shellscript"
     },
     "search.exclude": {
         "**/lib/modules/PoshRSJob": true

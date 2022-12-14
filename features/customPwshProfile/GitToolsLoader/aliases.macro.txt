@@ -224,7 +224,7 @@ test
 tig
 # timeout
 # toe
-touch
+# touch
 # tput
 tr
 # true

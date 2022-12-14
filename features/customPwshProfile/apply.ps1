@@ -13,10 +13,21 @@ Set-PSReadLineOption -PredictionSource History
     }
 }
 
-Get-Content git-aliases.txt | Where-Object { !"$_".StartsWith('#') } | Out-File -Encoding ascii 'C:\Windows\System32\WindowsPowerShell\v1.0\git-aliases.txt'
 if (!(Test-Path ($target = 'C:\Windows\System32\WindowsPowerShell\v1.0\profile.ps1'))) {
-    Copy-Item .\profile.ps1 $target
+    Get-Content .\profile.ps1 | Out-File -Encoding oem $target
 }
 else {
     Write-MergeAdviceIfDifferent -RunAsAdmin .\profile.ps1 $target
+}
+
+$modulesdir = 'C:\Windows\system32\WindowsPowerShell\v1.0\Modules'
+if (Test-Path -PathType Container ($modname = 'GitToolsLoader')) {
+    $target = "$modulesdir\$modname"
+    mkdir -f $target | Out-Null
+    Copy-Item $modname\$modname.psm1 $target
+
+    $enableAliasesList = Get-Content "$modname\aliases.macro.txt" |`
+        Where-Object { $_ -and !"$_".StartsWith('#') }
+
+    $enableAliasesList | Out-File -Encoding ascii $target\aliases.txt
 }
