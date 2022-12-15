@@ -29,3 +29,6 @@ function Repair-HidpiCompatibility([string[]]$paths = @()) {
         }
     }
 }
+
+$supportAppx = !!(Get-Command -ea 0 Get-AppxPackage)
+function Test-AppxSystemAvailable { $supportAppx }

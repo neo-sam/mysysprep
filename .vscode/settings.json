@@ -5,7 +5,7 @@
         "**/features/customPwshProfile/GitToolsLoader/aliases.macro.txt": "shellscript"
     },
     "search.exclude": {
-        "**/lib/modules/PoshRSJob": true
+        "**/lib/modules/master/PoshRSJob": true
     },
     "[ini]": {
         "files.encoding": "utf16le",

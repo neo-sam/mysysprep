@@ -2,12 +2,6 @@ function Get-ProjectLocation {
     "$(Resolve-Path $PSScriptRoot\..\..\..)"
 }
 
-$returnFnFalse = { $false }
-$returnFnTrue = { $true }
-function Get-BooleanReturnFn([bool]$value) {
-    if ($value) { $returnFnTrue } else { $returnFnFalse }
-}
-
 function Get-Translation(
     [Parameter(Mandatory, ValueFromPipeline)]
     [string]$text,

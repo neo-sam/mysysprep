@@ -4,11 +4,16 @@
 Import-Module ConfigLoader
 $Error.Clear()
 
-.\lib\submitNewUserRegistry.ps1
-.\lib\submitNewTaskbarLayout.ps1
+function Invoke-Task([string]$name) {
+    $path = "lib\tasks\$name\apply.ps1"
+    if (Test-Path $path) { & $path }
+}
+
+Invoke-Task submitNewUserRegistry
+Invoke-Task setTaskbarLayout
 
 if (Test-AuditMode) {
-    & .\lib\submitNewUnattendFile.ps1
+    Invoke-Task makeUnattendFile
 }
 
 Write-Output '!!! FINISHED ALL !!!'

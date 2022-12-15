@@ -4,5 +4,3 @@ function Add-PSModulePath([string]$FilePath) {
         $env:PSModulePath = $abspath + [IO.Path]::PathSeparator + $env:PSModulePath
     }
 }
-
-Add-PSModulePath "$PSScriptRoot\modules\common"

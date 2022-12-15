@@ -1,4 +1,4 @@
-& $PSScriptRoot\..\..\lib\loadModules.ps1
+& $PSScriptRoot\..\lib\loadModules.ps1
 Import-Module ConfigLoader
 
 ConvertTo-Json ([ordered]@{

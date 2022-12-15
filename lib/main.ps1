@@ -44,7 +44,7 @@ try {
         catch [System.Security.SecurityException] {}
     }
 
-    .\lib\submit.ps1
+    .\lib\prepareForSysprep.ps1
 }
 catch {
     Write-Error $_.Exception.Message

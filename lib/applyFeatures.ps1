@@ -1,5 +1,5 @@
 Push-Location $PSScriptRoot\..
-& .\lib\loadModules.ps1
+& .\lib\modules\master\import.ps1
 
 $activity = 'Applying changes ...'
 $totalJobs = 0
@@ -8,7 +8,7 @@ $totalCompletedJobs = 0
 $jobScript = {
     param($name, $cfg)
     Set-Location "$Using:PSScriptRoot\.."
-    & .\lib\loadModules.ps1
+    & .\lib\modules\api\feature\import.ps1
     Set-Location ".\features\$name"
     . .\apply.ps1 $cfg
 }

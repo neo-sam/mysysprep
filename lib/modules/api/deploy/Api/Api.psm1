@@ -1,3 +1,9 @@
+$returnFnFalse = { $false }
+$returnFnTrue = { $true }
+function Get-BooleanReturnFn([bool]$value) {
+    if ($value) { $returnFnTrue } else { $returnFnFalse }
+}
+
 function Start-ProcessToInstall([string]$FilePath, [string]$ArgumentList) {
     if ($exitCode = (
             Start-Process -Wait $FilePath $ArgumentList

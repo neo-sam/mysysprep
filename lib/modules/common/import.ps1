@@ -1,0 +1,1 @@
+. $PSScriptRoot\..\Add-PSModulePath "$PSScriptRoot"

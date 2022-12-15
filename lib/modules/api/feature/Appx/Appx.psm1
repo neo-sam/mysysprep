@@ -1,6 +1,4 @@
 $supportAppx = !!(Get-Command -ea 0 Get-AppxPackage)
-function Test-AppxSystemAvailable { $supportAppx }
-
 function Uninstall-BundledAppx([string]$names) {
     if (!$supportAppx) { return }
     if (($mutex = New-Object System.Threading.Mutex($false, 'WinSf-Appx')).WaitOne()) {
