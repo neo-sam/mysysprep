@@ -1,4 +1,4 @@
-# Windows Setup Framework
+# Your Windows System Preparation
 
 Auto setup or config Your Windows by One Click.
 
@@ -8,7 +8,9 @@ Suitable: Win11/Win10, [Win7](./win7/README.md). x64 CPU arch.
 
 [![HackerNews](https://img.shields.io/badge/Need%20your%20vote-on%20hacker%20news!-orange?logo=ycombinator)](https://news.ycombinator.com/item?id=33715265)
 
-This README is also available in languages: [🇨🇳 中文](./README_ZH.md)
+This README is also available in languages: [简体中文](./README_ZH.md)
+
+( Plan Support: 繁体中文、日本语、意大利语 ）
 
 ## How To Use?
 
