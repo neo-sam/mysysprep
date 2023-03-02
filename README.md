@@ -1,4 +1,4 @@
-# Your Windows System Preparation
+# 🪟 Your Windows System Preparation
 
 Auto setup or config Your Windows by One Click.
 
@@ -8,18 +8,16 @@ Suitable: Win11/Win10, [Win7](./win7/README.md). x64 CPU arch.
 
 [![HackerNews](https://img.shields.io/badge/Need%20your%20vote-on%20hacker%20news!-orange?logo=ycombinator)](https://news.ycombinator.com/item?id=33715265)
 
-This README is also available in languages: [简体中文](./README_ZH.md)
+This README is also available in languages: [🇨🇳 简体中文](./README_ZH.md)
 
-( Plan Support: 繁体中文、日本语、意大利语 ）
-
-## How To Use?
+## 🤔 How To Use?
 
 1. Git clone or download this repository into your U disk.
 2. Copy or learn the config files from `samples/`
 3. [Enable or tweak features in `configuration.ps1`](./features/README.md)
 4. [Add packages into `packages/`](./packages/README.md)
 
-### Deploy On New Machine
+### 🚩 Deploy On New Machine
 
 Please read the documentation: [Audit Mode](https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/boot-windows-to-audit-mode-or-oobe)
 
@@ -42,7 +40,7 @@ flowchart TD
   image -. apply .-> instance
 ```
 
-### Deploy On Existed System
+### ⚙️ Deploy On Existed System
 
 ```mermaid
 flowchart TB
@@ -53,11 +51,11 @@ flowchart TB
   bundle --o config
 ```
 
-## Warning
+## ⚠️ Warning
 
-⚠️ DISCLAIMER: You're doing this at your own risk, I am not responsible for any data loss or damage that may occur.
+DISCLAIMER: You're doing this at your own risk, I am not responsible for any data loss or damage that may occur.
 
-## Install a new Windows
+## 🌟 Install a new Windows
 
 <details>
 <summary>Binary Assets ...</summary>
@@ -81,7 +79,7 @@ Get U disk image writer:
 <br/>
 </details>
 
-## Make and Apply a System Image
+## 💿 Make and Apply a System Image
 
 <details>
 <summary>Encapsule as an Image ...</summary>
@@ -140,3 +138,9 @@ bcdboot c:\windows /s u:
 </code></pre>
 
 </details>
+
+## 🧋 Buy me a coffee
+
+Alipay|WeChat Pay
+---|---
+<img alt="Alipay Qrcode" src="https://user-images.githubusercontent.com/13063376/222323652-3862ef8b-4b26-4779-ab48-a92fa6ed0997.jpg" width="320">|<img alt="WeChat Pay Qrcode" src="https://user-images.githubusercontent.com/13063376/222323634-ad8352f2-5cd5-4176-bb5b-b0997fcaecd8.png" width="320">
